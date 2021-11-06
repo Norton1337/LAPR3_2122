@@ -7,10 +7,10 @@ public class Container {
     private int containerNumber;
     private int checkDigit;
     private String ISOCODE;
-    private float maxWeightWithContainer;
-    private float weightContainer;
-    private float maxWeightToBePacked;
-    private float maxVolToBePacked;
+    private double maxWeightWithContainer;
+    private double weightContainer;
+    private double maxWeightToBePacked;
+    private double maxVolToBePacked;
     private String certificates;
     private String repairRecomendations;
     private String containerPosition;
@@ -18,8 +18,8 @@ public class Container {
     private int shipID;
 
     public Container(int id, int containerIdentification, int containerNumber, int checkDigit, String ISOCODE,
-                     float maxWeightWithContainer, float weightContainer, float maxWeightToBePacked,
-                     float maxVolToBePacked, String certificates, String repairRecomendations,
+                     double maxWeightWithContainer, double weightContainer, double maxWeightToBePacked,
+                     double maxVolToBePacked, String certificates, String repairRecomendations,
                      String containerPosition, boolean isRefrigerated) {
 
 
@@ -78,35 +78,19 @@ public class Container {
         this.ISOCODE = ISOCODE;
     }
 
-    public float getMaxWeightWithContainer() {
-        return maxWeightWithContainer;
-    }
-
-    public void setMaxWeightWithContainer(float maxWeightWithContainer) {
+    public void setMaxWeightWithContainer(double maxWeightWithContainer) {
         this.maxWeightWithContainer = maxWeightWithContainer;
     }
 
-    public float getWeightContainer() {
-        return weightContainer;
-    }
-
-    public void setWeightContainer(float weightContainer) {
+    public void setWeightContainer(double weightContainer) {
         this.weightContainer = weightContainer;
     }
 
-    public float getMaxWeightToBePacked() {
-        return maxWeightToBePacked;
-    }
-
-    public void setMaxWeightToBePacked(float maxWeightToBePacked) {
+    public void setMaxWeightToBePacked(double maxWeightToBePacked) {
         this.maxWeightToBePacked = maxWeightToBePacked;
     }
 
-    public float getMaxVolToBePacked() {
-        return maxVolToBePacked;
-    }
-
-    public void setMaxVolToBePacked(float maxVolToBePacked) {
+    public void setMaxVolToBePacked(double maxVolToBePacked) {
         this.maxVolToBePacked = maxVolToBePacked;
     }
 
@@ -124,6 +108,22 @@ public class Container {
 
     public void setRepairRecomendations(String repairRecomendations) {
         this.repairRecomendations = repairRecomendations;
+    }
+
+    public double getMaxWeightWithContainer() {
+        return maxWeightWithContainer;
+    }
+
+    public double getWeightContainer() {
+        return weightContainer;
+    }
+
+    public double getMaxWeightToBePacked() {
+        return maxWeightToBePacked;
+    }
+
+    public double getMaxVolToBePacked() {
+        return maxVolToBePacked;
     }
 
     public String getContainerPosition() {
