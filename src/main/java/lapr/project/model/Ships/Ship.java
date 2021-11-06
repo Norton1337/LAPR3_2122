@@ -1,31 +1,30 @@
 package lapr.project.model.Ships;
 
-import java.util.List;
-
 public class Ship {
 
     private int id;
     private String MMSI;
     private String shipName;
     private String IMO;
-    private int callSign;
+    private String callSign;
     private int vesselType;
     private int length;
     private int width;
-    private int draft;
-    private int cargoAxis;
+    private double draft;
     private String transceiverClass;
     private double loadCapacity;
     private Generator generator;
-    private final List<ShipPositonData> positionData;
 
-    public Ship(int id, String MMSI, String shipName, String IMO, int callSign,
-                int vesselType, int length, int width, int draft, int cargoAxis,
-                String transceiverClass, double loadCapacity, Generator generator, List<ShipPositonData> positionData) {
+    //private final List<ShipPositonData> positionData;
+    //private final List<Container> containers;
 
-        if(!isMMSIValid(MMSI)){
 
-        }
+    public Ship(int id, String MMSI, String shipName, String IMO, String callSign,
+                int vesselType, int length, int width, double draft,
+                String transceiverClass, double loadCapacity, Generator generator) {
+
+        // VALIDATIONS
+        isMMSIValid(MMSI);
 
         this.id = id;
         this.MMSI = MMSI;
@@ -36,11 +35,11 @@ public class Ship {
         this.length = length;
         this.width = width;
         this.draft = draft;
-        this.cargoAxis = cargoAxis;
         this.transceiverClass = transceiverClass;
         this.loadCapacity = loadCapacity;
         this.generator = generator;
-        this.positionData = positionData;
+        //this.positionData = positionData;
+        //this.containers = containers;
     }
 
     public int getId() {
@@ -56,9 +55,7 @@ public class Ship {
     }
 
     public void setMMSI(String MMSI) {
-        if (!isMMSIValid(MMSI)) {
-
-        }
+        isMMSIValid(MMSI);
         this.MMSI = MMSI;
     }
 
@@ -81,11 +78,11 @@ public class Ship {
         this.IMO = IMO;
     }
 
-    public int getCallSign() {
+    public String getCallSign() {
         return callSign;
     }
 
-    public void setCallSign(int callSign) {
+    public void setCallSign(String callSign) {
         this.callSign = callSign;
     }
 
@@ -113,22 +110,6 @@ public class Ship {
         this.width = width;
     }
 
-    public int getDraft() {
-        return draft;
-    }
-
-    public void setDraft(int draft) {
-        this.draft = draft;
-    }
-
-    public int getCargoAxis() {
-        return cargoAxis;
-    }
-
-    public void setCargoAxis(int cargoAxis) {
-        this.cargoAxis = cargoAxis;
-    }
-
     public String getTransceiverClass() {
         return transceiverClass;
     }
@@ -145,6 +126,14 @@ public class Ship {
         this.loadCapacity = loadCapacity;
     }
 
+    public double getDraft() {
+        return draft;
+    }
+
+    public void setDraft(double draft) {
+        this.draft = draft;
+    }
+
     public Generator getGenerator() {
         return generator;
     }
@@ -155,16 +144,35 @@ public class Ship {
 
 
     public static boolean isMMSIValid(String mmsi) {
-        if(mmsi.length() != 9){
+        if (mmsi.length() != 9) {
             throw new IllegalArgumentException("Not a valid MMSI.");
         }
         return true;
     }
 
     public static boolean isIMOValid(String imo) {
-        if(imo.length() != 7){
+        if (imo.length() != 7) {
             throw new IllegalArgumentException("Not a valid IMO.");
         }
         return true;
     }
+
+    /*
+    public List<ShipPositonData> getPositionData() {
+        return positionData;
+    }
+
+    public List<Container> getContainers() {
+        return containers;
+    }
+
+    public boolean addShipPositionData(ShipPositonData shipPositonData){
+        return this.positionData.add(shipPositonData);
+    }
+
+    public boolean addContainers(Container container){
+        return this.containers.add(container);
+    }
+     */
+
 }

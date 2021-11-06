@@ -1,37 +1,42 @@
 package lapr.project.data;
 
+import lapr.project.data.DBScripts.DataHandler;
 import lapr.project.model.Ships.IDB.IShipsDB;
 import lapr.project.model.Ships.Ship;
 
 import java.util.List;
 
 public class ShipDB extends DataHandler implements IShipsDB {
+
     // TODO implement DB
 
+
     @Override
-    public List<Ship> getAllPharmacies() {
+    public List<Ship> getAllShips() {
         return null;
     }
 
     @Override
-    public Ship getPharmacy(String id) {
+    public Ship getShip(String id) {
         return null;
     }
 
     @Override
-    public boolean addPharmacy(Ship pharmacy) {
+    public boolean addShip(Ship pharmacy) {
         return false;
     }
 
     @Override
-    public boolean updatePharmacy(Ship pharmacy) {
+    public boolean updateShip(Ship pharmacy) {
         return false;
     }
 
     @Override
-    public boolean removePharmacy(String id) {
+    public boolean removeShip(String id) {
         return false;
     }
+
+
 
 
 }

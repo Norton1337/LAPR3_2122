@@ -15,7 +15,28 @@ public class Container {
     private String repairRecomendations;
     private String containerPosition;
     private boolean isRefrigerated;
+    private int shipID;
 
+    public Container(int id, int containerIdentification, int containerNumber, int checkDigit, String ISOCODE,
+                     float maxWeightWithContainer, float weightContainer, float maxWeightToBePacked,
+                     float maxVolToBePacked, String certificates, String repairRecomendations,
+                     String containerPosition, boolean isRefrigerated) {
+
+
+        this.id = id;
+        this.containerIdentification = containerIdentification;
+        this.containerNumber = containerNumber;
+        this.checkDigit = checkDigit;
+        this.ISOCODE = ISOCODE;
+        this.maxWeightWithContainer = maxWeightWithContainer;
+        this.weightContainer = weightContainer;
+        this.maxWeightToBePacked = maxWeightToBePacked;
+        this.maxVolToBePacked = maxVolToBePacked;
+        this.certificates = certificates;
+        this.repairRecomendations = repairRecomendations;
+        this.containerPosition = containerPosition;
+        this.isRefrigerated = isRefrigerated;
+    }
 
     public int getId() {
         return id;
@@ -119,5 +140,13 @@ public class Container {
 
     public void setRefrigerated(boolean refrigerated) {
         isRefrigerated = refrigerated;
+    }
+
+    public int getShipID() {
+        return shipID;
+    }
+
+    public void setShipID(int shipID) {
+        this.shipID = shipID;
     }
 }

@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface IShipsDB {
 
-    List<Ship> getAllPharmacies();
+    List<Ship> getAllShips();
 
-    Ship getPharmacy(String id);
+    Ship getShip(String id);
 
-    boolean addPharmacy(Ship pharmacy);
+    boolean addShip(Ship ship);
 
-    boolean updatePharmacy(Ship pharmacy);
+    boolean updateShip(Ship ship);
 
-    boolean removePharmacy(String id);
+    boolean removeShip(String id);
 }

@@ -1,4 +1,4 @@
-package lapr.project.data;
+package lapr.project.data.DBScripts;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
