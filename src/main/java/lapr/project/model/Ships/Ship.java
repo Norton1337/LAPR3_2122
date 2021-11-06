@@ -24,7 +24,9 @@ public class Ship {
                 String transceiverClass, double loadCapacity, Generator generator) {
 
         // VALIDATIONS
-        isMMSIValid(MMSI);
+        if(!isMMSIValid(MMSI)){
+            throw new IllegalArgumentException("Not a valid MMSI.");
+        }
 
         this.id = id;
         this.MMSI = MMSI;
@@ -55,7 +57,9 @@ public class Ship {
     }
 
     public void setMMSI(String MMSI) {
-        isMMSIValid(MMSI);
+        if(!isMMSIValid(MMSI)){
+            throw new IllegalArgumentException("Not a valid MMSI.");
+        };
         this.MMSI = MMSI;
     }
 
@@ -145,14 +149,14 @@ public class Ship {
 
     public static boolean isMMSIValid(String mmsi) {
         if (mmsi.length() != 9) {
-            throw new IllegalArgumentException("Not a valid MMSI.");
+            return false;
         }
         return true;
     }
 
     public static boolean isIMOValid(String imo) {
         if (imo.length() != 7) {
-            throw new IllegalArgumentException("Not a valid IMO.");
+            return false;
         }
         return true;
     }
