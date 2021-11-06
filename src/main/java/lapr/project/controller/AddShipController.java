@@ -12,7 +12,7 @@ public class AddShipController {
 
     public AddShipController(IShipsDB shipDB, IGeneratorDB generatorDB) {
         this.shipDB = shipDB;
-        this.generatorDB =generatorDB;
+        this.generatorDB = generatorDB;
     }
 
     public boolean addShip(Ship newShip, Generator gen) {

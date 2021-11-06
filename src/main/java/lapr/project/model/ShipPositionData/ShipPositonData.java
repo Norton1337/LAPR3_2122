@@ -6,15 +6,15 @@ public class ShipPositonData {
     private int id;
     private String baseDateTime;
     private String coordinates;
-    private float sog;
-    private float cog;
+    private double sog;
+    private double cog;
     private int heading;
     private String positon;
     private String transcieverClass;
     private int shipId;
 
 
-    public ShipPositonData(int id, String baseDateTime, String coordinates, float sog, float cog,
+    public ShipPositonData(int id, String baseDateTime, String coordinates, double sog, double cog,
                            int heading, String positon, String transcieverClass, int shipId) {
         this.id = id;
         this.baseDateTime = baseDateTime;
@@ -51,19 +51,19 @@ public class ShipPositonData {
         this.coordinates = coordinates;
     }
 
-    public float getSog() {
+    public double getSog() {
         return sog;
     }
 
-    public void setSog(float sog) {
+    public void setSog(double sog) {
         this.sog = sog;
     }
 
-    public float getCog() {
+    public double getCog() {
         return cog;
     }
 
-    public void setCog(float cog) {
+    public void setCog(double cog) {
         this.cog = cog;
     }
 
