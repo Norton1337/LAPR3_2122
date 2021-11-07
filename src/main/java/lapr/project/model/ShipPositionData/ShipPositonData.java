@@ -14,9 +14,8 @@ public class ShipPositonData {
     private int shipId;
 
 
-    public ShipPositonData(int id, String baseDateTime, String coordinates, double sog, double cog,
-                           int heading, String positon, String transcieverClass, int shipId) {
-        this.id = id;
+    public ShipPositonData(String baseDateTime, String coordinates, double sog, double cog,
+                           int heading, String positon, String transcieverClass) {
         this.baseDateTime = baseDateTime;
         this.coordinates = coordinates;
         this.sog = sog;
@@ -24,7 +23,6 @@ public class ShipPositonData {
         this.heading = heading;
         this.positon = positon;
         this.transcieverClass = transcieverClass;
-        this.shipId = shipId;
     }
 
     public int getId() {
@@ -97,5 +95,20 @@ public class ShipPositonData {
 
     public void setShipId(int shipId) {
         this.shipId = shipId;
+    }
+
+    @Override
+    public String toString() {
+        return "ShipPositonData{" +
+                "id=" + id +
+                ", baseDateTime='" + baseDateTime + '\'' +
+                ", coordinates='" + coordinates + '\'' +
+                ", sog=" + sog +
+                ", cog=" + cog +
+                ", heading=" + heading +
+                ", positon='" + positon + '\'' +
+                ", transcieverClass='" + transcieverClass + '\'' +
+                ", shipId=" + shipId +
+                '}';
     }
 }

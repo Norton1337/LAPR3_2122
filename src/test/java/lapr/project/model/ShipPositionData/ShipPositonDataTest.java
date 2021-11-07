@@ -1,21 +1,28 @@
 package lapr.project.model.ShipPositionData;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShipPositonDataTest {
 
     private final ShipPositonData testShipPosition ;
 
     public ShipPositonDataTest(){
-        this.testShipPosition = new ShipPositonData(322,"31/12/2020", "42.97875,-66.97001",12.9,
-                13.1,355,"0","B",1);
+        this.testShipPosition = new ShipPositonData("31/12/2020", "42.97875,-66.97001",12.9,
+                13.1,355,"0","B");
+    }
+
+    @BeforeEach
+    public void setUp(){
+        testShipPosition.setId(1);
+        testShipPosition.setShipId(13);
     }
 
     @Test
     void getId() {
-        assertEquals(testShipPosition.getId(), 322);
+        assertEquals(testShipPosition.getId(), 1);
     }
 
     @Test
@@ -128,7 +135,7 @@ class ShipPositonDataTest {
 
     @Test
     void getShipId() {
-        assertEquals(testShipPosition.getShipId(), 1);
+        assertEquals(testShipPosition.getShipId(), 13);
     }
 
     @Test

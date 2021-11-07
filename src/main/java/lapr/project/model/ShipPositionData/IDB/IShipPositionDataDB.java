@@ -10,4 +10,10 @@ public interface IShipPositionDataDB {
 
     boolean addShipData(ShipPositonData shipPositonData);
 
+    boolean removeDataFromShip(ShipPositonData shipPositonData);
+
+    Integer getAvailableShipPositionId();
+
+    List<ShipPositonData> getAllPositionDataFromShip(int shipID);
+
 }

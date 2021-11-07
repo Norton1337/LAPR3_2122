@@ -9,12 +9,13 @@ class ShipTest {
     private final Ship testShip;
 
     public ShipTest() {
-        this.testShip = new Ship(1,"210950000", "VARAMO", "9395044", "C4SQ2", 70,
-                166, 25, 9.5, "0", 0, new Generator(0,0,0,0));
+        this.testShip = new Ship("210950000", "VARAMO", "9395044", "C4SQ2", 70,
+                166, 25, 9.5, 0.0);
     }
 
     @Test
     void getId() {
+        testShip.setId(1);
         assertEquals(testShip.getId(), 1);
     }
 
@@ -125,20 +126,6 @@ class ShipTest {
         testShip.setWidth(initialWidth);
     }
 
-    @Test
-    void getTransceiverClass() {
-        assertEquals(testShip.getTransceiverClass(),"0");
-    }
-
-    @Test
-    void setTransceiverClass() {
-        String initialTransceiver = testShip.getTransceiverClass();
-        testShip.setTransceiverClass("0");
-
-        assertEquals(testShip.getTransceiverClass(), "0");
-        testShip.setTransceiverClass(initialTransceiver);
-
-    }
 
     @Test
     void getLoadCapacity() {
@@ -160,23 +147,6 @@ class ShipTest {
 
         assertEquals(testShip.getDraft(), 215.3);
         testShip.setDraft(initialDraft);
-    }
-
-    @Test
-    void getGenerator() {
-        assertNotNull(testShip.getGenerator());
-    }
-
-    @Test
-    void setGenerator() {
-        int shipId = testShip.getId();
-        Generator initialGen = testShip.getGenerator();
-
-        Generator newGenerator = new Generator(123, 0,0,shipId);
-        testShip.setGenerator(newGenerator);
-
-        assertEquals(testShip.getGenerator(), newGenerator);
-        testShip.setGenerator(initialGen);
     }
 
     @Test

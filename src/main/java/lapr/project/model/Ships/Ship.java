@@ -11,24 +11,20 @@ public class Ship {
     private int length;
     private int width;
     private double draft;
-    private String transceiverClass;
     private double loadCapacity;
-    private Generator generator;
 
     //private final List<ShipPositonData> positionData;
     //private final List<Container> containers;
 
 
-    public Ship(int id, String MMSI, String shipName, String IMO, String callSign,
-                int vesselType, int length, int width, double draft,
-                String transceiverClass, double loadCapacity, Generator generator) {
+    public Ship(String MMSI, String shipName, String IMO, String callSign,
+                int vesselType, int length, int width, double draft, double loadCapacity) {
 
         // VALIDATIONS
         if(!isMMSIValid(MMSI)){
             throw new IllegalArgumentException("Not a valid MMSI.");
         }
 
-        this.id = id;
         this.MMSI = MMSI;
         this.shipName = shipName;
         this.IMO = IMO;
@@ -37,9 +33,7 @@ public class Ship {
         this.length = length;
         this.width = width;
         this.draft = draft;
-        this.transceiverClass = transceiverClass;
         this.loadCapacity = loadCapacity;
-        this.generator = generator;
         //this.positionData = positionData;
         //this.containers = containers;
     }
@@ -114,14 +108,6 @@ public class Ship {
         this.width = width;
     }
 
-    public String getTransceiverClass() {
-        return transceiverClass;
-    }
-
-    public void setTransceiverClass(String transceiverClass) {
-        this.transceiverClass = transceiverClass;
-    }
-
     public double getLoadCapacity() {
         return loadCapacity;
     }
@@ -137,15 +123,6 @@ public class Ship {
     public void setDraft(double draft) {
         this.draft = draft;
     }
-
-    public Generator getGenerator() {
-        return generator;
-    }
-
-    public void setGenerator(Generator generator) {
-        this.generator = generator;
-    }
-
 
     public static boolean isMMSIValid(String mmsi) {
         if (mmsi.length() != 9) {
@@ -179,4 +156,19 @@ public class Ship {
     }
      */
 
+    @Override
+    public String toString() {
+        return "Ship{" +
+                "id=" + id +
+                ", MMSI='" + MMSI + '\'' +
+                ", shipName='" + shipName + '\'' +
+                ", IMO='" + IMO + '\'' +
+                ", callSign='" + callSign + '\'' +
+                ", vesselType=" + vesselType +
+                ", length=" + length +
+                ", width=" + width +
+                ", draft=" + draft +
+                ", loadCapacity=" + loadCapacity +
+                '}';
+    }
 }

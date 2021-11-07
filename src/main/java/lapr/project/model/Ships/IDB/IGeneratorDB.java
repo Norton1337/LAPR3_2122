@@ -8,6 +8,8 @@ public interface IGeneratorDB {
 
     boolean addGenerator(int ship, Generator gen);
 
+    Integer getAvailableGeneratorId();
+
     Generator getGeneratorData(int id);
 
     List<Generator> getAllGenerator();

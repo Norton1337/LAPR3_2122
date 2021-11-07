@@ -21,6 +21,8 @@ public class ShipDB extends DataHandler implements IShipsDB {
         return null;
     }
 
+
+
     @Override
     public boolean addShip(Ship pharmacy) {
         return false;
@@ -34,6 +36,16 @@ public class ShipDB extends DataHandler implements IShipsDB {
     @Override
     public boolean removeShip(String id) {
         return false;
+    }
+
+    @Override
+    public Ship getShipByMMSI(String id) {
+        return null;
+    }
+
+    @Override
+    public Integer getAvailableShipId() {
+        return null;
     }
 
 

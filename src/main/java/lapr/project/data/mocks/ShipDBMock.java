@@ -3,6 +3,8 @@ package lapr.project.data.mocks;
 import lapr.project.model.Ships.IDB.IShipsDB;
 import lapr.project.model.Ships.Ship;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +23,25 @@ public class ShipDBMock implements IShipsDB {
     }
 
     @Override
+    public Integer getAvailableShipId() {
+        List<Integer> idList = new ArrayList<>();
+        List<Ship> allShipsList = getAllShips();
+
+        if(allShipsList.isEmpty()){
+            return 0;
+        }
+
+        for(Ship elems : allShipsList){
+            idList.add(elems.getId());
+        }
+
+        return Collections.max(idList)+1;
+    }
+
+    @Override
     public boolean addShip(Ship ship) {
+        int availableIdShip = getAvailableShipId();
+        ship.setId(availableIdShip);
         return ships.add(ship);
     }
 
@@ -36,6 +56,17 @@ public class ShipDBMock implements IShipsDB {
         Ship shipToRemove = findShipById(id);
         ships.remove(shipToRemove);
         return false;
+    }
+
+    @Override
+    public Ship getShipByMMSI(String mmsi) {
+        for(Ship elems : getAllShips()){
+            if(elems.getMMSI().equals(mmsi)){
+                return elems;
+            }
+        }
+
+        return null;
     }
 
 

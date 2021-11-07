@@ -20,6 +20,11 @@ public class Generator {
         this.shipId = shipId;
     }
 
+    public Generator(int numberOfGenerator, double generatorsOutput) {
+        this.numberOfGenerator = numberOfGenerator;
+        this.generatorsOutput = generatorsOutput;
+    }
+
     public int getNumberOfGenerator() {
         return numberOfGenerator;
     }
@@ -50,5 +55,15 @@ public class Generator {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Generator{" +
+                "id=" + id +
+                ", numberOfGenerator=" + numberOfGenerator +
+                ", generatorsOutput=" + generatorsOutput +
+                ", shipId=" + shipId +
+                '}';
     }
 }

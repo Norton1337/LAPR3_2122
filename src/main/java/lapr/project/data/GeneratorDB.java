@@ -13,6 +13,12 @@ public class GeneratorDB implements IGeneratorDB {
     }
 
     @Override
+    public Integer getAvailableGeneratorId() {
+        return null;
+    }
+
+
+    @Override
     public Generator getGeneratorData(int id) {
         return null;
     }
