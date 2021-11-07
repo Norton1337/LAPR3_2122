@@ -31,6 +31,7 @@ class Main {
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
         shipUI.importShips("Docs/Input/sships.csv");
+        // System.out.println(shipPositionDataController.getShipData().get(0));
 
     }
 }

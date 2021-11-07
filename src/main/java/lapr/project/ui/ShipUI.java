@@ -43,7 +43,7 @@ public class ShipUI {
             String line = "";
 
             while ((line = input.readLine()) != null){
-
+                
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
                 //GENERATING OBJ
@@ -67,8 +67,7 @@ public class ShipUI {
                         alreadyUsed.add(newShip.getMMSI());
                     }
 
-                }else if(!list.get(0).contains("MMSI")){
-
+                }if(!list.get(0).contains("MMSI")){
                     String mmsi = list.get(0);
                     Ship ship = shipController.findShipByMMSI(mmsi);
 
@@ -89,9 +88,9 @@ public class ShipUI {
             }
 
 
-            //printList(shipController.getAllShips());
-            //printList(generatorController.getAllGenerator());
-            //printList(shipPositionDataController.getShipData());
+            // printList(shipController.getAllShips());
+            // printList(generatorController.getAllGenerator());
+            // printList(shipPositionDataController.getShipData());
 
 
 
