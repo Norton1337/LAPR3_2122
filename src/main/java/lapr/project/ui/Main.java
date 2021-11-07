@@ -6,6 +6,8 @@ import lapr.project.controller.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
+import lapr.project.model.MostTravelledShips.MostTravelledShips;
+import lapr.project.model.MostTravelledShips.TopShips;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,6 +35,9 @@ class Main {
         shipUI.importShips("Docs/Input/sships.csv");
         // System.out.println(shipPositionDataController.getShipData().get(0));
 
+        MostTravelledShips mts = new MostTravelledShips();
+        TopShips ts = mts.getTopNShips(shipController, shipPositionDataController, 5);
+        System.out.println(ts.getListOfDistances());
     }
 }
 

@@ -32,6 +32,6 @@ public class Utils {
     }
 
     public static String coordinates (String latitude, String longitude){
-        return new StringBuilder().append(latitude).append(longitude).toString();
+        return new StringBuilder().append(latitude).append("/").append(longitude).toString();
     }
 }
