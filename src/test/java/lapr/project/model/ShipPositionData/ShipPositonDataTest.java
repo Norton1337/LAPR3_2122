@@ -16,21 +16,21 @@ class ShipPositonDataTest {
 
     @BeforeEach
     public void setUp(){
-        testShipPosition.setId(1);
-        testShipPosition.setShipId(13);
+        testShipPosition.setId("1");
+        testShipPosition.setShipId("13");
     }
 
     @Test
     void getId() {
-        assertEquals(testShipPosition.getId(), 1);
+        assertEquals(testShipPosition.getId(), "1");
     }
 
     @Test
     void setId() {
-        int initialId = testShipPosition.getId();
-        testShipPosition.setId(725);
+        String initialId = testShipPosition.getId();
+        testShipPosition.setId("725");
 
-        assertEquals(testShipPosition.getId(), 725);
+        assertEquals(testShipPosition.getId(), "725");
         testShipPosition.setId(initialId);
     }
 
@@ -135,15 +135,15 @@ class ShipPositonDataTest {
 
     @Test
     void getShipId() {
-        assertEquals(testShipPosition.getShipId(), 13);
+        assertEquals(testShipPosition.getShipId(), "13");
     }
 
     @Test
     void setShipId() {
-        int initialId = testShipPosition.getShipId();
-        testShipPosition.setShipId(7);
+        String initialId = testShipPosition.getShipId();
+        testShipPosition.setShipId("7");
 
-        assertEquals(testShipPosition.getShipId(), 7);
+        assertEquals(testShipPosition.getShipId(), "7");
         testShipPosition.setShipId(initialId);
     }
 }

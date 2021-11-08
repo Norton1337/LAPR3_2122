@@ -43,12 +43,5 @@ public class ShipDB extends DataHandler implements IShipsDB {
         return null;
     }
 
-    @Override
-    public Integer getAvailableShipId() {
-        return null;
-    }
-
-
-
 
 }

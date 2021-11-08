@@ -15,16 +15,16 @@ class ShipTest {
 
     @Test
     void getId() {
-        testShip.setId(1);
-        assertEquals(testShip.getId(), 1);
+        testShip.setId("1");
+        assertEquals(testShip.getId(), "1");
     }
 
     @Test
     void setId() {
-        int initialID = testShip.getId();
-        testShip.setId(12345);
+        String initialID = testShip.getId();
+        testShip.setId("12345");
 
-        assertEquals(testShip.getId(), 12345);
+        assertEquals(testShip.getId(), "12345");
         testShip.setId(initialID);
     }
 

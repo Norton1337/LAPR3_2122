@@ -9,8 +9,6 @@ public interface IShipsDB {
 
     Ship getShip(String id);
 
-    Integer getAvailableShipId();
-
     boolean addShip(Ship ship);
 
     boolean updateShip(Ship ship);

@@ -2,18 +2,18 @@ package lapr.project.model.Ships;
 
 public class Generator {
 
-    int id;
+    private String id;
     private int numberOfGenerator;
     private double generatorsOutput;
-    private int shipId;
+    private String shipId;
 
-    public Generator(int id, int numberOfGenerator, double generatorsOutput) {
+    public Generator(String id, int numberOfGenerator, double generatorsOutput) {
         this.id = id;
         this.numberOfGenerator = numberOfGenerator;
         this.generatorsOutput = generatorsOutput;
     }
 
-    public Generator(int id, int numberOfGenerator, double generatorsOutput, int shipId) {
+    public Generator(String id, int numberOfGenerator, double generatorsOutput, String shipId) {
         this.id = id;
         this.numberOfGenerator = numberOfGenerator;
         this.generatorsOutput = generatorsOutput;
@@ -41,19 +41,19 @@ public class Generator {
         this.generatorsOutput = generatorsOutput;
     }
 
-    public int getShipId() {
+    public String getShipId() {
         return shipId;
     }
 
-    public void setShipId(int shipId) {
+    public void setShipId(String shipId) {
         this.shipId = shipId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

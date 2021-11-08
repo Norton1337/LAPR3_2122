@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.randomUUID;
+
 public class ShipPositionDataDBMock implements IShipPositionDataDB {
 
     List<ShipPositonData> shipPositonData = new LinkedList<>();
@@ -19,8 +21,7 @@ public class ShipPositionDataDBMock implements IShipPositionDataDB {
 
     @Override
     public boolean addShipData(ShipPositonData shipData) {
-        int availableShipPositionId = getAvailableShipPositionId();
-        shipData.setId(availableShipPositionId);
+        shipData.setId(randomUUID());
         return shipPositonData.add(shipData);
     }
 
@@ -29,28 +30,13 @@ public class ShipPositionDataDBMock implements IShipPositionDataDB {
         return shipPositonData.remove(shipData);
     }
 
-    @Override
-    public Integer getAvailableShipPositionId() {
-        List<Integer> idList = new ArrayList<>();
-        List<ShipPositonData> shipPositonDataList = getShipData();
-
-        if(shipPositonDataList.isEmpty()){
-            return 0;
-        }
-
-        for(ShipPositonData elems : shipPositonDataList){
-            idList.add(elems.getId());
-        }
-
-        return Collections.max(idList)+1;
-    }
 
     @Override
     public List<ShipPositonData> getAllPositionDataFromShip(int shipID) {
         List<ShipPositonData> positonData = new ArrayList<>();
 
         for(ShipPositonData elems : shipPositonData){
-            if(elems.getShipId() == shipID){
+            if(elems.getShipId().equals(shipID)){
                 positonData.add(elems);
             }
         }

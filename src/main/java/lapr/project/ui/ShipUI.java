@@ -88,9 +88,9 @@ public class ShipUI {
             }
 
 
-            // printList(shipController.getAllShips());
-            // printList(generatorController.getAllGenerator());
-            // printList(shipPositionDataController.getShipData());
+             //printList(shipController.getAllShips());
+             //printList(generatorController.getAllGenerator());
+             //printList(shipPositionDataController.getShipData());
 
 
 

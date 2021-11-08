@@ -2,6 +2,7 @@ package lapr.project.utils;
 
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class Utils {
 
@@ -33,5 +34,11 @@ public class Utils {
 
     public static String coordinates (String latitude, String longitude){
         return new StringBuilder().append(latitude).append("/").append(longitude).toString();
+    }
+
+    public static String randomUUID(){
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        return uuidAsString;
     }
 }

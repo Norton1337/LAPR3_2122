@@ -12,8 +12,6 @@ public interface IShipPositionDataDB {
 
     boolean removeDataFromShip(ShipPositonData shipPositonData);
 
-    Integer getAvailableShipPositionId();
-
     List<ShipPositonData> getAllPositionDataFromShip(int shipID);
 
 }

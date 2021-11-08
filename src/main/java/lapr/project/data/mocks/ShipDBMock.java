@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.randomUUID;
+
 public class ShipDBMock implements IShipsDB {
 
     private List<Ship> ships = new LinkedList<>();
@@ -22,26 +24,10 @@ public class ShipDBMock implements IShipsDB {
         return findShipById(id);
     }
 
-    @Override
-    public Integer getAvailableShipId() {
-        List<Integer> idList = new ArrayList<>();
-        List<Ship> allShipsList = getAllShips();
-
-        if(allShipsList.isEmpty()){
-            return 0;
-        }
-
-        for(Ship elems : allShipsList){
-            idList.add(elems.getId());
-        }
-
-        return Collections.max(idList)+1;
-    }
 
     @Override
     public boolean addShip(Ship ship) {
-        int availableIdShip = getAvailableShipId();
-        ship.setId(availableIdShip);
+        ship.setId(randomUUID());
         return ships.add(ship);
     }
 
@@ -72,7 +58,7 @@ public class ShipDBMock implements IShipsDB {
 
     public Ship findShipById(String id){
         for(Ship elems : ships){
-            if(elems.getId() == Integer.parseInt(id)){
+            if(elems.getId().equals(id)){
                 return  elems;
             }
         }

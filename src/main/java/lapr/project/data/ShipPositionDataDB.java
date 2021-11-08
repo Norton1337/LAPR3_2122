@@ -22,11 +22,6 @@ public class ShipPositionDataDB implements IShipPositionDataDB {
     }
 
     @Override
-    public Integer getAvailableShipPositionId() {
-        return null;
-    }
-
-    @Override
     public List<ShipPositonData> getAllPositionDataFromShip(int shipID) {
         return null;
     }

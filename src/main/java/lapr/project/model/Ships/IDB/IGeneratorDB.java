@@ -6,13 +6,12 @@ import java.util.List;
 
 public interface IGeneratorDB {
 
-    boolean addGenerator(int ship, Generator gen);
+    boolean addGenerator(String shipId, Generator gen);
 
-    Integer getAvailableGeneratorId();
 
-    Generator getGeneratorData(int id);
+    Generator getGeneratorData(String id);
 
     List<Generator> getAllGenerator();
 
-    List<Generator> getAllGeneratorsFromShip(int shipID);
+    List<Generator> getAllGeneratorsFromShip(String shipID);
 }

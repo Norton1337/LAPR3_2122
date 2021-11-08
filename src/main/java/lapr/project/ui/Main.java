@@ -32,12 +32,19 @@ class Main {
 
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
-        shipUI.importShips("Docs/Input/sships.csv");
+
+
+        long startTime = System.currentTimeMillis();
+        shipUI.importShips("Docs/Input/bships.csv");
+        long stopTime = System.currentTimeMillis();
+        System.out.println(stopTime - startTime);
         // System.out.println(shipPositionDataController.getShipData().get(0));
 
+        /*
         MostTravelledShips mts = new MostTravelledShips();
         TopShips ts = mts.getTopNShips(shipController, shipPositionDataController, 5);
         System.out.println(ts.getListOfDistances());
+         */
     }
 }
 

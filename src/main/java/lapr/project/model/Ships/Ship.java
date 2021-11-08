@@ -2,7 +2,7 @@ package lapr.project.model.Ships;
 
 public class Ship {
 
-    private int id;
+    private String id;
     private String MMSI;
     private String shipName;
     private String IMO;
@@ -38,11 +38,11 @@ public class Ship {
         //this.containers = containers;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

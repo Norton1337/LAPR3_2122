@@ -7,19 +7,15 @@ import java.util.List;
 
 public class GeneratorDB implements IGeneratorDB {
 
+
     @Override
-    public boolean addGenerator(int ship, Generator gen) {
+    public boolean addGenerator(String shipId, Generator gen) {
         return false;
     }
 
-    @Override
-    public Integer getAvailableGeneratorId() {
-        return null;
-    }
-
 
     @Override
-    public Generator getGeneratorData(int id) {
+    public Generator getGeneratorData(String id) {
         return null;
     }
 
@@ -29,7 +25,7 @@ public class GeneratorDB implements IGeneratorDB {
     }
 
     @Override
-    public List<Generator> getAllGeneratorsFromShip(int shipID) {
+    public List<Generator> getAllGeneratorsFromShip(String shipID) {
         return null;
     }
 }

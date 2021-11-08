@@ -9,7 +9,7 @@ class GeneratorTest {
 
 
     public GeneratorTest() {
-        this.testGenerator = new Generator(123, 2, 32, 1);
+        this.testGenerator = new Generator("123", 2, 32, "1");
     }
 
     @Test
@@ -42,29 +42,29 @@ class GeneratorTest {
 
     @Test
     void getShipId() {
-        assertEquals(testGenerator.getShipId(), 1);
+        assertEquals(testGenerator.getShipId(), "1");
     }
 
     @Test
     void setShipId() {
-        int initialShipId = testGenerator.getId();
-        testGenerator.setShipId(48);
+        String initialShipId = testGenerator.getId();
+        testGenerator.setShipId("48");
 
-        assertEquals(testGenerator.getShipId(), 48);
+        assertEquals(testGenerator.getShipId(), "48");
         testGenerator.setShipId(initialShipId);
     }
 
     @Test
     void getId() {
-        assertEquals(testGenerator.getId(),123);
+        assertEquals(testGenerator.getId(),"123");
     }
 
     @Test
     void setId() {
-        int initialId = testGenerator.getId();
-        testGenerator.setId(426);
+        String initialId = testGenerator.getId();
+        testGenerator.setId("426");
 
-        assertEquals(testGenerator.getId(), 426);
+        assertEquals(testGenerator.getId(), "426");
         testGenerator.setId(initialId);
     }
 }

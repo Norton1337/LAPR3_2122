@@ -33,7 +33,7 @@ public class ShipController {
         List<Generator> allGeneratorFromShip = new ArrayList<>();
 
         for(Generator elems : generatorDB.getAllGenerator()){
-            if(elems.getShipId() == shipId){
+            if(elems.getShipId().equals(shipId)){
                 allGeneratorFromShip.add(elems);
             }
         }

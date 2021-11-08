@@ -3,7 +3,7 @@ package lapr.project.model.ShipPositionData;
 
 public class ShipPositonData {
 
-    private int id;
+    private String id;
     private String baseDateTime;
     private String coordinates;
     private double sog;
@@ -11,7 +11,7 @@ public class ShipPositonData {
     private int heading;
     private String positon;
     private String transcieverClass;
-    private int shipId;
+    private String shipId;
 
 
     public ShipPositonData(String baseDateTime, String coordinates, double sog, double cog,
@@ -25,11 +25,11 @@ public class ShipPositonData {
         this.transcieverClass = transcieverClass;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,11 +89,11 @@ public class ShipPositonData {
         this.transcieverClass = transcieverClass;
     }
 
-    public int getShipId() {
+    public String getShipId() {
         return shipId;
     }
 
-    public void setShipId(int shipId) {
+    public void setShipId(String shipId) {
         this.shipId = shipId;
     }
 
