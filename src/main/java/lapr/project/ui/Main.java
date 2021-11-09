@@ -4,6 +4,7 @@ import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
+import lapr.project.controller.MostTravelledShips.KMTravelledCalculator;
 import lapr.project.controller.MostTravelledShips.MostTravelledShips;
 import lapr.project.controller.MostTravelledShips.TopShips;
 import lapr.project.data.mocks.GeneratorDBMock;
@@ -64,8 +65,8 @@ class Main {
         //System.out.println(dataToBstController.populateBST();
 
 
+       
 
-        /*
         List <ShipAndData> shipList = new ArrayList<>();
         
         for (int i = 0; i < shipController.getAllShips().size(); i++) {
@@ -76,19 +77,21 @@ class Main {
         
         
         
+       
+       
+
         MostTravelledShips mts = new MostTravelledShips();
         TopShips ts = mts.getTopNShips(shipList, 5);
-        System.out.println(ts.getListOfDistances());
-        // System.out.println(ts.getListOfShip());
+        
         
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(0));
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-1).getCoordinates());
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-2).getCoordinates());
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-3).getCoordinates());
-         for (int i = 0; i < orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).size(); i++) {
-             System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(i));
-         }
-        */
+        // for (int i = 0; i < orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).size(); i++) {
+        //     System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(i));
+        // }
+        
     }
 }
 
