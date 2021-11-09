@@ -1,4 +1,4 @@
-package lapr.project.controller;
+package lapr.project.controller.ModelControllers;
 
 import lapr.project.model.Ships.Generator;
 import lapr.project.model.Ships.IDB.IGeneratorDB;

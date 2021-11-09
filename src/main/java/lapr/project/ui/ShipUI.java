@@ -1,8 +1,8 @@
 package lapr.project.ui;
 
-import lapr.project.controller.GeneratorController;
-import lapr.project.controller.ShipController;
-import lapr.project.controller.ShipPositionDataController;
+import lapr.project.controller.ModelControllers.GeneratorController;
+import lapr.project.controller.ModelControllers.ShipController;
+import lapr.project.controller.ModelControllers.ShipPositionDataController;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Generator;
 import lapr.project.model.Ships.Ship;
@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static lapr.project.utils.Utils.*;

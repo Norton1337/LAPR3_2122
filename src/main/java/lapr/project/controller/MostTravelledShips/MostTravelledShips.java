@@ -3,8 +3,8 @@ package lapr.project.controller.MostTravelledShips;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.controller.ShipController;
-import lapr.project.controller.ShipPositionDataController;
+import lapr.project.controller.ModelControllers.ShipController;
+import lapr.project.controller.ModelControllers.ShipPositionDataController;
 import lapr.project.model.Ships.Ship;
 
 public class MostTravelledShips {

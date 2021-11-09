@@ -1,7 +1,7 @@
 package lapr.project.model.ShipPositionData;
 
 
-public class ShipPositonData {
+public class ShipPositonData{
 
     private String id;
     private String baseDateTime;
@@ -111,4 +111,5 @@ public class ShipPositonData {
                 ", shipId=" + shipId +
                 '}';
     }
+
 }

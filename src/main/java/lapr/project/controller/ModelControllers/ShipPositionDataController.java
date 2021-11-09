@@ -1,4 +1,4 @@
-package lapr.project.controller;
+package lapr.project.controller.ModelControllers;
 
 import lapr.project.model.ShipPositionData.IDB.IShipPositionDataDB;
 import lapr.project.model.ShipPositionData.ShipPositonData;

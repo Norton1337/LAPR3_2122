@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.model.Ships.Generator;

@@ -1,6 +1,8 @@
 package lapr.project.model.Ships;
 
-public class Ship {
+import static lapr.project.utils.Utils.ToInt;
+
+public class Ship{
 
     private String id;
     private String MMSI;
@@ -171,4 +173,7 @@ public class Ship {
                 ", loadCapacity=" + loadCapacity +
                 '}';
     }
+
+
+
 }
