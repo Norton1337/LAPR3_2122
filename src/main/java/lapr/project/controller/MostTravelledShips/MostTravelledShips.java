@@ -1,15 +1,17 @@
 package lapr.project.controller.MostTravelledShips;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import lapr.project.controller.ModelControllers.ShipController;
-import lapr.project.controller.ModelControllers.ShipPositionDataController;
+import lapr.project.model.HelperClasses.ShipAndData;
+import lapr.project.model.ShipPositionData.ShipPositonData;
+
 import lapr.project.model.Ships.Ship;
 
 public class MostTravelledShips {
 
-    private int pos;
+    
     private List<Ship> listOfShips = new ArrayList<>();
     private List<Double> listOfDistances = new ArrayList<>();
     private List<Double> listOfSOG = new ArrayList<>();
@@ -19,25 +21,25 @@ public class MostTravelledShips {
     private TopShips topShips = new TopShips(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
     public MostTravelledShips(){
-        this.pos=0;
+
         this.totalDistances=-1;
         this.totalSOG=-1;
     }
 
-    public TopShips getTopNShips(ShipController shipController, ShipPositionDataController posList, int topN){
-
-        if(getPos()+1==posList.getShipData().size()){
+    public TopShips getTopNShips(List <ShipAndData> shipList, int topN){
+        
+        if(listOfShips.size()==shipList.size()){
             return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
         }
-        System.out.println(listOfShips.size()+" / "+shipController.getAllShips().size());
-        listOfDistances.add(getTotalPerShip2(posList));
-        listOfShips.add(shipController.getAllShips().get(listOfShips.size()));
+
+        listOfDistances.add(getTotalPerShip2(shipList.get(listOfShips.size()).getShipPositonData()));
+        listOfShips.add(shipList.get(listOfShips.size()).getShip());
         listOfSOG.add(totalSOG/amountSOG);
         totalDistances=0;
         totalSOG=0;
         amountSOG=0;
 
-        return getTopNShips(shipController, posList, topN);
+        return getTopNShips(shipList, topN);
     }
 
     public TopShips orderLists(TopShips ts, int position, int topN, double largestDistance, int lDPosition){
@@ -74,68 +76,23 @@ public class MostTravelledShips {
     }
 
 
-    public double getTotalPerShip2(ShipPositionDataController posList){
-            
+    public double getTotalPerShip2(List<ShipPositonData> posList){
         KMTravelledCalculator calculator = new KMTravelledCalculator();
-        boolean test = true;
-        while(test){
-
-            if(getPos()+1==posList.getShipData().size()){
-                test=false;
-                break;
-            }
-                
-
-            if(posList.getShipData().get(getPos()).getShipId()!=posList.getShipData().get(getPos()+1).getShipId()){
-                setPos(pos+1);
-                test=false;
-                break;
-            }
-
-            totalDistances += calculator.calculate(posList.getShipData().get(getPos()).getCoordinates().split("/")[0], posList.getShipData().get(getPos()).getCoordinates().split("/")[1],
-                                     posList.getShipData().get(getPos()+1).getCoordinates().split("/")[0], posList.getShipData().get(getPos()+1).getCoordinates().split("/")[1]);
+        totalDistances=0;
+        for (int i = 0; i < posList.size()-1; i++) {
             
-            
-            totalSOG += posList.getShipData().get(getPos()).getSog();
+            totalDistances += calculator.calculate(posList.get(i).getCoordinates().split("/")[0], posList.get(i).getCoordinates().split("/")[1],
+                                     posList.get(i+1).getCoordinates().split("/")[0], posList.get(i+1).getCoordinates().split("/")[1]);
+
+            totalSOG += posList.get(i).getSog();
             amountSOG++;
-            setPos(pos+1);
-
         }
+
 
         return totalDistances;
     }
     
-    public double getTotalPerShip(ShipPositionDataController posList){
-        
-        totalSOG += posList.getShipData().get(getPos()).getSog();
-        amountSOG++;
-        if(getPos()+1==posList.getShipData().size())
-            return totalDistances;
-        
+    
 
-        if(posList.getShipData().get(getPos()).getShipId()!=posList.getShipData().get(getPos()+1).getShipId()){
-            setPos(pos+1);
-            return totalDistances;
-
-        }
-        
-        
-        KMTravelledCalculator calculator = new KMTravelledCalculator();
-        
-        
-        totalDistances += calculator.calculate(posList.getShipData().get(getPos()).getCoordinates().split("/")[0], posList.getShipData().get(getPos()).getCoordinates().split("/")[1],
-                                     posList.getShipData().get(getPos()+1).getCoordinates().split("/")[0], posList.getShipData().get(getPos()+1).getCoordinates().split("/")[1]);
-        setPos(pos+1);
-        return getTotalPerShip(posList);
-    }
-
-
-    private int getPos() {
-        return this.pos;
-    }
-
-    private void setPos(int pos) {
-        this.pos = pos;
-    }
 
 }

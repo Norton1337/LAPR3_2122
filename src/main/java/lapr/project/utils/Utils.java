@@ -42,6 +42,18 @@ public class Utils {
         return uuidAsString;
     }
 
+    public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list){
+        Collections.sort(list, new Comparator<ShipPositonData>() {
+            @Override
+            public int compare(ShipPositonData date1, ShipPositonData date2) {
+                return date1.getBaseDateTime().compareTo(date2.getBaseDateTime());
+            }
+        });
+
+        return list;
+    }
+
+    
 
 
 }

@@ -19,7 +19,7 @@ public class KMTravelledCalculator {
             ));
     }
 
-    private double convertToRadians(double degree){
+    public double convertToRadians(double degree){
         return degree/(180/Math.PI);
     }
 

@@ -49,7 +49,7 @@ public class DataToBstController {
     }
 
 
-    public void getShipAndDataByMMSI(String mmsi){
+    public ShipAndData getShipAndDataByMMSI(String mmsi){
 
         ShipAndData shipAndData = null;
 
@@ -59,7 +59,7 @@ public class DataToBstController {
             }
         }
 
-        System.out.println(this.shipBst.find(shipAndData).getElement());
+        return this.shipBst.find(shipAndData).getElement();
     }
 
 
