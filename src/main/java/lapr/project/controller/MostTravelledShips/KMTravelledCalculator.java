@@ -1,4 +1,4 @@
-package lapr.project.model.MostTravelledShips;
+package lapr.project.controller.MostTravelledShips;
 
 public class KMTravelledCalculator {
     
