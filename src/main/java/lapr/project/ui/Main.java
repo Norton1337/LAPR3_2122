@@ -40,7 +40,7 @@ class Main {
 
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
-
+        
 
         long startTime = System.currentTimeMillis();
         shipUI.importShips("Docs/Input/bships.csv");
