@@ -1,10 +1,9 @@
-package lapr.project.utils;
+package lapr.project.BSTFolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class BST<E extends Comparable<E>> implements BSTInterface<E> {
 

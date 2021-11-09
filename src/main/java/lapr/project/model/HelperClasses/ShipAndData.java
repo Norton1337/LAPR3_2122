@@ -2,11 +2,8 @@ package lapr.project.model.HelperClasses;
 
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
-import lapr.project.utils.BST;
 
 import java.util.List;
-
-import static lapr.project.utils.Utils.ToInt;
 
 public class ShipAndData implements Comparable<ShipAndData>{
 

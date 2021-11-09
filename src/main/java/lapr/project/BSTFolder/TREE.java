@@ -1,4 +1,4 @@
-package lapr.project.utils;
+package lapr.project.BSTFolder;
 
 import java.util.ArrayList;
 import java.util.List;

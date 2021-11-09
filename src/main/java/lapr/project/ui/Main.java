@@ -7,7 +7,7 @@ import lapr.project.controller.ModelControllers.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.utils.BST;
+import lapr.project.BSTFolder.BST;
 
 import java.io.IOException;
 import java.sql.SQLException;
