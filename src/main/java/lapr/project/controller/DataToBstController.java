@@ -61,30 +61,4 @@ public class DataToBstController {
 
         return this.shipBst.find(shipAndData).getElement();
     }
-
-    public ShipAndData getShipAndDataByIMO(String imo){
-
-        ShipAndData shipAndData = null;
-
-        for(ShipAndData elems : this.allData){
-            if(elems.getShip().getIMO().equals(imo)){
-                shipAndData = elems;
-            }
-        }
-
-        return this.shipBst.find(shipAndData).getElement();
-    }
-    
-    public ShipAndData getShipAndDataByCallSign(String callSign){
-
-        ShipAndData shipAndData = null;
-
-        for(ShipAndData elems : this.allData){
-            if(elems.getShip().getCallSign().equals(callSign)){
-                shipAndData = elems;
-            }
-        }
-
-        return this.shipBst.find(shipAndData).getElement();
-    }
 }
