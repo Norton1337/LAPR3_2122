@@ -1,7 +1,6 @@
 package lapr.project.controller.MostTravelledShips;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import lapr.project.model.HelperClasses.ShipAndData;
@@ -19,20 +18,26 @@ public class MostTravelledShips {
     private double totalSOG;
     private int amountSOG;
     private TopShips topShips = new TopShips(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
-
+  
     public MostTravelledShips(){
 
         this.totalDistances=-1;
         this.totalSOG=-1;
     }
 
+    /**
+     * 
+     * @param shipList
+     * @param topN
+     * @return
+     */
     public TopShips getTopNShips(List <ShipAndData> shipList, int topN){
         
         if(listOfShips.size()==shipList.size()){
             return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
         }
 
-        listOfDistances.add(getTotalPerShip2(shipList.get(listOfShips.size()).getShipPositonData()));
+        listOfDistances.add(getTotalPerShip(shipList.get(listOfShips.size()).getShipPositonData()));
         listOfShips.add(shipList.get(listOfShips.size()).getShip());
         listOfSOG.add(totalSOG/amountSOG);
         totalDistances=0;
@@ -42,6 +47,15 @@ public class MostTravelledShips {
         return getTopNShips(shipList, topN);
     }
 
+    /**
+     * 
+     * @param ts
+     * @param position
+     * @param topN
+     * @param largestDistance
+     * @param lDPosition
+     * @return
+     */
     public TopShips orderLists(TopShips ts, int position, int topN, double largestDistance, int lDPosition){
         
         if(topShips.getListOfShip().size()==topN || topShips.getListOfShip().size()==ts.getListOfShip().size()){
@@ -75,8 +89,12 @@ public class MostTravelledShips {
         return orderLists(ts, position+1, topN, largestDistance, lDPosition);
     }
 
-
-    public double getTotalPerShip2(List<ShipPositonData> posList){
+    /**
+     * 
+     * @param posList
+     * @return
+     */
+    public double getTotalPerShip(List<ShipPositonData> posList){
         KMTravelledCalculator calculator = new KMTravelledCalculator();
         totalDistances=0;
         for (int i = 0; i < posList.size()-1; i++) {

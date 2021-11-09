@@ -11,47 +11,42 @@ public class TopShips {
     private List<Double> listOfSOG = new ArrayList<>();
 
     
-
+    /**
+     * 
+     * @param shipLists
+     * @param distancesList
+     * @param SOGList
+     */
     public TopShips(List<Ship> shipLists, List<Double> distancesList, List<Double> SOGList){
         this.listOfShips = shipLists;
         this.listOfDistances = distancesList;
         this.listOfSOG = SOGList;
     }
-
-    public String listOfShipToString(){
-        return listOfShips.toString();
-    }
-
-    public String listOfDistancesToString(){
-        return listOfDistances.toString();
-    }
-
-    public String listOfSOGToString(){
-        return listOfSOG.toString();
-    }
     
+    /**
+     * 
+     * @return
+     */
     public List<Ship> getListOfShip() {
         return this.listOfShips;
     }
 
-    public void setListOfShips(List<Ship> listOfShip) {
-        this.listOfShips = listOfShip;
-    }
-
+    /**
+     * 
+     * @return
+     */
     public List<Double> getListOfDistances() {
         return this.listOfDistances;
     }
 
-    public void setListOfDistances(List<Double> listOfDistances) {
-        this.listOfDistances = listOfDistances;
-    }
 
+    /**
+     * 
+     * @return
+     */
     public List<Double> getListOfSOG() {
         return this.listOfSOG;
     }
 
-    public void setListOfSOG(List<Double> listOfSOG) {
-        this.listOfSOG = listOfSOG;
-    }
 
 }
