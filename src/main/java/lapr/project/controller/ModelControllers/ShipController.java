@@ -45,5 +45,4 @@ public class ShipController {
         return shipDB.getShipByMMSI(mmsi);
     }
 
-
 }
