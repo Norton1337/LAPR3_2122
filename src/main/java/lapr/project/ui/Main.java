@@ -12,6 +12,7 @@ import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.BSTFolder.BST;
+import lapr.project.controller.shipSummary.shipsSummary;
 import static lapr.project.utils.Utils.*;
 
 import java.io.IOException;
@@ -74,10 +75,13 @@ class Main {
             shipList.get(i).setShipPositonData(orderedByTime(shipList.get(shipList.size()-1).getShipPositonData()));
             
         }
-        
-        
-        
-       
+
+        shipsSummary summary = new shipsSummary();
+        List<shipsSummary> list;
+        list = summary.getShipSummary("636015178");
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getName());
+        }
        
 
         MostTravelledShips mts = new MostTravelledShips();

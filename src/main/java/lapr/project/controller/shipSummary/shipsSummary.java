@@ -7,8 +7,8 @@ package lapr.project.controller.shipSummary;
 
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.BSTFolder.AVL;
 import lapr.project.BSTFolder.BST;
+import lapr.project.model.Ships.Ship;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.controller.DataToBstController;
 
@@ -18,26 +18,46 @@ import lapr.project.controller.DataToBstController;
  */
 public class shipsSummary {
 
-    private BST shipBst;
-    protected DataToBstController bstController = new DataToBstController();
-    private List<shipsSummary> summary;
+    private Ship ship;
+    private String startDataTime;
+    private String endDataTime;
+    private String totalTimeTravelled;
+    private int totalMovements;
+    private double MaxSOG;
+    private double meanSOG;
+    private double MaxCOG;
+    private double MeanCOG;
+    private String departure;
+    private String arrival;
+    private double travelledDistance;
+    private double deltaDistance;
     
-    public shipsSummary() {
-        this.shipBst = bstController.getShipBst();
-        this.summary = new ArrayList<>();
+    protected DataToBstController bstController = new DataToBstController(); 
+    private List<shipsSummary> summary;
+    private 
+    
+    public shipsSummary(Ship ship) {
+        this.ship = ship;
+//        this.startDataTime = startDataTime;
+//        this.endDataTime = endDataTime;
+//        this.totalTimeTravelled = totalTimeTravelled;
+//        this.totalMovements = totalMovements;
+//        this.MaxSOG = MaxSOG;
+//        this.meanSOG = meanSOG;
+//        this.MaxCOG = MaxCOG;
+//        this.MeanCOG = MeanCOG;
+//        this.departure = departure;
+//        this.arrival = arrival;
+//        this.travelledDistance = travelledDistance;
+//        this.deltaDistance = deltaDistance;
     }
-
-    public BST getShipBst() {
-        return shipBst;
-    }
-
+    
+    
+    
     public DataToBstController getBstController() {
         return bstController;
     }
-
-    public List<shipsSummary> getSummary() {
-        return summary;
-    }
+    
     
     public List<shipsSummary> getShipSummary(String code){
         if(code == null){
