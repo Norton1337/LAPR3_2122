@@ -2,13 +2,24 @@ package lapr.project.controller.MostTravelledShips;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import lapr.project.model.Ships.Ship;
+import lapr.project.ui.ShipUI;
+import lapr.project.controller.DataToBstController;
+import lapr.project.controller.ModelControllers.GeneratorController;
+import lapr.project.controller.ModelControllers.ShipController;
+import lapr.project.controller.ModelControllers.ShipPositionDataController;
+import lapr.project.data.mocks.GeneratorDBMock;
+import lapr.project.data.mocks.ShipDBMock;
+import lapr.project.data.mocks.ShipPositionDataDBMock;
+import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
+import static lapr.project.utils.Utils.*;
 
 class MostTravelledShipsTest {
     private List<Ship> listOfShips = new ArrayList<>();
@@ -20,6 +31,27 @@ class MostTravelledShipsTest {
     
     private TopShips topShipsOrdered;
     private TopShips topShipsUnordered;
+
+    //DB
+    private ShipDBMock shipDBMock = new ShipDBMock();
+    private GeneratorDBMock generatorDBMock = new GeneratorDBMock();
+    private ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
+
+
+    //CONTROLLERS
+    private ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
+    private ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
+    private GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+    private DataToBstController dataToBstController = new DataToBstController();
+
+
+    private ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
+
+    
+
+    
+    
+
 
     @BeforeEach
     void startUp(){
@@ -50,16 +82,49 @@ class MostTravelledShipsTest {
 
         topShipsOrdered = new TopShips(listOfShips, listOfDistances, listOfSOG);
         topShipsUnordered = new TopShips(listOfShips2, listOfDistances2, listOfSOG2);
+
+        shipUI.importShips("Docs/Input/bships.csv");
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
     }
 
 
     @Test
-    void getTopNShipsVoid(){
+    void getTopNShipsTest(){
+        MostTravelledShips mts = new MostTravelledShips();
+
+        List <ShipAndData> shipList = new ArrayList<>();
         
+        for (int i = 0; i < 5; i++) {
+            shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(i).getMMSI()));
+            shipList.get(i).setShipPositonData(orderedByTime(shipList.get(shipList.size()-1).getShipPositonData()));
+        }
+
+        List <ShipAndData> shipList2 = new ArrayList<>();
+        shipList2.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(0).getMMSI()));
+        shipList2.get(0).setShipPositonData(orderedByTime(shipList2.get(shipList2.size()-1).getShipPositonData()));
+        shipList2.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(1).getMMSI()));
+        shipList2.get(1).setShipPositonData(orderedByTime(shipList2.get(shipList2.size()-1).getShipPositonData()));
+        shipList2.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(3).getMMSI()));
+        shipList2.get(2).setShipPositonData(orderedByTime(shipList2.get(shipList2.size()-1).getShipPositonData()));
+        shipList2.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(2).getMMSI()));
+        shipList2.get(3).setShipPositonData(orderedByTime(shipList2.get(shipList2.size()-1).getShipPositonData()));
+        shipList2.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(4).getMMSI()));
+        shipList2.get(4).setShipPositonData(orderedByTime(shipList2.get(shipList2.size()-1).getShipPositonData()));
+
+        TopShips ts = mts.getTopNShips(shipList, 5);
+
+ 
+        assertEquals(shipList2.get(0).getShip(), ts.getListOfShip().get(0));
+        assertEquals(shipList2.get(1).getShip(), ts.getListOfShip().get(1));
+        assertEquals(shipList2.get(2).getShip(), ts.getListOfShip().get(2));
+        assertEquals(shipList2.get(3).getShip(), ts.getListOfShip().get(3));
+        assertEquals(shipList2.get(4).getShip(), ts.getListOfShip().get(4));
+
     }
 
     @Test
-    void orderLists(){
+    void orderListsTest(){
         MostTravelledShips mts = new MostTravelledShips();
 
         assertEquals(topShipsOrdered.getListOfDistances(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfDistances());
@@ -72,8 +137,15 @@ class MostTravelledShipsTest {
 
     @Test
     void getTotalPerShipTest(){
+        MostTravelledShips mts = new MostTravelledShips();
         List<ShipPositonData> posList = new ArrayList<>();
+        DecimalFormat df = new DecimalFormat("###.###");
+        shipUI.importShips("Docs/Input/bships.csv");
+        posList.add(shipPositionDataController.getShipData().get(0));
+        posList.add(shipPositionDataController.getShipData().get(1));
+        posList.add(shipPositionDataController.getShipData().get(2)); 
         
+        assertEquals(df.format(465.587), df.format(mts.getTotalPerShip(posList)));
     }
 
     

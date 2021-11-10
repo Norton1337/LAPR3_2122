@@ -1,11 +1,14 @@
 package lapr.project.controller.MostTravelledShips;
 
+/**
+ * @author Paulo Norton
+ */
 public class KMTravelledCalculator {
     
     private double earthRadius = 6371;
 
     /**
-     * 
+     * Calculates the distance between two coordinates
      * @param latitude1 latitude of the first coordinate
      * @param longitude1 longitude of the first coordinate
      * @param latitude2 latitude of the second coordinate
@@ -27,7 +30,7 @@ public class KMTravelledCalculator {
     }
 
     /**
-     * 
+     * Converts degrees to radians
      * @param degree a coordinate in degrees
      * @return return the coordiante in radians
      */

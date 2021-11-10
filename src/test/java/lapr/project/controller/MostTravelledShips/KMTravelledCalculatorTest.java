@@ -17,6 +17,8 @@ class KMTravelledCalculatorTest {
         assertEquals(df.format(5054.94879), df.format(calculator.calculate("-11.27406", "120.44982", "-46.06957", "154.96855")) );
     }
 
+
+
     @Test
     void convertToRadiansTest(){
         KMTravelledCalculator calculator = new KMTravelledCalculator();

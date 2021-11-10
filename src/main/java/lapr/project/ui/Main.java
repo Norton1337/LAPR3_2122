@@ -83,7 +83,8 @@ class Main {
         MostTravelledShips mts = new MostTravelledShips();
         TopShips ts = mts.getTopNShips(shipList, 5);
         
-        
+        //System.out.println(ts.getListOfDistances()); 
+        // System.out.println(shipPositionDataController.getShipData().get(0));
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(0));
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-1).getCoordinates());
         // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-2).getCoordinates());
