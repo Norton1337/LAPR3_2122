@@ -26,6 +26,24 @@ public class shipsSummary {
         this.shipBst = bstController.getShipBst();
         this.summary = new ArrayList<>();
     }
+
+    public BST getShipBst() {
+        return shipBst;
+    }
+
+    public DataToBstController getBstController() {
+        return bstController;
+    }
+
+    public List<shipsSummary> getSummary() {
+        return summary;
+    }
     
-    public 
+    public List<shipsSummary> getShipSummary(String code){
+        if(code == null){
+            return null;
+        }
+        
+        return this.summary;
+    }
 }
