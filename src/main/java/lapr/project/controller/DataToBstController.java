@@ -47,8 +47,7 @@ public class DataToBstController {
     public BST getShipBst() {
         return shipBst;
     }
-
-
+    
     public ShipAndData getShipAndDataByMMSI(String mmsi){
 
         ShipAndData shipAndData = null;
