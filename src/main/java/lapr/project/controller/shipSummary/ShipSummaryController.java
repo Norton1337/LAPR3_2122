@@ -22,7 +22,7 @@ public class ShipSummaryController {
     
     
     private ShipAndData shipAndData;
-    private List<ShipsSummary> summaryList;
+    private List<ShipSummary> summaryList;
 
     public ShipSummaryController(ShipAndData shipAndData) {
         if (this.shipAndData != null) {
@@ -30,8 +30,8 @@ public class ShipSummaryController {
         }
     }
     
-    public ShipsSummary getShipSummary(){
-        ShipsSummary shipSummary = new ShipsSummary();
+    public ShipSummary getShipSummary(){
+        ShipSummary shipSummary = new ShipSummary();
         shipSummary.setVesselName(this.shipAndData.getShip().getShipName());
         shipSummary.setStartDataTime(getShipPositionData().get(0).getBaseDateTime());
         return shipSummary;
