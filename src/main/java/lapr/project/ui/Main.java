@@ -38,8 +38,8 @@ class Main {
         GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         DataToBstController dataToBstController = new DataToBstController();
 
-
-
+        
+        
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
         
@@ -76,11 +76,11 @@ class Main {
             
         }
 
-        shipsSummary summary = new shipsSummary();
+        shipsSummary summary = new shipsSummary(s);
         List<shipsSummary> list;
         list = summary.getShipSummary("636015178");
         for(int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getName());
+            System.out.println(list.get(i).toString());
         }
        
 
