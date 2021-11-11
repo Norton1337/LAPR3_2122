@@ -44,7 +44,7 @@ public class TemporalPositionalMessages {
 
     /**
      * Adds to a list all the possitional messages that are between 2 dates
-     * @param shipAndData the ship and it's positional messages
+     * @param shipAndData the ship and its positional messages
      * @param firstDate the first date and time (EX: "31/12/2020 00:00")
      * @param secondDate the second date and time (EX: "31/12/2020 01:00")
      * @return all the positional messages between the 2 dates

@@ -15,6 +15,9 @@ public class ShipAndData implements Comparable<ShipAndData>{
         this.shipPositonData = shipPositonData;
     }
 
+    public ShipAndData() {
+    }
+
     public Ship getShip() {
         return ship;
     }

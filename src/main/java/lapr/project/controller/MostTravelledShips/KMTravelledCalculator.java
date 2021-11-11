@@ -38,19 +38,4 @@ public class KMTravelledCalculator {
         return degree/(180/Math.PI);
     }
 
-    public double calculateDelta(String latitude1, String longitude1, String latitude2, String longitude2){
-
-        double lat1 = convertToRadians(Double.parseDouble(latitude1));
-        double lat2 = convertToRadians(Double.parseDouble(latitude2));
-        double long1 = convertToRadians(Double.parseDouble(longitude1));
-        double long2 = convertToRadians(Double.parseDouble(longitude2));
-        double dLong = long2 - long1;
-
-
-        return Math.abs(earthRadius * (Math.acos(
-                (Math.sin(lat1) * Math.sin(lat2)) -
-                        (Math.cos(lat1) * Math.cos(lat2)) * Math.cos(dLong))
-        ));
-    }
-
 }

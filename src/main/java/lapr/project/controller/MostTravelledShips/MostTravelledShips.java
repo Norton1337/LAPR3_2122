@@ -1,9 +1,11 @@
 package lapr.project.controller.MostTravelledShips;
 
+import lapr.project.controller.TemporalPositionalMessages;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,9 +44,12 @@ public class MostTravelledShips {
      */
     public TopShips getTopNShips(List <ShipAndData> shipList, int topN){
 
-        
+
         if(listOfShips.size()==shipList.size()){
-            return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
+            TopShips topShips = orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
+
+            return topShips;
+            // return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
         }
 
         listOfDistances.add(getTotalPerShip(shipList.get(listOfShips.size()).getShipPositonData()));
@@ -55,6 +60,53 @@ public class MostTravelledShips {
         amountSOG=0;
 
         return getTopNShips(shipList, topN);
+    }
+    /**
+     * This will create a new list with all the ship and all the positional messages that occured between 2 dates
+     * @param shipList a list with all the ships and their position messages.
+     * @param topN the amount of elements to return
+     * @param initialDate the first date
+     * @param finalDate the last date
+     * @return the list with only positional messages that happened betwenn the dates
+     * @throws ParseException in case the date format is not recognized
+     */
+    public TopShips getTopNShips(List <ShipAndData> shipList, int topN, String initialDate, String finalDate) throws ParseException{
+        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        List <ShipAndData> newShipList = new ArrayList<>();
+        
+        for (int i = 0; i < shipList.size(); i++) {
+            ShipAndData newSAD = new ShipAndData();
+
+            newSAD.setShip(shipList.get(i).getShip());
+            newSAD.setShipPositonData(tpm.getAllPositionalDataInPeriod(shipList.get(i), initialDate, finalDate));
+            newShipList.add(newSAD);
+
+        }
+
+        return getTopNShips(newShipList, topN);
+    }
+
+    /**
+     * This will create a list with ships whose vesselType is the same and their positional messages.
+     * @param shipList a list with all the ships and their position messages.
+     * @param topN the amount of elements to return
+     * @param initialDate the first date
+     * @param finalDate the last date
+     * @param vesselType the type of a vessel
+     * @return a new list with only vessels of the same type
+     * @throws ParseException in case the date format is not recognized
+     */
+    public TopShips getTopNShips(List <ShipAndData> shipList, int topN, String initialDate, String finalDate, int vesselType) throws ParseException{
+        List <ShipAndData> newShipList = new ArrayList<>();
+
+
+        for (int i = 0; i < shipList.size(); i++) {
+            if(shipList.get(i).getShip().getVesselType()==vesselType){
+                newShipList.add(shipList.get(i));
+            }
+        }
+
+        return getTopNShips(newShipList, topN, initialDate, finalDate);
     }
 
     /**
@@ -68,14 +120,14 @@ public class MostTravelledShips {
      * @return the topN ships orderes by distance travelled
      */
     public TopShips orderLists(TopShips ts, int position, int topN, double largestDistance, int lDPosition){
-
+  
         if(topShips.getListOfShip().size()==topN || topShips.getListOfShip().size()==ts.getListOfShip().size()){
+
             return topShips;
         }
-            
-        
-        
+
         if(ts.getListOfDistances().get(position)>largestDistance && !topShips.getListOfShip().contains(ts.getListOfShip().get(position))){
+            
             largestDistance=ts.getListOfDistances().get(position);
             lDPosition=position;
         }
@@ -88,12 +140,14 @@ public class MostTravelledShips {
 
             List<Double> loDistances = topShips.getListOfDistances();
             loDistances.add(ts.getListOfDistances().get(lDPosition));
+            
 
             List<Double> loSOG = topShips.getListOfSOG();
             loSOG.add(ts.getListOfSOG().get(lDPosition));
 
             List<Ship> loShips = topShips.getListOfShip();
             loShips.add(ts.getListOfShip().get(lDPosition));
+            
             return orderLists(ts, 0, topN, -1, -1);
         }
 
@@ -108,6 +162,7 @@ public class MostTravelledShips {
      * @return the total amount of distance the ship travelled
      */
     public double getTotalPerShip(List<ShipPositonData> posList){
+        
         KMTravelledCalculator calculator = new KMTravelledCalculator();
         totalDistances=0;
         for (int i = 0; i < posList.size()-1; i++) {
@@ -137,7 +192,7 @@ public class MostTravelledShips {
 
         KMTravelledCalculator convertDistance = new KMTravelledCalculator();
 
-        return convertDistance.calculateDelta(coordsFinal[0], coordsFinal[1], coords[0], coords[1]);
+        return convertDistance.calculate(coordsFinal[0], coordsFinal[1], coords[0], coords[1]);
 
     }
 
