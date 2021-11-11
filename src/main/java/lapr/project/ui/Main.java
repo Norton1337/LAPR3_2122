@@ -2,14 +2,12 @@ package lapr.project.ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.BSTFolder.BST;
+import lapr.project.utils.BSTFiles.BST;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ListAllShipsInfoController;
-import lapr.project.controller.TemporalPositionalMessages;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
@@ -46,7 +44,7 @@ class Main {
         
 
         long startTime = System.currentTimeMillis();
-        shipUI.importShips("Docs/Input/sships.csv");
+        shipUI.importShips("Docs/Input/bships.csv");
 
 
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());

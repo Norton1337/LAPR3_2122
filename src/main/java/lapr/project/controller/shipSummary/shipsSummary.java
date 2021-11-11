@@ -5,14 +5,13 @@
  */
 package lapr.project.controller.shipSummary;
 
-import java.util.ArrayList;
 import java.util.List;
-import lapr.project.BSTFolder.BST;
+
 import lapr.project.model.Ships.Ship;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.controller.DataToBstController;
 import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.utils.Utils;
+
 import static lapr.project.utils.Utils.orderedByTime;
 
 /**
