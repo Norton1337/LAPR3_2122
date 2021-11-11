@@ -1,12 +1,13 @@
 package lapr.project.controller.MostTravelledShips;
 
+import lapr.project.model.HelperClasses.ShipAndData;
+import lapr.project.model.ShipPositionData.ShipPositonData;
+import lapr.project.model.Ships.Ship;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-
-import lapr.project.model.Ships.Ship;
+import static lapr.project.utils.Utils.convertCoordinates;
 
 /**
  * @author Paulo Norton
@@ -126,7 +127,22 @@ public class MostTravelledShips {
 
         return totalDistances;
     }
-    
+
+    public double getDeltaDistance(List<ShipPositonData> list) {
+
+
+        System.out.println(list.get(0).getCoordinates());
+        String[] coords = convertCoordinates(list.get(0).getCoordinates());
+        String [] coordsFinal = convertCoordinates(list.get(list.size()-1).getCoordinates());
+
+        KMTravelledCalculator convertDistance = new KMTravelledCalculator();
+
+        return convertDistance.calculateDelta(coordsFinal[0], coordsFinal[1], coords[0], coords[1]);
+
+    }
+
+
+
     
 
 

@@ -53,7 +53,13 @@ public class Utils {
         return list;
     }
 
-    
+    public static String[] convertCoordinates(String coords){
+
+        String[] splitCoords = coords.split(",");
+        String c1 = splitCoords[0]; //lat
+        String c2 = splitCoords[1]; //long
+        return splitCoords;
+    }
 
 
 }

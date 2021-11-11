@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.BSTFolder.BST;
 import lapr.project.controller.DataToBstController;
+import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
@@ -12,6 +13,10 @@ import lapr.project.model.HelperClasses.ShipAndData;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static lapr.project.utils.Utils.printList;
 
 
 class Main {
@@ -30,6 +35,7 @@ class Main {
         ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
         GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         DataToBstController dataToBstController = new DataToBstController();
+        ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
 
         
         
@@ -60,7 +66,14 @@ class Main {
         System.out.println(dataByIMO.toString());
         System.out.println(dataByCallSign.toString());
 
-        
+
+        List<ShipAndData> andDataList = new ArrayList<>();
+
+        for(Object elems : t.inOrder()){
+            andDataList.add((ShipAndData) elems);
+        }
+
+        printList(listAllShipsInfoController.shipLog(andDataList));
 
 
 
