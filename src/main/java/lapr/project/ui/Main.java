@@ -1,8 +1,15 @@
 package lapr.project.ui;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
 import lapr.project.BSTFolder.BST;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ListAllShipsInfoController;
+import lapr.project.controller.TemporalPositionalMessages;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
@@ -10,13 +17,6 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static lapr.project.utils.Utils.printList;
 
 
 class Main {
@@ -62,9 +62,9 @@ class Main {
         ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
         ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
         ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
-        System.out.println(dataByMMSI.toString());
-        System.out.println(dataByIMO.toString());
-        System.out.println(dataByCallSign.toString());
+        // System.out.println(dataByMMSI.toString());
+        // System.out.println(dataByIMO.toString());
+        // System.out.println(dataByCallSign.toString());
 
 
         List<ShipAndData> andDataList = new ArrayList<>();
@@ -73,23 +73,22 @@ class Main {
             andDataList.add((ShipAndData) elems);
         }
 
-        printList(listAllShipsInfoController.shipLog(andDataList));
+        // printList(listAllShipsInfoController.shipLog(andDataList));
 
 
 
         //System.out.println(dataToBstController.populateBST();
 
 
-       /*
-
         List <ShipAndData> shipList = new ArrayList<>();
         
         for (int i = 0; i < shipController.getAllShips().size(); i++) {
             shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(i).getMMSI()));
-            shipList.get(i).setShipPositonData(orderedByTime(shipList.get(shipList.size()-1).getShipPositonData()));
-            
         }
 
+
+        
+        /*
         shipsSummary summary = new shipsSummary(s);
         List<shipsSummary> list;
         list = summary.getShipSummary("636015178");
@@ -100,19 +99,6 @@ class Main {
 
         MostTravelledShips mts = new MostTravelledShips();
         TopShips ts = mts.getTopNShips(shipList, 5);
-        
-        //System.out.println(ts.getListOfDistances()); 
-        // System.out.println(shipPositionDataController.getShipData().get(0));
-        // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(0));
-        // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-1).getCoordinates());
-        // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-2).getCoordinates());
-        // System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData().size()-3).getCoordinates());
-        // for (int i = 0; i < orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).size(); i++) {
-        //     System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(i));
-        // }
-
-
-
         */
 
     }

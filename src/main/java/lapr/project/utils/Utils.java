@@ -2,6 +2,8 @@ package lapr.project.utils;
 
 import lapr.project.model.ShipPositionData.ShipPositonData;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Utils {
@@ -51,6 +53,13 @@ public class Utils {
         });
 
         return list;
+    }
+
+    public static Date convertDate(String dateTime) throws ParseException{
+        SimpleDateFormat format1 =new SimpleDateFormat("dd/MM/yyyy HH:mm");  
+        Date date = format1.parse(dateTime); 
+
+        return date;
     }
 
     public static String[] convertCoordinates(String coords){
