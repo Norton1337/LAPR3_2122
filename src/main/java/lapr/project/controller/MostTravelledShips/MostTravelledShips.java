@@ -186,7 +186,7 @@ public class MostTravelledShips {
     public double getDeltaDistance(List<ShipPositonData> list) {
 
 
-        System.out.println(list.get(0).getCoordinates());
+        //System.out.println(list.get(0).getCoordinates());
         String[] coords = convertCoordinates(list.get(0).getCoordinates());
         String [] coordsFinal = convertCoordinates(list.get(list.size()-1).getCoordinates());
 

@@ -45,4 +45,14 @@ public class ShipsMovementDto {
     public void setNumberOfMovements(String numberOfMovements) {
         this.numberOfMovements = numberOfMovements;
     }
+
+    @Override
+    public String toString() {
+        return "ShipsMovementDto{" +
+                "MMSI='" + MMSI + '\'' +
+                ", travelledDistance='" + travelledDistance + '\'' +
+                ", deltaDistance='" + deltaDistance + '\'' +
+                ", numberOfMovements='" + numberOfMovements + '\'' +
+                '}';
+    }
 }

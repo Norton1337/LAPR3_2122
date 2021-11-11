@@ -2,14 +2,12 @@ package lapr.project.ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.BSTFolder.BST;
+import lapr.project.utils.BSTFiles.BST;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ListAllShipsInfoController;
-import lapr.project.controller.TemporalPositionalMessages;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
@@ -17,6 +15,8 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
+
+import static lapr.project.utils.Utils.printList;
 
 
 class Main {
@@ -57,11 +57,11 @@ class Main {
         long stopTime = System.currentTimeMillis();
         System.out.println(stopTime - startTime);
         
-        ShipAndData s =  dataToBstController.getShipAndDataByMMSI("636015178");
+        //ShipAndData s =  dataToBstController.getShipAndDataByMMSI("636015178");
 
-        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
-        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+        //ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        //ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+        //ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
         // System.out.println(dataByMMSI.toString());
         // System.out.println(dataByIMO.toString());
         // System.out.println(dataByCallSign.toString());
@@ -73,7 +73,7 @@ class Main {
             andDataList.add((ShipAndData) elems);
         }
 
-        // printList(listAllShipsInfoController.shipLog(andDataList));
+        printList(listAllShipsInfoController.shipLog(andDataList));
 
 
 
