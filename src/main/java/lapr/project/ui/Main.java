@@ -18,6 +18,8 @@ import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
 
+import static lapr.project.utils.Utils.printList;
+
 
 class Main {
 
@@ -44,7 +46,7 @@ class Main {
         
 
         long startTime = System.currentTimeMillis();
-        shipUI.importShips("Docs/Input/bships.csv");
+        shipUI.importShips("Docs/Input/sships.csv");
 
 
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
@@ -57,11 +59,11 @@ class Main {
         long stopTime = System.currentTimeMillis();
         System.out.println(stopTime - startTime);
         
-        ShipAndData s =  dataToBstController.getShipAndDataByMMSI("636015178");
+        //ShipAndData s =  dataToBstController.getShipAndDataByMMSI("636015178");
 
-        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
-        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+        //ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        //ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+        //ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
         // System.out.println(dataByMMSI.toString());
         // System.out.println(dataByIMO.toString());
         // System.out.println(dataByCallSign.toString());
@@ -73,7 +75,7 @@ class Main {
             andDataList.add((ShipAndData) elems);
         }
 
-        // printList(listAllShipsInfoController.shipLog(andDataList));
+        printList(listAllShipsInfoController.shipLog(andDataList));
 
 
 
