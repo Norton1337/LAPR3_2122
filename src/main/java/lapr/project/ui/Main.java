@@ -1,24 +1,17 @@
 package lapr.project.ui;
 
+import lapr.project.BSTFolder.BST;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.controller.MostTravelledShips.KMTravelledCalculator;
-import lapr.project.controller.MostTravelledShips.MostTravelledShips;
-import lapr.project.controller.MostTravelledShips.TopShips;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.BSTFolder.BST;
-import lapr.project.controller.shipSummary.shipsSummary;
-import static lapr.project.utils.Utils.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 
 class Main {
@@ -59,6 +52,14 @@ class Main {
         System.out.println(stopTime - startTime);
         
         ShipAndData s =  dataToBstController.getShipAndDataByMMSI("636015178");
+
+        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+        System.out.println(dataByMMSI.toString());
+        System.out.println(dataByIMO.toString());
+        System.out.println(dataByCallSign.toString());
+
         
 
 
@@ -66,7 +67,7 @@ class Main {
         //System.out.println(dataToBstController.populateBST();
 
 
-       
+       /*
 
         List <ShipAndData> shipList = new ArrayList<>();
         
@@ -96,7 +97,11 @@ class Main {
         // for (int i = 0; i < orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).size(); i++) {
         //     System.out.println(orderedByTime(dataToBstController.getShipAndDataByMMSI("352142000").getShipPositonData()).get(i));
         // }
-        
+
+
+
+        */
+
     }
 }
 

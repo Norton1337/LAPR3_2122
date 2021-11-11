@@ -61,4 +61,50 @@ public class DataToBstController {
 
         return this.shipBst.find(shipAndData).getElement();
     }
+
+    public ShipAndData getShipAndDataByIMO(String imo){
+
+        ShipAndData shipAndData = null;
+        for (ShipAndData elems : this.allData){
+            if (elems.getShip().getIMO().equals(imo)){
+                shipAndData = elems;
+            }
+        }
+        return this.shipBst.find(shipAndData).getElement();
+    }
+
+    public ShipAndData getShipDataByCallSign(String callSign){
+
+        ShipAndData shipAndData = null;
+
+        for (ShipAndData elems : this.allData){
+            if (elems.getShip().getCallSign().equals(callSign)){
+                shipAndData = elems;
+            }
+        }
+        return this.shipBst.find(shipAndData).getElement();
+    }
+
+
+    public ShipAndData getShipDetails(String data){
+
+        ShipAndData shipAndData = null;
+
+        if (data.length() == 9){
+
+            shipAndData = getShipAndDataByMMSI(data);
+        }
+        if (data.length() == 10){
+
+            shipAndData = getShipAndDataByIMO(data);
+        }
+        if (data.length() == 5){
+
+            shipAndData = getShipDataByCallSign(data);
+        }
+        return shipAndData;
+    }
+
+
+
 }

@@ -32,15 +32,15 @@ public class ShipAndData implements Comparable<ShipAndData>{
     }
 
 
-        /*
+
     @Override
     public String toString() {
         return "ShipAndData{" +
                 "ship=" + ship +
-                ", shipPositonData=" + shipPositonData + '}' + '\n';
+                 '}' + '\n';
     }
 
-         */
+
 
 
 
