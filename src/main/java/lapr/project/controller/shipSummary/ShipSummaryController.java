@@ -30,18 +30,19 @@ public class ShipSummaryController {
 
     private ShipAndData shipAndData;
     private MostTravelledShips mostTravelledShips;
+    private List<ShipPositonData> listPositionData;
 
     public ShipSummaryController(ShipAndData shipAndData) {
         if (this.shipAndData != null) {
             this.shipAndData = shipAndData;
+            this.listPositionData = getShipPositionDataOrderedByTime(shipAndData.getShipPositonData());
         }
     }
 
     public ShipSummary getShipSummary() throws ParseException {
-        List<ShipPositonData> list = getShipPositionData();
         ShipSummary shipSummary = new ShipSummary();
         shipSummary.setVesselName(this.shipAndData.getShip().getShipName());
-        shipSummary.setStartDataTime(list.get(0).getBaseDateTime());
+        shipSummary.setStartDataTime(this.listPositionData.get(0).getBaseDateTime());
         shipSummary.setTotalTimeTravelled(getTotalTime());
         shipSummary.setTotalMovements(getTotalMovements());
         shipSummary.setMaxSOG(getMaxSOG());
@@ -59,14 +60,15 @@ public class ShipSummaryController {
      * *
      * Returns a list wiht the ship and its PositionData
      *
+     * @param list
      * @return returns the list
      */
-    public List<ShipPositonData> getShipPositionData() {
-        List<ShipPositonData> list = orderedByTime(this.shipAndData.getShipPositonData());
+    public List<ShipPositonData> getShipPositionDataOrderedByTime(List<ShipPositonData> list) {
         if (list == null) {
             return null;
         }
-        return list;
+
+        return orderedByTime(list);
     }
 
     /**
@@ -76,7 +78,7 @@ public class ShipSummaryController {
      * @return the start date time of the ship route
      */
     public String getStartDateTime() {
-        return getShipPositionData().get(0).getBaseDateTime();
+        return this.listPositionData.get(0).getBaseDateTime();
     }
 
     /**
@@ -87,7 +89,7 @@ public class ShipSummaryController {
      */
     public String getEndDateTime() {
 
-        return getShipPositionData().get((getShipPositionData().size() - 1)).getBaseDateTime();
+        return this.listPositionData.get((this.listPositionData.size() - 1)).getBaseDateTime();
 
     }
 
@@ -99,8 +101,8 @@ public class ShipSummaryController {
      * @throws ParseException
      */
     public String getTotalTime() throws ParseException {
-        Date startDate = Utils.convertDate(getShipPositionData().get(0).getBaseDateTime());
-        Date endDate = Utils.convertDate(getShipPositionData().get(getShipPositionData().size() - 1).getBaseDateTime());
+        Date startDate = Utils.convertDate(this.listPositionData.get(0).getBaseDateTime());
+        Date endDate = Utils.convertDate(this.listPositionData.get(this.listPositionData.size() - 1).getBaseDateTime());
         if (startDate == null || endDate == null) {
             return null;
         }
@@ -119,7 +121,7 @@ public class ShipSummaryController {
      * @return the number of totalMovements of the ship.
      */
     public int getTotalMovements() {
-        return (getShipPositionData().size() - 1);
+        return (this.listPositionData.size() - 1);
     }
 
     /**
@@ -129,11 +131,11 @@ public class ShipSummaryController {
      * @return Returns the Max SOG
      */
     public double getMaxSOG() {
-        double max = getShipPositionData().get(0).getSog();
+        double max = this.listPositionData.get(0).getSog();
 
-        for (int i = 1; i < getShipPositionData().size(); i++) {
-            if (getShipPositionData().get(i).getSog() > max) {
-                max = getShipPositionData().get(i).getSog();
+        for (int i = 1; i < this.listPositionData.size(); i++) {
+            if (this.listPositionData.get(i).getSog() > max) {
+                max = this.listPositionData.get(i).getSog();
             }
         }
         return max;
@@ -148,18 +150,18 @@ public class ShipSummaryController {
     public double getMeanSOG() {
         double mean = 0;
 
-        for (int i = 0; i < getShipPositionData().size(); i++) {
-            mean += getShipPositionData().get(i).getSog();
+        for (int i = 0; i < this.listPositionData.size(); i++) {
+            mean += this.listPositionData.get(i).getSog();
         }
-        return mean / getShipPositionData().size();
+        return mean / this.listPositionData.size();
     }
 
     public double getMaxCOG() {
-        double max = getShipPositionData().get(0).getCog();
+        double max = this.listPositionData.get(0).getCog();
 
-        for (int i = 1; i < getShipPositionData().size(); i++) {
-            if (getShipPositionData().get(i).getCog() > max) {
-                max = getShipPositionData().get(i).getCog();
+        for (int i = 1; i < this.listPositionData.size(); i++) {
+            if (this.listPositionData.get(i).getCog() > max) {
+                max = this.listPositionData.get(i).getCog();
             }
         }
         return max;
@@ -168,28 +170,28 @@ public class ShipSummaryController {
     public double getMeanCOG() {
         double mean = 0;
 
-        for (int i = 0; i < getShipPositionData().size(); i++) {
-            mean += getShipPositionData().get(i).getCog();
+        for (int i = 0; i < this.listPositionData.size(); i++) {
+            mean += this.listPositionData.get(i).getCog();
         }
-        return mean / getShipPositionData().size();
+        return mean / this.listPositionData.size();
     }
 
     public String getDeparture() {
-        return getShipPositionData().get(0).getCoordinates();
+        return this.listPositionData.get(0).getCoordinates();
     }
 
     public String getArrival() {
-        return getShipPositionData().get(getShipPositionData().size() - 1).getCoordinates();
+        return this.listPositionData.get(this.listPositionData.size() - 1).getCoordinates();
     }
 
     public double getTravelledDistance() {
         MostTravelledShips mostTravelledShips = new MostTravelledShips();
-        return mostTravelledShips.getTotalPerShip(getShipPositionData());
+        return mostTravelledShips.getTotalPerShip(this.listPositionData);
     }
 
     public double getDeltaDistance() {
         MostTravelledShips mostTravelledShips = new MostTravelledShips();
-        return mostTravelledShips.getDeltaDistance(getShipPositionData());
+        return mostTravelledShips.getDeltaDistance(this.listPositionData);
     }
 
     @Override

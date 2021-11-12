@@ -149,6 +149,7 @@ public class ShipSummary {
         this.deltaDistance = deltaDistance;
     }
 
+    @Override
     public String toString() {
         return "ShipsSummary:" + "\nVessel Name:" + getVesselName()+ "\nStart Data Time:" + getStartDataTime() + "\nEnd Data Time:" + getEndDataTime()
                 + "\nTotal Time Travelled:" + getTotalTimeTravelled() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
