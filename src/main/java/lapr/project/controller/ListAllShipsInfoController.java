@@ -9,9 +9,9 @@ import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
-import static lapr.project.utils.Utils.*;
+import static lapr.project.utils.Utils.orderedByTime;
+import static lapr.project.utils.Utils.stripC;
 
 public class ListAllShipsInfoController {
 
