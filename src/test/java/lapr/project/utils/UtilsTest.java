@@ -57,6 +57,12 @@ class UtilsTest {
         Date date = Utils.convertDate(coordinates);
 
         assertNotNull(date.getTime());
+
+        String coordinates1 = "testes";
+        date = Utils.convertDate(coordinates1);
+
+        assertNull(date);
+
     }
 
     @Test

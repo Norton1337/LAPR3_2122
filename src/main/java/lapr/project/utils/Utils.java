@@ -63,7 +63,7 @@ public class Utils {
         try {
             date = format1.parse(dateTime);
         } catch (ParseException e) {
-            e.printStackTrace();
+            return null;
         }
 
         return date;
