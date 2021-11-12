@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import lapr.project.controller.HelperClasses.TopShips;
+import lapr.project.controller.MostTravelledShipsController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -115,7 +117,7 @@ class MostTravelledShipsTest {
 
     @Test
     void getTopNShipsTest1(){
-        MostTravelledShips mts = new MostTravelledShips();
+        MostTravelledShipsController mts = new MostTravelledShipsController();
 
         List <ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
@@ -134,7 +136,7 @@ class MostTravelledShipsTest {
 
     @Test
     void getTopNShipsTest2() throws ParseException{
-        MostTravelledShips mts = new MostTravelledShips();
+        MostTravelledShipsController mts = new MostTravelledShipsController();
 
         List <ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
@@ -151,7 +153,7 @@ class MostTravelledShipsTest {
 
     @Test
     void getTopNShipsTest3() throws ParseException{
-        MostTravelledShips mts = new MostTravelledShips();
+        MostTravelledShipsController mts = new MostTravelledShipsController();
 
         List <ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
@@ -172,7 +174,7 @@ class MostTravelledShipsTest {
 
     @Test
     void orderListsTest(){
-        MostTravelledShips mts = new MostTravelledShips();
+        MostTravelledShipsController mts = new MostTravelledShipsController();
 
         assertEquals(topShipsOrdered.getListOfDistances(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfDistances());
         assertEquals(topShipsOrdered.getListOfSOG(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfSOG());
@@ -184,7 +186,7 @@ class MostTravelledShipsTest {
 
     @Test
     void getTotalPerShipTest(){
-        MostTravelledShips mts = new MostTravelledShips();
+        MostTravelledShipsController mts = new MostTravelledShipsController();
         List<ShipPositonData> posList = new ArrayList<>();
         DecimalFormat df = new DecimalFormat("###.###");
         posList.add(listShipAndData.get(0).getShipPositonData().get(0));

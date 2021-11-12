@@ -1,9 +1,8 @@
 package lapr.project.controller;
 
 import lapr.project.Dtos.ShipsMovementDto;
-import lapr.project.Dtos.SortByNumberOfMovements;
-import lapr.project.Dtos.SortByTravelledDistance;
-import lapr.project.controller.MostTravelledShips.MostTravelledShips;
+import lapr.project.controller.HelperClasses.SortByNumberOfMovements;
+import lapr.project.controller.HelperClasses.SortByTravelledDistance;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 
@@ -15,7 +14,7 @@ import static lapr.project.utils.Utils.orderedByTime;
 
 public class ListAllShipsInfoController {
 
-    private MostTravelledShips mostTravelledShips = new MostTravelledShips();
+    private MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
 
 
     /**

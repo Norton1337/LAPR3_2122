@@ -1,6 +1,7 @@
-package lapr.project.controller.MostTravelledShips;
+package lapr.project.controller;
 
-import lapr.project.controller.TemporalPositionalMessages;
+import lapr.project.controller.HelperClasses.KMTravelledCalculator;
+import lapr.project.controller.HelperClasses.TopShips;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
@@ -14,7 +15,7 @@ import static lapr.project.utils.Utils.convertCoordinates;
 /**
  * @author Paulo Norton
  */
-public class MostTravelledShips {
+public class MostTravelledShipsController {
 
     
     private List<Ship> listOfShips = new ArrayList<>();
@@ -28,7 +29,7 @@ public class MostTravelledShips {
     /**
      * Constructor that sets the total distance and total average speed to -1
      */
-    public MostTravelledShips(){
+    public MostTravelledShipsController(){
 
         this.totalDistances=-1;
         this.totalSOG=-1;
@@ -71,7 +72,7 @@ public class MostTravelledShips {
      * @throws ParseException in case the date format is not recognized
      */
     public TopShips getTopNShips(List <ShipAndData> shipList, int topN, String initialDate, String finalDate) throws ParseException{
-        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
         List <ShipAndData> newShipList = new ArrayList<>();
         
         for (int i = 0; i < shipList.size(); i++) {

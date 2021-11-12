@@ -13,7 +13,7 @@ import lapr.project.model.ShipPositionData.ShipPositonData;
 /**
  * @author Paulo Norton
  */
-public class TemporalPositionalMessages {
+public class TemporalPositionalMessagesController {
 
     
     /**

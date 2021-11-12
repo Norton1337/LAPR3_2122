@@ -13,7 +13,7 @@ import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
-public class TemporalPositionalMessagesTest {
+public class TemporalPositionalMessagesControllerTest {
     
     Ship ship = new Ship("211331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
     List<ShipPositonData> shipPositionDataList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class TemporalPositionalMessagesTest {
         correctOrderPosList.add(spd2);
         ShipAndData correctOrderSAD = new ShipAndData(ship, correctOrderPosList);
         
-        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
         assertEquals(correctOrderSAD.getShip(), tpm.getSingleShipsAndData(this.shipAndData).getShip());
         assertEquals(correctOrderSAD.getShipPositonData(), tpm.getSingleShipsAndData(this.shipAndData).getShipPositonData());
     }
@@ -64,7 +64,7 @@ public class TemporalPositionalMessagesTest {
         sadList.add(correctOrderSAD);
         sadList.add(correctOrderSAD);
 
-        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
         
         for (int i = 0; i < sadList.size(); i++) {
             assertEquals(sadList.get(i).getShip(), tpm.getAllShipsAndData(this.listShipAndData).get(i).getShip());
@@ -75,7 +75,7 @@ public class TemporalPositionalMessagesTest {
 
     @Test
     void getAllPositionalDataInPeriodTest() throws ParseException{
-        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
 
         assertEquals(1, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:01", "31/12/2020 21:59").size());
         assertEquals(2, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:00", "31/12/2020 21:59").size());
@@ -84,7 +84,7 @@ public class TemporalPositionalMessagesTest {
     }
     @Test
     void getAllPositionalDataInDateTest() throws ParseException{
-        TemporalPositionalMessages tpm = new TemporalPositionalMessages();
+        TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
 
         assertEquals(this.spd1, tpm.getAllPositionalDataInDate(this.shipAndData, "31/12/2020 21:00").get(0));
         assertEquals(0, tpm.getAllPositionalDataInDate(this.shipAndData, "31/12/2020 00:00").size());

@@ -1,4 +1,4 @@
-package lapr.project.controller.MostTravelledShips;
+package lapr.project.controller.HelperClasses;
 
 import java.util.ArrayList;
 import java.util.List;

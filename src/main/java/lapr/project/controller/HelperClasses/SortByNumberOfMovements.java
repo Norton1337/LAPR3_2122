@@ -1,4 +1,6 @@
-package lapr.project.Dtos;
+package lapr.project.controller.HelperClasses;
+
+import lapr.project.Dtos.ShipsMovementDto;
 
 import java.util.Comparator;
 

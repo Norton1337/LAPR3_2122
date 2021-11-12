@@ -5,7 +5,7 @@ import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.controller.shipSummary.ShipSummaryController;
+import lapr.project.controller.ShipSummaryController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
@@ -17,9 +17,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import lapr.project.controller.shipSummary.ShipSummary;
-
-import static lapr.project.utils.Utils.printList;
+import lapr.project.controller.HelperClasses.ShipSummary;
 
 class Main {
 

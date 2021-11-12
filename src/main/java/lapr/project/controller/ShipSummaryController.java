@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lapr.project.controller.shipSummary;
+package lapr.project.controller;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -12,11 +12,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import lapr.project.model.Ships.Ship;
+import lapr.project.controller.HelperClasses.ShipSummary;
 import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.controller.DataToBstController;
-import lapr.project.controller.MostTravelledShips.KMTravelledCalculator;
-import lapr.project.controller.MostTravelledShips.MostTravelledShips;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.utils.Utils;
 
@@ -29,7 +26,7 @@ import static lapr.project.utils.Utils.orderedByTime;
 public class ShipSummaryController {
 
     private ShipAndData shipAndData;
-    private MostTravelledShips mostTravelledShips;
+    private MostTravelledShipsController mostTravelledShips;
     private List<ShipPositonData> listPositionData;
 
     public ShipSummaryController(ShipAndData shipAndData) {
@@ -183,12 +180,12 @@ public class ShipSummaryController {
     }
 
     public double getTravelledDistance() {
-        MostTravelledShips mostTravelledShips = new MostTravelledShips();
+        MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getTotalPerShip(this.listPositionData);
     }
 
     public double getDeltaDistance() {
-        MostTravelledShips mostTravelledShips = new MostTravelledShips();
+        MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getDeltaDistance(this.listPositionData);
     }
 
