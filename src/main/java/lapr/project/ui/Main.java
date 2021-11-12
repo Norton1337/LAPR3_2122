@@ -1,24 +1,22 @@
 package lapr.project.ui;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-
-import lapr.project.utils.BSTFiles.BST;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.controller.shipSummary.ShipSummary;
 import lapr.project.controller.shipSummary.ShipSummaryController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.Ships.Ship;
+import lapr.project.utils.BSTFiles.BST;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static lapr.project.utils.Utils.printList;
 
@@ -61,10 +59,15 @@ class Main {
         System.out.println(stopTime - startTime);
         
         ShipAndData s =  dataToBstController.getShipAndDataByMMSI("211331640");
-        
+
         ShipSummaryController shipSummaryController = new ShipSummaryController(s);
+        /*
         ShipSummary shipSummary =  shipSummaryController.getShipSummary();
         shipSummary.toString();
+
+         */
+
+
         
 
         //ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");

@@ -1,6 +1,6 @@
 package lapr.project.Dtos;
 
-public class ShipsMovementDto {
+public class ShipsMovementDto  implements Comparable<ShipsMovementDto> {
 
     public String MMSI;
     public String travelledDistance;
@@ -55,4 +55,11 @@ public class ShipsMovementDto {
                 ", numberOfMovements='" + numberOfMovements + '\'' +
                 '}';
     }
+
+    @Override
+    public int compareTo(ShipsMovementDto o) {
+        return 0;
+    }
+
 }
+
