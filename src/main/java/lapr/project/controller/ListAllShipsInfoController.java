@@ -18,9 +18,11 @@ public class ListAllShipsInfoController {
 
 
     /**
-     *
-     * The list is ordered by time to calculate the travelled distance, and
-     * then ordered by travelled distance in decreasing order
+     * Creates a list for all the ships with their details, ordered by
+     *  travelled distance in descending order and by number of movements
+     *  in ascending order.
+     * The method receives a list with all the ships and for each one
+     * calculates their delta distance, travelled distance and number of movements.
      * @param shipsAndDataList list with all ships
      * @return a list for all the ships describing their MMSI, number o movements,
      *  distance travelled and delta distance.

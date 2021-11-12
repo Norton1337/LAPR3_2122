@@ -47,7 +47,13 @@ public class DataToBstController {
     public BST getShipBst() {
         return shipBst;
     }
-    
+
+    /**
+     * Receives MMSI code, searches and identifies
+     * the ship whose MMSI is equal to the one inserted
+     * @param mmsi unique number to identify each ship
+     * @return the Ship corresponding to the inserted MMSI
+     */
     public ShipAndData getShipAndDataByMMSI(String mmsi){
 
         ShipAndData shipAndData = null;
@@ -61,6 +67,13 @@ public class DataToBstController {
         return this.shipBst.find(shipAndData).getElement();
     }
 
+    /**
+     * Receives IMO number, searches and identifies
+     * the ship whose IMO is equal to the one inserted
+     * @param imo unique number of international identification
+     * for each ship
+     * @return the Ship corresponding to the inserted IMO
+     */
     public ShipAndData getShipAndDataByIMO(String imo){
 
         ShipAndData shipAndData = null;
@@ -72,6 +85,12 @@ public class DataToBstController {
         return this.shipBst.find(shipAndData).getElement();
     }
 
+    /**
+     * Receives a Call Sign, searches and identifies
+     * the ship whose IMO is equal to the one inserted
+     * @param callSign ship's unique call sign
+     * @return the Ship corresponding to the inserted Call Sign
+     */
     public ShipAndData getShipDataByCallSign(String callSign){
 
         ShipAndData shipAndData = null;
@@ -85,6 +104,15 @@ public class DataToBstController {
     }
 
 
+    /**
+     * Receives one of the three unique codes, MMSI,
+     * IMO or Call Sign. Verifies witch one of this three
+     * fields was inserted and identifies the ship that
+     * belongs to that field
+     * @param data corresponds to the data inserted, could
+     * be MMSI, IMO or Call Sign
+     * @return the Ship corresponding to the inserted data
+     */
     public ShipAndData getShipDetails(String data){
 
         ShipAndData shipAndData = null;
