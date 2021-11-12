@@ -44,23 +44,20 @@ public class MostTravelledShipsController {
      * @return 3 lists ordered by kilometers with topN amount of ships 
      */
     public TopShips getTopNShips(List <ShipAndData> shipList, int topN){
+        TemporalPositionalMessagesController tpmc = new TemporalPositionalMessagesController();
+        shipList = tpmc.getAllShipsAndData(shipList);
 
+        while(listOfShips.size()!=shipList.size()){
 
-        if(listOfShips.size()==shipList.size()){
-            TopShips topShips = orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
-
-            return topShips;
-            // return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
+            listOfDistances.add(getTotalPerShip(shipList.get(listOfShips.size()).getShipPositonData()));
+            listOfShips.add(shipList.get(listOfShips.size()).getShip());
+            listOfSOG.add(totalSOG/amountSOG);
+            totalDistances=0;
+            totalSOG=0;
+            amountSOG=0;
         }
 
-        listOfDistances.add(getTotalPerShip(shipList.get(listOfShips.size()).getShipPositonData()));
-        listOfShips.add(shipList.get(listOfShips.size()).getShip());
-        listOfSOG.add(totalSOG/amountSOG);
-        totalDistances=0;
-        totalSOG=0;
-        amountSOG=0;
-
-        return getTopNShips(shipList, topN);
+        return orderLists(new TopShips(listOfShips,listOfDistances,listOfSOG), 0, topN, 0, 0);
     }
     /**
      * This will create a new list with all the ship and all the positional messages that occured between 2 dates
@@ -179,7 +176,6 @@ public class MostTravelledShipsController {
             totalSOG += posList.get(i).getSog();
             amountSOG++;
         }
-
 
         return totalDistances;
     }
