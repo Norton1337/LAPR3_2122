@@ -22,11 +22,13 @@ public class Utils {
         return Double.parseDouble(string.trim());
     }
 
-    public static <T> void printList(List<T> list) {
+    public static <T> boolean printList(List<T> list) {
 
         for(T elems : list){
             System.out.println(elems);
         }
+
+        return true;
     }
 
     public static Integer randomInt(){
@@ -55,9 +57,14 @@ public class Utils {
         return list;
     }
 
-    public static Date convertDate(String dateTime) throws ParseException{
-        SimpleDateFormat format1 =new SimpleDateFormat("dd/MM/yyyy HH:mm");  
-        Date date = format1.parse(dateTime); 
+    public static Date convertDate(String dateTime){
+        SimpleDateFormat format1 =new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = null;
+        try {
+            date = format1.parse(dateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         return date;
     }
@@ -68,6 +75,11 @@ public class Utils {
         String c1 = splitCoords[0]; //lat
         String c2 = splitCoords[1]; //long
         return splitCoords;
+    }
+
+
+    public static String[] stripC(String coordinate){
+        return coordinate.split("/");
     }
 
 

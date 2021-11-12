@@ -10,6 +10,8 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
+import lapr.project.model.ShipPositionData.ShipPositonData;
+import lapr.project.model.Ships.Ship;
 import lapr.project.utils.BSTFiles.BST;
 
 import java.io.IOException;
@@ -18,6 +20,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.controller.HelperClasses.ShipSummary;
+
+import static lapr.project.utils.Utils.printList;
 
 class Main {
 
@@ -37,7 +41,6 @@ class Main {
 
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
-        long startTime = System.currentTimeMillis();
         shipUI.importShips("Docs/Input/bships.csv");
 
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
@@ -45,36 +48,42 @@ class Main {
 
         BST t = dataToBstController.getShipBst();
         // System.out.println(t);
+        /*
+        System.out.println(shipSummaryController.toString());
 
+
+        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+        System.out.println(dataByMMSI.toString());
+        System.out.println(dataByIMO.toString());
+        System.out.println(dataByCallSign.toString());
+
+         */
+        List<ShipAndData> andDataList = new ArrayList<>();
+
+        for(Object elems : t.inOrder()){
+            andDataList.add((ShipAndData) elems);
+        }
+
+
+        long startTime = System.currentTimeMillis();
+        listAllShipsInfoController.pairShips(andDataList);
         long stopTime = System.currentTimeMillis();
         System.out.println(stopTime - startTime);
 
-        ShipAndData s = dataToBstController.getShipAndDataByMMSI("211331640");
 
-        ShipSummaryController shipSummaryController = new ShipSummaryController(s);
 
-        ShipSummary shipSummary = shipSummaryController.getShipSummary();
-        System.out.println(shipSummaryController.toString());
 
-        //ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        //ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
-        //ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
-        // System.out.println(dataByMMSI.toString());
-        // System.out.println(dataByIMO.toString());
-        // System.out.println(dataByCallSign.toString());
-//        List<ShipAndData> andDataList = new ArrayList<>();
-//
-//        for(Object elems : t.inOrder()){
-//            andDataList.add((ShipAndData) elems);
-//        }
-//
-//        printList(listAllShipsInfoController.shipLog(andDataList));
+        //printList(listAllShipsInfoController.shipLog(andDataList));
         //System.out.println(dataToBstController.populateBST();
+
+        /*
         List<ShipAndData> shipList = new ArrayList<>();
 
         for (int i = 0; i < shipController.getAllShips().size(); i++) {
             shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(i).getMMSI()));
-        }
+        }*/
 
 //        ShipSummary summary = new ShipSummary(s);
 //        List<shipsSummary> list;

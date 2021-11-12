@@ -7,7 +7,10 @@ import lapr.project.utils.BSTFiles.AVL;
 import lapr.project.utils.BSTFiles.BST;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static lapr.project.utils.Utils.orderedByTime;
 
 public class DataToBstController {
 
@@ -29,6 +32,9 @@ public class DataToBstController {
                     ShipPositonDataList.add(elemsPos);
                 }
             }
+
+            //FASTER SPEED?
+            orderedByTime(ShipPositonDataList);
 
             this.allData.add(new ShipAndData(elems, ShipPositonDataList));
         }
