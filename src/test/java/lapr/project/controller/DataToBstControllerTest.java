@@ -6,8 +6,8 @@ import lapr.project.controller.ModelControllers.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
+import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.ui.ShipUI;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,21 +62,53 @@ class DataToBstControllerTest {
 
     @Test
     void getShipAndDataByMMSI() {
-        //TODO ANA
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
+
+        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        System.out.println(dataByMMSI);
+
+        assertEquals(dataByMMSI.getShip().getMMSI(), "636015178");
+        assertEquals(dataByMMSI.getShip().getShipName(), "AQUALEGACY");
+
     }
 
     @Test
     void getShipAndDataByIMO() {
-        //TODO ANA
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
+
+        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+
+        assertEquals(dataByIMO.getShip().getIMO(), "IMO9601833");
+
     }
 
     @Test
     void getShipDataByCallSign() {
-        //TODO ANA
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
+
+        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+
+        assertEquals(dataByCallSign.getShip().getCallSign(), "A8ZC7");
+
     }
 
     @Test
     void getShipDetails() {
-        //TODO ANA
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
+
+        ShipAndData shipMMSI = dataToBstController.getShipDetails("211331640");
+        assertEquals(shipMMSI.getShip().getShipName(), "SEOUL EXPRESS");
+
+        ShipAndData shipIMO = dataToBstController.getShipDetails("IMO9193305");
+        assertEquals(shipIMO.getShip().getIMO(),"IMO9193305" );
+
+        ShipAndData shipCallSign = dataToBstController.getShipDetails("DHBN");
+        assertEquals(shipCallSign.getShip().getCallSign(),"DHBN" );
+
+
     }
 }
