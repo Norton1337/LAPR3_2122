@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lapr.project.utils.Utils.orderedByTime;
-import static lapr.project.utils.Utils.printList;
 
 public class DataToBstController {
 
@@ -133,11 +132,12 @@ public class DataToBstController {
 
             shipAndData = getShipAndDataByMMSI(data);
         }
-        if (data.length() == 10){
+        else if (data.length() == 10){
 
             shipAndData = getShipAndDataByIMO(data);
         }
-        if (data.length() == 5){
+
+        else{
 
             shipAndData = getShipDataByCallSign(data);
         }

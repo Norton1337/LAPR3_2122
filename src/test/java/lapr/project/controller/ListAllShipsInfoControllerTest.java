@@ -4,11 +4,15 @@ import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class ListAllShipsInfoControllerTest {
+
 
 
 
@@ -42,9 +46,38 @@ class ListAllShipsInfoControllerTest {
         listOfShipPositionData.add(shipPositonDataShip13);
 
 
-        ShipAndData shipAndDataOBJ = new ShipAndData(ship1, listOfShipPositionData);
-        shipAndDataList.add(shipAndDataOBJ);
 
+        ShipPositonData shipPositonDataShip21 = new ShipPositonData("31/12/2020", "50.48627, -11.22163", 12.5, 15.4, 385, "p", "A");
+        ShipPositonData shipPositonDataShip22 = new ShipPositonData("29/12/2020", "60.48630, -20.22140", 18.5, 10.5, 400, "a", "A");
+        ShipPositonData shipPositonDataShip23 = new ShipPositonData("27/12/2020", "70.48633, -61.22150", 14.2, 21.6, 246, "b", "B");
+
+        listOfShipPositionData2.add(shipPositonDataShip21);
+        listOfShipPositionData2.add(shipPositonDataShip22);
+        listOfShipPositionData2.add(shipPositonDataShip23);
+
+
+
+        ShipAndData shipAndDataOBJ = new ShipAndData(ship1, listOfShipPositionData); // ShipAndData do primeiro barco com a lista de posições
+        ShipAndData shipAndDataOBJ2 = new ShipAndData(ship2, listOfShipPositionData2);
+        shipAndDataList.add(shipAndDataOBJ); // adicioina barco1 a list
+        shipAndDataList.add(shipAndDataOBJ2);
+
+
+    }
+
+
+
+    @Test
+    void shipLogTest(){
+
+
+        ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
+        //listAllShipsInfoController.shipLog(shipAndDataList);
+
+        System.out.println(shipAndDataList.size());
+
+        assertEquals(shipAndDataList.get(0).getShip().getMMSI(), "110950637");
+        assertEquals(shipAndDataList.get(1).getShip().getMMSI(),"210950637" );
 
     }
 
