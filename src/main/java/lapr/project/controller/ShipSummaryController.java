@@ -26,7 +26,7 @@ import static lapr.project.utils.Utils.orderedByTime;
 public class ShipSummaryController {
 
     private ShipAndData shipAndData;
-    private MostTravelledShipsController mostTravelledShips;
+
     private List<ShipPositonData> listPositionData;
 
     public ShipSummaryController(ShipAndData shipAndData) {
@@ -102,10 +102,27 @@ public class ShipSummaryController {
             return null;
         }
         long diff = endDate.getTime() - startDate.getTime();
-        TimeUnit time = TimeUnit.HOURS;
-        long difference = time.convert(diff, TimeUnit.MILLISECONDS);
-        String totalTime = String.valueOf(difference);
-        return totalTime;
+
+        long days = TimeUnit.MILLISECONDS.toDays(diff);
+        diff -= TimeUnit.DAYS.toMillis(days);
+
+        long hours = TimeUnit.MILLISECONDS.toHours(diff);
+        diff -= TimeUnit.HOURS.toMillis(hours);
+
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+        diff -= TimeUnit.MINUTES.toMillis(minutes);
+
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
+
+        StringBuilder sb = new StringBuilder(64);
+        sb.append("Days:");
+        sb.append(days);
+        sb.append("\tHours:");
+        sb.append(hours);
+        sb.append("\tMinutes:");
+        sb.append(minutes);
+
+        return (sb.toString());
     }
 
     /**
@@ -115,7 +132,7 @@ public class ShipSummaryController {
      * @return the number of totalMovements of the ship.
      */
     public int getTotalMovements() {
-        return (this.listPositionData.size() - 1);
+        return (this.listPositionData.size());
     }
 
     /**
@@ -161,8 +178,10 @@ public class ShipSummaryController {
         return max;
     }
 
-    /***
+    /**
+     * *
      * Returns the mean COG for the route of the ship
+     *
      * @return the mean COG
      */
     public double getMeanCOG() {
@@ -177,33 +196,40 @@ public class ShipSummaryController {
     public String getDeparture() {
         return this.listPositionData.get(0).getCoordinates();
     }
-    
-    /***
+
+    /**
+     * *
      * Returns string with the arrival coordinates of the ship
+     *
      * @return string with arrival coordinates
      */
     public String getArrival() {
         return this.listPositionData.get(this.listPositionData.size() - 1).getCoordinates();
     }
-    
-    /***
+
+    /**
+     * *
      * Returns the KM travelled by the ship.
-     * @return 
+     *
+     * @return
      */
     public double getTravelledDistance() {
         MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getTotalPerShip(this.listPositionData);
     }
 
-    /***
-     * Returns the distance in KM between the Departure position and the Arrival position.
+    /**
+     * *
+     * Returns the distance in KM between the Departure position and the Arrival
+     * position.
+     *
      * @return distance between Departure and Arrival
      */
     public double getDeltaDistance() {
         MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getDeltaDistance(this.listPositionData);
     }
-    
+
     @Override
     public String toString() {
         String string = null;

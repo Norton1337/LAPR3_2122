@@ -62,15 +62,15 @@ class Main {
          */
         List<ShipAndData> andDataList = new ArrayList<>();
 
-        for(Object elems : t.inOrder()){
-            andDataList.add((ShipAndData) elems);
-        }
-
-
-        long startTime = System.currentTimeMillis();
-        listAllShipsInfoController.pairShips(andDataList);
-        long stopTime = System.currentTimeMillis();
-        System.out.println(stopTime - startTime);
+//        for(Object elems : t.inOrder()){
+//            andDataList.add((ShipAndData) elems);
+//        }
+//
+//
+//        long startTime = System.currentTimeMillis();
+//        listAllShipsInfoController.pairShips(andDataList);
+//        long stopTime = System.currentTimeMillis();
+//        System.out.println(stopTime - startTime);
 
 
 
@@ -84,14 +84,13 @@ class Main {
         for (int i = 0; i < shipController.getAllShips().size(); i++) {
             shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(i).getMMSI()));
         }*/
+        
+        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+        
+        ShipSummaryController summaryController = new ShipSummaryController(dataByMMSI);
+        ShipSummary shipSummary = summaryController.getShipSummary();
+        System.out.println(summaryController.toString());
 
-//        ShipSummary summary = new ShipSummary(s);
-//        List<shipsSummary> list;
-//        list = summary.getShipSummary("636015178");
-//        for(int i = 0; i < list.size(); i++) {
-//                   System.out.println(list.get(i).toString());
-//        }
-//
 //        MostTravelledShips mts = new MostTravelledShips();
 //        TopShips ts = mts.getTopNShips(shipList, 5);
 //        
