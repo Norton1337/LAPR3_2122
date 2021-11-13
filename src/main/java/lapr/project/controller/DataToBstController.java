@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lapr.project.utils.Utils.orderedByTime;
+import static lapr.project.utils.Utils.printList;
 
 public class DataToBstController {
 
@@ -41,7 +42,6 @@ public class DataToBstController {
             this.allData.add(new ShipAndData(elems, ShipPositonDataList));
         }
 
-        //printList(allData);
     }
 
     public void populateBST(){

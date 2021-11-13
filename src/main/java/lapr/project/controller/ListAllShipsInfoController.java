@@ -1,17 +1,15 @@
 package lapr.project.controller;
 
+import lapr.project.Dtos.ShipPairsDTO;
 import lapr.project.Dtos.ShipsMovementDto;
-import lapr.project.controller.HelperClasses.KMTravelledCalculator;
-import lapr.project.controller.HelperClasses.SortByNumberOfMovements;
-import lapr.project.controller.HelperClasses.SortByTravelledDistance;
+import lapr.project.controller.HelperClasses.*;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
 import java.util.*;
 
-import static lapr.project.utils.Utils.orderedByTime;
-import static lapr.project.utils.Utils.stripC;
+import static lapr.project.utils.Utils.*;
 
 public class ListAllShipsInfoController {
 
@@ -57,7 +55,7 @@ public class ListAllShipsInfoController {
         KMTravelledCalculator calculator = new KMTravelledCalculator();
         MostTravelledShipsController mostTravelledShipsController = new MostTravelledShipsController();
 
-        List<Ship> listOfShipsLessThan5Kms = new ArrayList<>();
+        List<ShipPairsDTO> listOfShipsLessThan5Kms = new ArrayList<>();
 
 
         Map<Ship, List<ShipPositonData>> shipsShipPositonData  = new LinkedHashMap<>();
@@ -88,17 +86,19 @@ public class ListAllShipsInfoController {
                     Double distanceTravelsShip2 = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
 
 
-                    if(initialDistanceInital < 5 || endDistanceInital < 5 &&
+                    if((initialDistanceInital < 5 || endDistanceInital < 5) &&
                             distanceTravelsShip1 > 10 && distanceTravelsShip2 > 10){
 
-                        //System.out.printf("KEY: %s  %s   KEY:%s   %s\n", entry.getKey().getMMSI(), entry.getValue().size(), entry1.getKey().getMMSI(), entry1.getValue().size());
-                    }
+                        listOfShipsLessThan5Kms.add(new ShipPairsDTO(entry.getKey().getMMSI(),entry1.getKey().getMMSI(),
+                                String.valueOf(entry.getValue().size()), String.valueOf(entry1.getValue().size()),
+                                String.valueOf(distanceTravelsShip1), String.valueOf(distanceTravelsShip2)));
 
-
-
+                        }
                 }
             }
         }
+        Collections.sort(listOfShipsLessThan5Kms, new SortByMMSIPairs().thenComparing(Collections.reverseOrder(new SortByTravelledDistancePairs())));
+        printList(listOfShipsLessThan5Kms);
 
 
 
