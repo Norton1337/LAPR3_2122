@@ -16,9 +16,12 @@ public class DataToBstController {
     private AVL<ShipAndData> shipBst;
     private List<ShipAndData> allData;
 
+
+
     public DataToBstController() {
         this.shipBst = new AVL<>();
         this.allData = new ArrayList<>();
+
     }
 
     public void transformBeforeBST(List<Ship> ships, List<ShipPositonData> shipsData){
@@ -47,6 +50,10 @@ public class DataToBstController {
             shipBst.insert(elems);
         }
 
+    }
+
+    public List<ShipAndData> getAllData() {
+        return allData;
     }
 
     public BST getShipBst() {
