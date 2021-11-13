@@ -32,13 +32,12 @@ public class ShipSummaryController {
     public ShipSummaryController(ShipAndData shipAndData) {
         this.shipAndData = shipAndData;
         this.listPositionData = getShipPositionDataOrderedByTime(shipAndData.getShipPositonData());
-
     }
 
     public ShipSummary getShipSummary() throws ParseException {
         ShipSummary shipSummary = new ShipSummary();
         shipSummary.setVesselName(this.shipAndData.getShip().getShipName());
-        shipSummary.setStartDataTime(this.listPositionData.get(0).getBaseDateTime());
+        shipSummary.setStartDateTime(this.listPositionData.get(0).getBaseDateTime());
         shipSummary.setTotalTimeTravelled(getTotalTime());
         shipSummary.setTotalMovements(getTotalMovements());
         shipSummary.setMaxSOG(getMaxSOG());
@@ -162,6 +161,10 @@ public class ShipSummaryController {
         return max;
     }
 
+    /***
+     * Returns the mean COG for the route of the ship
+     * @return the mean COG
+     */
     public double getMeanCOG() {
         double mean = 0;
 
@@ -174,21 +177,33 @@ public class ShipSummaryController {
     public String getDeparture() {
         return this.listPositionData.get(0).getCoordinates();
     }
-
+    
+    /***
+     * Returns string with the arrival coordinates of the ship
+     * @return string with arrival coordinates
+     */
     public String getArrival() {
         return this.listPositionData.get(this.listPositionData.size() - 1).getCoordinates();
     }
-
+    
+    /***
+     * Returns the KM travelled by the ship.
+     * @return 
+     */
     public double getTravelledDistance() {
         MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getTotalPerShip(this.listPositionData);
     }
 
+    /***
+     * Returns the distance in KM between the Departure position and the Arrival position.
+     * @return distance between Departure and Arrival
+     */
     public double getDeltaDistance() {
         MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
         return mostTravelledShips.getDeltaDistance(this.listPositionData);
     }
-
+    
     @Override
     public String toString() {
         String string = null;
