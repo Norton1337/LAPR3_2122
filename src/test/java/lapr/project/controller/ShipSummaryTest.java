@@ -14,19 +14,163 @@ import org.junit.jupiter.api.Test;
  * @author gonca
  */
 public class ShipSummaryTest {
-    
+
     private ShipSummary s = new ShipSummary();
-    
-    
-    @Test 
-    void getVesselNameTest(){
+
+    @Test
+    void getVesselNameTest() {
         s.setVesselName("VARAMO");
         assertEquals("VARAMO", s.getVesselName());
     }
-    
+
     @Test
-    void setVesselNameTest(){
+    void setVesselNameTest() {
         s.setVesselName("SPAR ARIES");
         assertEquals("SPAR ARIES", s.getVesselName());
     }
+
+    @Test
+    void getStartDateTimeTest() {
+        s.setStartDateTime("31/12/2003 00:01");
+        assertEquals("31/12/2003 00:01", s.getStartDateTime());
+    }
+
+    @Test
+    void setStartDateTimeTest() {
+        s.setStartDateTime("31/12/2003 00:01");
+        assertEquals("31/12/2003 00:01", s.getStartDateTime());
+    }
+
+    @Test
+    void getEndDateTimeTest() {
+        s.setEndDateTime("31/12/2003 23:59");
+        assertEquals("31/12/2003 23:59", s.getEndDateTime());
+    }
+
+    @Test
+    void setEndDateTimeTest() {
+        s.setEndDateTime("31/12/2003 23:59");
+        assertEquals("31/12/2003 23:59", s.getEndDateTime());
+    }
+
+    @Test
+    void getTotalTimeTravelledTest() {
+        s.setTotalTimeTravelled("Days:0\tHours:5\tMinutes:3");
+        assertEquals("Days:0\tHours:5\tMinutes:3", s.getTotalTimeTravelled());
+    }
+
+    @Test
+    void setTotalTimeTravelledTest() {
+        s.setTotalTimeTravelled("Days:0\tHours:5\tMinutes:3");
+        assertEquals("Days:0\tHours:5\tMinutes:3", s.getTotalTimeTravelled());
+    }
+
+    @Test
+    void getTotalMovementsTest() {
+        s.setTotalMovements(3);
+        assertEquals(3, s.getTotalMovements());
+    }
+
+    @Test
+    void setTotalMovementsTest() {
+        s.setTotalMovements(5);
+        assertEquals(5, s.getTotalMovements());
+    }
+
+    @Test
+    void getMaxSOGTest() {
+        s.setMaxSOG(12.5);
+        assertEquals(12.5, s.getMaxSOG());
+    }
+
+    @Test
+    void setMaxSOGTest() {
+        s.setMaxSOG(12.5);
+        assertEquals(12.5, s.getMaxSOG());
+    }
+
+    @Test
+    void getMeanSOGTest() {
+        s.setMeanSOG(11.45);
+        assertEquals(11.45, s.getMeanSOG());
+    }
+
+    @Test
+    void setMeanSOGTest() {
+        s.setMeanSOG(11.45);
+        assertEquals(11.45, s.getMeanSOG());
+    }
+
+    @Test
+    void getMaxCOGTest() {
+        s.setMaxCOG(13.5);
+        assertEquals(13.5, s.getMaxCOG());
+    }
+
+    @Test
+    void setMaxCOGTest() {
+        s.setMaxCOG(13.5);
+        assertEquals(13.5, s.getMaxCOG());
+    }
+
+    @Test
+    void getMeanCOGTest() {
+        s.setMeanCOG(17.5);
+        assertEquals(17.5, s.getMeanCOG());
+    }
+
+    @Test
+    void setMeanCOGTest() {
+        s.setMeanCOG(17.5);
+        assertEquals(17.5, s.getMeanCOG());
+    }
+
+    @Test
+    void getDepartureTest() {
+        s.setDeparture("20.48627, -31.22163");
+        assertEquals("20.48627, -31.22163", s.getDeparture());
+    }
+
+    @Test
+    void setDepartureTest() {
+        s.setDeparture("20.48627, -31.22163");
+        assertEquals("20.48627, -31.22163", s.getDeparture());
+    }
+    
+    @Test
+    void getArrivalTest() {
+        s.setArrival("30.48630, -40.22140");
+        assertEquals("30.48630, -40.22140", s.getArrival());
+    }
+
+    @Test
+    void setArrivalTest() {
+        s.setArrival("30.48630, -40.22140");
+        assertEquals("30.48630, -40.22140", s.getArrival());
+    }
+    
+    @Test
+    void getTravelledDistanceTest() {
+        s.setTravelledDistance(497.7);
+        assertEquals(497.7, s.getTravelledDistance());
+    }
+
+    @Test
+    void setTravelledDistanceTest() {
+        s.setTravelledDistance(497.7);
+        assertEquals(497.7, s.getTravelledDistance());
+    }
+    
+    @Test
+    void getDeltaDistanceTest() {
+        s.setDeltaDistance(430.80);
+        assertEquals(430.80, s.getDeltaDistance());
+    }
+
+    @Test
+    void setDeltaDistanceTest() {
+        s.setDeltaDistance(430.80);
+        assertEquals(430.80, s.getDeltaDistance());
+    }
+
 }
