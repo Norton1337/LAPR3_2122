@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShipPositonDataTest {
 
@@ -145,5 +146,10 @@ class ShipPositonDataTest {
 
         assertEquals(testShipPosition.getShipId(), "7");
         testShipPosition.setShipId(initialId);
+    }
+
+    @Test
+    void testToString() {
+        assertTrue(testShipPosition.toString().contains("31/12/2020"));
     }
 }

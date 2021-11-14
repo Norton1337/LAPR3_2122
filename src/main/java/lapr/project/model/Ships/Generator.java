@@ -7,12 +7,6 @@ public class Generator {
     private double generatorsOutput;
     private String shipId;
 
-    public Generator(String id, int numberOfGenerator, double generatorsOutput) {
-        this.id = id;
-        this.numberOfGenerator = numberOfGenerator;
-        this.generatorsOutput = generatorsOutput;
-    }
-
     public Generator(String id, int numberOfGenerator, double generatorsOutput, String shipId) {
         this.id = id;
         this.numberOfGenerator = numberOfGenerator;

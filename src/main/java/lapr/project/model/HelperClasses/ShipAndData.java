@@ -3,6 +3,7 @@ package lapr.project.model.HelperClasses;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShipAndData implements Comparable<ShipAndData>{
@@ -27,7 +28,7 @@ public class ShipAndData implements Comparable<ShipAndData>{
     }
 
     public List<ShipPositonData> getShipPositonData() {
-        return shipPositonData;
+        return new ArrayList<>(shipPositonData);
     }
 
     public void setShipPositonData(List<ShipPositonData> shipPositonData) {

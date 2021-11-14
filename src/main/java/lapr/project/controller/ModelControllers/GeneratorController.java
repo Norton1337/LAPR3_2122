@@ -23,7 +23,11 @@ public class GeneratorController {
         return true;
     }
 
+    /*
     public List<Generator> getAllGenerator(){
         return generatorDB.getAllGenerator();
     }
+     */
+
+
 }

@@ -67,4 +67,9 @@ class GeneratorTest {
         assertEquals(testGenerator.getId(), "426");
         testGenerator.setId(initialId);
     }
+
+    @Test
+    void testToString() {
+        assertTrue(testGenerator.toString().contains("123"));
+    }
 }
