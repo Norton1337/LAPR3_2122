@@ -2,6 +2,9 @@ package lapr.project.utils;
 
 import lapr.project.model.ShipPositionData.ShipPositonData;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -80,6 +83,26 @@ public class Utils {
 
     public static String[] stripC(String coordinate){
         return coordinate.split("/");
+    }
+
+
+    public static String readFromProp(String prop){
+        FileReader reader= null;
+        try {
+            reader = new FileReader("src/main/resources/application.properties");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        Properties p=new Properties();
+        try {
+            p.load(reader);
+            return p.getProperty(prop);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 

@@ -11,6 +11,7 @@ import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DataToBstControllerTest {
@@ -66,7 +67,8 @@ class DataToBstControllerTest {
         dataToBstController.populateBST();
 
         ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        System.out.println(dataByMMSI);
+
+        if(readFromProp("debug").equals("1"))System.out.println(dataByMMSI);
 
         assertEquals(dataByMMSI.getShip().getMMSI(), "636015178");
         assertEquals(dataByMMSI.getShip().getShipName(), "AQUALEGACY");
