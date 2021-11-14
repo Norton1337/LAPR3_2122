@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import lapr.project.controller.HelperClasses.KMTravelledCalculator;
 import lapr.project.controller.HelperClasses.TopShips;
 import lapr.project.controller.MostTravelledShipsController;
 import org.junit.jupiter.api.BeforeEach;
@@ -194,6 +195,13 @@ class MostTravelledShipsTest {
         posList.add(listShipAndData.get(0).getShipPositonData().get(2)); 
         
         assertEquals(df.format(209.329), df.format(mts.getTotalPerShip(posList)));
+    }
+
+    @Test
+    void getDeltaDistance(){
+        DecimalFormat df = new DecimalFormat("###.######");
+        KMTravelledCalculator calculator = new KMTravelledCalculator();
+        assertEquals(df.format(5054.94879), df.format(calculator.calculate("-11.27406", "120.44982", "-46.06957", "154.96855")) );
     }
 
     
