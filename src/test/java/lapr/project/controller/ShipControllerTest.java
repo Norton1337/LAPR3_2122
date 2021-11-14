@@ -10,6 +10,7 @@ import lapr.project.model.Ships.Ship;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShipControllerTest {
@@ -34,7 +35,7 @@ public class ShipControllerTest {
 
         addShipController.addShip(newShip);
 
-        System.out.println(iShipsDB.getAllShips());
+        if(readFromProp("debug").equals("1"))System.out.println(iShipsDB.getAllShips());
 
 
         assertTrue(iShipsDB.getAllShips().contains(newShip));
