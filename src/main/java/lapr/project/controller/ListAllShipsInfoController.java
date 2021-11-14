@@ -34,8 +34,6 @@ public class ListAllShipsInfoController {
 
             List<ShipPositonData> newArrayList = ships.getShipPositonData();
 
-            //orderedByTime(newArrayList);
-
             String MMSI = ships.getShip().getMMSI();
             String numberOfMovements = String.valueOf(ships.getShipPositonData().size());
             String travelledDistance = String.valueOf(mostTravelledShips.getTotalPerShip(newArrayList));
@@ -45,8 +43,6 @@ public class ListAllShipsInfoController {
 
 
         }
-        //Collections.sort(shipsMovementDtos);
-        //Collections.reverse(shipsMovementDtos);
 
         Collections.sort(shipsMovementDtos, Collections.reverseOrder(new SortByTravelledDistance()).thenComparing(new SortByNumberOfMovements()));
         return shipsMovementDtos;
@@ -105,7 +101,6 @@ public class ListAllShipsInfoController {
             }
         }
         listOfShipsLessThan5Kms.sort(new SortByMMSIPairs().thenComparing(new SortByTravelledDistancePairs()));
-        //printList(listOfShipsLessThan5Kms);
 
         return listOfShipsLessThan5Kms;
 

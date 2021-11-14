@@ -7,8 +7,7 @@ public class Generator {
     private double generatorsOutput;
     private String shipId;
 
-    public Generator(String id, int numberOfGenerator, double generatorsOutput, String shipId) {
-        this.id = id;
+    public Generator(int numberOfGenerator, double generatorsOutput, String shipId) {
         this.numberOfGenerator = numberOfGenerator;
         this.generatorsOutput = generatorsOutput;
         this.shipId = shipId;
