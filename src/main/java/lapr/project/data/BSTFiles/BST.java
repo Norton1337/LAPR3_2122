@@ -1,4 +1,4 @@
-package lapr.project.utils.BSTFiles;
+package lapr.project.data.BSTFiles;
 
 import java.util.ArrayList;
 import java.util.HashMap;

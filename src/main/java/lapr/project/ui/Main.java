@@ -10,9 +10,7 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Ship;
-import lapr.project.utils.BSTFiles.BST;
+import lapr.project.data.BSTFiles.BST;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,8 +18,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.controller.HelperClasses.ShipSummary;
-
-import static lapr.project.utils.Utils.printList;
 
 class Main {
 

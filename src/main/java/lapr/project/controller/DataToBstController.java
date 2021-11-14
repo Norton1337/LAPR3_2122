@@ -3,8 +3,8 @@ package lapr.project.controller;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
-import lapr.project.utils.BSTFiles.AVL;
-import lapr.project.utils.BSTFiles.BST;
+import lapr.project.data.BSTFiles.AVL;
+import lapr.project.data.BSTFiles.BST;
 
 import java.util.ArrayList;
 import java.util.List;

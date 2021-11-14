@@ -1,4 +1,4 @@
-package lapr.project.utils.BSTFiles;
+package lapr.project.data.BSTFiles;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
