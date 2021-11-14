@@ -18,13 +18,13 @@ import static lapr.project.utils.Utils.convertCoordinates;
 public class MostTravelledShipsController {
 
     
-    private List<Ship> listOfShips = new ArrayList<>();
-    private List<Double> listOfDistances = new ArrayList<>();
-    private List<Double> listOfSOG = new ArrayList<>();
+    private final List<Ship> listOfShips = new ArrayList<>();
+    private final List<Double> listOfDistances = new ArrayList<>();
+    private final List<Double> listOfSOG = new ArrayList<>();
     private double totalDistances;
     private double totalSOG;
     private int amountSOG;
-    private TopShips topShips = new TopShips(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    private final TopShips topShips = new TopShips(new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
   
     /**
      * Constructor that sets the total distance and total average speed to -1
@@ -182,8 +182,6 @@ public class MostTravelledShipsController {
 
     public double getDeltaDistance(List<ShipPositonData> list) {
 
-
-        //System.out.println(list.get(0).getCoordinates());
         String[] coords = convertCoordinates(list.get(0).getCoordinates());
         String [] coordsFinal = convertCoordinates(list.get(list.size()-1).getCoordinates());
 
@@ -192,10 +190,5 @@ public class MostTravelledShipsController {
         return convertDistance.calculate(coordsFinal[0], coordsFinal[1], coords[0], coords[1]);
 
     }
-
-
-
-    
-
 
 }
