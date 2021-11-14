@@ -1,10 +1,9 @@
-package lapr.project.utils.BSTFiles;
+package lapr.project.data.BSTFiles;
 
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 

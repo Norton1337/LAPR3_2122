@@ -1,4 +1,4 @@
-package lapr.project.utils.BSTFiles;
+package lapr.project.data.BSTFiles;
 
 public class AVL<E extends Comparable<E>> extends BST<E> {
 
