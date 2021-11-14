@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import lapr.project.controller.HelperClasses.ShipSummary;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
@@ -31,12 +32,10 @@ public class ShipSummaryControllerTest {
     List<ShipAndData> shipAndDataList = new ArrayList<>();
     Ship ship1 = new Ship("110950637", "firstShip", "IMO7510259", "D34R", 40, 459, 735, 425.6, 8);
     Ship ship2 = new Ship("210950637", "secondShip", "IMO7510260", "D34S", 50, 460, 785, 321.5, 10);
-    //Ship ship3 = new Ship("310950637", "thirdShip", "IMO7510261","D34T", 60, 461,801, 567.2, 12);
 
-    // Creates position data for ship1
-    ShipPositonData shipPositonDataShip11 = new ShipPositonData("31/12/2020 00:05", "20.48627, -31.22163", 12.5, 17.4, 385, "p", "A");
-    ShipPositonData shipPositonDataShip12 = new ShipPositonData("31/12/2020 00:03", "30.48630, -40.22140", 12.8, 17.5, 387, "a", "A");
-    ShipPositonData shipPositonDataShip13 = new ShipPositonData("31/12/2020 00:01", "40.48633, -31.22150", 12.5, 17.6, 388, "b", "B");
+    ShipPositonData shipPositonDataShip11 = new ShipPositonData("31/12/2020 00:05", "20.48627/-31.22163", 12.5, 17.4, 385, "p", "A");
+    ShipPositonData shipPositonDataShip12 = new ShipPositonData("31/12/2020 00:03", "30.48630/-40.22140", 12.8, 17.5, 387, "a", "A");
+    ShipPositonData shipPositonDataShip13 = new ShipPositonData("31/12/2020 00:01", "40.48633/-31.22150", 12.5, 17.6, 388, "b", "B");
 
     ShipAndData shipAndDataOBJ = new ShipAndData(ship1, listOfShipPositionData);
 
@@ -44,8 +43,6 @@ public class ShipSummaryControllerTest {
     void startUp() {
         listOfShips.add(ship1);
         listOfShips.add(ship2);
-        //listOfShips.add(ship3);
-        // adds position data for ship1 to list
         listOfShipPositionData.add(shipPositonDataShip11);
         listOfShipPositionData.add(shipPositonDataShip12);
         listOfShipPositionData.add(shipPositonDataShip13);
@@ -55,12 +52,25 @@ public class ShipSummaryControllerTest {
         shipAndDataList.add(shipAndDataOBJ);
     }
 
-    //    @Test
-//    void CheckStartUp() {
-//        System.out.println(ship1.toString());
-//        System.out.println(ship2.toString());
-//        System.out.println(listOfShipPositionData);
-//    }
+
+    @Test
+    void getShipSummaryTest() throws ParseException{
+        ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
+        ShipSummary newShipSummary = summaryController.getShipSummary();
+        assertEquals(shipAndDataOBJ.getShip().getShipName(), newShipSummary.getVesselName());
+        assertEquals("31/12/2020 00:01", newShipSummary.getStartDateTime());
+        assertEquals("Days:0 Hours:0 Minutes:4", newShipSummary.getTotalTimeTravelled());
+        assertEquals(shipAndDataOBJ.getShipPositonData().size(), newShipSummary.getTotalMovements());
+        assertEquals(12.8, newShipSummary.getMaxSOG());
+        assertEquals(12.6, newShipSummary.getMeanSOG());
+        assertEquals(17.6, newShipSummary.getMaxCOG());
+        assertEquals(17.5, newShipSummary.getMeanCOG());
+        assertEquals(shipAndDataOBJ.getShipPositonData().get(2).getCoordinates(), newShipSummary.getDeparture());
+        assertEquals(shipAndDataOBJ.getShipPositonData().get(0).getCoordinates(), newShipSummary.getArrival());
+        assertEquals(2808.165850581017, newShipSummary.getTravelledDistance());
+        assertEquals(2223.905204620935, newShipSummary.getDeltaDistance());
+    }
+
     @Test
     void getShipPositionDataOrderedByTimeTest() {
         if(readFromProp("debug").equals("1"))System.out.println("getShipPositionDataOrderedByTimeTest");
@@ -144,16 +154,6 @@ public class ShipSummaryControllerTest {
         assertEquals("20.48627, -31.22163", summaryController.getArrival());
     }
 
-//    @Test
-//    void getTravelledDistanceTest() {
-//        MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
-//        ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
-//        listOfShipPositionData = summaryController.getShipPositionDataOrderedByTime(shipAndDataOBJ.getShipPositonData());
-//        
-//        double wantedDistance = mostTravelledShips.getTotalPerShip(listOfShipPositionData);
-//        double givenDistance = summaryController.getTravelledDistance();
-//        assertEquals(wantedDistance, givenDistance);
-//    }
 
     @Test
     void getDeltaDistanceTest(){

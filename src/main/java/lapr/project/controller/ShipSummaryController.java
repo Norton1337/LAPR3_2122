@@ -112,14 +112,12 @@ public class ShipSummaryController {
         long minutes = TimeUnit.MILLISECONDS.toMinutes(diff);
         diff -= TimeUnit.MINUTES.toMillis(minutes);
 
-        long seconds = TimeUnit.MILLISECONDS.toSeconds(diff);
-
         StringBuilder sb = new StringBuilder(64);
         sb.append("Days:");
         sb.append(days);
-        sb.append("\tHours:");
+        sb.append(" Hours:");
         sb.append(hours);
-        sb.append("\tMinutes:");
+        sb.append(" Minutes:");
         sb.append(minutes);
 
         return (sb.toString());
