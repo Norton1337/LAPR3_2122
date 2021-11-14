@@ -95,7 +95,7 @@ public class ShipSummaryControllerTest {
         if(readFromProp("debug").equals("1"))System.out.println("getTotalTimeTest");
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
 
-        assertEquals("Days:0\tHours:0\tMinutes:4", summaryController.getTotalTime());
+        assertEquals("Days:0 Hours:0 Minutes:4", summaryController.getTotalTime());
     }
 
     @Test
@@ -143,7 +143,7 @@ public class ShipSummaryControllerTest {
         if(readFromProp("debug").equals("1"))System.out.println("getMeanCOGTest");
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
         List<ShipPositonData> list = summaryController.getShipPositionDataOrderedByTime(listOfShipPositionData);
-        assertEquals("40.48633, -31.22150", summaryController.getDeparture());
+        assertEquals("40.48633/-31.22150", summaryController.getDeparture());
     }
 
     @Test
@@ -151,7 +151,7 @@ public class ShipSummaryControllerTest {
         if(readFromProp("debug").equals("1"))System.out.println("getMeanCOGTest");
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
         List<ShipPositonData> list = summaryController.getShipPositionDataOrderedByTime(listOfShipPositionData);
-        assertEquals("20.48627, -31.22163", summaryController.getArrival());
+        assertEquals("20.48627/-31.22163", summaryController.getArrival());
     }
 
 
