@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BSTTest {
@@ -87,7 +88,7 @@ class BSTTest {
     @Test
     void preOrder() {
 
-        System.out.println(newBst.inOrder());
+        if(readFromProp("debug").equals("1"))System.out.println(newBst.inOrder());
     }
 
     @Test

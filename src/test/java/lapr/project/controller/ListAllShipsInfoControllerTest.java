@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -64,7 +65,7 @@ class ListAllShipsInfoControllerTest {
 
 
         List<ShipsMovementDto> allData = listAllShipsInfoController.shipLog(andDataList);
-        Utils.printList(allData);
+        if(readFromProp("debug").equals("1"))Utils.printList(allData);
         assertTrue(allData.size() > 10);
 
         for(ShipsMovementDto elems : allData){
@@ -79,7 +80,6 @@ class ListAllShipsInfoControllerTest {
 
     @Test
     void pairShips() {
-        /*
 
         List<ShipAndData> andDataList = new ArrayList<>();
 
@@ -96,7 +96,7 @@ class ListAllShipsInfoControllerTest {
         List<ShipPairsDTO> expectResult = new ArrayList<>();
         /*
         expectResult.add(new ShipPairsDTO("366759530","366772760","1217","1238",78,453","335,179"));
-
+        */
 
 
         expectResult.add(new ShipPairsDTO("636015975","563076200","1672","1616","153.345","219.025"));
@@ -117,7 +117,6 @@ class ListAllShipsInfoControllerTest {
         }
 
         assertTrue(flag);
-        */
 
     }
 }

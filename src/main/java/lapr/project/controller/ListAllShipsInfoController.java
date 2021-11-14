@@ -33,7 +33,8 @@ public class ListAllShipsInfoController {
         for (ShipAndData ships: shipsAndDataList){
 
             List<ShipPositonData> newArrayList = ships.getShipPositonData();
-            orderedByTime(newArrayList);
+
+            //orderedByTime(newArrayList);
 
             String MMSI = ships.getShip().getMMSI();
             String numberOfMovements = String.valueOf(ships.getShipPositonData().size());
