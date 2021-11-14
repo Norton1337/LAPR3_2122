@@ -9,7 +9,7 @@ class GeneratorTest {
 
 
     public GeneratorTest() {
-        this.testGenerator = new Generator("123", 2, 32, "1");
+        this.testGenerator = new Generator(2, 32, "1");
     }
 
     @Test
@@ -54,10 +54,6 @@ class GeneratorTest {
         testGenerator.setShipId(initialShipId);
     }
 
-    @Test
-    void getId() {
-        assertEquals(testGenerator.getId(),"123");
-    }
 
     @Test
     void setId() {
@@ -70,6 +66,6 @@ class GeneratorTest {
 
     @Test
     void testToString() {
-        assertTrue(testGenerator.toString().contains("123"));
+        assertTrue(testGenerator.toString().contains("32"));
     }
 }

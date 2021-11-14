@@ -29,7 +29,7 @@ public class ShipController {
     }
 
 
-    public List<Generator> getAllGeneratorFromShip(int shipId){
+    public List<Generator> getAllGeneratorFromShip(String shipId){
         List<Generator> allGeneratorFromShip = new ArrayList<>();
 
         for(Generator elems : generatorDB.getAllGenerator()){
