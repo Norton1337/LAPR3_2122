@@ -25,9 +25,9 @@ import static lapr.project.utils.Utils.orderedByTime;
  */
 public class ShipSummaryController {
 
-    private ShipAndData shipAndData;
+    private final ShipAndData shipAndData;
 
-    private List<ShipPositonData> listPositionData;
+    private final List<ShipPositonData> listPositionData;
 
     public ShipSummaryController(ShipAndData shipAndData) {
         this.shipAndData = shipAndData;

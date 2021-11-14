@@ -89,9 +89,9 @@ class ListAllShipsInfoControllerTest {
 
         System.out.println(andDataList.size());
 
-        System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
+        if(readFromProp("debug").equals("1"))System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
         List<ShipPairsDTO> pairShips = listAllShipsInfoController.pairShips(andDataList.subList(0,20));
-        Utils.printList(pairShips);
+        if(readFromProp("debug").equals("1"))Utils.printList(pairShips);
 
         List<ShipPairsDTO> expectResult = new ArrayList<>();
         /*

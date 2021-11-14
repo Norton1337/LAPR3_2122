@@ -13,7 +13,7 @@ import static lapr.project.utils.Utils.*;
 
 public class ListAllShipsInfoController {
 
-    private MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
+    private final MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
 
 
     /**
@@ -104,7 +104,7 @@ public class ListAllShipsInfoController {
                 }
             }
         }
-        Collections.sort(listOfShipsLessThan5Kms, new SortByMMSIPairs().thenComparing(new SortByTravelledDistancePairs()));
+        listOfShipsLessThan5Kms.sort(new SortByMMSIPairs().thenComparing(new SortByTravelledDistancePairs()));
         //printList(listOfShipsLessThan5Kms);
 
         return listOfShipsLessThan5Kms;

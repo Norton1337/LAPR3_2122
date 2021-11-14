@@ -50,12 +50,7 @@ public class Utils {
     }
 
     public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list){
-        Collections.sort(list, new Comparator<ShipPositonData>() {
-            @Override
-            public int compare(ShipPositonData date1, ShipPositonData date2) {
-                return date1.getBaseDateTime().compareTo(date2.getBaseDateTime());
-            }
-        });
+        Collections.sort(list, Comparator.comparing(ShipPositonData::getBaseDateTime));
 
         return list;
     }
@@ -73,11 +68,7 @@ public class Utils {
     }
 
     public static String[] convertCoordinates(String coords){
-
-        String[] splitCoords = coords.split("[,/]");
-        String c1 = splitCoords[0]; //lat
-        String c2 = splitCoords[1]; //long
-        return splitCoords;
+        return coords.split("[,/]");
     }
 
 
