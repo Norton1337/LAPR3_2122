@@ -1,6 +1,8 @@
 package lapr.project.controller;
 
+import lapr.project.Dtos.ShipPairsDTO;
 import lapr.project.Dtos.ShipsMovementDto;
+import lapr.project.controller.HelperClasses.KMTravelledCalculator;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
@@ -35,7 +37,6 @@ class ListAllShipsInfoControllerTest {
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
-    List<ShipAndData> andDataList = new ArrayList<>();
 
 
 
@@ -43,6 +44,8 @@ class ListAllShipsInfoControllerTest {
     @BeforeEach
     void beforeAll() {
         shipUI.importShips("Docs/Input/bships.csv");
+        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.populateBST();
 
 
 
@@ -51,9 +54,6 @@ class ListAllShipsInfoControllerTest {
 
     @Test
     void shipLogTest(){
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         List<ShipAndData> andDataList = new ArrayList<>();
 
         for(Object elems : dataToBstController.getShipBst().inOrder()){
@@ -77,11 +77,42 @@ class ListAllShipsInfoControllerTest {
    }
 
 
+    @Test
+    void pairShips() {
+
+        List<ShipAndData> andDataList = new ArrayList<>();
+
+        for(Object elems : dataToBstController.getShipBst().inOrder()){
+            andDataList.add((ShipAndData) elems);
+        }
+
+
+        System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
+        List<ShipPairsDTO> pairShips = listAllShipsInfoController.pairShips(andDataList);
+        Utils.printList(pairShips);
+
+        List<ShipPairsDTO> expectResult = new ArrayList<>();
+        expectResult.add(new ShipPairsDTO("366759530","366772760","1217","1238",
+                "78,453","335,179"));
+
+        assertTrue(pairShips.size() > 0);
+        boolean flag = false;
+
+        for(ShipPairsDTO elems : pairShips){
+            if (elems.getShip1MMSI().equals(expectResult.get(0).getShip1MMSI()) &&
+                    elems.getShip2MMSI().equals(expectResult.get(0).getShip2MMSI()) &&
+                    Math.abs(Double.parseDouble(elems.getShip1Traveldistance())-Double.parseDouble(expectResult.get(0).getShip1Traveldistance().replace(",",".")))<0.1  &&
+                    Math.abs(Double.parseDouble( elems.getShip2Trabeldistance())-Double.parseDouble(expectResult.get(0).getShip2Trabeldistance().replace(",",".")))<0.1 ) {
+                flag = true;
+
+
+                break;
+            }
+        }
+
+        assertTrue(flag);
 
 
 
-
-
-
-
+    }
 }

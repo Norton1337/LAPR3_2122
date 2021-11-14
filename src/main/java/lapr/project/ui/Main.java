@@ -58,15 +58,15 @@ class Main {
          */
         List<ShipAndData> andDataList = new ArrayList<>();
 
-//        for(Object elems : t.inOrder()){
-//            andDataList.add((ShipAndData) elems);
-//        }
-//
-//
-//        long startTime = System.currentTimeMillis();
-//        listAllShipsInfoController.pairShips(andDataList);
-//        long stopTime = System.currentTimeMillis();
-//        System.out.println(stopTime - startTime);
+        for(Object elems : t.inOrder()){
+            andDataList.add((ShipAndData) elems);
+        }
+
+
+        long startTime = System.currentTimeMillis();
+        listAllShipsInfoController.pairShips(andDataList);
+        long stopTime = System.currentTimeMillis();
+        System.out.println(stopTime - startTime);
 
 
 

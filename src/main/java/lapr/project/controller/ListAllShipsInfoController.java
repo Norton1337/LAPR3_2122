@@ -51,7 +51,7 @@ public class ListAllShipsInfoController {
         return shipsMovementDtos;
     }
 
-    public void pairShips(List<ShipAndData> shipsAndDataList){
+    public List<ShipPairsDTO> pairShips(List<ShipAndData> shipsAndDataList){
         KMTravelledCalculator calculator = new KMTravelledCalculator();
         MostTravelledShipsController mostTravelledShipsController = new MostTravelledShipsController();
 
@@ -81,49 +81,33 @@ public class ListAllShipsInfoController {
                     double endDistanceInital =  calculator.calculate(stripC(ship1CordinatesEnd)[0], stripC(ship1CordinatesEnd)[1],
                             stripC(ship2CordinatesEnd)[0],stripC(ship2CordinatesEnd)[1]);
 
+                    double initialEnd =  calculator.calculate(stripC(ship1CordinatesInitial)[0], stripC(ship1CordinatesInitial)[1],
+                            stripC(ship2CordinatesEnd)[0],stripC(ship2CordinatesEnd)[1]);
+
+                    double endInitial =  calculator.calculate(stripC(ship2CordinatesInitial)[0], stripC(ship2CordinatesInitial)[1],
+                            stripC(ship1CordinatesEnd)[0],stripC(ship1CordinatesEnd)[1]);
+
 
                     Double distanceTravelsShip1 = mostTravelledShipsController.getTotalPerShip(entry.getValue());
                     Double distanceTravelsShip2 = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
 
 
-                    if((initialDistanceInital < 5 || endDistanceInital < 5) &&
-                            distanceTravelsShip1 > 10 && distanceTravelsShip2 > 10){
+                    if(((initialEnd < 5 || endInitial < 5) || (initialDistanceInital < 5 || endDistanceInital < 5)) &&
+                            (distanceTravelsShip1 > 10 && distanceTravelsShip2 > 10)){
 
                         listOfShipsLessThan5Kms.add(new ShipPairsDTO(entry.getKey().getMMSI(),entry1.getKey().getMMSI(),
                                 String.valueOf(entry.getValue().size()), String.valueOf(entry1.getValue().size()),
                                 String.valueOf(distanceTravelsShip1), String.valueOf(distanceTravelsShip2)));
-
                         }
+
                 }
             }
         }
-        Collections.sort(listOfShipsLessThan5Kms, new SortByMMSIPairs().thenComparing(Collections.reverseOrder(new SortByTravelledDistancePairs())));
-        printList(listOfShipsLessThan5Kms);
+        Collections.sort(listOfShipsLessThan5Kms, new SortByMMSIPairs().thenComparing(new SortByTravelledDistancePairs()));
+        //printList(listOfShipsLessThan5Kms);
 
+        return listOfShipsLessThan5Kms;
 
-
-
-
-
-
-            /*
-            for(ShipAndData ship2: shipsAndDataList){
-                Ship shipN = ship2.getShip();
-
-                //System.out.printf("%s %s\n",ship.getMMSI(), shipN.getMMSI());
-
-                //System.out.println(ship1.getShipPositonData().get(1));
-                //System.out.println(ship1.getShipPositonData().get(2));
-                //System.out.println(ship1.getShipPositonData().get(ship1.getShipPositonData().size()-1));
-
-            }
-
-
-             */
-
-            //List<ShipPositonData> ship1Data = elems.getShipPositonData();
-
-            //System.out.println(ships.ge);
         }
 
 
