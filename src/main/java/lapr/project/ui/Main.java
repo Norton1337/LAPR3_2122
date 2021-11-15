@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import lapr.project.controller.HelperClasses.ShipSummary;
+import lapr.project.utils.Utils;
 
 class Main {
 
@@ -64,7 +65,7 @@ class Main {
 
 
         long startTime = System.currentTimeMillis();
-        listAllShipsInfoController.pairShips(andDataList);
+        Utils.printList(listAllShipsInfoController.pairShips(andDataList));
         long stopTime = System.currentTimeMillis();
         System.out.println(stopTime - startTime);
 

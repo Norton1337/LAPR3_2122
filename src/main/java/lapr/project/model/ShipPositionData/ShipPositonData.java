@@ -14,6 +14,7 @@ public class ShipPositonData{
     private String shipId;
 
 
+
     public ShipPositonData(String baseDateTime, String coordinates, double sog, double cog,
                            int heading, String positon, String transcieverClass) {
         this.baseDateTime = baseDateTime;

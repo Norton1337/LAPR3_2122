@@ -14,6 +14,8 @@ public class Ship{
     private int width;
     private double draft;
     private double loadCapacity;
+    private double distanceTravelled;
+
 
     //private final List<ShipPositonData> positionData;
     //private final List<Container> containers;
@@ -138,6 +140,14 @@ public class Ship{
             return false;
         }
         return true;
+    }
+
+    public double getDistanceTravelled() {
+        return distanceTravelled;
+    }
+
+    public void setDistanceTravelled(double distanceTravelled) {
+        this.distanceTravelled = distanceTravelled;
     }
 
     /*

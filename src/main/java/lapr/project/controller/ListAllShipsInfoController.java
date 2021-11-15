@@ -62,6 +62,8 @@ public class ListAllShipsInfoController {
         }
 
         for (Map.Entry<Ship, List<ShipPositonData>> entry : shipsShipPositonData.entrySet()) {
+            Double distanceTravelsShip1 = mostTravelledShipsController.getTotalPerShip(entry.getValue());
+
             for (Map.Entry<Ship, List<ShipPositonData>> entry1 : shipsShipPositonData.entrySet()) {
                 int ship1Size = entry.getValue().size()-1;
                 String ship1CordinatesInitial = entry.getValue().get(0).getCoordinates();
@@ -84,17 +86,22 @@ public class ListAllShipsInfoController {
                     double endInitial =  calculator.calculate(stripC(ship2CordinatesInitial)[0], stripC(ship2CordinatesInitial)[1],
                             stripC(ship1CordinatesEnd)[0],stripC(ship1CordinatesEnd)[1]);
 
+                    Double distanceTravelsShip2Get = entry1.getKey().getDistanceTravelled();
+                    if(distanceTravelsShip2Get == 0){
+                        distanceTravelsShip2Get = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
+                        entry1.getKey().setDistanceTravelled(distanceTravelsShip2Get);
+                    }
 
-                    Double distanceTravelsShip1 = mostTravelledShipsController.getTotalPerShip(entry.getValue());
-                    Double distanceTravelsShip2 = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
+                    //Double distanceTravelsShip2 = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
+                    //System.out.println(distanceTravelsShip2);
 
 
                     if(((initialEnd < 5 || endInitial < 5) || (initialDistanceInital < 5 || endDistanceInital < 5)) &&
-                            (distanceTravelsShip1 > 10 && distanceTravelsShip2 > 10)){
+                            (distanceTravelsShip1 > 10 && distanceTravelsShip2Get > 10)){
 
                         listOfShipsLessThan5Kms.add(new ShipPairsDTO(entry.getKey().getMMSI(),entry1.getKey().getMMSI(),
                                 String.valueOf(entry.getValue().size()), String.valueOf(entry1.getValue().size()),
-                                String.valueOf(distanceTravelsShip1), String.valueOf(distanceTravelsShip2)));
+                                String.valueOf(distanceTravelsShip1), String.valueOf(distanceTravelsShip2Get)));
                         }
 
                 }
