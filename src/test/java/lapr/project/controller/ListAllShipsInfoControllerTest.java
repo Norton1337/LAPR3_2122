@@ -97,8 +97,6 @@ class ListAllShipsInfoControllerTest {
         expectResult.add(new ShipPairsDTO("366759530","366772760","1217","1238","78","335,179"));
 
 
-        //expectResult.add(new ShipPairsDTO("636015975","563076200","1672","1616","153.345","219.025"));
-
         assertTrue(pairShips.size() > 0);
         boolean flag = false;
 

@@ -12,7 +12,7 @@ import static lapr.project.utils.Utils.randomUUID;
 
 public class ShipDBMock implements IShipsDB {
 
-    private List<Ship> ships = new LinkedList<>();
+    private final List<Ship> ships = new LinkedList<>();
 
     @Override
     public List<Ship> getAllShips() {

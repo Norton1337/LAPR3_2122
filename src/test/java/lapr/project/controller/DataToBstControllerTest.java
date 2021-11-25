@@ -16,31 +16,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DataToBstControllerTest {
 
+    public DataToBstControllerTest() {
+        this.shipDBMock = new ShipDBMock();
+        this.generatorDBMock = new GeneratorDBMock();
+        this.shipPositionDataDBMock = new ShipPositionDataDBMock();
+        this.shipController = new ShipController(shipDBMock, generatorDBMock);
+        this.shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
+        this.generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+        this.dataToBstController = new DataToBstController();
+        this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
 
-    //DB
-    ShipDBMock shipDBMock = new ShipDBMock();
-    GeneratorDBMock generatorDBMock = new GeneratorDBMock();
-    ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
-
-    //CONTROLLERS
-    ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
-    ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
-    GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-    DataToBstController dataToBstController = new DataToBstController();
-    ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
-
-
-    @BeforeEach
-    void beforeAll() {
-        shipUI.importShips("Docs/Input/bships.csv");
+        this.shipUI.importShips("Docs/Input/bships.csv");
     }
 
+    //DB
+    ShipDBMock shipDBMock;
+    GeneratorDBMock generatorDBMock;
+    ShipPositionDataDBMock shipPositionDataDBMock;
+
+    //CONTROLLERS
+    ShipController shipController;
+    ShipPositionDataController shipPositionDataController;
+    GeneratorController generatorController;
+    DataToBstController dataToBstController;
+    ShipUI shipUI;
 
 
     @Test
     void transformBeforeBST() {
-        //ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
-
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         assertTrue(dataToBstController.getAllData().size() > 10);
     }
