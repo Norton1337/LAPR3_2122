@@ -5,7 +5,7 @@ package lapr.project.controller.HelperClasses;
  */
 public class KMTravelledCalculator {
     
-    private double earthRadius = 6371;
+    private final double earthRadius = 6371;
 
     /**
      * Calculates the distance between two coordinates

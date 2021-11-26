@@ -20,10 +20,10 @@ public class TopShips {
      * @param distancesList List of distances.
      * @param SOGList List of average speeds.
      */
-    public TopShips(List<Ship> shipLists, List<Double> distancesList, List<Double> SOGList){
-        this.listOfShips = shipLists;
-        this.listOfDistances = distancesList;
-        this.listOfSOG = SOGList;
+    public TopShips(List<Ship> shipLists, List<Double> distancesList, List<Double> sogList){
+        setListOfShip(shipLists);
+        setListOfDistances(distancesList);
+        setListOfSOG(sogList);
     }
     
     /**
@@ -51,5 +51,27 @@ public class TopShips {
         return this.listOfSOG;
     }
 
+    /**
+     * Set list of ships
+     * @param shipLists new list of ships
+     */
+    private void setListOfShip(List<Ship> shipLists){
+        this.listOfShips = shipLists;
+    }
 
+    /**
+     * Set list of distances
+     * @param distancesList new list of distances
+     */
+    private void setListOfDistances(List<Double> distancesList){
+        this.listOfDistances = distancesList;
+    }
+
+    /**
+     * Set list of average speeds
+     * @param sogList new list of average speeds
+     */
+    private void setListOfSOG(List<Double> sogList){
+        this.listOfSOG = sogList;
+    }
 }

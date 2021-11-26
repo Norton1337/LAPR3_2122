@@ -11,7 +11,7 @@ import lapr.project.model.ShipPositionData.ShipPositonData;
  */
 public class ClosestPortController {
     
-    private KMTravelledCalculator calculator = new KMTravelledCalculator();
+    private final KMTravelledCalculator calculator = new KMTravelledCalculator();
 
     /**
      * Gets the port that is closest to the given ship at certain time of its journey.
@@ -33,9 +33,7 @@ public class ClosestPortController {
         }
         
         if(positionData != null){
-            double shortestDistance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], 
-                                    portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[0], portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[1]);;
-            
+            double shortestDistance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[0], portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[1]);    
             PortsAndWarehouses closestPort = portsList.getAllPortsAndWharehouse().get(0);
             for (PortsAndWarehouses ports : portsList.getAllPortsAndWharehouse()) {
                 double distance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], ports.getCoordinates().split(",")[0], ports.getCoordinates().split(",")[1]);
