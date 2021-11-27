@@ -1,29 +1,23 @@
 package lapr.project.ui;
 
 import lapr.project.controller.DataToBstController;
+import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.controller.ShipSummaryController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.data.BSTFiles.BST;
+import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.controller.HelperClasses.ShipSummary;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
-import lapr.project.utils.Utils;
-
-import static lapr.project.utils.Utils.printList;
+import java.util.LinkedList;
 
 class Main {
 
@@ -44,6 +38,7 @@ class Main {
         //CONTROLLERS
         DataToBstController dataToBstController = new DataToBstController();
         ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
+        DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
 
 
         //LEITURA DE FICHEIRO
@@ -51,6 +46,7 @@ class Main {
         shipUI.importShips("Docs/Input/bships.csv");
 
 
+        /*
         portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Cyprus",10136,
                 "Larnaca","34.91666667,33.65"));
         portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Malta",10138,
@@ -58,9 +54,10 @@ class Main {
         portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Denmark",10358,
                 "Aarhus","56.15,10.21666667"));
 
-
         printList(portsAndWarehousesController.getAllPortsAndWharehouse());
 
+
+         */
 
         //dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         //dataToBstController.populateBST();
@@ -107,7 +104,7 @@ class Main {
         }*/
         /*
         ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        
+
         ShipSummaryController summaryController = new ShipSummaryController(dataByMMSI);
         ShipSummary shipSummary = summaryController.getShipSummary();
         System.out.println(summaryController.toString());
@@ -115,6 +112,21 @@ class Main {
 //        MostTravelledShips mts = new MostTravelledShips();
 //        TopShips ts = mts.getTopNShips(shipList, 5);
 //
+
+        PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
+        portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+        LinkedList<PortsAndWarehouses> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        //printList(t);
+        dataToKDTreeController.populateTree(portsAndWarehouses);
+
+        Point2D coord = new Point2D.Double(-32.06666667,-52.06666667);
+        boolean x = dataToKDTreeController.getPortsTree().find(coord);
+        System.out.println(x);
+        System.out.println(dataToKDTreeController.getPortsTree());
+
+
+
+
 
 
     }

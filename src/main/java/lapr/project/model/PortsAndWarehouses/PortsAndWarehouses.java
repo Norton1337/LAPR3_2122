@@ -1,6 +1,6 @@
 package lapr.project.model.PortsAndWarehouses;
 
-public class PortsAndWarehouses {
+public class PortsAndWarehouses implements Comparable<PortsAndWarehouses> {
     private String id;
     private String continent;
     private String country;
@@ -84,6 +84,11 @@ public class PortsAndWarehouses {
                 ", portName='" + portName + '\'' +
                 ", coordinates='" + coordinates + '\'' +
                 ", shipId='" + shipId + '\'' +
-                '}';
+                '}'+"\n";
+    }
+
+    @Override
+    public int compareTo(PortsAndWarehouses o) {
+        return 0;
     }
 }
