@@ -54,5 +54,7 @@ public class ShipControllerTest {
         List<Generator> allGeneratorFromShip = new ArrayList<>();
         
         assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip("test"));
+        assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip(null));
+        assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip("wrongID"));
     }
 }

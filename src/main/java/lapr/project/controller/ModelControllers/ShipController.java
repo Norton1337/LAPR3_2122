@@ -37,7 +37,6 @@ public class ShipController {
                 allGeneratorFromShip.add(elems);
             }
         }
-        System.out.println(allGeneratorFromShip);
         return allGeneratorFromShip;
     }
 
