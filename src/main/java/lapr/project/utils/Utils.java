@@ -11,6 +11,8 @@ import java.util.*;
 
 public class Utils {
 
+    private Utils(){}
+
     public static Integer ToInt(String string){
         if(string.contains("NA")){
             return 0;
