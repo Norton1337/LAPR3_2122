@@ -15,7 +15,7 @@ public class PortsAndWarehousesUI {
 
 
     private PortsAndWarehousesController portsAndWarehousesController;
-
+    BufferedReader br;
     public PortsAndWarehousesUI(PortsAndWarehousesController portsAndWarehousesController) {
         this.portsAndWarehousesController = portsAndWarehousesController;
     }
@@ -28,7 +28,7 @@ public class PortsAndWarehousesUI {
 
         try {
 
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            br = new BufferedReader(new FileReader(file));
             String line = "";
 
             while ((line = br.readLine()) !=null){
@@ -49,12 +49,14 @@ public class PortsAndWarehousesUI {
 
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
-        //return listOfPortsAndWarehouses;
     }
 }
