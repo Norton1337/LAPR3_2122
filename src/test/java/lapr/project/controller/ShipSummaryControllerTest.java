@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author gonca
  */
-public class ShipSummaryControllerTest {
+class ShipSummaryControllerTest {
 
     List<Ship> listOfShips = new ArrayList<>();
     List<ShipPositonData> listOfShipPositionData = new ArrayList<>();
@@ -76,6 +76,7 @@ public class ShipSummaryControllerTest {
             System.out.println("getShipPositionDataOrderedByTimeTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
+        assertNull(summaryController.getShipPositionDataOrderedByTime(null));
         assertEquals(listOfShipPositionData2, summaryController.getShipPositionDataOrderedByTime(listOfShipPositionData));
     }
 
