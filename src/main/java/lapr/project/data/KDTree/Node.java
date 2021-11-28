@@ -59,9 +59,9 @@ public class Node <T> {
     @Override
     public String toString() {
         return "Node{" +
-                "element="+element+
+                //"element="+element+
                 "coordinates=" + coordinates.getX()+", "+coordinates.getY() +
-                ", Left=" + left +
+                ",\n Left=" + left +
                 ", Right=" + right +
                 '}';
     }

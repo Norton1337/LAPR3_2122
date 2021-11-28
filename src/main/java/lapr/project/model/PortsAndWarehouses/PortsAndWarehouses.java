@@ -74,18 +74,21 @@ public class PortsAndWarehouses implements Comparable<PortsAndWarehouses> {
         this.shipId = shipId;
     }
 
+
     @Override
     public String toString() {
         return "PortsAndWarehouses{" +
                 "id='" + id + '\'' +
-                ", continent='" + continent + '\'' +
-                ", country='" + country + '\'' +
+                //", continent='" + continent + '\'' +
+               // ", country='" + country + '\'' +
                 ", code=" + code +
-                ", portName='" + portName + '\'' +
-                ", coordinates='" + coordinates + '\'' +
-                ", shipId='" + shipId + '\'' +
-                '}'+"\n";
+                //", portName='" + portName + '\'' +
+                //", coordinates='" + coordinates + '\'' +
+                //", shipId='" + shipId + '\'' +
+                '}';
     }
+
+
 
     @Override
     public int compareTo(PortsAndWarehouses o) {

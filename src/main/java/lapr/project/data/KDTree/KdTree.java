@@ -95,7 +95,7 @@ public class KdTree <T extends Comparable<T>>  {
     /*
      * Inserts an element in the tree.
      */
-    public Node<T> insert(T element, double x, double y) {
+    public Node<T> insert(T element, double x, double y) { // OR  REPLACE  x, y WITH Point2D.Double coordinates
 
         Node<T> node = new Node<>(element, x, y);
 
@@ -109,7 +109,6 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-    // raiz da arvore e node a inserir e variavel que diz se estamos no nível X ou Y
     private void insert(Node<T> currentNode, Node<T> node, boolean divX){
 
         if (node == null){
