@@ -14,6 +14,13 @@ class ShipTest {
     }
 
     @Test
+    void constructorTest(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Ship("34567", "VARAMO", "9395044", "C4SQ2", 70, 166, 25, 9.5, 0.0);
+        });
+    }
+
+    @Test
     void getId() {
         testShip.setId("1");
         assertEquals(testShip.getId(), "1");

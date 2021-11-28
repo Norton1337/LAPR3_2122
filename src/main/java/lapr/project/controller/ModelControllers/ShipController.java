@@ -32,11 +32,11 @@ public class ShipController {
     public List<Generator> getAllGeneratorFromShip(String shipId){
         List<Generator> allGeneratorFromShip = new ArrayList<>();
 
-        for(Generator elems : generatorDB.getAllGenerator()){
-            if(elems.getShipId().equals(shipId)){
-                allGeneratorFromShip.add(elems);
-            }
-        }
+        // for(Generator elems : generatorDB.getAllGenerator()){
+        //     if(elems.getShipId().equals(shipId)){
+        //         allGeneratorFromShip.add(elems);
+        //     }
+        // }
         return allGeneratorFromShip;
     }
 
