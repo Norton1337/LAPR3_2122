@@ -129,10 +129,16 @@ class ShipTest {
 
     @Test
     void getLoadCapacity() {
+        assertEquals(testShip.getLoadCapacity(), 0.0);
     }
 
     @Test
     void setLoadCapacity() {
+        double initialLoadCapacity = testShip.getLoadCapacity();
+        testShip.setLoadCapacity(4.6);
+
+        assertEquals(testShip.getLoadCapacity(), 4.6);
+        testShip.setLoadCapacity(initialLoadCapacity);
     }
 
     @Test
@@ -155,9 +161,13 @@ class ShipTest {
     }
 
     @Test
-    void isMMSIValidFalse() {
-        assertFalse(testShip.isMMSIValid("1234567"));
+    void invalidMMSI() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            testShip.setMMSI("34567");
+        });
+
     }
+
 
     @Test
     void isIMOValidTrue() {
@@ -166,6 +176,16 @@ class ShipTest {
 
     @Test
     void isIMOValidFalse() {
-        assertFalse(testShip.isMMSIValid("1234"));
+        assertFalse(testShip.isIMOValid("1234"));
     }
+
+
+    @Test
+    void invalidIMO() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            testShip.setIMO("9876");
+        });
+
+    }
+
 }
