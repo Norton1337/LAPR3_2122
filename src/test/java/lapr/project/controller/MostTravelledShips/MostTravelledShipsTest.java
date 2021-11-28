@@ -176,10 +176,10 @@ class MostTravelledShipsTest {
     @Test
     void orderListsTest(){
         MostTravelledShipsController mts = new MostTravelledShipsController();
-
+        assertEquals(new ArrayList<>(), mts.orderLists(topShipsUnordered, 0, 0, 0, 0).getListOfDistances());
+        assertEquals(new ArrayList<>(), mts.orderLists(topShipsUnordered, 0, -1, 0, 0).getListOfDistances());
         assertEquals(topShipsOrdered.getListOfDistances(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfDistances());
         assertEquals(topShipsOrdered.getListOfSOG(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfSOG());
-        
         assertEquals(topShipsOrdered.getListOfShip().get(0).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(0).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(1).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(1).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(2).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(2).getMMSI());

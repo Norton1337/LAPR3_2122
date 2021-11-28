@@ -89,13 +89,18 @@ class UtilsTest {
 
     @Test
     void readFromPropTest(){
-        
-        assertThrows(NullPointerException.class, () -> {
-            Utils.readFromProp("debug",null);
-         });
 
-        assertThrows(NullPointerException.class, () -> {
-        Utils.readFromProp(null,"src/main/resources/application.properties");
-        });
+        try {
+            Utils.readFromProp("debug",null);
+        } catch (Exception e) {
+            assertEquals("java.lang.NullPointerException", e.toString());
+        }
+
+        try {
+            Utils.readFromProp(null,"src/main/resources/application.properties");
+        } catch (Exception e) {
+            assertEquals("java.lang.NullPointerException: Cannot invoke \"Object.hashCode()\" because \"key\" is null", e.toString());
+        }
+
     }
 }

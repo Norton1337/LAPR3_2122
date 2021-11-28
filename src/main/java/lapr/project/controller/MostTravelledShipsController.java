@@ -119,7 +119,7 @@ public class MostTravelledShipsController {
      */
     public TopShips orderLists(TopShips ts, int position, int topN, double largestDistance, int lDPosition){
   
-        if(topShips.getListOfShip().size()==topN || topShips.getListOfShip().size()==ts.getListOfShip().size()){
+        if(topShips.getListOfShip().size()>=topN || topShips.getListOfShip().size()>=ts.getListOfShip().size()){
 
             return topShips;
         }
@@ -133,8 +133,6 @@ public class MostTravelledShipsController {
 
         if(position==ts.getListOfDistances().size()-1){
             
-            if(lDPosition==-1)
-                return topShips;
 
             List<Double> loDistances = topShips.getListOfDistances();
             loDistances.add(ts.getListOfDistances().get(lDPosition));
