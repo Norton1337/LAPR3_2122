@@ -11,7 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static lapr.project.utils.Utils.readFromProp;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShipControllerTest {
 
@@ -28,13 +32,10 @@ public class ShipControllerTest {
 
     @Test
     void CreateShip(){
-        Generator gen = new Generator(1,0.0);
-
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
-
+        newShip.getId();
         addShipController.addShip(newShip);
-
         if(readFromProp("debug").equals("1"))System.out.println(iShipsDB.getAllShips());
 
 
@@ -43,4 +44,15 @@ public class ShipControllerTest {
 
     }
 
+    @Test
+    void getAllGeneratorFromShipTest(){
+        ShipController ship = new ShipController(iShipsDB, iGeneratorDB);
+
+        Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
+                166, 25, 9.5, 0.0);
+        newShip.setId("test");
+        List<Generator> allGeneratorFromShip = new ArrayList<>();
+        
+        assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip("test"));
+    }
 }
