@@ -257,6 +257,6 @@ public class ShipSummary {
     public String toString() {
         return "ShipsSummary:" + "\nVessel Name:" + getVesselName()+ "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
                 + "\nTotal Time Travelled:" + getTotalTimeTravelled() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
-                + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "e\nTravelled Distance=" + getTravelledDistance() + "\nDelta Distance=" + getDeltaDistance();
+                + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "\nTravelled Distance=" + getTravelledDistance() + "\nDelta Distance=" + getDeltaDistance();
     }
 }
