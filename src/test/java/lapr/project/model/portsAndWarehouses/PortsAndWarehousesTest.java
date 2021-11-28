@@ -68,7 +68,7 @@ class PortsAndWarehousesTest {
 
     @Test
     void toStringTest(){
-        String string = "PortsAndWarehouses{id='null', continent='Europe', country='Portugal', code=12345, portName='Leixões', coordinates='41.1827759,-8.7205652', shipId='null'}\n";
+        String string = "PortsAndWarehouses{id='null', code=12345}";
         assertEquals(string, portsAndWarehouses.toString());
     }
 
