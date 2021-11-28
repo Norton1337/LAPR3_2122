@@ -90,19 +90,19 @@ class UtilsTest {
     @Test
     void readFromPropTest(){
 
-        try {
-            Utils.readFromProp("debug",null);
-        } catch (Exception e) {
-            //testing if exception exists
-            assertEquals(e.toString(), e.toString());
-        }
+        Exception exception1 = assertThrows(NullPointerException.class, () ->{
+            assertNull(Utils.readFromProp("debug",null));
+        });
 
-        try {
-            Utils.readFromProp(null,"src/main/resources/application.properties");
-        } catch (Exception e) {
-            //testing if exception exists
-            assertEquals(e.toString(), e.toString());
-        }
+        assertTrue(exception1.toString().contains("java.lang.NullPointerException"));
+
+
+        Exception exception2 = assertThrows(NullPointerException.class, () ->{
+            assertNull(Utils.readFromProp(null,"src/main/resources/application.properties"));
+        });
+
+        assertTrue(exception2.toString().contains("java.lang.NullPointerException"));
+
 
     }
 }
