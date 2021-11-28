@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 class DataToBstControllerTest {
 
     public DataToBstControllerTest() {
@@ -65,7 +67,7 @@ class DataToBstControllerTest {
     }
 
     @Test
-    void getShipAndDataByMMSI() {
+    void getShipAndDataByMMSI() throws IOException {
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 

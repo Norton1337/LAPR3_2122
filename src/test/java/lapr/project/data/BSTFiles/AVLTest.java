@@ -2,6 +2,7 @@ package lapr.project.data.BSTFiles;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AVLTest {
 
     @Test
-    public void testInsert() {
+    public void testInsert() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("insert");
 
         //test Simple right rotation
@@ -58,9 +59,10 @@ class AVLTest {
     }
     /**
      * Test of remove method, of class AVL.
+     * @throws IOException
      */
     @Test
-    public void testRemove() {
+    public void testRemove() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("remove");
         List<Integer> lExpected;
         AVL<Integer> instance;
@@ -107,7 +109,7 @@ class AVLTest {
     }
 
     @Test
-    public void testEquals() {
+    public void testEquals() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("equals");
         AVL<Integer> instance = new AVL();
         int arr[] = {1, 8};

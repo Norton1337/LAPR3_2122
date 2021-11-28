@@ -2,6 +2,7 @@ package lapr.project.utils;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -90,18 +91,14 @@ class UtilsTest {
     @Test
     void readFromPropTest(){
 
-        Exception exception1 = assertThrows(NullPointerException.class, () ->{
-            assertNull(Utils.readFromProp("debug",null));
+        assertThrows(FileNotFoundException.class, () -> {
+            Utils.readFromProp("debug","null");
         });
-
-        assertTrue(exception1.toString().contains("java.lang.NullPointerException"));
-
-
-        Exception exception2 = assertThrows(NullPointerException.class, () ->{
-            assertNull(Utils.readFromProp(null,"src/main/resources/application.properties"));
+        
+        assertThrows(NullPointerException.class, () -> {
+            Utils.readFromProp(null,"src/main/resources/application.properties");
         });
-
-        assertTrue(exception2.toString().contains("java.lang.NullPointerException"));
+        
 
 
     }

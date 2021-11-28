@@ -3,6 +3,7 @@ package lapr.project.data.BSTFiles;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -86,7 +87,7 @@ class BSTTest {
 
 
     @Test
-    void preOrder() {
+    void preOrder() throws IOException {
 
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(newBst.inOrder());
     }

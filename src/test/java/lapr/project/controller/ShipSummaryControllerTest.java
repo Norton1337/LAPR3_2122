@@ -5,6 +5,7 @@
  */
 package lapr.project.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,8 @@ class ShipSummaryControllerTest {
     Ship ship2 = new Ship("210950637", "secondShip", "IMO7510260", "D34S", 50, 460, 785, 321.5, 10);
 
     ShipPositonData shipPositonDataShip11 = new ShipPositonData("31/12/2020 00:05", "20.48627/-31.22163", 12.5, 17.4, 385, "p", "A");
-    ShipPositonData shipPositonDataShip12 = new ShipPositonData("31/12/2020 00:03", "30.48630/-40.22140", 12.8, 17.5, 387, "a", "A");
-    ShipPositonData shipPositonDataShip13 = new ShipPositonData("31/12/2020 00:01", "40.48633/-31.22150", 12.5, 17.6, 388, "b", "B");
+    ShipPositonData shipPositonDataShip12 = new ShipPositonData("31/12/2020 00:03", "30.48630/-40.22140", 12.8, 17.6, 387, "a", "A");
+    ShipPositonData shipPositonDataShip13 = new ShipPositonData("31/12/2020 00:01", "40.48633/-31.22150", 12.5, 17.5, 388, "b", "B");
 
     ShipAndData shipAndDataOBJ = new ShipAndData(ship1, listOfShipPositionData);
 
@@ -71,7 +72,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getShipPositionDataOrderedByTimeTest() {
+    void getShipPositionDataOrderedByTimeTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getShipPositionDataOrderedByTimeTest");
         }
@@ -81,7 +82,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getStartDateTimeTest() {
+    void getStartDateTimeTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getStartDateTimeTest");
         }
@@ -89,7 +90,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getEndDateTimeTest() {
+    void getEndDateTimeTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getStartDateTimeTest");
         }
@@ -97,7 +98,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getTotalTimeTest() throws ParseException {
+    void getTotalTimeTest() throws ParseException, IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getTotalTimeTest");
         }
@@ -107,7 +108,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getTotalMovementsTest() {
+    void getTotalMovementsTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getTotalMovementsTest");
         }
@@ -117,7 +118,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getMaxSOGTest() {
+    void getMaxSOGTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMaxSOGTest");
         }
@@ -127,7 +128,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getMeanSOGTest() {
+    void getMeanSOGTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanSOGTest");
         }
@@ -137,7 +138,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getMaxCOGTest() {
+    void getMaxCOGTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMaxCOGTest");
         }
@@ -147,7 +148,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getMeanCOGTest() {
+    void getMeanCOGTest() throws IOException {
         if (Objects.equals(readFromProp("debug","src/main/resources/application.properties"), "1")) {
             System.out.println("getMeanCOGTest");
         }
@@ -157,7 +158,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getDepartureTest() {
+    void getDepartureTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanCOGTest");
         }
@@ -167,7 +168,7 @@ class ShipSummaryControllerTest {
     }
 
     @Test
-    void getArrivalTest() {
+    void getArrivalTest() throws IOException {
         if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanCOGTest");
         }

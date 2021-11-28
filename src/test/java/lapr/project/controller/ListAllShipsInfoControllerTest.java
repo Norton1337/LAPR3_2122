@@ -15,6 +15,7 @@ import lapr.project.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ class ListAllShipsInfoControllerTest {
 
 
     @Test
-    void shipLogTest(){
+    void shipLogTest() throws IOException{
         List<ShipAndData> andDataList = new ArrayList<>();
 
         for(Object elems : dataToBstController.getShipBst().inOrder()){
@@ -79,7 +80,7 @@ class ListAllShipsInfoControllerTest {
 
 
     @Test
-    void pairShips() {
+    void pairShips() throws IOException {
 
         List<ShipAndData> andDataList = new ArrayList<>();
 

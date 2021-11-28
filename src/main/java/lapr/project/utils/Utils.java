@@ -77,23 +77,21 @@ public class Utils {
     }
 
 
-    public static String readFromProp(String prop, String newReader){
+    public static String readFromProp(String prop, String newReader) throws IOException{
         FileReader reader= null;
         try {
             reader = new FileReader(newReader);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException("FileNotFoundException"+e);
         }
 
         Properties p=new Properties();
         try {
             p.load(reader);
             return p.getProperty(prop);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            throw new NullPointerException("NullPointerException"+e);
         }
-
-        return null;
     }
 
 
