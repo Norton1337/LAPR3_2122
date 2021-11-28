@@ -61,4 +61,9 @@ class ShipsMovementDtoTest {
         shipsMovementDto.setNumberOfMovements(initialNumberOfMovements);
     }
 
+    @Test
+    void compareToTest(){
+        assertEquals(0, shipsMovementDto.compareTo(shipsMovementDto));
+    }
+
 }

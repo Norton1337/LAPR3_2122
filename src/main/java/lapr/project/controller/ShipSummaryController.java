@@ -234,7 +234,7 @@ public class ShipSummaryController {
         try {
             string = "ShipsSummary:" + "\nVessel Name:" + this.shipAndData.getShip().getShipName() + "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
                     + "\nTotal Time Travelled:" + getTotalTime() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
-                    + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "e\nTravelled Distance:" + getTravelledDistance() + "\nDelta Distance:" + getDeltaDistance();
+                    + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "\nTravelled Distance:" + getTravelledDistance() + "\nDelta Distance:" + getDeltaDistance();
         } catch (ParseException ex) {
             Logger.getLogger(ShipSummaryController.class.getName()).log(Level.SEVERE, null, ex);
         }

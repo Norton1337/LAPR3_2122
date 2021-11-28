@@ -2,6 +2,7 @@ package lapr.project.model.portsAndWarehouses;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,6 +70,11 @@ class PortsAndWarehousesTest {
     void toStringTest(){
         String string = "PortsAndWarehouses{id='null', continent='Europe', country='Portugal', code=12345, portName='Leixões', coordinates='41.1827759,-8.7205652', shipId='null'}\n";
         assertEquals(string, portsAndWarehouses.toString());
+    }
+
+    @Test
+    void compareToTest(){
+        assertEquals(0, portsAndWarehouses.compareTo(portsAndWarehouses));
     }
 
    

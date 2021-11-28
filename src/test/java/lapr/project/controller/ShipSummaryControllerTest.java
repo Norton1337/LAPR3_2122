@@ -189,7 +189,8 @@ public class ShipSummaryControllerTest {
     @Test
     void displayShipSummaryTest() throws ParseException {
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
-        ShipSummary newShipSummary = summaryController.getShipSummary();
-        System.out.println(summaryController.toString());
-    }
+        String string = "ShipsSummary:\nVessel Name:firstShip\nStart Data Time:31/12/2020 00:01\nEnd Data Time:31/12/2020 00:05\nTotal Time Travelled:Days:0 Hours:0 Minutes:4\n"
+                        + "Total Movements:3\nMax SOG:12.8\nMean SOG:12.6\nMax COG:17.6\nMean COG:17.5\nDeparture:40.48633/-31.22150\nArrival:20.48627/-31.22163\nTravelled Distance:2808.165850581017\nDelta Distance:2223.905204620935";
+        assertEquals(string, summaryController.toString());
+        }
 }
