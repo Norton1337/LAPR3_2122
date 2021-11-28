@@ -2,6 +2,7 @@ package lapr.project.utils;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,5 +85,17 @@ class UtilsTest {
 
         assertEquals("47.59931", coordinatesArray[0]);
         assertEquals("-122.39163", coordinatesArray[1]);
+    }
+
+    @Test
+    void readFromPropTest(){
+        
+        assertThrows(NullPointerException.class, () -> {
+            Utils.readFromProp("debug",null);
+         });
+
+        assertThrows(NullPointerException.class, () -> {
+        Utils.readFromProp(null,"src/main/resources/application.properties");
+        });
     }
 }

@@ -36,7 +36,7 @@ public class ShipControllerTest {
                 166, 25, 9.5, 0.0);
         newShip.getId();
         addShipController.addShip(newShip);
-        if(readFromProp("debug").equals("1"))System.out.println(iShipsDB.getAllShips());
+        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(iShipsDB.getAllShips());
 
 
         assertTrue(iShipsDB.getAllShips().contains(newShip));

@@ -72,7 +72,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getShipPositionDataOrderedByTimeTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getShipPositionDataOrderedByTimeTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -82,7 +82,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getStartDateTimeTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getStartDateTimeTest");
         }
         assertEquals("31/12/2020 00:01", listOfShipPositionData2.get(0).getBaseDateTime());
@@ -90,7 +90,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getEndDateTimeTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getStartDateTimeTest");
         }
         assertEquals("31/12/2020 00:05", listOfShipPositionData2.get(2).getBaseDateTime());
@@ -98,7 +98,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getTotalTimeTest() throws ParseException {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getTotalTimeTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -108,7 +108,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getTotalMovementsTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getTotalMovementsTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -118,7 +118,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getMaxSOGTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMaxSOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -128,7 +128,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getMeanSOGTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanSOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -138,7 +138,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getMaxCOGTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMaxCOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -148,7 +148,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getMeanCOGTest() {
-        if (Objects.equals(readFromProp("debug"), "1")) {
+        if (Objects.equals(readFromProp("debug","src/main/resources/application.properties"), "1")) {
             System.out.println("getMeanCOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -158,7 +158,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getDepartureTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanCOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);
@@ -168,7 +168,7 @@ class ShipSummaryControllerTest {
 
     @Test
     void getArrivalTest() {
-        if (readFromProp("debug").equals("1")) {
+        if (readFromProp("debug","src/main/resources/application.properties").equals("1")) {
             System.out.println("getMeanCOGTest");
         }
         ShipSummaryController summaryController = new ShipSummaryController(shipAndDataOBJ);

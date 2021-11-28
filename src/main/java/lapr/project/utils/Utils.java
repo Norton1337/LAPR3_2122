@@ -77,10 +77,10 @@ public class Utils {
     }
 
 
-    public static String readFromProp(String prop){
+    public static String readFromProp(String prop, String newReader){
         FileReader reader= null;
         try {
-            reader = new FileReader("src/main/resources/application.properties");
+            reader = new FileReader(newReader);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
