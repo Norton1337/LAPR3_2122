@@ -1,7 +1,6 @@
 package lapr.project.controller;
 
 import lapr.project.controller.HelperClasses.KMTravelledCalculator;
-import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
 import lapr.project.model.ShipPositionData.ShipPositonData;
@@ -21,7 +20,7 @@ public class ClosestPortController {
      * @param dateTime Date and time of desired positional message
      * @return the closest port if there is a positional message with DateTime, null otherwise
      */
-    public PortsAndWarehouses getPort(DataToBstController shipsList, PortsAndWarehousesController portsList, String callSign, String dateTime){
+    public PortsAndWarehouses getPort(DataToBstController shipsList, DataToKDTreeController portsList, String callSign, String dateTime){
         
         ShipAndData shipAndData = shipsList.getShipDataByCallSign(callSign);
         ShipPositonData positionData = null;
@@ -33,9 +32,9 @@ public class ClosestPortController {
         }
         
         if(positionData != null){
-            double shortestDistance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[0], portsList.getAllPortsAndWharehouse().get(0).getCoordinates().split(",")[1]);    
-            PortsAndWarehouses closestPort = portsList.getAllPortsAndWharehouse().get(0);
-            for (PortsAndWarehouses ports : portsList.getAllPortsAndWharehouse()) {
+            double shortestDistance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], portsList.getPortsTree().getAllElements().get(0).getCoordinates().split(",")[0], portsList.getPortsTree().getAllElements().get(0).getCoordinates().split(",")[1]);    
+            PortsAndWarehouses closestPort = portsList.getPortsTree().getAllElements().get(0);
+            for (PortsAndWarehouses ports : portsList.getPortsTree().getAllElements()) {
                 double distance = calculator.calculate(positionData.getCoordinates().split("/")[0], positionData.getCoordinates().split("/")[1], ports.getCoordinates().split(",")[0], ports.getCoordinates().split(",")[1]);
                 if(distance<shortestDistance){
                     shortestDistance=distance;

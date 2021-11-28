@@ -2,6 +2,8 @@ package lapr.project.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.LinkedList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +16,7 @@ import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.ShipUI;
 
 public class ClosestPortControllerTest {
@@ -32,10 +35,14 @@ public class ClosestPortControllerTest {
     //CONTROLLERS
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
+    DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
 
 
     //LEITURA DE FICHEIRO
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
+    PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
+    
+
     
     @BeforeEach
     void setup(){
@@ -43,21 +50,18 @@ public class ClosestPortControllerTest {
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
         
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Cyprus",10136,
-                "Larnaca","34.91666667,33.65"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Malta",10138,
-                "Marsaxlokk","35.84194,14.54306"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Denmark",10358,
-                "Aarhus","56.15,10.21666667"));
+        portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+        LinkedList<PortsAndWarehouses> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        dataToKDTreeController.populateTree(portsAndWarehouses);   
     }
 
     @Test
     void getPortTest(){
         ClosestPortController cpc = new ClosestPortController();
-        PortsAndWarehouses receivedPort = cpc.getPort(dataToBstController, portsAndWarehousesController, "DHBN", "31/12/2020 05:36");
-        PortsAndWarehouses receivedPort2 = cpc.getPort(dataToBstController, portsAndWarehousesController, "DHBN", "31/01/2020 05:36");
+        PortsAndWarehouses receivedPort = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/12/2020 05:36");
+        PortsAndWarehouses receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
 
-        assertEquals(portsAndWarehousesController.getAllPortsAndWharehouse().getLast(), receivedPort);
+        assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(6), receivedPort);
         assertEquals(null, receivedPort2);
     }
 }
