@@ -1,4 +1,4 @@
-package lapr.project.model.portsAndWarehouses;
+package lapr.project.model.Locals;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import lapr.project.model.Locals.Locals;
 
-class PortsAndWarehousesTest {
+class LocalsTest {
     private Locals portsAndWarehouses;
 
     @BeforeEach
