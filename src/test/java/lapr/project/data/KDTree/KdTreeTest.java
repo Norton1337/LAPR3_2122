@@ -53,12 +53,11 @@ class KdTreeTest {
     @Test
     public void findTest(){
 
-        kdTree.insert("elem", -58.14, 70.2);
-        Point2D.Double coordinates = new Point2D.Double(-58.14, 70.2);
+        Node node = kdTree.insert("elem", -58.14, 70.2);
 
-        boolean findElem = kdTree.find(coordinates);
+        Node findElem = kdTree.find(new Point2D.Double(-58.14, 70.2));
 
-        assertEquals(true, findElem);
+        assertEquals(findElem, node);
 
     }
 

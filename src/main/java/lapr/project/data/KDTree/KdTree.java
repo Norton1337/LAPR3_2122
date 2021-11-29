@@ -69,7 +69,7 @@ public class KdTree <T extends Comparable<T>>  {
         buildBalancedTree(nodes);
     }
 
-    // orders elements(ports) and creates balanced tree
+
     public void buildBalancedTree(List<Node<T>> nodes) {
         root = new Object() {
             Node<T> buildTree(boolean divX, List<Node<T>> nodes) {
@@ -95,7 +95,7 @@ public class KdTree <T extends Comparable<T>>  {
     /*
      * Inserts an element in the tree.
      */
-    public Node<T> insert(T element, double x, double y) { // OR  REPLACE  x, y WITH Point2D.Double coordinates
+    public Node<T> insert(T element, double x, double y) {
 
         Node<T> node = new Node<>(element, x, y);
 
@@ -144,7 +144,6 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-    // WORKS
     public int size(){
 
         return new Object() {
@@ -197,19 +196,19 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-    public boolean find(Point2D coordinates){
+    public Node<T> find(Point2D coordinates){
         return find(root, coordinates, true);
     }
 
     // Find element through coordinates
 
-    private boolean find(Node<T> node, Point2D coordinates, boolean divX){
+    private Node<T> find(Node<T> node, Point2D coordinates, boolean divX){
 
         if (node == null){
-            return false;
+            return null;
         }
         if (node.getCoordinates().equals(coordinates)){
-            return true;
+            return node;
         }
 
 
@@ -221,6 +220,67 @@ public class KdTree <T extends Comparable<T>>  {
 
         return find(node.getRight(), coordinates,!divX);
     }
+
+
+
+    private Node<T> findMin(Node<T> node, boolean divX) {
+        if (node == null)
+            return null;
+        if (divX) {
+            if (node.getLeft() == null)
+                return node;
+            else
+                return findMin(node.getLeft(), false);
+        }
+        else {
+            List<Node<T>> list = new LinkedList<>();
+            list.add(findMin(node, true));
+
+            if(node.getLeft() != null)
+                list.add(findMin(node.getLeft(), true));
+
+            if(node.getRight() != null)
+                list.add(findMin(node.getRight(), true));
+
+            Collections.sort(list, compY);
+
+            return list.get(0);
+
+        }
+    }
+
+    public Node<T> delete(final T element) {
+        root = new Object() {
+            Node<T> delete(T elem, Node<T> node, boolean divX) {
+                if(node == null)
+                    return null;
+                if (elem.equals(node.getElement())) {
+                    if(node.getRight() != null) {
+                        Node<T> minNode = findMin(node.getRight(), !divX);
+                        node.setElement( minNode.getElement());
+                        node.setCoordinates( minNode.getCoordinates());
+                        node.setRight(delete(node.getElement(), node.getRight(), !divX));
+                    }
+                    else if (node.getLeft() != null) {
+                        Node<T> minNode = findMin(node.getLeft(), !divX);
+                        node.setElement( minNode.getElement());
+                        node.setCoordinates( minNode.getCoordinates());
+                        node.setLeft(delete(node.getElement(), node.getLeft(), !divX));
+                    }
+                    else
+                        node = null;
+                }
+                else {
+                    node.setLeft(delete(elem, node.getLeft(), !divX));
+                    node.setRight(delete(elem, node.getRight(), !divX));
+                }
+                return node;
+            }
+        }.delete(element, root, true);
+
+        return root;
+    }
+
 
 
 
