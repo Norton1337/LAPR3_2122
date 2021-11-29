@@ -2,8 +2,6 @@ package lapr.project.utils;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,14 +14,14 @@ class UtilsTest {
 
     @Test
     void toInt() {
-        assertEquals(ToInt("NA"), 0);
-        assertEquals(ToInt("324"), 324);
+        assertEquals(0, ToInt("NA"));
+        assertEquals(324, ToInt("324"));
     }
 
     @Test
     void toDouble() {
-        assertEquals(ToDouble("NA"), 0.0);
-        assertEquals(ToDouble("324"), 324.0);
+        assertEquals(0.0, ToDouble("NA"));
+        assertEquals(324.0, ToDouble("324"));
     }
 
     @Test
@@ -43,9 +41,6 @@ class UtilsTest {
         assertTrue(Utils.randomInt() > 5);
     }
 
-    @Test
-    void coordinates() {
-    }
 
     @Test
     void randomUUID() {

@@ -2,7 +2,6 @@ package lapr.project.controller;
 
 import lapr.project.Dtos.ShipPairsDTO;
 import lapr.project.Dtos.ShipsMovementDto;
-import lapr.project.controller.HelperClasses.KMTravelledCalculator;
 import lapr.project.controller.ModelControllers.GeneratorController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;

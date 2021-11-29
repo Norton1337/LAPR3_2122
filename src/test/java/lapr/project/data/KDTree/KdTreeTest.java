@@ -31,7 +31,7 @@ class KdTreeTest {
         //System.out.println("Initial size " + kdTree.size());
         kdTree.insert("elem", -85.14, -24.8);
         kdTree.insert("elem2", 78.2, 21.4);
-        assertEquals(kdTree.size(), 2);
+        assertEquals(2, kdTree.size());
     }
     @Test
     public void getAllElementsTest(){
@@ -46,7 +46,7 @@ class KdTreeTest {
             System.out.println(elems);
         }
 
-        assertEquals(count, 3);
+        assertEquals(3, count);
 
     }
 
@@ -58,7 +58,7 @@ class KdTreeTest {
 
         boolean findElem = kdTree.find(coordinates);
 
-        assertEquals(findElem, true);
+        assertEquals(true, findElem);
 
     }
 

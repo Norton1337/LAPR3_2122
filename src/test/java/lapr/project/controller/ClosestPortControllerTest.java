@@ -19,7 +19,7 @@ import lapr.project.model.Locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.ShipUI;
 
-public class ClosestPortControllerTest {
+class ClosestPortControllerTest {
     //DB
     ShipDBMock shipDBMock = new ShipDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();

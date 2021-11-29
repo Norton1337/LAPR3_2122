@@ -4,7 +4,6 @@ import lapr.project.model.ShipPositionData.IDB.IShipPositionDataDB;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

@@ -23,7 +23,7 @@ class ShipTest {
     @Test
     void getId() {
         testShip.setId("1");
-        assertEquals(testShip.getId(), "1");
+        assertEquals("1", testShip.getId());
     }
 
     @Test
@@ -31,13 +31,13 @@ class ShipTest {
         String initialID = testShip.getId();
         testShip.setId("12345");
 
-        assertEquals(testShip.getId(), "12345");
+        assertEquals("12345", testShip.getId());
         testShip.setId(initialID);
     }
 
     @Test
     void getMMSI() {
-        assertEquals(testShip.getMMSI(), "210950000");
+        assertEquals("210950000", testShip.getMMSI());
     }
 
     @Test
@@ -45,13 +45,13 @@ class ShipTest {
         String initialMMSI = testShip.getMMSI();
         testShip.setMMSI("210959999");
 
-        assertEquals(testShip.getMMSI(), "210959999");
+        assertEquals("210959999", testShip.getMMSI());
         testShip.setMMSI(initialMMSI);
     }
 
     @Test
     void getShipName() {
-        assertEquals(testShip.getShipName(), "VARAMO");
+        assertEquals("VARAMO", testShip.getShipName());
     }
 
     @Test
@@ -59,7 +59,7 @@ class ShipTest {
         String initialShipName = testShip.getShipName();
         testShip.setShipName("ROSAS");
 
-        assertEquals(testShip.getShipName(), "ROSAS");
+        assertEquals("ROSAS", testShip.getShipName());
         testShip.setShipName(initialShipName);
     }
 
@@ -73,13 +73,13 @@ class ShipTest {
         String initialIMO = testShip.getIMO();
         testShip.setIMO("6789321");
 
-        assertEquals(testShip.getIMO(), "6789321");
+        assertEquals("6789321", testShip.getIMO());
         testShip.setIMO(initialIMO);
     }
 
     @Test
     void getCallSign() {
-        assertEquals(testShip.getCallSign(),"C4SQ2" );
+        assertEquals("C4SQ2",testShip.getCallSign() );
     }
 
     @Test
@@ -87,13 +87,13 @@ class ShipTest {
         String initialCallSign = testShip.getCallSign();
         testShip.setCallSign("D34R");
 
-        assertEquals(testShip.getCallSign(), "D34R");
+        assertEquals("D34R", testShip.getCallSign());
         testShip.setCallSign(initialCallSign);
     }
 
     @Test
     void getVesselType() {
-        assertEquals(testShip.getVesselType(), 70);
+        assertEquals(70, testShip.getVesselType());
     }
 
     @Test
@@ -101,13 +101,13 @@ class ShipTest {
         int initialVessel = testShip.getVesselType();
         testShip.setVesselType(50);
 
-        assertEquals(testShip.getVesselType(), 50);
+        assertEquals(50, testShip.getVesselType());
         testShip.setVesselType(initialVessel);
     }
 
     @Test
     void getLength() {
-        assertEquals(testShip.getLength(), 166);
+        assertEquals(166, testShip.getLength());
     }
 
     @Test
@@ -115,13 +115,13 @@ class ShipTest {
         int initialLength = testShip.getLength();
         testShip.setLength(300);
 
-        assertEquals(testShip.getLength(), 300);
+        assertEquals(300, testShip.getLength());
         testShip.setLength(initialLength);
     }
 
     @Test
     void getWidth() {
-        assertEquals(testShip.getWidth(), 25);
+        assertEquals(25, testShip.getWidth());
     }
 
     @Test
@@ -129,14 +129,14 @@ class ShipTest {
         int initialWidth = testShip.getWidth();
         testShip.setWidth(120);
 
-        assertEquals(testShip.getWidth(), 120);
+        assertEquals(120, testShip.getWidth());
         testShip.setWidth(initialWidth);
     }
 
 
     @Test
     void getLoadCapacity() {
-        assertEquals(testShip.getLoadCapacity(), 0.0);
+        assertEquals(0.0, testShip.getLoadCapacity());
     }
 
     @Test
@@ -144,13 +144,13 @@ class ShipTest {
         double initialLoadCapacity = testShip.getLoadCapacity();
         testShip.setLoadCapacity(4.6);
 
-        assertEquals(testShip.getLoadCapacity(), 4.6);
+        assertEquals(4.6, testShip.getLoadCapacity());
         testShip.setLoadCapacity(initialLoadCapacity);
     }
 
     @Test
     void getDraft() {
-        assertEquals(testShip.getDraft(), 9.5);
+        assertEquals(9.5, testShip.getDraft());
     }
 
     @Test
@@ -158,13 +158,13 @@ class ShipTest {
         double initialDraft = testShip.getDraft();
         testShip.setDraft(215.3);
 
-        assertEquals(testShip.getDraft(), 215.3);
+        assertEquals(215.3, testShip.getDraft());
         testShip.setDraft(initialDraft);
     }
 
     @Test
     void isMMSIValidTrue() {
-        assertTrue(testShip.isMMSIValid("123456789"));
+        assertTrue(Ship.isMMSIValid("123456789"));
     }
 
     @Test
@@ -178,12 +178,12 @@ class ShipTest {
 
     @Test
     void isIMOValidTrue() {
-        assertTrue(testShip.isIMOValid("1234561"));
+        assertTrue(Ship.isIMOValid("1234561"));
     }
 
     @Test
     void isIMOValidFalse() {
-        assertFalse(testShip.isIMOValid("1234"));
+        assertFalse(Ship.isIMOValid("1234"));
     }
 
 

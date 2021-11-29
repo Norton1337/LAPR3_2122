@@ -18,7 +18,7 @@ class ContainerTest {
 
     @Test
     void getId() {
-        assertEquals(testContainer.getId(), 1534);
+        assertEquals(1534, testContainer.getId());
     }
 
     @Test
@@ -26,13 +26,13 @@ class ContainerTest {
         int initialId = testContainer.getId();
         testContainer.setId(283);
 
-        assertEquals(testContainer.getId(), 283);
+        assertEquals(283, testContainer.getId());
         testContainer.setId(initialId);
     }
 
     @Test
     void getContainerIdentification() {
-        assertEquals(testContainer.getContainerIdentification(), 4232);
+        assertEquals(4232, testContainer.getContainerIdentification());
     }
 
     @Test
@@ -40,13 +40,13 @@ class ContainerTest {
         int initialContainerId = testContainer.getContainerIdentification();
         testContainer.setContainerIdentification(7245);
 
-        assertEquals(testContainer.getContainerIdentification(), 7245);
+        assertEquals(7245, testContainer.getContainerIdentification());
         testContainer.setContainerIdentification(initialContainerId);
     }
 
     @Test
     void getContainerNumber() {
-        assertEquals(testContainer.getContainerNumber(), 52);
+        assertEquals(52, testContainer.getContainerNumber());
     }
 
     @Test
@@ -54,13 +54,13 @@ class ContainerTest {
         int initialContainerNumber = testContainer.getContainerNumber();
         testContainer.setContainerNumber(26);
 
-        assertEquals(testContainer.getContainerNumber(), 26);
+        assertEquals(26, testContainer.getContainerNumber());
         testContainer.setContainerNumber(initialContainerNumber);
     }
 
     @Test
     void getCheckDigit() {
-        assertEquals(testContainer.getCheckDigit(), 2);
+        assertEquals(2, testContainer.getCheckDigit());
     }
 
     @Test
@@ -68,13 +68,13 @@ class ContainerTest {
         int initialCheckDigit = testContainer.getCheckDigit();
         testContainer.setCheckDigit(12);
 
-        assertEquals(testContainer.getCheckDigit(), 12);
+        assertEquals(12, testContainer.getCheckDigit());
         testContainer.setCheckDigit(initialCheckDigit);
     }
 
     @Test
     void getISOCODE() {
-        assertEquals(testContainer.getISOCODE(),"ISO321");
+        assertEquals("ISO321",testContainer.getISOCODE());
     }
 
     @Test
@@ -82,13 +82,13 @@ class ContainerTest {
         String initialISO = testContainer.getISOCODE();
         testContainer.setISOCODE("ISO751");
 
-        assertEquals(testContainer.getISOCODE(), "ISO751");
+        assertEquals("ISO751", testContainer.getISOCODE());
         testContainer.setISOCODE(initialISO);
     }
 
     @Test
     void getMaxWeightWithContainer() {
-        assertEquals(testContainer.getMaxWeightWithContainer(), 24.5);
+        assertEquals(24.5, testContainer.getMaxWeightWithContainer());
     }
 
     @Test
@@ -96,13 +96,13 @@ class ContainerTest {
         double initialMaxWeight = testContainer.getMaxWeightWithContainer();
         testContainer.setMaxWeightWithContainer(83.5);
 
-        assertEquals(testContainer.getMaxWeightWithContainer(), 83.5);
+        assertEquals(83.5, testContainer.getMaxWeightWithContainer());
         testContainer.setMaxWeightWithContainer(initialMaxWeight);
     }
 
     @Test
     void getWeightContainer() {
-        assertEquals(testContainer.getWeightContainer(), 25.2);
+        assertEquals(25.2, testContainer.getWeightContainer());
     }
 
     @Test
@@ -110,13 +110,13 @@ class ContainerTest {
         double initialWeightContainer = testContainer.getWeightContainer();
         testContainer.setWeightContainer(46.1);
 
-        assertEquals(testContainer.getWeightContainer(), 46.1);
+        assertEquals(46.1, testContainer.getWeightContainer());
         testContainer.setWeightContainer(initialWeightContainer);
     }
 
     @Test
     void getMaxWeightToBePacked() {
-        assertEquals(testContainer.getMaxWeightToBePacked(), 43.2);
+        assertEquals(43.2, testContainer.getMaxWeightToBePacked());
     }
 
     @Test
@@ -124,13 +124,13 @@ class ContainerTest {
         double initialMaxWeightPacked = testContainer.getMaxWeightToBePacked();
         testContainer.setMaxWeightToBePacked(23.6);
 
-        assertEquals(testContainer.getMaxWeightToBePacked(), 23.6);
+        assertEquals(23.6, testContainer.getMaxWeightToBePacked());
         testContainer.setMaxWeightToBePacked(initialMaxWeightPacked);
     }
 
     @Test
     void getMaxVolToBePacked() {
-        assertEquals(testContainer.getMaxVolToBePacked(),465.4);
+        assertEquals(465.4,testContainer.getMaxVolToBePacked());
     }
 
     @Test
@@ -138,13 +138,13 @@ class ContainerTest {
         double initialMaxVolPacked = testContainer.getMaxVolToBePacked();
         testContainer.setMaxVolToBePacked(247.9);
 
-        assertEquals(testContainer.getMaxVolToBePacked(), 247.9);
+        assertEquals(247.9, testContainer.getMaxVolToBePacked());
         testContainer.setMaxVolToBePacked(initialMaxVolPacked);
     }
 
     @Test
     void getCertificates() {
-        assertEquals(testContainer.getCertificates(), "S");
+        assertEquals("S", testContainer.getCertificates());
     }
 
     @Test
@@ -152,13 +152,13 @@ class ContainerTest {
         String initialCerteficate = testContainer.getCertificates();
         testContainer.setCertificates("E");
 
-        assertEquals(testContainer.getCertificates(), "E");
+        assertEquals("E", testContainer.getCertificates());
         testContainer.setCertificates(initialCerteficate);
     }
 
     @Test
     void getRepairRecomendations() {
-        assertEquals(testContainer.getRepairRecomendations(), "Repair");
+        assertEquals("Repair", testContainer.getRepairRecomendations());
     }
 
     @Test
@@ -166,13 +166,13 @@ class ContainerTest {
         String initialRepair = testContainer.getRepairRecomendations();
         testContainer.setRepairRecomendations("abcdef");
 
-        assertEquals(testContainer.getRepairRecomendations(),"abcdef");
+        assertEquals("abcdef",testContainer.getRepairRecomendations());
         testContainer.setRepairRecomendations(initialRepair);
     }
 
     @Test
     void getContainerPosition() {
-        assertEquals(testContainer.getContainerPosition(),"(x,y,z)" );
+        assertEquals("(x,y,z)",testContainer.getContainerPosition() );
     }
 
     @Test
@@ -180,7 +180,7 @@ class ContainerTest {
         String initialContainerPosition = testContainer.getContainerPosition();
         testContainer.setContainerPosition("(a,b,c)");
 
-        assertEquals(testContainer.getContainerPosition(),"(a,b,c)");
+        assertEquals("(a,b,c)",testContainer.getContainerPosition());
         testContainer.setContainerPosition(initialContainerPosition);
     }
 
@@ -200,7 +200,7 @@ class ContainerTest {
 
     @Test
     void getShipID() {
-        assertEquals(testContainer.getShipID(), 1);
+        assertEquals(1, testContainer.getShipID());
     }
 
     @Test
@@ -208,7 +208,7 @@ class ContainerTest {
         int initialShipId = testContainer.getShipID();
         testContainer.setShipID(5);
 
-        assertEquals(testContainer.getShipID(), 5);
+        assertEquals(5, testContainer.getShipID());
         testContainer.setShipID(initialShipId);
     }
 }

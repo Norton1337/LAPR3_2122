@@ -5,12 +5,9 @@
  */
 package lapr.project.controller;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import lapr.project.controller.HelperClasses.ShipSummary;
 import lapr.project.model.HelperClasses.ShipAndData;
@@ -34,7 +31,7 @@ public class ShipSummaryController {
         this.listPositionData = getShipPositionDataOrderedByTime(shipAndData.getShipPositonData());
     }
 
-    public ShipSummary getShipSummary() throws ParseException {
+    public ShipSummary getShipSummary() {
         ShipSummary shipSummary = new ShipSummary();
         shipSummary.setVesselName(this.shipAndData.getShip().getShipName());
         shipSummary.setStartDateTime(this.listPositionData.get(0).getBaseDateTime());

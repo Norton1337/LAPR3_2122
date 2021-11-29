@@ -5,10 +5,6 @@
  */
 package lapr.project.controller.HelperClasses;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Gonçalo Ramalho

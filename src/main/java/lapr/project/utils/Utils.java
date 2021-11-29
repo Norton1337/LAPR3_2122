@@ -2,7 +2,6 @@ package lapr.project.utils;
 
 import lapr.project.model.ShipPositionData.ShipPositonData;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,8 +46,7 @@ public class Utils {
 
     public static String randomUUID(){
         UUID uuid = UUID.randomUUID();
-        String uuidAsString = uuid.toString();
-        return uuidAsString;
+        return uuid.toString();
     }
 
     public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list){

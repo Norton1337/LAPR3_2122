@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class AVLTest {
 
     @Test
-    public void testInsert() throws IOException {
+    void testInsert() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("insert");
 
         //test Simple right rotation
-        AVL<Integer> instance = new AVL();
+        AVL<Integer> instance = new AVL<>();
         int arr[] = {8,4,10,2,6,3};
         Integer[] inorder1={2,3,4,6,8,10};
         for (int i=0; i<arr.length; i++)            //new elements
@@ -30,7 +30,7 @@ class AVLTest {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("------------------------------------");
 
         //test Simple left rotation
-        AVL<Integer> instance2 = new AVL();
+        AVL<Integer> instance2 = new AVL<>();
         int arr2[] = {8,4,10,9,15,12};
         Integer[] inorder2={4,8,9,10,12,15};
         for (int i=0; i<arr2.length; i++)
@@ -40,11 +40,11 @@ class AVLTest {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("height2="+instance2.height());
         lExpected = Arrays.asList(inorder2);
         assertEquals(lExpected.toString(), String.valueOf(lExpected), String.valueOf(instance2.inOrder()));
-        assertEquals(instance2.height(), 2);
+        assertEquals(2, instance2.height());
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("------------------------------------");
 
         //test double rotation
-        AVL<Integer> instance3 = new AVL();
+        AVL<Integer> instance3 = new AVL<>();
         int arr3[] = {8,4,10,2,6,5};
         Integer[] inorder3={2,4,5,6,8,10};
         for (int i=0; i<arr3.length; i++)
@@ -54,7 +54,7 @@ class AVLTest {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("height3="+instance3.height());
         lExpected = Arrays.asList(inorder3);
         assertEquals(lExpected.toString(), String.valueOf(lExpected), String.valueOf(instance3.inOrder()));
-        assertEquals(instance3.height(), 2);
+        assertEquals(2, instance3.height());
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("------------------------------------");
     }
     /**
@@ -62,12 +62,12 @@ class AVLTest {
      * @throws IOException
      */
     @Test
-    public void testRemove() throws IOException {
+    void testRemove() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("remove");
         List<Integer> lExpected;
         AVL<Integer> instance;
 
-        instance = new AVL();
+        instance = new AVL<>();
         int arr[] = {8,4,10,2,6,3};
         for (int i=0; i<arr.length; i++)
             instance.insert(arr[i]);
@@ -77,18 +77,18 @@ class AVLTest {
         instance.remove(3);
         lExpected = Arrays.asList(2,4,6,8,10);
         assertEquals(lExpected.toString(), String.valueOf(lExpected), String.valueOf(instance.inOrder()));
-        assertEquals(instance.height(), 2);
+        assertEquals(2, instance.height());
 
         //test Simple left rotation
         instance.remove(2);
         lExpected = Arrays.asList(4,6,8,10);
         assertEquals(lExpected, lExpected, String.valueOf(instance.inOrder()));
-        assertEquals(instance.height(), 2);
+        assertEquals(2, instance.height());
 
         instance.remove(10);
         lExpected = Arrays.asList(4,6,8);
         assertEquals(lExpected, instance.inOrder());
-        assertEquals(instance.height(), 1);
+        assertEquals(1, instance.height());
 
         instance.remove(6);
         lExpected = Arrays.asList(4,8);
@@ -109,15 +109,15 @@ class AVLTest {
     }
 
     @Test
-    public void testEquals() throws IOException {
+    void testEquals() throws IOException {
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("equals");
-        AVL<Integer> instance = new AVL();
+        AVL<Integer> instance = new AVL<>();
         int arr[] = {1, 8};
         for (int i = 0; i < arr.length; i++)
         {
             instance.insert(arr[i]);
         }
-        AVL<Integer> instance2 = new AVL();
+        AVL<Integer> instance2 = new AVL<>();
         int arr2[] = {1, 8};
         for (int i = 0; i < arr2.length; i++)
         {

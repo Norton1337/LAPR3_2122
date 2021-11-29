@@ -4,7 +4,6 @@ import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
 import lapr.project.model.Locals.Locals;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;

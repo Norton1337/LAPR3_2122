@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.controller.DataToBstController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.ui.ShipUI;
 
-public class ShipPositionDataControllerTest {
+class ShipPositionDataControllerTest {
 
     //DB
     ShipDBMock shipDBMock;

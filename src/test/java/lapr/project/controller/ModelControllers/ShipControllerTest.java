@@ -2,7 +2,6 @@ package lapr.project.controller.ModelControllers;
 
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.Ships.Generator;
 import lapr.project.model.Ships.Ship;
 import org.junit.jupiter.api.Test;
@@ -51,6 +50,6 @@ class ShipControllerTest {
         shipController.addShip(newShip);
 
         Ship result = shipController.findShipByMMSI("210956699");
-        assertEquals(result.getCallSign(), "C4SQ2");
+        assertEquals("C4SQ2", result.getCallSign());
     }
 }

@@ -1,7 +1,6 @@
 package lapr.project.model.Locals.IDB;
 
 import lapr.project.model.Locals.Locals;
-import lapr.project.model.Ships.Ship;
 
 import java.util.List;
 

@@ -4,7 +4,6 @@ import lapr.project.model.Ships.Generator;
 import lapr.project.model.Ships.IDB.IGeneratorDB;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

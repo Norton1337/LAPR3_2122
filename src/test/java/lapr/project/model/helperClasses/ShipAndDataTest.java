@@ -12,7 +12,7 @@ import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.model.ShipPositionData.ShipPositonData;
 import lapr.project.model.Ships.Ship;
 
-public class ShipAndDataTest {
+class ShipAndDataTest {
     Ship ship = new Ship("211331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
     
     List<ShipPositonData> shipPositionDataList = new ArrayList<>();

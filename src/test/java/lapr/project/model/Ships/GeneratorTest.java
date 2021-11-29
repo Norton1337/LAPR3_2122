@@ -22,13 +22,13 @@ class GeneratorTest {
         int initialNumberOGenerator = testGenerator.getNumberOfGenerator();
         testGenerator.setNumberOfGenerator(15);
 
-        assertEquals(testGenerator.getNumberOfGenerator(), 15);
+        assertEquals(15, testGenerator.getNumberOfGenerator());
         testGenerator.setNumberOfGenerator(initialNumberOGenerator);
     }
 
     @Test
     void getGeneratorsOutput() {
-        assertEquals(testGenerator.getGeneratorsOutput(), 32);
+        assertEquals(32, testGenerator.getGeneratorsOutput());
     }
 
     @Test
@@ -36,13 +36,13 @@ class GeneratorTest {
         double initialGeneratorOutput = testGenerator.getGeneratorsOutput();
         testGenerator.setGeneratorsOutput(81);
 
-        assertEquals(testGenerator.getGeneratorsOutput(), 81);
+        assertEquals(81, testGenerator.getGeneratorsOutput());
         testGenerator.setGeneratorsOutput(initialGeneratorOutput);
     }
 
     @Test
     void getShipId() {
-        assertEquals(testGenerator.getShipId(), "1");
+        assertEquals("1", testGenerator.getShipId());
     }
 
     @Test
@@ -50,7 +50,7 @@ class GeneratorTest {
         String initialShipId = testGenerator.getId();
         testGenerator.setShipId("48");
 
-        assertEquals(testGenerator.getShipId(), "48");
+        assertEquals("48", testGenerator.getShipId());
         testGenerator.setShipId(initialShipId);
     }
 
@@ -60,7 +60,7 @@ class GeneratorTest {
         String initialId = testGenerator.getId();
         testGenerator.setId("426");
 
-        assertEquals(testGenerator.getId(), "426");
+        assertEquals("426", testGenerator.getId());
         testGenerator.setId(initialId);
     }
 

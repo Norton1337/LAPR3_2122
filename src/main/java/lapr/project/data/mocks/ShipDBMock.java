@@ -3,8 +3,6 @@ package lapr.project.data.mocks;
 import lapr.project.model.Ships.IDB.IShipsDB;
 import lapr.project.model.Ships.Ship;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

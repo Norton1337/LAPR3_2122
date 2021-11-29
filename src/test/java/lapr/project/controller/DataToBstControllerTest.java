@@ -8,7 +8,6 @@ import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.HelperClasses.ShipAndData;
 import lapr.project.ui.ShipUI;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static lapr.project.utils.Utils.readFromProp;
@@ -75,8 +74,8 @@ class DataToBstControllerTest {
 
         if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(dataByMMSI);
 
-        assertEquals(dataByMMSI.getShip().getMMSI(), "636015178");
-        assertEquals(dataByMMSI.getShip().getShipName(), "AQUALEGACY");
+        assertEquals("636015178", dataByMMSI.getShip().getMMSI());
+        assertEquals("AQUALEGACY", dataByMMSI.getShip().getShipName());
 
     }
 
@@ -87,7 +86,7 @@ class DataToBstControllerTest {
 
         ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
 
-        assertEquals(dataByIMO.getShip().getIMO(), "IMO9601833");
+        assertEquals("IMO9601833", dataByIMO.getShip().getIMO());
 
     }
 
@@ -98,7 +97,7 @@ class DataToBstControllerTest {
 
         ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
 
-        assertEquals(dataByCallSign.getShip().getCallSign(), "A8ZC7");
+        assertEquals("A8ZC7", dataByCallSign.getShip().getCallSign());
 
     }
 
@@ -108,13 +107,13 @@ class DataToBstControllerTest {
         dataToBstController.populateBST();
 
         ShipAndData shipMMSI = dataToBstController.getShipDetails("211331640");
-        assertEquals(shipMMSI.getShip().getShipName(), "SEOUL EXPRESS");
+        assertEquals("SEOUL EXPRESS", shipMMSI.getShip().getShipName());
 
         ShipAndData shipIMO = dataToBstController.getShipDetails("IMO9193305");
-        assertEquals(shipIMO.getShip().getIMO(),"IMO9193305" );
+        assertEquals("IMO9193305",shipIMO.getShip().getIMO() );
 
         ShipAndData shipCallSign = dataToBstController.getShipDetails("DHBN");
-        assertEquals(shipCallSign.getShip().getCallSign(),"DHBN" );
+        assertEquals("DHBN",shipCallSign.getShip().getCallSign() );
 
 
     }

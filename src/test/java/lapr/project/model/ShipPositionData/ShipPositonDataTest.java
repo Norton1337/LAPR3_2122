@@ -23,7 +23,7 @@ class ShipPositonDataTest {
 
     @Test
     void getId() {
-        assertEquals(testShipPosition.getId(), "1");
+        assertEquals("1", testShipPosition.getId());
     }
 
     @Test
@@ -31,13 +31,13 @@ class ShipPositonDataTest {
         String initialId = testShipPosition.getId();
         testShipPosition.setId("725");
 
-        assertEquals(testShipPosition.getId(), "725");
+        assertEquals("725", testShipPosition.getId());
         testShipPosition.setId(initialId);
     }
 
     @Test
     void getBaseDateTime() {
-        assertEquals(testShipPosition.getBaseDateTime(), "31/12/2020");
+        assertEquals("31/12/2020", testShipPosition.getBaseDateTime());
     }
 
     @Test
@@ -45,13 +45,13 @@ class ShipPositonDataTest {
         String initialBaseDateTime = testShipPosition.getBaseDateTime();
         testShipPosition.setBaseDateTime("2/7/2018");
 
-        assertEquals(testShipPosition.getBaseDateTime(),"2/7/2018");
+        assertEquals("2/7/2018",testShipPosition.getBaseDateTime());
         testShipPosition.setBaseDateTime(initialBaseDateTime);
     }
 
     @Test
     void getCoordinates() {
-        assertEquals(testShipPosition.getCoordinates(), "42.97875,-66.97001");
+        assertEquals("42.97875,-66.97001", testShipPosition.getCoordinates());
     }
 
     @Test
@@ -59,13 +59,13 @@ class ShipPositonDataTest {
         String initialCoordinates = testShipPosition.getCoordinates();
         testShipPosition.setCoordinates("20.82103, 74.96304");
 
-        assertEquals(testShipPosition.getCoordinates(),"20.82103, 74.96304");
+        assertEquals("20.82103, 74.96304",testShipPosition.getCoordinates());
         testShipPosition.setCoordinates(initialCoordinates);
     }
 
     @Test
     void getSog() {
-        assertEquals(testShipPosition.getSog(), 12.9);
+        assertEquals(12.9, testShipPosition.getSog());
     }
 
     @Test
@@ -73,13 +73,13 @@ class ShipPositonDataTest {
         double initialSog = testShipPosition.getSog();
         testShipPosition.setSog(46.3);
 
-        assertEquals(testShipPosition.getSog(), 46.3);
+        assertEquals(46.3, testShipPosition.getSog());
         testShipPosition.setSog(initialSog);
     }
 
     @Test
     void getCog() {
-        assertEquals(testShipPosition.getCog(), 13.1);
+        assertEquals(13.1, testShipPosition.getCog());
     }
 
     @Test
@@ -87,14 +87,14 @@ class ShipPositonDataTest {
         double initialCog = testShipPosition.getCog();
         testShipPosition.setCog(24.7);
 
-        assertEquals(testShipPosition.getCog(),24.7);
+        assertEquals(24.7,testShipPosition.getCog());
         testShipPosition.setCog(initialCog);
 
     }
 
     @Test
     void getHeading() {
-        assertEquals(testShipPosition.getHeading(),355);
+        assertEquals(355,testShipPosition.getHeading());
     }
 
     @Test
@@ -102,13 +102,13 @@ class ShipPositonDataTest {
         int initialHeading = testShipPosition.getHeading();
         testShipPosition.setHeading(216);
 
-        assertEquals(testShipPosition.getHeading(), 216);
+        assertEquals(216, testShipPosition.getHeading());
         testShipPosition.setHeading(initialHeading);
     }
 
     @Test
     void getPositon() {
-        assertEquals(testShipPosition.getPositon(), "0");
+        assertEquals("0", testShipPosition.getPositon());
     }
 
     @Test
@@ -116,13 +116,13 @@ class ShipPositonDataTest {
         String initialPosition = testShipPosition.getPositon();
         testShipPosition.setPositon("24");
 
-        assertEquals(testShipPosition.getPositon(), "24");
+        assertEquals("24", testShipPosition.getPositon());
         testShipPosition.setPositon(initialPosition);
     }
 
     @Test
     void getTranscieverClass() {
-        assertEquals(testShipPosition.getTranscieverClass(), "B");
+        assertEquals("B", testShipPosition.getTranscieverClass());
     }
 
     @Test
@@ -130,13 +130,13 @@ class ShipPositonDataTest {
         String initialTransceiver = testShipPosition.getTranscieverClass();
         testShipPosition.setTranscieverClass("G");
 
-        assertEquals(testShipPosition.getTranscieverClass(), "G");
+        assertEquals("G", testShipPosition.getTranscieverClass());
         testShipPosition.setTranscieverClass(initialTransceiver);
     }
 
     @Test
     void getShipId() {
-        assertEquals(testShipPosition.getShipId(), "13");
+        assertEquals("13", testShipPosition.getShipId());
     }
 
     @Test
@@ -144,7 +144,7 @@ class ShipPositonDataTest {
         String initialId = testShipPosition.getShipId();
         testShipPosition.setShipId("7");
 
-        assertEquals(testShipPosition.getShipId(), "7");
+        assertEquals("7", testShipPosition.getShipId());
         testShipPosition.setShipId(initialId);
     }
 

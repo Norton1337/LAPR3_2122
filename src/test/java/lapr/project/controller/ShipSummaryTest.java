@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author gonca
  */
-public class ShipSummaryTest {
+class ShipSummaryTest {
 
     private ShipSummary s = new ShipSummary();
 

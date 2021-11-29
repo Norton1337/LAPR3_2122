@@ -1,7 +1,5 @@
 package lapr.project.model.Ships;
 
-import static lapr.project.utils.Utils.ToInt;
-
 public class Ship{
 
     private String id;
@@ -57,7 +55,7 @@ public class Ship{
     public void setMMSI(String MMSI) {
         if(!isMMSIValid(MMSI)){
             throw new IllegalArgumentException("Not a valid MMSI.");
-        };
+        }
         this.MMSI = MMSI;
     }
 
@@ -129,17 +127,11 @@ public class Ship{
     }
 
     public static boolean isMMSIValid(String mmsi) {
-        if (mmsi.length() != 9) {
-            return false;
-        }
-        return true;
+        return mmsi.length() == 9;
     }
 
     public static boolean isIMOValid(String imo) {
-        if (imo.length() != 7) {
-            return false;
-        }
-        return true;
+        return imo.length() == 7;
     }
 
     public double getDistanceTravelled() {

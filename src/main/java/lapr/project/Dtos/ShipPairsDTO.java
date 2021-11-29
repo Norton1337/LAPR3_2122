@@ -1,7 +1,5 @@
 package lapr.project.Dtos;
 
-import java.util.Comparator;
-
 public class ShipPairsDTO {
 
     private String ship1MMSI;

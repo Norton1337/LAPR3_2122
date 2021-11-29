@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipControllerTest {
+class ShipControllerTest {
 
     private IShipsDB iShipsDB;
     private IGeneratorDB iGeneratorDB;
