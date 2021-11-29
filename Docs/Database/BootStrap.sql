@@ -1,3 +1,4 @@
+--eliminar tabelas (eventualmente) existentes
 DROP TABLE container		    CASCADE CONSTRAINTS PURGE;
 DROP TABLE vehicle	            CASCADE CONSTRAINTS PURGE;
 DROP TABLE truck		    CASCADE CONSTRAINTS PURGE;
@@ -7,6 +8,7 @@ DROP TABLE local	            CASCADE CONSTRAINTS PURGE;
 DROP TABLE cargo_manifest 	    CASCADE CONSTRAINTS PURGE;
 DROP TABLE operation	 	    CASCADE CONSTRAINTS PURGE;
 
+--criar tabelas
 CREATE TABLE container(
     container_id varchar(50),
     container_payload float(50) CONSTRAINT nn_container_payload NOT NULL,
@@ -121,3 +123,97 @@ CREATE TABLE operation (
     CONSTRAINT ck_coordinate_y CHECK(coordinate_y>=0),
     CONSTRAINT ck_coordinate_z CHECK(coordinate_z>=0)
 );
+
+--preencher tabelas
+INSERT INTO container VALUES('87',9500,500,1345,'45G1',8,'Refrigerated');
+INSERT INTO local VALUES('74','MATOSINHOS','EUROPA','PORTUGAL',41.183,-8.67977);
+INSERT INTO local VALUES('75','PORTO','EUROPA','PORTUGAL',41.15,-8.61024);
+INSERT INTO vehicle VALUES('12','Ship');
+INSERT INTO ship VALUES('12','barco', '235762000','8814275','50',120,'ZCEF2',70,150,35,100000,18);
+INSERT INTO position_data VALUES('1015','12',(timestamp '2021-11-30 21:22:23'),40.6412,-8.65362,35,140,200,50,'Class A');
+INSERT INTO cargo_manifest VALUES('2023','12','74','75',(timestamp '2021-11-30 22:22:23'),'Load');
+INSERT INTO operation VALUES('115','87','2023',1,0,0);
+
+INSERT INTO container VALUES('27',9500,500,1345,'12C1',8,'Not Refrigerated');
+INSERT INTO local VALUES('14','BRAGA','EUROPA','PORTUGAL',61.183,-0.67977);
+INSERT INTO local VALUES('15','LISBOA','EUROPA','PORTUGAL',43.15,-7.61024);
+INSERT INTO vehicle VALUES('99','Truck');
+INSERT INTO truck VALUES('99','99-BC-47');
+INSERT INTO cargo_manifest VALUES('1087','99','14','15',(timestamp '2021-11-30 21:22:23'),'Unload');
+INSERT INTO operation VALUES('1017','27','1087',NULL,NULL,NULL);
+
+
+CREATE OR REPLACE function func_freeships return sys_refcursor
+IS
+    ships_available sys_refcursor
+BEGIN
+    open ships_available for
+        SELECT NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') AS NEXT_MONDAY, vehicle_ship_id as AVAILABLE_SHIP
+        FROM ship WHERE vehicle_ship_id NOT IN (SELECT vehicle_id FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) 
+        OR vehicle_ship_id IN (SELECT vehicle_ship_id FROM ship where 
+        vehicle_ship_id in (SELECT cargo_manifest.vehicle_id FROM cargo_manifest
+        INNER JOIN (SELECT vehicle_id, MAX(CM_DATE) AS maxdate FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY')
+        GROUP BY vehicle_id) md ON cargo_manifest.vehicle_id = md.vehicle_id AND CM_DATE = maxdate
+        WHERE next_local_id is null))
+return ships_available
+END
+/
+
+CREATE OR REPLACE function containers_to_load(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
+IS
+    load_containers sys_refcursor
+BEGIN
+    OPEN load_containers FOR
+
+    SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z
+    FROM operation INNER JOIN container ON operation.container_id = container.container_id
+    WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'LOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest 
+    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY) 
+    AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    return load_containers
+END
+/
+
+CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
+IS
+    offload_containers sys_refcursor
+BEGIN
+    OPEN offload_containers FOR
+
+    SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z 
+    FROM operation INNER JOIN container ON operation.container_id = container.container_id
+    WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest 
+    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY) 
+    AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    return offload_containers
+END
+/
+
+CREATE OR REPLACE function func_occupancy_rate(p_ship_id ship.vehicle_ship_id%type,p_cargo_id cargo_manifest.cargo_manifest_id%type) return float
+IS
+    containers_cargo int
+    ship_capacity float
+BEGIN
+    select count(container_id) into containers_cargo
+        from operation
+        where cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE cargo_manifest_id = p_cargo_id and UPPER(operation_type) = 'LOAD')
+    select capacity into ship_capacity
+        from ship
+        where vehicle_ship_id = p_ship_id
+    return containers_cargo / ship_capacity * 100
+END
+/
+
+CREATE OR REPLACE function func_occupancy_rate_now(p_ship_id ship.vehicle_ship_id%type) return float
+IS
+    cm cargo_manifest.cargo_manifest_id%type
+BEGIN
+    SELECT cargo_manifest_id into cm
+    FROM cargo_manifest 
+    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id
+    ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY
+    return func_occupancy_rate(p_ship_id,cm)
+END
+/

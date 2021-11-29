@@ -99,6 +99,6 @@ class Main {
 //
 
         DataHandler data = new DataHandler();
-        data.scriptRunner("Docs/Database/CreateTable.sql");
+        data.scriptRunner("Docs/Database/BootStrap.sql");
     }
 }
