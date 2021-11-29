@@ -1,7 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -22,8 +22,8 @@ public class PortsAndWarehousesUI {
 
     public void importPorts(String file){
 
-        List<PortsAndWarehouses> listOfPortsAndWarehouses = new ArrayList<>();
-        PortsAndWarehouses newPortsAndWarehouses = null;
+        List<Locals> listOfPortsAndWarehouses = new ArrayList<>();
+        Locals newPortsAndWarehouses = null;
 
 
         try {
@@ -42,7 +42,7 @@ public class PortsAndWarehousesUI {
                     String coordinates = list.get(4)+ ","+ list.get(5);
 
 
-                    newPortsAndWarehouses  =new PortsAndWarehouses(list.get(0), list.get(1), Integer.parseInt(list.get(2)), list.get(3), coordinates);
+                    newPortsAndWarehouses  =new Locals(list.get(0), list.get(1), Integer.parseInt(list.get(2)), list.get(3), coordinates);
                     portsAndWarehousesController.addPortAndWarehouse(newPortsAndWarehouses);
 
                 }

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
 
 class DataToKDTreeControllerTest {
@@ -31,7 +31,7 @@ class DataToKDTreeControllerTest {
     @BeforeEach
     void setup(){
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<PortsAndWarehouses> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
         dataToKDTreeController.populateTree(portsAndWarehouses); 
     }
 

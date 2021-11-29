@@ -2,7 +2,7 @@ package lapr.project.controller;
 
 import lapr.project.data.KDTree.KdTree;
 import lapr.project.data.KDTree.Node;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ import static lapr.project.utils.Utils.convertCoordinates;
 
 public class DataToKDTreeController {
 
-    private KdTree<PortsAndWarehouses> portsTree;
-    private List<Node<PortsAndWarehouses>> portsNodes;
-    private List<PortsAndWarehouses> portsData;
+    private KdTree<Locals> portsTree;
+    private List<Node<Locals>> portsNodes;
+    private List<Locals> portsData;
 
     public DataToKDTreeController() {
         this.portsTree = new KdTree<>();
@@ -22,9 +22,9 @@ public class DataToKDTreeController {
     }
 
 
-    public void transformBeforeTree(List<PortsAndWarehouses> ports){
+    public void transformBeforeTree(List<Locals> ports){
 
-        for (PortsAndWarehouses elems: ports){
+        for (Locals elems: ports){
             String[] coordinates = convertCoordinates(elems.getCoordinates());
             double x = Double.parseDouble(coordinates[0]);
             double y = Double.parseDouble(coordinates[1]);
@@ -32,17 +32,17 @@ public class DataToKDTreeController {
             portsNodes.add(new Node<>(elems,x, y));
         }
     }
-    public void populateTree(List<PortsAndWarehouses> ports){
+    public void populateTree(List<Locals> ports){
 
         transformBeforeTree(ports);
         portsTree.buildBalancedTree(portsNodes);
     }
 
-    public KdTree<PortsAndWarehouses> getPortsTree() {
+    public KdTree<Locals> getPortsTree() {
         return portsTree;
     }
 
-    public List<Node<PortsAndWarehouses>> getPortsNodes() {
+    public List<Node<Locals>> getPortsNodes() {
         return portsNodes;
     }
 }

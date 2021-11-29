@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 
 class PortsAndWarehousesTest {
-    private PortsAndWarehouses portsAndWarehouses;
+    private Locals portsAndWarehouses;
 
     @BeforeEach
     void setup(){
-        portsAndWarehouses = new PortsAndWarehouses("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
+        portsAndWarehouses = new Locals("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
     }
 
     @Test

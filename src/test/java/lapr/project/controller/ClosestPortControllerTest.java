@@ -15,7 +15,7 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.ShipUI;
 
@@ -51,15 +51,15 @@ public class ClosestPortControllerTest {
         dataToBstController.populateBST();
         
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<PortsAndWarehouses> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
         dataToKDTreeController.populateTree(portsAndWarehouses);   
     }
 
     @Test
     void getPortTest(){
         ClosestPortController cpc = new ClosestPortController();
-        PortsAndWarehouses receivedPort = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/12/2020 05:36");
-        PortsAndWarehouses receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
+        Locals receivedPort = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/12/2020 05:36");
+        Locals receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
 
         assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(6), receivedPort);
         assertEquals(null, receivedPort2);

@@ -11,7 +11,7 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 
 import java.awt.geom.Point2D;
 import java.io.IOException;
@@ -47,11 +47,11 @@ class Main {
 
 
         /*
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Cyprus",10136,
+        portsAndWarehousesController.addPortAndWarehouse(new Locals("Europe","Cyprus",10136,
                 "Larnaca","34.91666667,33.65"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Malta",10138,
+        portsAndWarehousesController.addPortAndWarehouse(new Locals("Europe","Malta",10138,
                 "Marsaxlokk","35.84194,14.54306"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Denmark",10358,
+        portsAndWarehousesController.addPortAndWarehouse(new Locals("Europe","Denmark",10358,
                 "Aarhus","56.15,10.21666667"));
 
         printList(portsAndWarehousesController.getAllPortsAndWharehouse());
@@ -115,7 +115,7 @@ class Main {
 
         PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<PortsAndWarehouses> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
         //printList(t);
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
