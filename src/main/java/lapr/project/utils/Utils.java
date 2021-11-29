@@ -84,24 +84,17 @@ public class Utils {
         try {
             reader = new FileReader(newReader);
         } catch (FileNotFoundException e) {
-            try {
-                throw new FileNotFoundException("FileNotFoundException"+e);
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            }
+            e.printStackTrace();
         }
 
         Properties p=new Properties();
         try {
-            try {
-                p.load(reader);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            p.load(reader);
             return p.getProperty(prop);
-        } catch (NullPointerException e) {
-            throw new NullPointerException("NullPointerException"+e);
-        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        return null;
     }
 
 
