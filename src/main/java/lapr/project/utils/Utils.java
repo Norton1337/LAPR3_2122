@@ -11,6 +11,8 @@ import java.util.*;
 
 public class Utils {
 
+    private Utils(){}
+
     public static Integer ToInt(String string){
         if(string.contains("NA")){
             return 0;
@@ -77,23 +79,21 @@ public class Utils {
     }
 
 
-    public static String readFromProp(String prop){
+    public static String readFromProp(String prop, String newReader) throws IOException{
         FileReader reader= null;
         try {
-            reader = new FileReader("src/main/resources/application.properties");
+            reader = new FileReader(newReader);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new FileNotFoundException("FileNotFoundException"+e);
         }
 
         Properties p=new Properties();
         try {
             p.load(reader);
             return p.getProperty(prop);
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (NullPointerException e) {
+            throw new NullPointerException("NullPointerException"+e);
         }
-
-        return null;
     }
 
 

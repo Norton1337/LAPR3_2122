@@ -1,6 +1,6 @@
-package lapr.project.model.PortsAndWarehouses;
+package lapr.project.model.Locals;
 
-public class PortsAndWarehouses {
+public class Locals implements Comparable<Locals> {
     private String id;
     private String continent;
     private String country;
@@ -9,7 +9,7 @@ public class PortsAndWarehouses {
     private String coordinates;
     private String shipId;
 
-    public PortsAndWarehouses(String continent, String country, int code,
+    public Locals(String continent, String country, int code,
                               String portName, String coordinates) {
         this.continent = continent;
         this.country = country;
@@ -74,16 +74,24 @@ public class PortsAndWarehouses {
         this.shipId = shipId;
     }
 
+
     @Override
     public String toString() {
         return "PortsAndWarehouses{" +
                 "id='" + id + '\'' +
-                ", continent='" + continent + '\'' +
-                ", country='" + country + '\'' +
+                //", continent='" + continent + '\'' +
+               // ", country='" + country + '\'' +
                 ", code=" + code +
-                ", portName='" + portName + '\'' +
-                ", coordinates='" + coordinates + '\'' +
-                ", shipId='" + shipId + '\'' +
+                //", portName='" + portName + '\'' +
+                //", coordinates='" + coordinates + '\'' +
+                //", shipId='" + shipId + '\'' +
                 '}';
+    }
+
+
+
+    @Override
+    public int compareTo(Locals o) {
+        return 0;
     }
 }

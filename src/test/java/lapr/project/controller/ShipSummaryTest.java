@@ -173,4 +173,39 @@ public class ShipSummaryTest {
         assertEquals(430.80, s.getDeltaDistance());
     }
 
+    @Test
+    void toStringTest(){
+        s.setVesselName("SPAR ARIES");
+        s.setStartDateTime("31/12/2003 00:01");
+        s.setEndDateTime("31/12/2003 23:59");
+        s.setTotalTimeTravelled("Days:0\tHours:5\tMinutes:3");
+        s.setTotalMovements(3);
+        s.setMaxSOG(12.5);
+        s.setMeanSOG(11.45);
+        s.setMaxCOG(13.5);
+        s.setMeanCOG(17.5);
+        s.setDeparture("20.48627, -31.22163");
+        s.setArrival("30.48630, -40.22140");
+        s.setTravelledDistance(497.7);
+        s.setDeltaDistance(430.80);
+
+        String string = "ShipsSummary:\n"
+                        +"Vessel Name:SPAR ARIES\n"
+                        +"Start Data Time:31/12/2003 00:01\n"
+                        +"End Data Time:31/12/2003 23:59\n"
+                        +"Total Time Travelled:Days:0	Hours:5	Minutes:3\n"
+                        +"Total Movements:3\n"
+                        +"Max SOG:12.5\n"
+                        +"Mean SOG:11.45\n"
+                        +"Max COG:13.5\n"
+                        +"Mean COG:17.5\n"
+                        +"Departure:20.48627, -31.22163\n"
+                        +"Arrival:30.48630, -40.22140\n"
+                        +"Travelled Distance=497.7\n"
+                        +"Delta Distance=430.8";
+        assertEquals(string, s.toString());
+    
+    
+    }
+
 }

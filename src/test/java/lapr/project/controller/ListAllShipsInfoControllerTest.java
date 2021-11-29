@@ -15,6 +15,7 @@ import lapr.project.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ class ListAllShipsInfoControllerTest {
 
 
     @Test
-    void shipLogTest(){
+    void shipLogTest() throws IOException{
         List<ShipAndData> andDataList = new ArrayList<>();
 
         for(Object elems : dataToBstController.getShipBst().inOrder()){
@@ -65,7 +66,7 @@ class ListAllShipsInfoControllerTest {
 
 
         List<ShipsMovementDto> allData = listAllShipsInfoController.shipLog(andDataList);
-        if(readFromProp("debug").equals("1"))Utils.printList(allData);
+        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))Utils.printList(allData);
         assertTrue(allData.size() > 10);
 
         for(ShipsMovementDto elems : allData){
@@ -79,7 +80,7 @@ class ListAllShipsInfoControllerTest {
 
 
     @Test
-    void pairShips() {
+    void pairShips() throws IOException {
 
         List<ShipAndData> andDataList = new ArrayList<>();
 
@@ -89,9 +90,9 @@ class ListAllShipsInfoControllerTest {
 
         System.out.println(andDataList.size());
 
-        if(readFromProp("debug").equals("1"))System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
+        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
         List<ShipPairsDTO> pairShips = listAllShipsInfoController.pairShips(andDataList);
-        if(readFromProp("debug").equals("1"))Utils.printList(pairShips);
+        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))Utils.printList(pairShips);
 
         List<ShipPairsDTO> expectResult = new ArrayList<>();
         expectResult.add(new ShipPairsDTO("366759530","366772760","1217","1238","78","335,179"));

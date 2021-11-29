@@ -1,34 +1,34 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.PortsAndWarehouses.IDB.IPortsAndWarehouses;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.Locals.Locals;
 import java.util.LinkedList;
 import java.util.List;
 
 import static lapr.project.utils.Utils.randomUUID;
+import lapr.project.model.Locals.IDB.ILocals;
 
-public class PortsAndWarehousesDBMock implements IPortsAndWarehouses {
+public class PortsAndWarehousesDBMock implements ILocals {
 
-    private final List<PortsAndWarehouses> portsAndWarehouses = new LinkedList<>();
+    private final List<Locals> portsAndWarehouses = new LinkedList<>();
 
     @Override
-    public List<PortsAndWarehouses> getAllPortsAndWarehouses() {
+    public List<Locals> getAllPortsAndWarehouses() {
         return new LinkedList<>(portsAndWarehouses);
     }
 
     @Override
-    public PortsAndWarehouses getPortsAndWarehousesById(String id) {
+    public Locals getPortsAndWarehousesById(String id) {
         return null;
     }
 
     @Override
-    public boolean addPortsAndWarehouses(PortsAndWarehouses portsAndWarehouses) {
+    public boolean addPortsAndWarehouses(Locals portsAndWarehouses) {
         portsAndWarehouses.setId(randomUUID());
         return this.portsAndWarehouses.add(portsAndWarehouses);
     }
 
     @Override
-    public boolean updatePortsAndWarehouses(PortsAndWarehouses portsAndWarehouses) {
+    public boolean updatePortsAndWarehouses(Locals portsAndWarehouses) {
         //Ship shipToRemove = findShipById(id);
         //portsAndWarehouses.remove(shipToRemove);
         return false;

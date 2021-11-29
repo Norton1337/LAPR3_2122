@@ -93,14 +93,10 @@ public class ShipSummaryController {
      * Returns the total time travelled by the ship.
      *
      * @return the total time travelled by the ship.
-     * @throws ParseException
      */
-    protected String getTotalTime() throws ParseException {
+    protected String getTotalTime() {
         Date startDate = Utils.convertDate(this.listPositionData.get(0).getBaseDateTime());
         Date endDate = Utils.convertDate(this.listPositionData.get(this.listPositionData.size() - 1).getBaseDateTime());
-        if (startDate == null || endDate == null) {
-            return null;
-        }
         long diff = endDate.getTime() - startDate.getTime();
 
         long days = TimeUnit.MILLISECONDS.toDays(diff);
@@ -231,13 +227,10 @@ public class ShipSummaryController {
     @Override
     public String toString() {
         String string = null;
-        try {
-            string = "ShipsSummary:" + "\nVessel Name:" + this.shipAndData.getShip().getShipName() + "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
-                    + "\nTotal Time Travelled:" + getTotalTime() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
-                    + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "e\nTravelled Distance:" + getTravelledDistance() + "\nDelta Distance:" + getDeltaDistance();
-        } catch (ParseException ex) {
-            Logger.getLogger(ShipSummaryController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        string = "ShipsSummary:" + "\nVessel Name:" + this.shipAndData.getShip().getShipName() + "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
+                + "\nTotal Time Travelled:" + getTotalTime() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
+                + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "\nTravelled Distance:" + getTravelledDistance() + "\nDelta Distance:" + getDeltaDistance();
+
         return string;
     }
 }

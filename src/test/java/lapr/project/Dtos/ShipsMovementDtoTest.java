@@ -17,13 +17,13 @@ class ShipsMovementDtoTest {
         String initialMMSI = shipsMovementDto.getMMSI();
         shipsMovementDto.setMMSI("210950875");
 
-        assertEquals(shipsMovementDto.getMMSI(), "210950875");
+        assertEquals("210950875", shipsMovementDto.getMMSI());
         shipsMovementDto.setMMSI(initialMMSI);
     }
 
     @Test
     void getTravelledDistanceTest(){
-        assertEquals(shipsMovementDto.getTravelledDistance(), "23054");
+        assertEquals("23054", shipsMovementDto.getTravelledDistance());
     }
 
     @Test
@@ -31,34 +31,39 @@ class ShipsMovementDtoTest {
         String inicialTravelledDistance = shipsMovementDto.getTravelledDistance();
         shipsMovementDto.setTravelledDistance("23006");
 
-        assertEquals(shipsMovementDto.getTravelledDistance(), "23006");
+        assertEquals("23006", shipsMovementDto.getTravelledDistance());
         shipsMovementDto.setTravelledDistance(inicialTravelledDistance);
     }
 
     @Test
     void getDeltaDistanceTest(){
-        assertEquals(shipsMovementDto.getDeltaDistance(), "450");
+        assertEquals("450", shipsMovementDto.getDeltaDistance());
     }
     @Test
     void setDeltaDistanceTest(){
         String initialDeltaDistance = shipsMovementDto.getDeltaDistance();
         shipsMovementDto.setDeltaDistance("940");
 
-        assertEquals(shipsMovementDto.getDeltaDistance(), "940");
+        assertEquals("940", shipsMovementDto.getDeltaDistance());
         shipsMovementDto.setDeltaDistance(initialDeltaDistance);
     }
 
     @Test
     void getNumberOfMovementsTest(){
-        assertEquals(shipsMovementDto.getNumberOfMovements(), "7");
+        assertEquals("7", shipsMovementDto.getNumberOfMovements());
     }
     @Test
     void setNumberOfMovementsTest(){
         String initialNumberOfMovements = shipsMovementDto.getNumberOfMovements();
         shipsMovementDto.setNumberOfMovements("24");
 
-        assertEquals(shipsMovementDto.getNumberOfMovements(), "24");
+        assertEquals("24", shipsMovementDto.getNumberOfMovements());
         shipsMovementDto.setNumberOfMovements(initialNumberOfMovements);
+    }
+
+    @Test
+    void compareToTest(){
+        assertEquals(0, shipsMovementDto.compareTo(shipsMovementDto));
     }
 
 }
