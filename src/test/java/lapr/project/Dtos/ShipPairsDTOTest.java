@@ -66,7 +66,7 @@ public class ShipPairsDTOTest {
 
     @Test
     void toStringTest() {
-        String string = "ship1MMSI    ship2MMSI      ship1Mov      1.234      ship2Mov      5.678";
+        String string = "ship1MMSI    ship2MMSI      ship1Mov      1,234      ship2Mov      5,678";
         assertEquals(string, shipPairsDTO.toString());
     }
 

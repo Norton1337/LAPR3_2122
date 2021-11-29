@@ -1,35 +1,16 @@
 package lapr.project.ui;
 
-import lapr.project.controller.DataToBstController;
-import lapr.project.controller.ListAllShipsInfoController;
-import lapr.project.controller.ModelControllers.GeneratorController;
-import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
-import lapr.project.controller.ModelControllers.ShipController;
-import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.controller.ShipSummaryController;
 import lapr.project.data.DBScripts.DataHandler;
-import lapr.project.data.mocks.GeneratorDBMock;
-import lapr.project.data.mocks.PortsAndWarehousesDBMock;
-import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.data.BSTFiles.BST;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import lapr.project.controller.HelperClasses.ShipSummary;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
-import lapr.project.utils.Utils;
-
-import static lapr.project.utils.Utils.printList;
 
 class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ParseException {
 
+        /*
         //DB
         ShipDBMock shipDBMock = new ShipDBMock();
         GeneratorDBMock generatorDBMock = new GeneratorDBMock();

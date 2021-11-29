@@ -7,6 +7,7 @@ import java.sql.*;
 
 import static lapr.project.utils.Utils.readFromProp;
 
+
 public class DataHandler {
     /**
      * O URL da BD.
@@ -42,9 +43,9 @@ public class DataHandler {
      * Use connection properties set on file application.properties
      */
     public DataHandler() {
-        this.jdbcUrl = readFromProp("database.url");
-        this.username = readFromProp("database.username");
-        this.password = readFromProp("database.password");
+        this.jdbcUrl = readFromProp("database.url", "src/main/resources/application.properties");
+        this.username = readFromProp("database.username", "src/main/resources/application.properties");
+        this.password = readFromProp("database.password", "src/main/resources/application.properties");
     }
 
     /**
