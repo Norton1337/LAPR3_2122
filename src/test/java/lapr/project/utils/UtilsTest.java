@@ -90,9 +90,14 @@ class UtilsTest {
 
     @Test
     void readFromPropTest(){
-        
         try {
             Utils.readFromProp("debug","null");
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+        
+        try {
+            Utils.readFromProp("debug",null);
         } catch (Exception e) {
             assertTrue(true);
         }
@@ -101,8 +106,9 @@ class UtilsTest {
             Utils.readFromProp(null,"src/main/resources/application.properties");
         } catch (Exception e) {
             assertTrue(true);
-            
         }
         
+        assertNull(Utils.readFromProp("nothing","src/main/resources/application.properties"));
+
     }
 }
