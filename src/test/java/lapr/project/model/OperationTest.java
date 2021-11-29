@@ -11,6 +11,7 @@ import lapr.project.model.Locals.Locals;
 class OperationTest {
 
     Operation operation;
+    Operation operation2;
     CargoManifest cargoManifest;
     Container container;
 
@@ -30,8 +31,21 @@ class OperationTest {
                     "Repair", "(x,y,z)", true);
 
         operation = new Operation(container, cargoManifest);
+        operation2= new Operation(container, cargoManifest,1,2,3);
         operation.setOperationID("operationID");
+        operation2.setOperationID("operationID2");
     }
+
+    @Test
+    void constructor2Test(){
+        assertEquals("operationID2", operation2.getOperationID());
+        assertEquals(container, operation2.getContainer());
+        assertEquals(cargoManifest, operation2.getCargoManifest());
+        assertEquals(1, operation2.getX());
+        assertEquals(2, operation2.getY());
+        assertEquals(3, operation2.getZ());
+    }
+
 
     @Test
     void setAndGetOperationIDTest(){
