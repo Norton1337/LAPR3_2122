@@ -69,4 +69,15 @@ class ShipsMovementDtoTest {
         assertEquals(0, shipsMovementDto.compareTo(shipsMovementDto));
     }
 
+    @Test
+    void toStringTest(){
+        String string = "ShipsMovementDto{" +
+                        "MMSI='" + shipsMovementDto.getMMSI() + '\'' +
+                        ", travelledDistance='" + shipsMovementDto.getTravelledDistance() + '\'' +
+                        ", deltaDistance='" + shipsMovementDto.getDeltaDistance() + '\'' +
+                        ", numberOfMovements='" + shipsMovementDto.getNumberOfMovements() + '\'' +
+                        '}';
+        assertEquals(string, shipsMovementDto.toString());
+    }
+
 }
