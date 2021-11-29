@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
 
+import static lapr.project.utils.Utils.readFromProp;
+
 public class DataHandler {
     /**
      * O URL da BD.
@@ -40,9 +42,9 @@ public class DataHandler {
      * Use connection properties set on file application.properties
      */
     public DataHandler() {
-        this.jdbcUrl = System.getProperty("database.url");
-        this.username = System.getProperty("database.username");
-        this.password = System.getProperty("database.password");
+        this.jdbcUrl = readFromProp("database.url");
+        this.username = readFromProp("database.username");
+        this.password = readFromProp("database.password");
     }
 
     /**

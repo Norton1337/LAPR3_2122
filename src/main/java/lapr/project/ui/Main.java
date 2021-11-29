@@ -7,6 +7,7 @@ import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
 import lapr.project.controller.ModelControllers.ShipController;
 import lapr.project.controller.ModelControllers.ShipPositionDataController;
 import lapr.project.controller.ShipSummaryController;
+import lapr.project.data.DBScripts.DataHandler;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
@@ -116,6 +117,7 @@ class Main {
 //        TopShips ts = mts.getTopNShips(shipList, 5);
 //
 
-
+        DataHandler data = new DataHandler();
+        data.scriptRunner("Docs/Database/CreateTable.sql");
     }
 }
