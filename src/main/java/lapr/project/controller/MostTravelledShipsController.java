@@ -1,10 +1,10 @@
 package lapr.project.controller;
 
-import lapr.project.controller.HelperClasses.KMTravelledCalculator;
-import lapr.project.controller.HelperClasses.TopShips;
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Ship;
+import lapr.project.controller.helper_classes.KMTravelledCalculator;
+import lapr.project.controller.helper_classes.TopShips;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Ship;
 
 import java.text.ParseException;
 import java.util.ArrayList;

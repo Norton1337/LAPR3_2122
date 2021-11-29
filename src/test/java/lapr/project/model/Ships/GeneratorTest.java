@@ -1,6 +1,9 @@
 package lapr.project.model.Ships;
 
 import org.junit.jupiter.api.Test;
+
+import lapr.project.model.ships.Generator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeneratorTest {

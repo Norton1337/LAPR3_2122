@@ -1,12 +1,12 @@
 package lapr.project.utils;
 
-import lapr.project.model.ShipPositionData.ShipPositonData;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import lapr.project.model.ship_position_data.ShipPositonData;
 
 public class Utils {
 

@@ -3,6 +3,8 @@ package lapr.project.data.BSTFiles;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lapr.project.data.bst_files.BST;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;

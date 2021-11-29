@@ -1,4 +1,4 @@
-package lapr.project.data.BSTFiles;
+package lapr.project.data.bst_files;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -197,7 +197,7 @@ public class BST<E extends Comparable<E>> implements BSTInterface<E> {
         return smallestElement(root);
     }
 
-    protected E smallestElement(Node<E> node) {
+    public E smallestElement(Node<E> node) {
         if (node == null) {
             return null;
         }

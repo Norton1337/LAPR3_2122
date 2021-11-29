@@ -1,10 +1,10 @@
-package lapr.project.controller.ModelControllers;
+package lapr.project.controller.model_controllers;
 
-import lapr.project.model.Locals.Locals;
-import lapr.project.model.Ships.IDB.IShipsDB;
+import lapr.project.model.locals.Locals;
+import lapr.project.model.locals.idb.ILocals;
+import lapr.project.model.ships.idb.IShipsDB;
 
 import java.util.LinkedList;
-import lapr.project.model.Locals.IDB.ILocals;
 
 public class PortsAndWarehousesController {
 

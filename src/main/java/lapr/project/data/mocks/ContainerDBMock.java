@@ -1,10 +1,10 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.Containers.Container;
-import lapr.project.model.Containers.IDB.IContainerDB;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import lapr.project.model.containers.Container;
+import lapr.project.model.containers.idb.IContainerDB;
 
 public class ContainerDBMock implements IContainerDB {
 

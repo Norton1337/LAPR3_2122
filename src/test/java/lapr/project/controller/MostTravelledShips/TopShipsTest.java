@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.controller.HelperClasses.TopShips;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.Ships.Ship;
+import lapr.project.controller.helper_classes.TopShips;
+import lapr.project.model.ships.Ship;
 
 class TopShipsTest {
     private List<Ship> listOfShips = new ArrayList<>();

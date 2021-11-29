@@ -1,8 +1,8 @@
-package lapr.project.model.Ships.IDB;
-
-import lapr.project.model.Ships.Generator;
+package lapr.project.model.ships.idb;
 
 import java.util.List;
+
+import lapr.project.model.ships.Generator;
 
 public interface IGeneratorDB {
 

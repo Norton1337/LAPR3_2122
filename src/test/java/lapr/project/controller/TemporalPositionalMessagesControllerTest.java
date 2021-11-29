@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Ship;
 
 class TemporalPositionalMessagesControllerTest {
     

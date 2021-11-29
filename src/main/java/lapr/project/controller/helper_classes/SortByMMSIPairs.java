@@ -1,8 +1,8 @@
-package lapr.project.controller.HelperClasses;
-
-import lapr.project.Dtos.ShipPairsDTO;
+package lapr.project.controller.helper_classes;
 
 import java.util.Comparator;
+
+import lapr.project.dtos.ShipPairsDTO;
 
 public class SortByMMSIPairs implements Comparator<ShipPairsDTO> {
 

@@ -3,6 +3,8 @@ package lapr.project.model.ShipPositionData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lapr.project.model.ship_position_data.ShipPositonData;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

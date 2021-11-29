@@ -1,4 +1,4 @@
-package lapr.project.data.KDTree;
+package lapr.project.data.kdtree;
 
 import java.util.List;
 import java.util.Map;

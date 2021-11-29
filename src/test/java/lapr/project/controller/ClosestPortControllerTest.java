@@ -7,15 +7,15 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.controller.ModelControllers.GeneratorController;
-import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
-import lapr.project.controller.ModelControllers.ShipController;
-import lapr.project.controller.ModelControllers.ShipPositionDataController;
+import lapr.project.controller.model_controllers.GeneratorController;
+import lapr.project.controller.model_controllers.PortsAndWarehousesController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.Locals.Locals;
+import lapr.project.model.locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.ShipUI;
 

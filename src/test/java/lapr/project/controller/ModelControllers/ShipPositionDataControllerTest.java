@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lapr.project.controller.model_controllers.GeneratorController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;

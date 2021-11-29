@@ -1,8 +1,8 @@
-package lapr.project.controller.HelperClasses;
-
-import lapr.project.Dtos.ShipsMovementDto;
+package lapr.project.controller.helper_classes;
 
 import java.util.Comparator;
+
+import lapr.project.dtos.ShipsMovementDto;
 
 public class SortByNumberOfMovements implements Comparator<ShipsMovementDto> {
 

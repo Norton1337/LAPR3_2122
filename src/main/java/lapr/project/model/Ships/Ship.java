@@ -1,4 +1,4 @@
-package lapr.project.model.Ships;
+package lapr.project.model.ships;
 
 public class Ship{
 

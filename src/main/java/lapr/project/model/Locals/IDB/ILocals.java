@@ -1,8 +1,8 @@
-package lapr.project.model.Locals.IDB;
-
-import lapr.project.model.Locals.Locals;
+package lapr.project.model.locals.idb;
 
 import java.util.List;
+
+import lapr.project.model.locals.Locals;
 
 public interface ILocals {
 

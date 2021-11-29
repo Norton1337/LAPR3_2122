@@ -1,9 +1,9 @@
-package lapr.project.controller.HelperClasses;
+package lapr.project.controller.helper_classes;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.ships.Ship;
 
 /**
  * @author Paulo Norton

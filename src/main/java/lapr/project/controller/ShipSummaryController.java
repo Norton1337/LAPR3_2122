@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import lapr.project.controller.HelperClasses.ShipSummary;
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
+import lapr.project.controller.helper_classes.ShipSummary;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
 import lapr.project.utils.Utils;
 
 import static lapr.project.utils.Utils.orderedByTime;

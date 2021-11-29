@@ -1,4 +1,4 @@
-package lapr.project.Dtos;
+package lapr.project.dtos;
 
 public class ShipPairsDTO {
 

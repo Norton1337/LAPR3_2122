@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.model.Locals.Locals;
+import lapr.project.model.locals.Locals;
 
 public class CargoManifest {
     

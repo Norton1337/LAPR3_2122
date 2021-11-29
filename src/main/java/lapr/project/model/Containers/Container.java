@@ -1,4 +1,4 @@
-package lapr.project.model.Containers;
+package lapr.project.model.containers;
 
 public class Container {
 

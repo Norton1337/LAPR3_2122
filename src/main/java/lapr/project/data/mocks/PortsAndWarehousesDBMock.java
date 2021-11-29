@@ -1,11 +1,12 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.Locals.Locals;
 import java.util.LinkedList;
 import java.util.List;
 
+import lapr.project.model.locals.Locals;
+import lapr.project.model.locals.idb.ILocals;
+
 import static lapr.project.utils.Utils.randomUUID;
-import lapr.project.model.Locals.IDB.ILocals;
 
 public class PortsAndWarehousesDBMock implements ILocals {
 

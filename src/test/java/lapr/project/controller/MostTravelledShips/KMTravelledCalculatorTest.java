@@ -4,8 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.DecimalFormat;
 
-import lapr.project.controller.HelperClasses.KMTravelledCalculator;
 import org.junit.jupiter.api.Test;
+
+import lapr.project.controller.helper_classes.KMTravelledCalculator;
 
 class KMTravelledCalculatorTest {
     

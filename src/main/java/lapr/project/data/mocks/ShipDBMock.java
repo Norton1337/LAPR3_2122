@@ -1,10 +1,10 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.Ships.IDB.IShipsDB;
-import lapr.project.model.Ships.Ship;
-
 import java.util.LinkedList;
 import java.util.List;
+
+import lapr.project.model.ships.Ship;
+import lapr.project.model.ships.idb.IShipsDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 

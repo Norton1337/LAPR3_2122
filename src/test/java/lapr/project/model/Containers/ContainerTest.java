@@ -1,6 +1,9 @@
 package lapr.project.model.Containers;
 
 import org.junit.jupiter.api.Test;
+
+import lapr.project.model.containers.Container;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 

@@ -1,4 +1,4 @@
-package lapr.project.model.Locals;
+package lapr.project.model.locals;
 
 public class Locals implements Comparable<Locals> {
     private String id;

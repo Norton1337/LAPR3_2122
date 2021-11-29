@@ -1,6 +1,6 @@
 package lapr.project.model;
 
-import lapr.project.model.Containers.Container;
+import lapr.project.model.containers.Container;
 
 public class Operation {
     

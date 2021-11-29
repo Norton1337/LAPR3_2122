@@ -1,11 +1,11 @@
 package lapr.project.controller;
 
-import lapr.project.Dtos.ShipPairsDTO;
-import lapr.project.Dtos.ShipsMovementDto;
-import lapr.project.controller.HelperClasses.*;
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Ship;
+import lapr.project.controller.helper_classes.*;
+import lapr.project.dtos.ShipPairsDTO;
+import lapr.project.dtos.ShipsMovementDto;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Ship;
 
 import java.util.*;
 

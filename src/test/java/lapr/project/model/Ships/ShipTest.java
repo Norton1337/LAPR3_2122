@@ -2,6 +2,8 @@ package lapr.project.model.Ships;
 
 import org.junit.jupiter.api.Test;
 
+import lapr.project.model.ships.Ship;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShipTest {

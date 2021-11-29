@@ -1,7 +1,7 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ModelControllers.PortsAndWarehousesController;
-import lapr.project.model.Locals.Locals;
+import lapr.project.controller.model_controllers.PortsAndWarehousesController;
+import lapr.project.model.locals.Locals;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,12 +1,12 @@
 package lapr.project.controller;
 
-import lapr.project.controller.ModelControllers.GeneratorController;
-import lapr.project.controller.ModelControllers.ShipController;
-import lapr.project.controller.ModelControllers.ShipPositionDataController;
+import lapr.project.controller.model_controllers.GeneratorController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
-import lapr.project.model.HelperClasses.ShipAndData;
+import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.Test;
 

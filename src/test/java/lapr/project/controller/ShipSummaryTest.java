@@ -5,9 +5,10 @@
  */
 package lapr.project.controller;
 
-import lapr.project.controller.HelperClasses.ShipSummary;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import lapr.project.controller.helper_classes.ShipSummary;
 
 /**
  *

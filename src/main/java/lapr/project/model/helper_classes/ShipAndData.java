@@ -1,7 +1,7 @@
-package lapr.project.model.HelperClasses;
+package lapr.project.model.helper_classes;
 
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Ship;
 
 import java.util.ArrayList;
 import java.util.List;

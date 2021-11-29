@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import lapr.project.model.locals.Locals;
+
 class LocalsTest {
     private Locals portsAndWarehouses;
 

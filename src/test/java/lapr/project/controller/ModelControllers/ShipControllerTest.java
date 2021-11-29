@@ -1,9 +1,11 @@
 package lapr.project.controller.ModelControllers;
 
+import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.model.Ships.Generator;
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.Ship;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

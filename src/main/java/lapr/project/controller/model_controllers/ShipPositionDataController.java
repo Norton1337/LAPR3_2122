@@ -1,9 +1,9 @@
-package lapr.project.controller.ModelControllers;
+package lapr.project.controller.model_controllers;
 
-import lapr.project.model.ShipPositionData.IDB.IShipPositionDataDB;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.IDB.IShipsDB;
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
+import lapr.project.model.ships.Ship;
+import lapr.project.model.ships.idb.IShipsDB;
 
 import java.util.LinkedList;
 import java.util.List;

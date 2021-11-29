@@ -1,11 +1,11 @@
 package lapr.project.ui;
 
-import lapr.project.controller.ModelControllers.GeneratorController;
-import lapr.project.controller.ModelControllers.ShipController;
-import lapr.project.controller.ModelControllers.ShipPositionDataController;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-import lapr.project.model.Ships.Generator;
-import lapr.project.model.Ships.Ship;
+import lapr.project.controller.model_controllers.GeneratorController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.Ship;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

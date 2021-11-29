@@ -1,11 +1,11 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.Ships.Generator;
-import lapr.project.model.Ships.IDB.IGeneratorDB;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.idb.IGeneratorDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 

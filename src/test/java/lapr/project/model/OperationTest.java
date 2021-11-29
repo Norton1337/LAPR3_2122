@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.Containers.Container;
-import lapr.project.model.Locals.Locals;
+import lapr.project.model.containers.Container;
+import lapr.project.model.locals.Locals;
 
 class OperationTest {
 

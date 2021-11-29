@@ -1,11 +1,11 @@
-package lapr.project.controller.ModelControllers;
-
-import lapr.project.model.Ships.Generator;
-import lapr.project.model.Ships.IDB.IGeneratorDB;
-import lapr.project.model.Ships.IDB.IShipsDB;
-import lapr.project.model.Ships.Ship;
+package lapr.project.controller.model_controllers;
 
 import java.util.List;
+
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.Ship;
+import lapr.project.model.ships.idb.IGeneratorDB;
+import lapr.project.model.ships.idb.IShipsDB;
 
 public class GeneratorController {
 

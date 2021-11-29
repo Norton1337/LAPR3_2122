@@ -1,6 +1,9 @@
 package lapr.project.Dtos;
 
 import org.junit.jupiter.api.Test;
+
+import lapr.project.dtos.ShipsMovementDto;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShipsMovementDtoTest {

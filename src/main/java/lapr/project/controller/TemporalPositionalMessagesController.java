@@ -7,8 +7,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.model.HelperClasses.ShipAndData;
-import lapr.project.model.ShipPositionData.ShipPositonData;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
 
 /**
  * @author Paulo Norton

@@ -1,4 +1,4 @@
-package lapr.project.data.DBScripts;
+package lapr.project.data.db_scripts;
 
 import java.io.*;
 import java.sql.*;

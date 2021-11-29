@@ -2,6 +2,8 @@ package lapr.project.data.BSTFiles;
 
 import org.junit.jupiter.api.Test;
 
+import lapr.project.data.bst_files.AVL;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;

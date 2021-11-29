@@ -1,8 +1,8 @@
 package lapr.project.data;
 
-import lapr.project.data.DBScripts.DataHandler;
-import lapr.project.model.Ships.IDB.IShipsDB;
-import lapr.project.model.Ships.Ship;
+import lapr.project.data.db_scripts.DataHandler;
+import lapr.project.model.ships.Ship;
+import lapr.project.model.ships.idb.IShipsDB;
 
 import java.util.List;
 

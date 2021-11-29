@@ -1,9 +1,9 @@
 package lapr.project.data;
 
-import lapr.project.model.ShipPositionData.IDB.IShipPositionDataDB;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-
 import java.util.List;
+
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
 
 public class ShipPositionDataDB implements IShipPositionDataDB {
     @Override

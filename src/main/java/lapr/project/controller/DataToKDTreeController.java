@@ -1,8 +1,8 @@
 package lapr.project.controller;
 
-import lapr.project.data.KDTree.KdTree;
-import lapr.project.data.KDTree.Node;
-import lapr.project.model.Locals.Locals;
+import lapr.project.data.kdtree.KdTree;
+import lapr.project.data.kdtree.Node;
+import lapr.project.model.locals.Locals;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
-package lapr.project.model.Ships.IDB;
+package lapr.project.model.ships.idb;
 
-import lapr.project.model.Ships.Ship;
 import java.util.List;
+
+import lapr.project.model.ships.Ship;
 
 public interface IShipsDB {
 

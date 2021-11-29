@@ -1,10 +1,10 @@
 package lapr.project.ui;
 
-import lapr.project.data.DBScripts.DataHandler;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
+
+import lapr.project.data.db_scripts.DataHandler;
 
 class Main {
 

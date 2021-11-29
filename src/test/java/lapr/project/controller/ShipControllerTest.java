@@ -1,12 +1,13 @@
 package lapr.project.controller;
 
-import lapr.project.controller.ModelControllers.ShipController;
+import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.model.Ships.Generator;
-import lapr.project.model.Ships.IDB.IGeneratorDB;
-import lapr.project.model.Ships.IDB.IShipsDB;
-import lapr.project.model.Ships.Ship;
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.Ship;
+import lapr.project.model.ships.idb.IGeneratorDB;
+import lapr.project.model.ships.idb.IShipsDB;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

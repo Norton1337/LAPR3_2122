@@ -1,4 +1,4 @@
-package lapr.project.model.ShipPositionData;
+package lapr.project.model.ship_position_data;
 
 
 public class ShipPositonData{

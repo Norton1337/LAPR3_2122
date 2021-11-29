@@ -1,11 +1,11 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.ShipPositionData.IDB.IShipPositionDataDB;
-import lapr.project.model.ShipPositionData.ShipPositonData;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 

@@ -1,4 +1,4 @@
-package lapr.project.controller.HelperClasses;
+package lapr.project.controller.helper_classes;
 
 /**
  * @author Paulo Norton
