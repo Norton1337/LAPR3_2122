@@ -78,7 +78,7 @@ public class ShipPairsDTO {
     @Override
     public String toString() {
         return String.format("%s    %s      %s      %.3f      %s      %.3f", ship1MMSI, ship2MMSI, ship1Mov,
-                Float.parseFloat(ship1Traveldistance), ship2Mov, Float.parseFloat(ship2Trabeldistance));
+                Float.parseFloat(ship1Traveldistance), ship2Mov, Float.parseFloat(ship2Trabeldistance)).replace(",",".");
     }
 }
 
