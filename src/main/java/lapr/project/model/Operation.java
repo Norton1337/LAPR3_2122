@@ -1,5 +1,5 @@
 package lapr.project.model;
-
+/*
 import lapr.project.model.containers.Container;
 
 public class Operation {
@@ -74,3 +74,5 @@ public class Operation {
     }
 
 }
+*/
+

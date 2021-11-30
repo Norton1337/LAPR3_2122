@@ -1,18 +1,20 @@
 package lapr.project.model;
 
+/*
 import lapr.project.model.locals.Locals;
+import lapr.project.model.vehicle.Vehicles;
 
 public class CargoManifest {
     
     private String cargoManifestID;
     private Locals currentLocal;
-    private Vehicle vehicle;
+    private Vehicles vehicle;
     private Locals nextLocal;
     private String date;
     private String operationType;
 
 
-    CargoManifest(Locals currentLocal, Vehicle vehicle, Locals nextLocal, String date, String operationType){
+    CargoManifest(Locals currentLocal, Vehicles vehicle, Locals nextLocal, String date, String operationType){
         this.currentLocal = currentLocal;
         this.vehicle = vehicle;
         this.nextLocal = nextLocal;
@@ -80,3 +82,4 @@ public class CargoManifest {
 
     }
 }
+*/
