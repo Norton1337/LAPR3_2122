@@ -1,16 +1,28 @@
 package lapr.project.ui;
 
+import lapr.project.controller.DataToBstController;
+import lapr.project.controller.DataToKDTreeController;
+import lapr.project.controller.ListAllShipsInfoController;
+import lapr.project.controller.model_controllers.GeneratorController;
+import lapr.project.controller.model_controllers.PortsAndWarehousesController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.data.mocks.GeneratorDBMock;
+import lapr.project.data.mocks.PortsAndWarehousesDBMock;
+import lapr.project.data.mocks.ShipDBMock;
+import lapr.project.data.mocks.ShipPositionDataDBMock;
+import lapr.project.model.locals.Locals;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
-
-import lapr.project.data.db_scripts.DataHandler;
+import java.util.LinkedList;
 
 class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ParseException {
 
-        /*
+
         //DB
         ShipDBMock shipDBMock = new ShipDBMock();
         GeneratorDBMock generatorDBMock = new GeneratorDBMock();
@@ -26,8 +38,9 @@ class Main {
         //CONTROLLERS
         DataToBstController dataToBstController = new DataToBstController();
         ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
+        DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
 
-
+        /*
         //LEITURA DE FICHEIRO
         ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
         shipUI.importShips("Docs/Input/bships.csv");
@@ -98,7 +111,30 @@ class Main {
 //        TopShips ts = mts.getTopNShips(shipList, 5);
 //
 
+        /*
         DataHandler data = new DataHandler();
         data.scriptRunner("Docs/Database/BootStrap.sql");
+
+         */
+
+
+        PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
+        portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        dataToKDTreeController.populateTree(portsAndWarehouses);
+        //System.out.println(dataToKDTreeController.getPortsNodes());
+        dataToKDTreeController.getPortsTree().print();
+        System.out.println(dataToKDTreeController.getPortsTree().height());
+        //System.out.println(dataToKDTreeController.getPortsNodes().size());
+        System.out.println("-------");
+        System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+
+        /*
+        Point2D coord = new Point2D.Double(-32.06666667,-52.06666667);
+        Node x = dataToKDTreeController.getPortsTree().find(coord);
+        System.out.println(x);
+        System.out.println(dataToKDTreeController.getPortsTree());
+
+         */
     }
 }

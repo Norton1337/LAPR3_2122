@@ -1,5 +1,4 @@
-package lapr.project.data.kdtree;
-
+package lapr.project.data.kdtree;//Tree;
 import java.awt.geom.Point2D;
 import java.util.Collections;
 import java.util.Comparator;
@@ -172,7 +171,7 @@ public class KdTree <T extends Comparable<T>>  {
         return getAllElements(root);
     }
 
-    // WORKS
+
     // Delete Node<T> node
     private List<T> getAllElements(Node<T> root){
 
@@ -282,6 +281,65 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
+
+    public int height() {
+        if (root == null) {
+            return -1;
+        }
+        return height(root);
+    }
+
+    /*
+     * Returns the height of the subtree rooted at Node node.
+     * @param node A valid Node within the tree
+     * @return height
+     */
+    protected int height(Node<T> node) {
+        if (node == null) {
+            return -1;
+        }
+        int nl = height(node.getLeft());
+        int nr = height(node.getRight());
+        return 1 + Math.max(nl, nr);
+    }
+
+
+
+    public String print(){
+        return print(root);
+    }
+
+    private String print(Node<T> node){
+        if (node == null){
+            return "";
+        }
+        if (node.getRight() == null && node.getLeft() == null){
+            return "";
+        }
+
+        System.out.println("Node: " + node.getElement()+ " [" + node.getX()+" ,"+ node.getY() +"]"+
+                "\nLeft: "+node.getLeft() + "\nRight: "+node.getRight());
+        System.out.println("\n");
+
+        print(node.getLeft());
+        print(node.getRight());
+        return "";
+    }
+
+    public int balanceFactor(){
+        return balanceFactor(root);
+    }
+    private int balanceFactor(Node<T> node) {
+        if (node == null){
+            return 0;
+        }
+
+
+        balanceFactor(node.getRight());
+        balanceFactor(node.getLeft());
+        System.out.println( height(node.getRight()) - height(node.getLeft()));
+        return 0;
+    }
 
 
     @Override

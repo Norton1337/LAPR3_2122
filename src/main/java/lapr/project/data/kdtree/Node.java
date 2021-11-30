@@ -56,14 +56,15 @@ public class Node <T> {
         this.right = right;
     }
 
+
+
     @Override
     public String toString() {
-        return "Node{" +
-                //"element="+element+
-                "coordinates=" + coordinates.getX()+", "+coordinates.getY() +
-                ",\n Left=" + left +
-                ", Right=" + right +
+        return "Node{" + element +
+                " - Coordinates=" + coordinates.getX()+", "+coordinates.getY() +
+                //", Left=" + left +
+                //", Right=" + right +
                 '}';
-    }
 
+    }
 }
