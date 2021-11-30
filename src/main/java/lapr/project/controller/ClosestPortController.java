@@ -39,7 +39,8 @@ public class ClosestPortController {
                 if(distance<shortestDistance){
                     shortestDistance=distance;
                     closestPort = ports;
-                } 
+                }
+                
             }
             return closestPort;
             

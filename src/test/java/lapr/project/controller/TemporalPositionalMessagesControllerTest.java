@@ -76,7 +76,7 @@ class TemporalPositionalMessagesControllerTest {
     @Test
     void getAllPositionalDataInPeriodTest() throws ParseException{
         TemporalPositionalMessagesController tpm = new TemporalPositionalMessagesController();
-
+        assertEquals(1, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:00", "31/12/2020 21:00").size());
         assertEquals(1, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:01", "31/12/2020 21:59").size());
         assertEquals(2, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:00", "31/12/2020 21:59").size());
         assertEquals(0, tpm.getAllPositionalDataInPeriod(this.shipAndData, "31/12/2020 21:00", "31/12/2020 20:00").size());

@@ -11,6 +11,7 @@ import lapr.project.model.ship_position_data.ShipPositonData;
 public class Utils {
 
     private Utils(){}
+    private static Random ran = new Random();
 
     public static Integer ToInt(String string){
         if(string.contains("NA")){
@@ -34,9 +35,8 @@ public class Utils {
 
         return true;
     }
-
+    
     public static Integer randomInt(){
-        Random ran = new Random();
         return ran.nextInt(1000) + 5;
     }
 
@@ -83,10 +83,10 @@ public class Utils {
             reader = new FileReader(newReader);
             Properties p=new Properties();
             p.load(reader);
+            reader.close();
             return p.getProperty(prop);
             
         } catch (IOException e) {
-            
             e.printStackTrace();
         }
 

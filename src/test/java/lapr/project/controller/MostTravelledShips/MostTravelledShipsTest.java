@@ -21,13 +21,16 @@ import lapr.project.model.ships.Ship;
 class MostTravelledShipsTest {
     private List<Ship> listOfShips = new ArrayList<>();
     private List<Ship> listOfShips2 = new ArrayList<>();
+    private List<Ship> listOfShips3 = new ArrayList<>();
     private List<Double> listOfDistances = new ArrayList<>();
     private List<Double> listOfDistances2 = new ArrayList<>();
+    private List<Double> listOfDistances3 = new ArrayList<>();
     private List<Double> listOfSOG = new ArrayList<>();
     private List<Double> listOfSOG2 = new ArrayList<>();
     
     private TopShips topShipsOrdered;
     private TopShips topShipsUnordered;
+    private TopShips topShipsUnordered2;
     
 
     Ship ship = new Ship("211331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
@@ -66,6 +69,11 @@ class MostTravelledShipsTest {
         listOfShips2.add(new Ship("211331640", "shipName1", "IMO1", "callSign1", 11, 5, 5, 60.5, 70.8));
         listOfShips2.add(new Ship("211331641", "shipName2", "IMO2", "callSign2", 12, 5, 5, 61.5, 80.6));
 
+        Ship testShip = new Ship("211331642", "shipName3", "IMO3", "callSign3", 13, 5, 5, 62.5, 90.5);
+        listOfShips3.add(testShip);
+        listOfShips3.add(testShip);
+        listOfShips3.add(new Ship("211331641", "shipName2", "IMO2", "callSign2", 12, 5, 5, 61.5, 80.6));
+
         listOfDistances.add(300.5);
         listOfDistances.add(200.5);
         listOfDistances.add(100.5);
@@ -73,6 +81,12 @@ class MostTravelledShipsTest {
         listOfDistances2.add(300.5);
         listOfDistances2.add(100.5);
         listOfDistances2.add(200.5);
+
+
+        listOfDistances3.add(100.5);
+        listOfDistances3.add(100.5);
+        listOfDistances3.add(100.5);
+
 
         listOfSOG.add(30.8);
         listOfSOG.add(20.8);
@@ -85,6 +99,7 @@ class MostTravelledShipsTest {
 
         topShipsOrdered = new TopShips(listOfShips, listOfDistances, listOfSOG);
         topShipsUnordered = new TopShips(listOfShips2, listOfDistances2, listOfSOG2);
+        topShipsUnordered2 = new TopShips(listOfShips3, listOfDistances3, listOfSOG2);
 
         this.shipPositionDataList.add(spd);
         this.shipPositionDataList.add(spd1);
@@ -183,6 +198,14 @@ class MostTravelledShipsTest {
         assertEquals(topShipsOrdered.getListOfShip().get(0).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(0).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(1).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(1).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(2).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(2).getMMSI());
+            
+        
+    }
+    @Test
+    void orderListsTest2(){
+        MostTravelledShipsController mts = new MostTravelledShipsController(); 
+        assertEquals(2, mts.orderLists(topShipsUnordered2, 0, 3, 0, 0).getListOfDistances().size());
+        assertEquals(2,mts.orderLists(topShipsUnordered, 0, 2, 0, 0).getListOfDistances().size());
     }
 
     @Test

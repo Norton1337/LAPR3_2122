@@ -52,7 +52,9 @@ class ClosestPortControllerTest {
         
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
         LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
-        dataToKDTreeController.populateTree(portsAndWarehouses);   
+        portsAndWarehouses.add(portsAndWarehouses.get(6));
+        dataToKDTreeController.populateTree(portsAndWarehouses); 
+        
     }
 
     @Test
