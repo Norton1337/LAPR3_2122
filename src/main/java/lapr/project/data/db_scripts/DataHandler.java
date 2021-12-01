@@ -7,7 +7,6 @@ import java.sql.*;
 
 import static lapr.project.utils.Utils.readFromProp;
 
-
 public class DataHandler {
     /**
      * O URL da BD.
@@ -137,12 +136,10 @@ public class DataHandler {
         return message.toString();
     }
 
-
-    protected Connection getConnection() {
+    public protected Connection getConnection() {
         if (connection == null)
             openConnection();
         return connection;
     }
-
 
 }

@@ -14,128 +14,130 @@ import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.locals.Locals;
 
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
 class Main {
 
-    public static void main(String[] args) throws IOException, SQLException, ParseException {
+        public static void main(String[] args) throws IOException, SQLException, ParseException {
 
+                // DB
+                ShipDBMock shipDBMock = new ShipDBMock();
+                GeneratorDBMock generatorDBMock = new GeneratorDBMock();
+                ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
+                PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
 
-        //DB
-        ShipDBMock shipDBMock = new ShipDBMock();
-        GeneratorDBMock generatorDBMock = new GeneratorDBMock();
-        ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
-        PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
+                // CONTROLLERS DO MODEL
+                ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
+                ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,
+                                shipPositionDataDBMock);
+                GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+                PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(shipDBMock,
+                                portsAndWarehousesDBMock);
 
-        //CONTROLLERS DO MODEL
-        ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
-        ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
-        GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-        PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(shipDBMock, portsAndWarehousesDBMock);
+                // CONTROLLERS
+                DataToBstController dataToBstController = new DataToBstController();
+                ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
+                DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
+                /*
+                 * //LEITURA DE FICHEIRO
+                 * ShipUI shipUI = new ShipUI(shipController, shipPositionDataController,
+                 * generatorController);
+                 * shipUI.importShips("Docs/Input/bships.csv");
+                 * 
+                 * 
+                 * portsAndWarehousesController.addPortAndWarehouse(new
+                 * PortsAndWarehouses("Europe","Cyprus",10136,
+                 * "Larnaca","34.91666667,33.65"));
+                 * portsAndWarehousesController.addPortAndWarehouse(new
+                 * PortsAndWarehouses("Europe","Malta",10138,
+                 * "Marsaxlokk","35.84194,14.54306"));
+                 * portsAndWarehousesController.addPortAndWarehouse(new
+                 * PortsAndWarehouses("Europe","Denmark",10358,
+                 * "Aarhus","56.15,10.21666667"));
+                 * 
+                 * 
+                 * printList(portsAndWarehousesController.getAllPortsAndWharehouse());
+                 * 
+                 * 
+                 * //dataToBstController.transformBeforeBST(shipController.getAllShips(),
+                 * shipPositionDataController.getShipData());
+                 * //dataToBstController.populateBST();
+                 * 
+                 * //BST t = dataToBstController.getShipBst();
+                 * // System.out.println(t);
+                 * /*
+                 * System.out.println(shipSummaryController.toString());
+                 * 
+                 * 
+                 * ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+                 * ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
+                 * ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
+                 * System.out.println(dataByMMSI.toString());
+                 * System.out.println(dataByIMO.toString());
+                 * System.out.println(dataByCallSign.toString());
+                 * 
+                 */
 
-        //CONTROLLERS
-        DataToBstController dataToBstController = new DataToBstController();
-        ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
-        DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
+                /*
+                 * List<ShipAndData> andDataList = new ArrayList<>();
+                 * 
+                 * for(Object elems : t.inOrder()){
+                 * andDataList.add((ShipAndData) elems);
+                 * }
+                 * 
+                 * 
+                 * long startTime = System.currentTimeMillis();
+                 * Utils.printList(listAllShipsInfoController.pairShips(andDataList));
+                 * long stopTime = System.currentTimeMillis();
+                 * System.out.println(stopTime - startTime);
+                 * 
+                 * 
+                 * 
+                 * 
+                 * //printList(listAllShipsInfoController.shipLog(andDataList));
+                 * //System.out.println(dataToBstController.populateBST();
+                 * 
+                 * /*
+                 * List<ShipAndData> shipList = new ArrayList<>();
+                 * 
+                 * for (int i = 0; i < shipController.getAllShips().size(); i++) {
+                 * shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.
+                 * getAllShips().get(i).getMMSI()));
+                 * }
+                 */
+                /*
+                 * ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
+                 * 
+                 * ShipSummaryController summaryController = new
+                 * ShipSummaryController(dataByMMSI);
+                 * ShipSummary shipSummary = summaryController.getShipSummary();
+                 * System.out.println(summaryController.toString());
+                 */
+                // MostTravelledShips mts = new MostTravelledShips();
+                // TopShips ts = mts.getTopNShips(shipList, 5);
+                //
 
-        /*
-        //LEITURA DE FICHEIRO
-        ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
-        shipUI.importShips("Docs/Input/bships.csv");
+                PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
+                portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+                LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+                dataToKDTreeController.populateTree(portsAndWarehouses);
+                // System.out.println(dataToKDTreeController.getPortsNodes());
+                dataToKDTreeController.getPortsTree().print();
+                System.out.println("Height: " + dataToKDTreeController.getPortsTree().height());
+                System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
+                System.out.println("-------");
+                System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+                // System.out.println(dataToKDTreeController.getPortsTree().toString());
 
-
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Cyprus",10136,
-                "Larnaca","34.91666667,33.65"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Malta",10138,
-                "Marsaxlokk","35.84194,14.54306"));
-        portsAndWarehousesController.addPortAndWarehouse(new PortsAndWarehouses("Europe","Denmark",10358,
-                "Aarhus","56.15,10.21666667"));
-
-
-        printList(portsAndWarehousesController.getAllPortsAndWharehouse());
-
-
-        //dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
-        //dataToBstController.populateBST();
-
-        //BST t = dataToBstController.getShipBst();
-        // System.out.println(t);
-        /*
-        System.out.println(shipSummaryController.toString());
-
-
-        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
-        ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
-        System.out.println(dataByMMSI.toString());
-        System.out.println(dataByIMO.toString());
-        System.out.println(dataByCallSign.toString());
-
-         */
-
-        /*
-        List<ShipAndData> andDataList = new ArrayList<>();
-
-        for(Object elems : t.inOrder()){
-            andDataList.add((ShipAndData) elems);
+                /*
+                 * Point2D coord = new Point2D.Double(-32.06666667,-52.06666667);
+                 * Node x = dataToKDTreeController.getPortsTree().find(coord);
+                 * System.out.println(x);
+                 * System.out.println(dataToKDTreeController.getPortsTree());
+                 * 
+                 */
         }
-
-
-        long startTime = System.currentTimeMillis();
-        Utils.printList(listAllShipsInfoController.pairShips(andDataList));
-        long stopTime = System.currentTimeMillis();
-        System.out.println(stopTime - startTime);
-
-
-
-
-        //printList(listAllShipsInfoController.shipLog(andDataList));
-        //System.out.println(dataToBstController.populateBST();
-
-        /*
-        List<ShipAndData> shipList = new ArrayList<>();
-
-        for (int i = 0; i < shipController.getAllShips().size(); i++) {
-            shipList.add(dataToBstController.getShipAndDataByMMSI(shipController.getAllShips().get(i).getMMSI()));
-        }*/
-        /*
-        ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
-        
-        ShipSummaryController summaryController = new ShipSummaryController(dataByMMSI);
-        ShipSummary shipSummary = summaryController.getShipSummary();
-        System.out.println(summaryController.toString());
-        */
-//        MostTravelledShips mts = new MostTravelledShips();
-//        TopShips ts = mts.getTopNShips(shipList, 5);
-//
-
-        /*
-        DataHandler data = new DataHandler();
-        data.scriptRunner("Docs/Database/BootStrap.sql");
-
-         */
-
-
-        PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
-        portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
-        dataToKDTreeController.populateTree(portsAndWarehouses);
-        //System.out.println(dataToKDTreeController.getPortsNodes());
-        dataToKDTreeController.getPortsTree().print();
-        System.out.println("Height: " + dataToKDTreeController.getPortsTree().height());
-        System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
-        System.out.println("-------");
-        System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
-        //System.out.println(dataToKDTreeController.getPortsTree().toString());
-
-        /*
-        Point2D coord = new Point2D.Double(-32.06666667,-52.06666667);
-        Node x = dataToKDTreeController.getPortsTree().find(coord);
-        System.out.println(x);
-        System.out.println(dataToKDTreeController.getPortsTree());
-
-         */
-    }
 }
