@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
+import javax.sound.midi.ControllerEventListener;
+
 class Main {
 
         public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -139,7 +141,8 @@ class Main {
                  */
 
                 DBController controller = new DBController();
-                controller.createdb();
+                // controller.createdb();
+                System.out.println(controller.capacity_rate("43", "4000") + "%");
                 // System.out.println(dataToKDTreeController.getPortsTree().toString());
 
                 /*
