@@ -2,12 +2,13 @@ package lapr.project.data;
 
 import java.io.IOException;
 import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-
+import java.util.ArrayList;
+import java.util.List;
 import lapr.project.data.db_scripts.DataHandler;
+import oracle.jdbc.OracleTypes;
 
 public class DBController extends DataHandler {
 
@@ -40,5 +41,21 @@ public class DBController extends DataHandler {
             e.printStackTrace();
         }
         return fatorial;
+    }
+
+    public List<String> freeships() throws SQLException {
+        List<String> ls = new ArrayList<>();
+        try (CallableStatement resultado = getConnection().prepareCall("{?= call func_freeships()}")) {
+            resultado.registerOutParameter(1, OracleTypes.CURSOR);
+            resultado.executeUpdate();
+            ResultSet ships = (ResultSet) resultado.getObject(1);
+            ls.add(ships.getMetaData().getColumnLabel(1) + "|" + ships.getMetaData().getColumnLabel(2));
+            while (ships.next()) {
+                ls.add(ships.getDate(1) + "|" + ships.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ls;
     }
 }

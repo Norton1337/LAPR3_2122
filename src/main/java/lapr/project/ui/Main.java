@@ -20,6 +20,8 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
 
 import javax.sound.midi.ControllerEventListener;
 
@@ -140,9 +142,15 @@ class Main {
                  * System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
                  */
 
-                DBController controller = new DBController();
-                // controller.createdb();
-                System.out.println(controller.capacity_rate("43", "4000") + "%");
+                /*
+                 * DBController controller = new DBController();
+                 * controller.createdb();
+                 * List<String> ls1 = controller.freeships();
+                 * ListIterator<String> ls12 = ls1.listIterator();
+                 * while (ls12.hasNext()) {
+                 * System.out.println(ls12.next());
+                 * }
+                 */
                 // System.out.println(dataToKDTreeController.getPortsTree().toString());
 
                 /*

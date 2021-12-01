@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import lapr.project.controller.model_controllers.VehiclesController;
 import lapr.project.data.mocks.*;
-import lapr.project.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
