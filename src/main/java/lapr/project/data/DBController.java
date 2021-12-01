@@ -58,4 +58,22 @@ public class DBController extends DataHandler {
         }
         return ls;
     }
+
+    public List<String> containers_to_offload(String ship_id) throws SQLException {
+        List<String> ls = new ArrayList<>();
+        try (CallableStatement resultado = getConnection().prepareCall("{?= call containers_to_offload(?)}")) {
+            resultado.registerOutParameter(1, OracleTypes.CURSOR);
+            resultado.setString(2, ship_id);
+            resultado.executeUpdate();
+            ResultSet containers = (ResultSet) resultado.getObject(1);
+            ls.add(containers.getMetaData().getColumnLabel(1) + "|" + containers.getMetaData().getColumnLabel(2) + "|"
+                    + containers.getMetaData().getColumnLabel(3));
+            while (containers.next()) {
+                ls.add(containers.getString(1) + "|" + containers.getString(2) + "|" + containers.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ls;
+    }
 }
