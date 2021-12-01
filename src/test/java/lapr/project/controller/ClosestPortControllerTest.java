@@ -54,16 +54,15 @@ class ClosestPortControllerTest {
         dataToKDTreeController.populateTree(portsAndWarehouses); 
         
     }
-/*
+
     @Test
     void getPortTest(){
         ClosestPortController cpc = new ClosestPortController();
         Locals receivedPort = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/12/2020 05:36");
         Locals receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
-
-        assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(6), receivedPort);
+        assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(5), receivedPort);
         assertNull(receivedPort2);
     }
 
- */
+
 }

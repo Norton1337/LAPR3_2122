@@ -26,7 +26,7 @@ public class ShipUI {
     private VehiclesController vehiclesController;
 
 
-    BufferedReader input;
+    
 
     public ShipUI(ShipController shipController, ShipPositionDataController shipPositionDataController,
                   GeneratorController generatorController, VehiclesController vehiclesController) {
@@ -43,8 +43,7 @@ public class ShipUI {
         Generator shipGenerator;
 
 
-        try {
-            input = new BufferedReader(new FileReader(filePath));
+        try (BufferedReader input = new BufferedReader(new FileReader(filePath))) {
             String line;
 
             while ((line = input.readLine()) != null){
@@ -57,8 +56,8 @@ public class ShipUI {
                     /**
                      * Ship Object Created
                      */
-                    newShip = new Ship(list.get(0), list.get(7), list.get(8), list.get(9), ToInt(list.get(10)),
-                            ToInt(list.get(11)), ToInt(list.get(12)), ToDouble(list.get(13)), ToDouble(list.get(14)));
+                    newShip = new Ship(list.get(0), list.get(7), list.get(8), list.get(9), toInt(list.get(10)),
+                            toInt(list.get(11)), toInt(list.get(12)), toDouble(list.get(13)), toDouble(list.get(14)));
 
                     /**
                      * Generator Object To Be Created
@@ -81,32 +80,14 @@ public class ShipUI {
                      */
 
                     shipPositonData = new ShipPositonData(list.get(1), coordinates(list.get(2), list.get(3)),
-                            ToDouble(list.get(4)), ToDouble(list.get(5)), ToInt(list.get(6)), "?", list.get(15));
+                            toDouble(list.get(4)), toDouble(list.get(5)), toInt(list.get(6)), "?", list.get(15));
 
 
                     shipPositionDataController.addDataToShip(ship, shipPositonData);
-
-
                 }
-
-
             }
-
-
-             //printList(shipController.getAllShips());
-             //printList(generatorController.getAllGenerator());
-             //printList(shipPositionDataController.getShipData());
-
-
-
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                input.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

@@ -14,20 +14,17 @@ public class PortsAndWarehousesUI {
 
 
     private PortsAndWarehousesController portsAndWarehousesController;
-    BufferedReader br;
     public PortsAndWarehousesUI(PortsAndWarehousesController portsAndWarehousesController) {
         this.portsAndWarehousesController = portsAndWarehousesController;
     }
 
     public void importPorts(String file){
 
-        List<Locals> listOfPortsAndWarehouses = new ArrayList<>();
         Locals newPortsAndWarehouses = null;
 
 
-        try {
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
-            br = new BufferedReader(new FileReader(file));
             String line = "";
 
             while ((line = br.readLine()) !=null){
@@ -36,7 +33,7 @@ public class PortsAndWarehousesUI {
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
 
-                if (! listOfPortsAndWarehouses.contains(list.get(2)) && !list.get(2).contains("code")){
+                if (!list.get(2).contains("code")){
 
                     String coordinates = list.get(4)+ ","+ list.get(5);
 
@@ -50,12 +47,6 @@ public class PortsAndWarehousesUI {
 
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

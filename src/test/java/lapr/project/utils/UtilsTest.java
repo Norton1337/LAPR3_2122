@@ -6,22 +6,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static lapr.project.utils.Utils.ToDouble;
-import static lapr.project.utils.Utils.ToInt;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UtilsTest {
 
     @Test
     void toInt() {
-        assertEquals(0, ToInt("NA"));
-        assertEquals(324, ToInt("324"));
+        assertEquals(0, Utils.toInt("NA"));
+        assertEquals(324, Utils.toInt("324"));
     }
 
     @Test
     void toDouble() {
-        assertEquals(0.0, ToDouble("NA"));
-        assertEquals(324.0, ToDouble("324"));
+        assertEquals(0.0, Utils.toDouble("NA"));
+        assertEquals(324.0, Utils.toDouble("324"));
     }
 
     @Test
@@ -53,7 +51,7 @@ class UtilsTest {
         String coordinates = "01/02/2000 12:59";
         Date date = Utils.convertDate(coordinates);
 
-        assertNotNull(date.getTime());
+        // assertNotNull(date.getTime());
 
         String coordinates1 = "testes";
         date = Utils.convertDate(coordinates1);

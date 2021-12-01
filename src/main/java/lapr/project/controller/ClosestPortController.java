@@ -40,8 +40,8 @@ public class ClosestPortController {
                     shortestDistance=distance;
                     closestPort = ports;
                 }
-                
             }
+            
             return closestPort;
             
         }

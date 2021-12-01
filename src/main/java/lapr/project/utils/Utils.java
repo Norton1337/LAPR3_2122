@@ -13,14 +13,14 @@ public class Utils {
     private Utils(){}
     private static Random ran = new Random();
 
-    public static Integer ToInt(String string){
+    public static Integer toInt(String string){
         if(string.contains("NA")){
             return 0;
         }
         return Integer.parseInt(string.trim());
     }
 
-    public static Double ToDouble(String string){
+    public static Double toDouble(String string){
         if(string.contains("NA")){
             return 0.0;
         }
@@ -78,19 +78,16 @@ public class Utils {
 
 
     public static String readFromProp(String prop, String newReader){
-        FileReader reader= null;
-        try {
-            reader = new FileReader(newReader);
+
+        try (FileReader reader = new FileReader(newReader)){
             Properties p=new Properties();
             p.load(reader);
-            reader.close();
             return p.getProperty(prop);
             
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } 
 
-        
         return null;
     }
 

@@ -1,7 +1,6 @@
 package lapr.project.controller;
 
 import lapr.project.data.bst_files.AVL;
-import lapr.project.data.bst_files.BST;
 import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.model.ship_position_data.ShipPositonData;
 import lapr.project.model.ships.Ship;
@@ -27,17 +26,17 @@ public class DataToBstController {
     public void transformBeforeBST(List<Ship> ships, List<ShipPositonData> shipsData){
 
         for(Ship elems : ships){
-            List<ShipPositonData> ShipPositonDataList = new ArrayList<>();
+            List<ShipPositonData> shipPositonDataList = new ArrayList<>();
             for(ShipPositonData elemsPos : shipsData){
                 if(elems.getId().equals(elemsPos.getShipId())){
-                    ShipPositonDataList.add(elemsPos);
+                    shipPositonDataList.add(elemsPos);
                 }
             }
 
             //FASTER SPEED?
-            orderedByTime(ShipPositonDataList);
+            orderedByTime(shipPositonDataList);
 
-            this.allData.add(new ShipAndData(elems, ShipPositonDataList));
+            this.allData.add(new ShipAndData(elems, shipPositonDataList));
         }
 
     }
@@ -54,7 +53,7 @@ public class DataToBstController {
         return allData;
     }
 
-    public BST getShipBst() {
+    public AVL<ShipAndData> getShipBst() {
         return shipBst;
     }
 
