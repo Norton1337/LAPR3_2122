@@ -20,9 +20,10 @@ public class VehiclesDB implements IVehicle {
     }
 
     @Override
-    public boolean addVehicle(Vehicles ship, String id) {
-        return false;
+    public Vehicles addVehicle(Vehicles vehicle) {
+        return null;
     }
+
 
     @Override
     public boolean removeVehicle(String id) {

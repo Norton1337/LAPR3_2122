@@ -25,7 +25,6 @@ public class ShipDBMock implements IShipsDB {
 
     @Override
     public boolean addShip(Ship ship) {
-        ship.setId(randomUUID());
         return ships.add(ship);
     }
 

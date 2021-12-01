@@ -1,32 +1,30 @@
 package lapr.project.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.LinkedList;
 
+import lapr.project.controller.model_controllers.*;
+import lapr.project.data.mocks.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.controller.model_controllers.GeneratorController;
-import lapr.project.controller.model_controllers.PortsAndWarehousesController;
-import lapr.project.controller.model_controllers.ShipController;
-import lapr.project.controller.model_controllers.ShipPositionDataController;
-import lapr.project.data.mocks.GeneratorDBMock;
-import lapr.project.data.mocks.PortsAndWarehousesDBMock;
-import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.model.locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.ShipUI;
 
 class ClosestPortControllerTest {
     //DB
+    VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
+    TrucksDBMock trucksDBMock = new TrucksDBMock();
     ShipDBMock shipDBMock = new ShipDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
     PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
 
     //CONTROLLERS DO MODEL
+    VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
     ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
@@ -39,7 +37,7 @@ class ClosestPortControllerTest {
 
 
     //LEITURA DE FICHEIRO
-    ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
+    ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
     PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
     
 
@@ -64,6 +62,6 @@ class ClosestPortControllerTest {
         Locals receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
 
         assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(6), receivedPort);
-        assertEquals(null, receivedPort2);
+        assertNull(receivedPort2);
     }
 }

@@ -24,12 +24,12 @@ public class ShipDB extends DataHandler implements IShipsDB {
     
     
     @Override
-    public boolean addShip(Ship pharmacy) {
+    public boolean addShip(Ship ship) {
         return false;
     }
 
     @Override
-    public boolean updateShip(Ship pharmacy) {
+    public boolean updateShip(Ship ship) {
         return false;
     }
 

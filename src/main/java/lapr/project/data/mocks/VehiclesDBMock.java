@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.randomUUID;
+
 
 public class VehiclesDBMock implements IVehicle {
 
@@ -30,9 +32,12 @@ public class VehiclesDBMock implements IVehicle {
     }
 
     @Override
-    public boolean addVehicle(Vehicles elem, String id) {
-        elem.setVehiclesId(id);
-        return vehicles.add(elem);
+    public Vehicles addVehicle(Vehicles elem) {
+        elem.setVehiclesId(randomUUID());
+        vehicles.add(elem);
+
+
+        return elem;
     }
 
 

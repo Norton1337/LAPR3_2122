@@ -26,7 +26,6 @@ public class DataToBstController {
 
     public void transformBeforeBST(List<Ship> ships, List<ShipPositonData> shipsData){
 
-
         for(Ship elems : ships){
             List<ShipPositonData> ShipPositonDataList = new ArrayList<>();
             for(ShipPositonData elemsPos : shipsData){
@@ -126,7 +125,7 @@ public class DataToBstController {
      */
     public ShipAndData getShipDetails(String data){
 
-        ShipAndData shipAndData = null;
+        ShipAndData shipAndData;
 
         if (data.length() == 9){
 

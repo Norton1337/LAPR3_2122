@@ -3,9 +3,11 @@ package lapr.project.ui;
 import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.controller.model_controllers.VehiclesController;
 import lapr.project.model.ship_position_data.ShipPositonData;
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.Ship;
+import lapr.project.model.vehicle.Vehicles;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,26 +23,29 @@ public class ShipUI {
     private ShipController shipController;
     private ShipPositionDataController shipPositionDataController;
     private GeneratorController generatorController;
+    private VehiclesController vehiclesController;
+
 
     BufferedReader input;
 
     public ShipUI(ShipController shipController, ShipPositionDataController shipPositionDataController,
-                  GeneratorController generatorController) {
+                  GeneratorController generatorController, VehiclesController vehiclesController) {
         this.shipController = shipController;
         this.shipPositionDataController = shipPositionDataController;
         this.generatorController = generatorController;
+        this.vehiclesController = vehiclesController;
     }
 
     public void importShips(String filePath){
         List<String> alreadyUsed = new ArrayList<>();
-        Ship newShip = null;
-        ShipPositonData shipPositonData = null;
-        Generator shipGenerator = null;
+        Ship newShip;
+        ShipPositonData shipPositonData;
+        Generator shipGenerator;
 
 
         try {
             input = new BufferedReader(new FileReader(filePath));
-            String line = "";
+            String line;
 
             while ((line = input.readLine()) != null){
                 
@@ -60,7 +65,7 @@ public class ShipUI {
                      */
                     shipGenerator =  new Generator(1,5.0);
 
-                    boolean resultShip = shipController.addShip(newShip);
+                    boolean resultShip = vehiclesController.addShip(new Vehicles("barco"), newShip);
                     boolean resultGen = generatorController.addGenartor(newShip, shipGenerator);
 
                     if(resultShip && resultGen){

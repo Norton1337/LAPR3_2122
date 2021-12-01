@@ -3,39 +3,31 @@ package lapr.project.controller;
 import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
-import lapr.project.data.mocks.GeneratorDBMock;
-import lapr.project.data.mocks.ShipDBMock;
-import lapr.project.data.mocks.ShipPositionDataDBMock;
+import lapr.project.controller.model_controllers.VehiclesController;
+import lapr.project.data.VehiclesDB;
+import lapr.project.data.mocks.*;
 import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.Test;
 
+import static lapr.project.utils.Utils.printList;
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.Objects;
 
 class DataToBstControllerTest {
 
-    public DataToBstControllerTest() {
-        this.shipDBMock = new ShipDBMock();
-        this.generatorDBMock = new GeneratorDBMock();
-        this.shipPositionDataDBMock = new ShipPositionDataDBMock();
-        this.shipController = new ShipController(shipDBMock, generatorDBMock);
-        this.shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
-        this.generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-        this.dataToBstController = new DataToBstController();
-        this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController);
-
-        this.shipUI.importShips("Docs/Input/bships.csv");
-    }
-
     //DB
+    VehiclesDBMock vehiclesDBMock;
+    TrucksDBMock trucksDBMock;
     ShipDBMock shipDBMock;
     GeneratorDBMock generatorDBMock;
     ShipPositionDataDBMock shipPositionDataDBMock;
 
     //CONTROLLERS
+    VehiclesController vehiclesController;
     ShipController shipController;
     ShipPositionDataController shipPositionDataController;
     GeneratorController generatorController;
@@ -43,15 +35,33 @@ class DataToBstControllerTest {
     ShipUI shipUI;
 
 
+    public DataToBstControllerTest() {
+        this.vehiclesDBMock =  new VehiclesDBMock();
+        this.trucksDBMock =  new TrucksDBMock();
+        this.shipDBMock = new ShipDBMock();
+        this.generatorDBMock = new GeneratorDBMock();
+        this.shipPositionDataDBMock = new ShipPositionDataDBMock();
+        this.vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
+        this.shipController = new ShipController(shipDBMock, generatorDBMock);
+        this.shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
+        this.generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+        this.dataToBstController = new DataToBstController();
+        this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
+
+        this.shipUI.importShips("Docs/Input/bships.csv");
+    }
+
+
+
     @Test
     void transformBeforeBST() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         assertTrue(dataToBstController.getAllData().size() > 10);
     }
 
     @Test
     void populateBST() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         assertTrue(dataToBstController.getShipBst().size() > 10);
@@ -59,20 +69,20 @@ class DataToBstControllerTest {
 
     @Test
     void getShipBst() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         assertNotNull(dataToBstController.getShipBst());
     }
 
     @Test
-    void getShipAndDataByMMSI() throws IOException {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+    void getShipAndDataByMMSI() {
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
 
-        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(dataByMMSI);
+        if(Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))System.out.println(dataByMMSI);
 
         assertEquals("636015178", dataByMMSI.getShip().getMMSI());
         assertEquals("AQUALEGACY", dataByMMSI.getShip().getShipName());
@@ -81,7 +91,7 @@ class DataToBstControllerTest {
 
     @Test
     void getShipAndDataByIMO() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
@@ -92,7 +102,7 @@ class DataToBstControllerTest {
 
     @Test
     void getShipDataByCallSign() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
@@ -103,7 +113,7 @@ class DataToBstControllerTest {
 
     @Test
     void getShipDetails() {
-        dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
+        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
         ShipAndData shipMMSI = dataToBstController.getShipDetails("211331640");

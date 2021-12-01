@@ -21,6 +21,8 @@ public class TrucksDBMock implements ITruck {
         return null;
     }
 
+
+
     @Override
     public boolean addTruck(Truck elem, String id) {
         elem.setTruckId(id);
@@ -31,5 +33,10 @@ public class TrucksDBMock implements ITruck {
     public boolean removeTruck(String id) {
         Truck truckToDelete = getTruck(id);
         return trucks.remove(truckToDelete);
+    }
+
+    @Override
+    public Truck getTruckByPlate(String plate) {
+        return null;
     }
 }

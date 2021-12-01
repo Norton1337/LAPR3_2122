@@ -12,7 +12,7 @@ public interface IVehicle {
 
     Vehicles getVehicle(String id);
 
-    boolean addVehicle(Vehicles ship, String id);
+    Vehicles addVehicle(Vehicles vehicle);
 
     boolean removeVehicle(String id);
 
