@@ -52,19 +52,19 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
     @Override
     public void insert(E element) {
-        root = insert(element, root);
+        root = insert2(element, root);
     }
 
-    private BST.Node<E> insert(E element, BST.Node<E> node) {
+    private BST.Node<E> insert2(E element, BST.Node<E> node) {
         if (node == null) {
-            return new BST.Node(element, null, null);
+            return new BST.Node<>(element, null, null);
         }
         if (element.compareTo(node.getElement()) < 0) {
-            node.setLeft(insert(element, node.getLeft()));
+            node.setLeft(insert2(element, node.getLeft()));
             node = balanceNode(node);
         }
         if (element.compareTo(node.getElement()) > 0) {
-            node.setRight(insert(element, node.getRight()));
+            node.setRight(insert2(element, node.getRight()));
             node = balanceNode(node);
         }
         return node;
@@ -72,10 +72,10 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
     @Override
     public void remove(E element) {
-        root = remove(element, root());
+        root = remove2(element, root());
     }
 
-    private BST.Node<E> remove(E element, BST.Node<E> node) {
+    private BST.Node<E> remove2(E element, BST.Node<E> node) {
         if (node == null) {
             return null;
         }
@@ -91,14 +91,14 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
             }
             E smallElem = smallestElement(node.getRight());
             node.setElement(smallElem);
-            node.setRight(remove(smallElem, node.getRight()));
+            node.setRight(remove2(smallElem, node.getRight()));
             node = balanceNode(node);
         }
         if (element.compareTo(node.getElement()) < 0) {
-            node.setLeft(remove(element, node.getLeft()));
+            node.setLeft(remove2(element, node.getLeft()));
             node = balanceNode(node);
         } else {
-            node.setRight(remove(element, node.getRight()));
+            node.setRight(remove2(element, node.getRight()));
             node = balanceNode(node);
         }
         return node;

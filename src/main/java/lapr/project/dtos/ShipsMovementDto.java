@@ -2,10 +2,10 @@ package lapr.project.dtos;
 
 public class ShipsMovementDto  implements Comparable<ShipsMovementDto> {
 
-    public String MMSI;
-    public String travelledDistance;
-    public String deltaDistance;
-    public String numberOfMovements;
+    private String MMSI;
+    private String travelledDistance;
+    private String deltaDistance;
+    private String numberOfMovements;
 
     public ShipsMovementDto(String MMSI, String travelledDistance, String deltaDistance, String numberOfMovements) {
         this.MMSI = MMSI;
