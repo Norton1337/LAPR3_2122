@@ -1,9 +1,8 @@
 package lapr.project.data.kdtree;//Tree;
+
+
 import java.awt.geom.Point2D;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class KdTree <T extends Comparable<T>>  {
 
@@ -63,7 +62,6 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-
     public KdTree(List<Node<T>> nodes) {
         buildBalancedTree(nodes);
     }
@@ -76,18 +74,24 @@ public class KdTree <T extends Comparable<T>>  {
                     return null;
 
                 Collections.sort(nodes, divX ? compX : compY);
-                int mid = nodes.size() >> 1;
+                int mid = ((nodes.size()-1) >> 1) ; //(nodes.size() >> 1) (PREVIOUS)
+
 
                 Node<T> node = new Node<>(nodes.get(mid).getElement(),nodes.get(mid).getX(), nodes.get(mid).getY());
 
+
                 node.setLeft(buildTree(!divX, nodes.subList(0, mid)));
-                if (mid + 1 < nodes.size() - 1)
-                    node.setRight( buildTree(!divX, nodes.subList(mid+1, nodes.size())));
+
+                if (mid + 1 < nodes.size() ) // if (mid + 1 < nodes.size() - 1) (PREVIOUS)
+                    node.setRight( buildTree(!divX, nodes.subList(mid +1, nodes.size())));
+
+
                 return node;
+
+
             }
         }.buildTree(true, nodes);
     }
-
 
 
 
@@ -142,7 +146,6 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
     public int size(){
 
         return new Object() {
@@ -165,14 +168,12 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-    // Delete this?
+
     public List<T> getAllElements() {
 
         return getAllElements(root);
     }
 
-
-    // Delete Node<T> node
     private List<T> getAllElements(Node<T> root){
 
         final List<T> list = new LinkedList<>();
@@ -194,12 +195,10 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-
+    // Find element through coordinates
     public Node<T> find(Point2D coordinates){
         return find(root, coordinates, true);
     }
-
-    // Find element through coordinates
 
     private Node<T> find(Node<T> node, Point2D coordinates, boolean divX){
 
@@ -247,6 +246,7 @@ public class KdTree <T extends Comparable<T>>  {
 
         }
     }
+
 
     public Node<T> delete(final T element) {
         root = new Object() {
@@ -305,6 +305,7 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
+
     public String print(){
         return print(root);
     }
@@ -326,28 +327,61 @@ public class KdTree <T extends Comparable<T>>  {
         return "";
     }
 
+
+
     public int balanceFactor(){
         return balanceFactor(root);
     }
+
     private int balanceFactor(Node<T> node) {
         if (node == null){
             return 0;
         }
 
+        int val = height(node.getRight()) - height(node.getLeft());
 
+        if (val< -1 || val > 1){
+            return 0;
+        }
         balanceFactor(node.getRight());
         balanceFactor(node.getLeft());
-        System.out.println( height(node.getRight()) - height(node.getLeft()));
+        System.out.println(" [" + node.getX()+" ,"+ node.getY() +"]" + ": Balance Factor: " + (height(node.getRight()) - height(node.getLeft())));
         return 0;
     }
 
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        toStringRec(root, 0, sb);
+        return sb.toString();
+    }
+
+    private void toStringRec(Node<T> root, int level, StringBuilder sb) {
+        if (root == null) {
+            return;
+        }
+        toStringRec(root.getRight(), level + 1, sb);
+        if (level != 0) {
+            for (int i = 0; i < level - 1; i++) {
+                sb.append("|\t");
+            }
+            sb.append("|-------" + root.getCoordinates() + "\n");
+        } else {
+            sb.append(root.getCoordinates() + "\n");
+        }
+        toStringRec(root.getLeft(), level + 1, sb);
+    }
+
+
+/*
     @Override
     public String toString() {
         return "KdTree{" +
                 "root=" + root +
                 '}';
     }
+
+ */
 
 }
 

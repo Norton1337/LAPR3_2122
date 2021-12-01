@@ -124,10 +124,11 @@ class Main {
         dataToKDTreeController.populateTree(portsAndWarehouses);
         //System.out.println(dataToKDTreeController.getPortsNodes());
         dataToKDTreeController.getPortsTree().print();
-        System.out.println(dataToKDTreeController.getPortsTree().height());
-        //System.out.println(dataToKDTreeController.getPortsNodes().size());
+        System.out.println("Height: " + dataToKDTreeController.getPortsTree().height());
+        System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
         System.out.println("-------");
         System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+        //System.out.println(dataToKDTreeController.getPortsTree().toString());
 
         /*
         Point2D coord = new Point2D.Double(-32.06666667,-52.06666667);
