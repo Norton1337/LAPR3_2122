@@ -52,7 +52,8 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
     public void importShips(String file){
-
+        //todo add generators
+        
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
             String line = "";
