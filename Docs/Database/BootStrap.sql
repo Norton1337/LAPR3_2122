@@ -211,75 +211,217 @@ INSERT INTO operation VALUES('900','5','4001',2,5,3);
 INSERT INTO operation VALUES('950','7','5001',1,5,0);
 
 
+
+--criar procedures
+CREATE OR REPLACE PROCEDURE insertContainer(
+    p_container_id IN container.container_id%type,
+    p_container_payload IN container.container_payload%type,
+    p_container_tare IN container.container_tare%type,
+    p_container_gross IN container.container_gross%type,
+    p_iso_code IN container.iso_code%type,
+    p_temperature IN container.temperature%type,
+    p_container_type IN container.container_type%type,
+    p_container_load IN container.container_load%type)
+    IS
+BEGIN
+
+    INSERT INTO container
+    VALUES(p_container_id,p_container_payload,p_container_tare,p_container_gross,p_iso_code,p_temperature,p_container_type,p_container_load)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertVehicle(
+    p_vehicle_id IN vehicle.vehicle_id%type,
+    p_vehicle_type IN vehicle.type%type)
+    IS
+BEGIN
+
+    INSERT INTO vehicle
+    VALUES(p_vehicle_id,p_vehicle_type)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertTruck(
+    p_truck_id IN truck.vehicle_truck_id%type,
+    p_plate IN truck.plate%type)
+    IS
+BEGIN
+
+    INSERT INTO truck
+    VALUES(p_truck_id,p_plate)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertShip(
+    p_ship_id IN ship.vehicle_ship_id%type,
+    p_shipname IN ship.shipname%type,
+    p_mmsi IN ship.mmsi%type,
+    p_imo IN ship.imo%type,
+    p_generators_number IN ship.generators_number%type,
+    p_generators_power IN ship.generators_power%type,
+    p_call_sign IN ship.call_sign%type,
+    p_vesel_type IN ship.vesel_type%type,
+    p_length IN ship.length%type,
+    p_width IN ship.width%type,
+    p_capacity IN ship.capacity%type,
+    p_draft IN ship.draft%type)
+    IS
+BEGIN
+
+    INSERT INTO ship
+    VALUES(p_ship_id,p_shipname,p_mmsi,p_imo,p_generators_number,p_generators_power,p_call_sign,p_vesel_type,p_length,p_width,p_capacity,p_draft)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertPositionData(
+    p_position_data_id IN position_data.position_data_id%type,
+    p_vehicle_ship_id IN position_data.vehicle_ship_id%type,
+    p_bdt IN position_data.bdt%type,
+    p_latitude IN position_data.latitude%type,
+    p_longitude IN position_data.longitude%type,
+    p_sog IN position_data.sog%type,
+    p_cog IN position_data.cog%type,
+    p_heading IN position_data.heading%type,
+    p_position IN position_data.position%type,
+    p_transceiver_class IN position_data.transceiver_class%type)
+    IS
+BEGIN
+
+    INSERT INTO position_data
+    VALUES(p_position_data_id,p_vehicle_ship_id,p_bdt,p_latitude,p_longitude,p_sog,p_cog,p_heading,p_position,p_transceiver_class)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertLocal(
+    p_local_id IN local.local_id%type,
+    p_local_name IN local.local_name%type,
+    p_local_continent IN local.local_continent%type,
+    p_local_country IN local.local_country%type,
+    p_local_latitude IN local.local_lalitude%type,
+    p_local_altitude IN local.local_altitude%type)
+    IS
+BEGIN
+
+    INSERT INTO local
+    VALUES(p_local_id,p_local_name,p_local_continent,p_local_country,p_local_latitude,p_local_altitude)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertCargoManifest(
+    p_cargo_manifest_id IN cargo_manifest.cargo_manifest_id%type,
+    p_vehicle_id IN cargo_manifest.vehicle_id%type,
+    p_local_id IN cargo_manifest.local_id%type,
+    p_next_local_id IN cargo_manifest.next_local_id%type,
+    p_cm_date IN cargo_manifest.cm_date%type,
+    p_operation_type IN cargo_manifest.operation_type%type)
+    IS
+BEGIN
+
+    INSERT INTO cargo_manifest
+    VALUES(p_cargo_manifest_id,p_vehicle_id,p_local_id,p_next_local_id,p_cm_date,p_operation_type)
+
+    COMMIT
+END
+/
+
+CREATE OR REPLACE PROCEDURE insertOperation(
+    p_operation_id IN operation.operation_id%type,
+    p_container_id IN operation.container_id%type,
+    p_cargo_manifest_id IN operation.cargo_manifest_id%type,
+    p_coordinate_x IN operation.coordinate_x%type,
+    p_coordinate_y IN operation.coordinate_y%type,
+    p_coordinate_z IN operation.coordinate_z%type)
+    IS
+BEGIN
+
+    INSERT INTO operation
+    VALUES(p_operation_id,p_container_id,p_cargo_manifest_id,p_coordinate_x,p_coordinate_y,p_coordinate_z)
+
+    COMMIT
+END
+/
+--criar funções
 CREATE OR REPLACE function func_freeships return sys_refcursor
-IS
+    IS
     ships_available sys_refcursor
 BEGIN
     open ships_available for
         SELECT NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') AS NEXT_MONDAY, vehicle_ship_id as AVAILABLE_SHIP
-        FROM ship WHERE vehicle_ship_id NOT IN (SELECT vehicle_id FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) 
-        OR vehicle_ship_id IN (SELECT vehicle_ship_id FROM ship where 
-        vehicle_ship_id in (SELECT cargo_manifest.vehicle_id FROM cargo_manifest
-        INNER JOIN (SELECT vehicle_id, MAX(CM_DATE) AS maxdate FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY')
-        GROUP BY vehicle_id) md ON cargo_manifest.vehicle_id = md.vehicle_id AND CM_DATE = maxdate
-        WHERE next_local_id is null))
-return ships_available
+        FROM ship WHERE vehicle_ship_id NOT IN (SELECT vehicle_id FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id)
+                     OR vehicle_ship_id IN (SELECT vehicle_ship_id FROM ship where
+                    vehicle_ship_id in (SELECT cargo_manifest.vehicle_id FROM cargo_manifest
+                                                                                  INNER JOIN (SELECT vehicle_id, MAX(CM_DATE) AS maxdate
+                                                                                              FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) md ON cargo_manifest.vehicle_id = md.vehicle_id AND CM_DATE = maxdate
+                                        WHERE next_local_id is null))
+    return ships_available
 END
 /
 
 CREATE OR REPLACE function containers_to_load(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
-IS
+    IS
     load_containers sys_refcursor
 BEGIN
     OPEN load_containers FOR
 
-    SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z,container.container_load
-    FROM operation INNER JOIN container ON operation.container_id = container.container_id
-    WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'LOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest 
-    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY) 
-    AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    return load_containers
+        SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z
+        FROM operation INNER JOIN container ON operation.container_id = container.container_id
+        WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'LOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
+                                                                                                                                    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+                                                                                  AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    return (load_containers)
 END
 /
 
 CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
-IS
+    IS
     offload_containers sys_refcursor
 BEGIN
     OPEN offload_containers FOR
 
-    SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z,container.container_load
-    FROM operation INNER JOIN container ON operation.container_id = container.container_id
-    WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest 
-    WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY) 
-    AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    return offload_containers
+        SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z
+        FROM operation INNER JOIN container ON operation.container_id = container.container_id
+        WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
+                                                                                                                                      WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+                                                                                  AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
+    return (offload_containers)
 END
 /
 
 CREATE OR REPLACE function func_occupancy_rate(p_ship_id ship.vehicle_ship_id%type,p_cargo_id cargo_manifest.cargo_manifest_id%type) return float
-IS
+    IS
     containers_cargo int
     ship_capacity float
 BEGIN
     select count(container_id) into containers_cargo
-        from operation
-        where cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE cargo_manifest_id = p_cargo_id and UPPER(operation_type) = 'LOAD')
+    from operation
+    where cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE cargo_manifest_id = p_cargo_id and UPPER(operation_type) = 'LOAD')
     select capacity into ship_capacity
-        from ship
-        where vehicle_ship_id = p_ship_id
+    from ship
+    where vehicle_ship_id = p_ship_id
     return containers_cargo / ship_capacity * 100
 END
 /
 
 CREATE OR REPLACE function func_occupancy_rate_now(p_ship_id ship.vehicle_ship_id%type) return float
-IS
+    IS
     cm cargo_manifest.cargo_manifest_id%type
 BEGIN
     SELECT cargo_manifest_id into cm
-    FROM cargo_manifest 
+    FROM cargo_manifest
     WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id
     ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY
     return func_occupancy_rate(p_ship_id,cm)
