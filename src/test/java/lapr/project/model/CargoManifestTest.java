@@ -5,60 +5,45 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.locals.Locals;
-/*
+import lapr.project.model.cargoManifest.CargoManifest;
+
 class CargoManifestTest {
     
     CargoManifest cargoManifest;
 
     @BeforeEach
     void setup(){
-        Locals currentLocal = new Locals("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
-        Locals nextLocal = new Locals("Europe", "Poland", 67890, "Gdánsk", "54.393333,18.67");
-        Vehicle vehicle = new Vehicle("truck");
-        vehicle.setVehicleID("thisVehicleID");
+        String nextLocal = "Gdánsk";
         String date = "31/12/2020";
         String operationType="load";
-        cargoManifest = new CargoManifest(currentLocal, vehicle, nextLocal, date, operationType);
-        cargoManifest.setCargoManifestID("cargoManifestID");
+        cargoManifest = new CargoManifest(nextLocal, date, operationType);
+        cargoManifest.setId("cargoManifestID");
     }
 
     @Test
-    void setAndGetcargoManifestIDTest(){
-        assertEquals("cargoManifestID", cargoManifest.getCargoManifestID());
-        cargoManifest.setCargoManifestID("newcargoManifestID");
-        assertEquals("newcargoManifestID", cargoManifest.getCargoManifestID());
+    void setAndGetIdTest(){
+        assertEquals("cargoManifestID", cargoManifest.getId());
+        cargoManifest.setId("newcargoManifestID");
+        assertEquals("newcargoManifestID", cargoManifest.getId());
     } 
 
     @Test
-    void setAndGetCurrentLocalTest(){
-        Locals thisLocal = new Locals("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
-        assertEquals(thisLocal.toString(), cargoManifest.getCurrentLocal().toString());
-        Locals newLocal = new Locals("Europe", "Poland", 67890, "Gdánsk", "54.393333,18.67");
-        cargoManifest.setCurrentLocal(newLocal);
-        assertEquals(newLocal.toString(), cargoManifest.getCurrentLocal().toString());
+    void setAndGetCurrentLocalIdTest(){
+        cargoManifest.setCurrentLocalId("thisLocalID");
+        assertEquals("thisLocalID", cargoManifest.getCurrentLocalId().toString());
     }
 
-    @Test 
-    void setAndGetVehicleTest(){
-        Vehicle thisVehicle = new Vehicle("truck");
-        thisVehicle.setVehicleID("thisVehicleID");
-        assertEquals(thisVehicle.getVehicleID(), cargoManifest.getVehicle().getVehicleID());
-        assertEquals(thisVehicle.getType(), cargoManifest.getVehicle().getType());
-        Vehicle newVehicle = new Vehicle("ship");
-        newVehicle.setVehicleID("newVehicleID");
-        cargoManifest.setVehicle(newVehicle);
-        assertEquals(newVehicle.getVehicleID(), cargoManifest.getVehicle().getVehicleID());
-        assertEquals(newVehicle.getType(), cargoManifest.getVehicle().getType());
+    @Test
+    void setAndGetVehicleIdTest(){
+        cargoManifest.setVehicleId("vehicleID");
+        assertEquals("vehicleID", cargoManifest.getVehicleId());
     }
 
     @Test
     void setAndGetNextLocalTest(){
-        Locals nextLocal = new Locals("Europe", "Poland", 67890, "Gdánsk", "54.393333,18.67");
-        assertEquals(nextLocal.toString(), cargoManifest.getNextLocal().toString());
-        Locals newNextLocal = new Locals("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
-        cargoManifest.setNextLocal(newNextLocal);
-        assertEquals(newNextLocal.toString(), cargoManifest.getNextLocal().toString());
+        assertEquals("Gdánsk", cargoManifest.getNextLocal());
+        cargoManifest.setNextLocal("Leixões");
+        assertEquals("Leixões", cargoManifest.getNextLocal());
     }
 
     @Test
@@ -74,22 +59,5 @@ class CargoManifestTest {
         cargoManifest.setOperationType("unload");
         assertEquals("unload", cargoManifest.getOperationType());
     }
-
-    @Test
-    void toStringTest(){
-        String string = "CargoManifest{cargoManifestID:"+cargoManifest.getCargoManifestID()+"\n"
-                        +"currentLocal:"+cargoManifest.getCurrentLocal()+"\n"
-                        +"vehicle:"+cargoManifest.getVehicle()+"\n"
-                        +"nextLocal:"+cargoManifest.getNextLocal()+"\n"
-                        +"date:"+cargoManifest.getDate()+"\n"
-                        +"operationType:"+cargoManifest.getOperationType()+"}";
-        assertEquals(string, cargoManifest.toString());
-        
-            
-    }
-    
-
-
-
 }
- */
+ 

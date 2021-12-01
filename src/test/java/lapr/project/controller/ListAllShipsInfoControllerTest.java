@@ -4,17 +4,14 @@ import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.controller.model_controllers.VehiclesController;
-import lapr.project.data.VehiclesDB;
 import lapr.project.data.mocks.*;
 import lapr.project.dtos.ShipPairsDTO;
 import lapr.project.dtos.ShipsMovementDto;
 import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.ui.ShipUI;
 import lapr.project.utils.Utils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

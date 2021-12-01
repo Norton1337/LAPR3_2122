@@ -17,7 +17,7 @@ class GeneratorTest {
 
     @Test
     void getNumberOfGenerator() {
-        assertEquals(testGenerator.getNumberOfGenerator(),2);
+        assertEquals(2,testGenerator.getNumberOfGenerator());
     }
 
     @Test

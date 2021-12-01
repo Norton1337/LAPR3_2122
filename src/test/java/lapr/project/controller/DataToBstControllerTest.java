@@ -4,17 +4,15 @@ import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.controller.model_controllers.VehiclesController;
-import lapr.project.data.VehiclesDB;
 import lapr.project.data.mocks.*;
 import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.Test;
 
-import static lapr.project.utils.Utils.printList;
+
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
 import java.util.Objects;
 
 class DataToBstControllerTest {
