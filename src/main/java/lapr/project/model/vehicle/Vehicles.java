@@ -1,21 +1,19 @@
 package lapr.project.model.vehicle;
 
-import lapr.project.model.vehicle.idb.IVehicle;
-
 public class Vehicles {
-    private String vehiclesId;
+    private String id;
     private String type;
 
     public Vehicles(String type) {
         this.type = type;
     }
 
-    public String getVehiclesId() {
-        return vehiclesId;
+    public String getId() {
+        return id;
     }
 
-    public void setVehiclesId(String vehiclesId) {
-        this.vehiclesId = vehiclesId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -29,7 +27,7 @@ public class Vehicles {
     @Override
     public String toString() {
         return "Vehicles{" +
-                "vehiclesId='" + vehiclesId + '\'' +
+                "vehiclesId='" + id + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

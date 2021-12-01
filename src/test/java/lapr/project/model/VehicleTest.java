@@ -15,14 +15,14 @@ class VehicleTest {
     @BeforeEach
     void setup(){
         vehicle=new Vehicles("truck");
-        vehicle.setVehiclesId("vehiclesId");
+        vehicle.setId("vehiclesId");
     }
 
     @Test
     void setAndGetVehicleIDTest() {
-        assertEquals("vehiclesId", vehicle.getVehiclesId());
-        vehicle.setVehiclesId("newVehiclesID");
-        assertEquals("newVehiclesID", vehicle.getVehiclesId());
+        assertEquals("vehiclesId", vehicle.getId());
+        vehicle.setId("newVehiclesID");
+        assertEquals("newVehiclesID", vehicle.getId());
     }
 
 
