@@ -13,11 +13,9 @@ public class Ship{
     private double draft;
     private double loadCapacity;
     private double distanceTravelled;
-
-
-    //private final List<ShipPositonData> positionData;
-    //private final List<Container> containers;
-
+    private int generatorAmount;
+    private float generatorsPower;
+    private String transcieverClass;
 
     public Ship(String MMSI, String shipName, String IMO, String callSign,
                 int vesselType, int length, int width, double draft, double loadCapacity) {
@@ -36,8 +34,29 @@ public class Ship{
         this.width = width;
         this.draft = draft;
         this.loadCapacity = loadCapacity;
-        //this.positionData = positionData;
-        //this.containers = containers;
+    }
+
+    public Ship(String MMSI, String shipName, String IMO, String callSign,
+                int vesselType, int length, int width, double draft, double loadCapacity, String transcieverClass) {
+
+        // VALIDATIONS
+        if(!isMMSIValid(MMSI)){
+            throw new IllegalArgumentException("Not a valid MMSI.");
+        }
+
+        this.MMSI = MMSI;
+        this.shipName = shipName;
+        this.IMO = IMO;
+        this.callSign = callSign;
+        this.vesselType = vesselType;
+        this.length = length;
+        this.width = width;
+        this.draft = draft;
+        this.loadCapacity = loadCapacity;
+        // this.generatorAmount = generatorAmount;
+        // this.generatorsPower = generatorsPower;
+        this.transcieverClass = transcieverClass;
+        
     }
 
     public String getId() {
@@ -142,23 +161,21 @@ public class Ship{
         this.distanceTravelled = distanceTravelled;
     }
 
-    /*
-    public List<ShipPositonData> getPositionData() {
-        return positionData;
+    public int getGeneratorAmount() {
+        return this.generatorAmount;
     }
 
-    public List<Container> getContainers() {
-        return containers;
+    public void setGeneratorAmount(int generatorAmount) {
+        this.generatorAmount = generatorAmount;
     }
 
-    public boolean addShipPositionData(ShipPositonData shipPositonData){
-        return this.positionData.add(shipPositonData);
+    public float getGeneratorsPower() {
+        return this.generatorsPower;
     }
 
-    public boolean addContainers(Container container){
-        return this.containers.add(container);
+    public void setGeneratorsPower(float generatorsPower) {
+        this.generatorsPower = generatorsPower;
     }
-     */
 
     @Override
     public String toString() {
@@ -173,6 +190,7 @@ public class Ship{
                 ", width=" + width +
                 ", draft=" + draft +
                 ", loadCapacity=" + loadCapacity +
+                ", transcieverClass=" +transcieverClass +
                 '}';
     }
 
