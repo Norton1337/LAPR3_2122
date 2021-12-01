@@ -23,7 +23,7 @@ public class VehiclesDBMock implements IVehicle {
     @Override
     public Vehicles getVehicle(String id) {
         for(Vehicles elems : vehicles){
-            if(elems.getVehiclesId().equals(id)){
+            if(elems.getId().equals(id)){
                 return elems;
             }
         }
@@ -33,7 +33,7 @@ public class VehiclesDBMock implements IVehicle {
 
     @Override
     public Vehicles addVehicle(Vehicles elem) {
-        elem.setVehiclesId(randomUUID());
+        elem.setId(randomUUID());
         vehicles.add(elem);
 
 
