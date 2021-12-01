@@ -42,9 +42,10 @@ public class DataHandler {
      * Use connection properties set on file application.properties
      */
     public DataHandler() {
-        this.jdbcUrl = readFromProp("database.url", "src/main/resources/application.properties");
-        this.username = readFromProp("database.username", "src/main/resources/application.properties");
-        this.password = readFromProp("database.password", "src/main/resources/application.properties");
+        String file = "src/main/resources/application.properties";
+        this.jdbcUrl = readFromProp("database.url", file);
+        this.username = readFromProp("database.username", file);
+        this.password = readFromProp("database.password", file);
     }
 
     /**
