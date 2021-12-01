@@ -15,7 +15,6 @@ public class Ship{
     private double distanceTravelled;
     private int generatorAmount;
     private float generatorsPower;
-    private String transcieverClass;
 
     public Ship(String MMSI, String shipName, String IMO, String callSign,
                 int vesselType, int length, int width, double draft, double loadCapacity) {
@@ -34,29 +33,6 @@ public class Ship{
         this.width = width;
         this.draft = draft;
         this.loadCapacity = loadCapacity;
-    }
-
-    public Ship(String MMSI, String shipName, String IMO, String callSign,
-                int vesselType, int length, int width, double draft, double loadCapacity, String transcieverClass) {
-
-        // VALIDATIONS
-        if(!isMMSIValid(MMSI)){
-            throw new IllegalArgumentException("Not a valid MMSI.");
-        }
-
-        this.MMSI = MMSI;
-        this.shipName = shipName;
-        this.IMO = IMO;
-        this.callSign = callSign;
-        this.vesselType = vesselType;
-        this.length = length;
-        this.width = width;
-        this.draft = draft;
-        this.loadCapacity = loadCapacity;
-        // this.generatorAmount = generatorAmount;
-        // this.generatorsPower = generatorsPower;
-        this.transcieverClass = transcieverClass;
-        
     }
 
     public String getId() {
@@ -190,7 +166,6 @@ public class Ship{
                 ", width=" + width +
                 ", draft=" + draft +
                 ", loadCapacity=" + loadCapacity +
-                ", transcieverClass=" +transcieverClass +
                 '}';
     }
 
