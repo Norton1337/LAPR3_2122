@@ -11,11 +11,15 @@ DROP TABLE operation	 	    CASCADE CONSTRAINTS PURGE;
 --criar tabelas
 CREATE TABLE container(
                           container_id varchar(50),
+                          container_number NUMBER(10) CONSTRAINT nn_container_number NOT NULL,
+                          container_checkDigit NUMBER(10) CONSTRAINT nn_container_checkDigit NOT NULL,
                           container_payload float(50) CONSTRAINT nn_container_payload NOT NULL,
                           container_tare float(50) CONSTRAINT nn_container_tare NOT NULL,
                           container_gross float(50) CONSTRAINT nn_container_gross NOT NULL,
+                          container_volume float(50) CONSTRAINT nn_container_volume NOT NULL,
                           iso_code varchar(5) CONSTRAINT nn_iso_code NOT NULL,
-                          temperature float(10),
+                          container_certificates varchar(50) CONSTRAINT nn_container_certificates NOT NULL,
+                          container_repair varchar(50) CONSTRAINT nn_container_repair NOT NULL,
                           container_type varchar(20) CONSTRAINT nn_container_type NOT NULL,
                           container_load varchar(30),
                           CONSTRAINT pk_container_id PRIMARY KEY (container_id),
@@ -88,6 +92,7 @@ CREATE TABLE position_data(
 
 CREATE TABLE local(
                       local_id varchar(50),
+                      local_code NUMBER(10) CONSTRAINT nn_local_code NOT NULL,
                       local_name varchar(255) CONSTRAINT nn_local_name NOT NULL,
                       local_continent varchar(255) CONSTRAINT nn_local_continent NOT NULL,
                       local_country varchar(255) CONSTRAINT nn_local_country NOT NULL,
