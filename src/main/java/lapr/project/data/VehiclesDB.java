@@ -1,5 +1,7 @@
 package lapr.project.data;
 
+import lapr.project.model.ships.Ship;
+import lapr.project.model.truck.Truck;
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
 
@@ -18,7 +20,7 @@ public class VehiclesDB implements IVehicle {
     }
 
     @Override
-    public boolean addVehicle(Vehicles ship) {
+    public boolean addVehicle(Vehicles ship, String id) {
         return false;
     }
 
@@ -26,4 +28,16 @@ public class VehiclesDB implements IVehicle {
     public boolean removeVehicle(String id) {
         return false;
     }
+
+    @Override
+    public List<Vehicles> getAllTrucks() {
+        return null;
+    }
+
+    @Override
+    public List<Vehicles> getAllShips() {
+        return null;
+    }
+
+
 }

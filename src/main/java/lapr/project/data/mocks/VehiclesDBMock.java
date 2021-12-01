@@ -3,10 +3,10 @@ package lapr.project.data.mocks;
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import static lapr.project.utils.Utils.randomUUID;
 
 public class VehiclesDBMock implements IVehicle {
 
@@ -30,10 +30,9 @@ public class VehiclesDBMock implements IVehicle {
     }
 
     @Override
-    public boolean addVehicle(Vehicles elem) {
-        elem.setVehiclesId(randomUUID());
-        vehicles.add(elem);
-        return false;
+    public boolean addVehicle(Vehicles elem, String id) {
+        elem.setVehiclesId(id);
+        return vehicles.add(elem);
     }
 
 
@@ -41,5 +40,31 @@ public class VehiclesDBMock implements IVehicle {
     public boolean removeVehicle(String id) {
         Vehicles vehicleToDelete = getVehicle(id);
         return vehicles.remove(vehicleToDelete);
+    }
+
+    @Override
+    public List<Vehicles> getAllTrucks() {
+        List<Vehicles> allTrucks = new ArrayList<>();
+
+        for(Vehicles elems : vehicles){
+            if(elems.getType().contains("truck")){
+                allTrucks.add(elems);
+            }
+        }
+
+        return allTrucks;
+    }
+
+    @Override
+    public List<Vehicles> getAllShips() {
+        List<Vehicles> allShips = new ArrayList<>();
+
+        for(Vehicles elems : vehicles){
+            if(elems.getType().contains("ship")){
+                allShips.add(elems);
+            }
+        }
+
+        return allShips;
     }
 }
