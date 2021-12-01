@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import lapr.project.controller.DBController;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
@@ -7,6 +8,7 @@ import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.PortsAndWarehousesController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
 import lapr.project.data.mocks.ShipDBMock;
@@ -120,16 +122,24 @@ class Main {
                 // TopShips ts = mts.getTopNShips(shipList, 5);
                 //
 
-                PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
-                portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-                LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
-                dataToKDTreeController.populateTree(portsAndWarehouses);
-                // System.out.println(dataToKDTreeController.getPortsNodes());
-                dataToKDTreeController.getPortsTree().print();
-                System.out.println("Height: " + dataToKDTreeController.getPortsTree().height());
-                System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
-                System.out.println("-------");
-                System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+                /*
+                 * PortsAndWarehousesUI portsAndWarehousesUI = new
+                 * PortsAndWarehousesUI(portsAndWarehousesController);
+                 * portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+                 * LinkedList<Locals> portsAndWarehouses =
+                 * portsAndWarehousesController.getAllPortsAndWharehouse();
+                 * dataToKDTreeController.populateTree(portsAndWarehouses);
+                 * // System.out.println(dataToKDTreeController.getPortsNodes());
+                 * dataToKDTreeController.getPortsTree().print();
+                 * System.out.println("Height: " +
+                 * dataToKDTreeController.getPortsTree().height());
+                 * System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
+                 * System.out.println("-------");
+                 * System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+                 */
+
+                DBController controller = new DBController();
+                controller.createdb();
                 // System.out.println(dataToKDTreeController.getPortsTree().toString());
 
                 /*
