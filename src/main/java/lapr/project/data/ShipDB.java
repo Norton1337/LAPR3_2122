@@ -67,13 +67,13 @@ public class ShipDB extends DataHandler implements IShipsDB {
 
                     if(allShips.isEmpty()){
                         Ship newShip = new Ship(list.get(0), list.get(7), list.get(8), list.get(9), toInt(list.get(10)),
-                        toInt(list.get(11)), toInt(list.get(12)), toDouble(list.get(13)), toDouble(list.get(14)), list.get(15));
+                        toInt(list.get(11)), toInt(list.get(12)), toDouble(list.get(13)), toDouble(list.get(14)));
                         newShip.setId(randomUUID());
                         allShips.add(newShip);
                     }else{
                         if(!allShips.get(allShips.size()-1).getMMSI().equals(list.get(0))){
                             Ship newShip = new Ship(list.get(0), list.get(7), list.get(8), list.get(9), toInt(list.get(10)),
-                            toInt(list.get(11)), toInt(list.get(12)), toDouble(list.get(13)), toDouble(list.get(14)), list.get(15));
+                            toInt(list.get(11)), toInt(list.get(12)), toDouble(list.get(13)), toDouble(list.get(14)));
                             newShip.setId(randomUUID());
                             allShips.add(newShip);
                         }
