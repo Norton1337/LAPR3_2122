@@ -136,7 +136,7 @@ public class DataHandler {
         return message.toString();
     }
 
-    public protected Connection getConnection() {
+    public Connection getConnection() {
         if (connection == null)
             openConnection();
         return connection;

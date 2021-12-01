@@ -28,8 +28,8 @@ public class DBController {
     public float capacity_rate(String ship_id, String cm_id) throws SQLException {
         CallableStatement resultado = con.prepareCall("{?= call func_occupancy_rate (?)}");
         resultado.registerOutParameter(1, Types.FLOAT);
-        resultado.setString("p_cargo_id", "20001");
-        resultado.setString("p_ship_id", "12");
+        resultado.setString("p_cargo_id", cm_id);
+        resultado.setString("p_ship_id", ship_id);
         resultado.executeUpdate();
         float fatorial = resultado.getFloat(1);
         return fatorial;
