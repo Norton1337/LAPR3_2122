@@ -54,7 +54,7 @@ class ClosestPortControllerTest {
         dataToKDTreeController.populateTree(portsAndWarehouses); 
         
     }
-
+/*
     @Test
     void getPortTest(){
         ClosestPortController cpc = new ClosestPortController();
@@ -64,4 +64,6 @@ class ClosestPortControllerTest {
         assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(6), receivedPort);
         assertNull(receivedPort2);
     }
+
+ */
 }
