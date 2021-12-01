@@ -6,7 +6,11 @@ import lapr.project.model.containers.Container;
 
 public interface IContainerDB {
 
-    List<Container> containers();
+    List<Container> getAllContainers();
 
-    boolean addShipContainers(Container containers, String id);
+    boolean addContainer(Container containers);
+
+    Container getContainer(String id);
+
+    boolean removeContainer(String id);
 }

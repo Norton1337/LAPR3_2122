@@ -2,56 +2,39 @@ package lapr.project.model.containers;
 
 public class Container {
 
-    private int id;
-    private int containerIdentification;
+    private String id;
     private int containerNumber;
     private int checkDigit;
     private String ISOCODE;
-    private double maxWeightWithContainer;
-    private double weightContainer;
-    private double maxWeightToBePacked;
-    private double maxVolToBePacked;
+    private double containerGross;
+    private double containerTare;
+    private double containerPayload;
+    private double containerVolume;
     private String certificates;
-    private String repairRecomendations;
-    private String containerPosition;
-    private boolean isRefrigerated;
-    private int shipID;
+    private String repairRecommendations;
+    private String containerType;
 
-    public Container(int id, int containerIdentification, int containerNumber, int checkDigit, String ISOCODE,
-                     double maxWeightWithContainer, double weightContainer, double maxWeightToBePacked,
-                     double maxVolToBePacked, String certificates, String repairRecomendations,
-                     String containerPosition, boolean isRefrigerated) {
-
-
-        this.id = id;
-        this.containerIdentification = containerIdentification;
+    public Container(int containerNumber, int checkDigit, String ISOCODE, double containerGross,
+                     double containerTare, double containerPayload, double containerVolume,
+                     String certificates, String repairRecomendations, String containerType) {
         this.containerNumber = containerNumber;
         this.checkDigit = checkDigit;
         this.ISOCODE = ISOCODE;
-        this.maxWeightWithContainer = maxWeightWithContainer;
-        this.weightContainer = weightContainer;
-        this.maxWeightToBePacked = maxWeightToBePacked;
-        this.maxVolToBePacked = maxVolToBePacked;
+        this.containerGross = containerGross;
+        this.containerTare = containerTare;
+        this.containerPayload = containerPayload;
+        this.containerVolume = containerVolume;
         this.certificates = certificates;
-        this.repairRecomendations = repairRecomendations;
-        this.containerPosition = containerPosition;
-        this.isRefrigerated = isRefrigerated;
+        this.repairRecommendations = repairRecomendations;
+        this.containerType = containerType;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public int getContainerIdentification() {
-        return containerIdentification;
-    }
-
-    public void setContainerIdentification(int containerIdentification) {
-        this.containerIdentification = containerIdentification;
     }
 
     public int getContainerNumber() {
@@ -78,20 +61,36 @@ public class Container {
         this.ISOCODE = ISOCODE;
     }
 
-    public void setMaxWeightWithContainer(double maxWeightWithContainer) {
-        this.maxWeightWithContainer = maxWeightWithContainer;
+    public double getContainerGross() {
+        return containerGross;
     }
 
-    public void setWeightContainer(double weightContainer) {
-        this.weightContainer = weightContainer;
+    public void setContainerGross(double containerGross) {
+        this.containerGross = containerGross;
     }
 
-    public void setMaxWeightToBePacked(double maxWeightToBePacked) {
-        this.maxWeightToBePacked = maxWeightToBePacked;
+    public double getContainerTare() {
+        return containerTare;
     }
 
-    public void setMaxVolToBePacked(double maxVolToBePacked) {
-        this.maxVolToBePacked = maxVolToBePacked;
+    public void setContainerTare(double containerTare) {
+        this.containerTare = containerTare;
+    }
+
+    public double getContainerPayload() {
+        return containerPayload;
+    }
+
+    public void setContainerPayload(double containerPayload) {
+        this.containerPayload = containerPayload;
+    }
+
+    public double getContainerVolume() {
+        return containerVolume;
+    }
+
+    public void setContainerVolume(double containerVolume) {
+        this.containerVolume = containerVolume;
     }
 
     public String getCertificates() {
@@ -102,51 +101,19 @@ public class Container {
         this.certificates = certificates;
     }
 
-    public String getRepairRecomendations() {
-        return repairRecomendations;
+    public String getRepairRecommendations() {
+        return repairRecommendations;
     }
 
-    public void setRepairRecomendations(String repairRecomendations) {
-        this.repairRecomendations = repairRecomendations;
+    public void setRepairRecommendations(String repairRecommendations) {
+        this.repairRecommendations = repairRecommendations;
     }
 
-    public double getMaxWeightWithContainer() {
-        return maxWeightWithContainer;
+    public String getContainerType() {
+        return containerType;
     }
 
-    public double getWeightContainer() {
-        return weightContainer;
-    }
-
-    public double getMaxWeightToBePacked() {
-        return maxWeightToBePacked;
-    }
-
-    public double getMaxVolToBePacked() {
-        return maxVolToBePacked;
-    }
-
-    public String getContainerPosition() {
-        return containerPosition;
-    }
-
-    public void setContainerPosition(String containerPosition) {
-        this.containerPosition = containerPosition;
-    }
-
-    public boolean isRefrigerated() {
-        return isRefrigerated;
-    }
-
-    public void setRefrigerated(boolean refrigerated) {
-        isRefrigerated = refrigerated;
-    }
-
-    public int getShipID() {
-        return shipID;
-    }
-
-    public void setShipID(int shipID) {
-        this.shipID = shipID;
+    public void setContainerType(String containerType) {
+        this.containerType = containerType;
     }
 }
