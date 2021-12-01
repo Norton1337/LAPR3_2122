@@ -126,27 +126,27 @@ CREATE TABLE operation (
 );
 
 --preencher tabelas
-INSERT INTO container VALUES('1',9500,500,25000,'20G0',20,'Not Refrigerated','Brinquedos');
-INSERT INTO container VALUES('2',9500,500,25000,'20G0',20,'Not Refrigerated','Brinquedos');
-INSERT INTO container VALUES('3',9500,500,25000,'20G0',20,'Not Refrigerated','Tecnologia');
-INSERT INTO container VALUES('4',9500,500,25000,'20G0',20,'Not Refrigerated','Tecnologia');
-INSERT INTO container VALUES('5',9500,500,25000,'20H0',8,'Refrigerated','Comida');
-INSERT INTO container VALUES('6',9500,500,25000,'20H0',8,'Refrigerated','Comida');
-INSERT INTO container VALUES('7',9500,500,25000,'20G0',20,'Not Refrigerated','Tecnologia');
-INSERT INTO container VALUES('8',9500,500,25000,'20H0',8,'Refrigerated','Comida');
-INSERT INTO container VALUES('9',9500,500,25000,'20G0',20,'Not Refrigerated','Tecnologia');
-INSERT INTO container VALUES('10',9500,500,25000,'20H0',8,'Refrigerated','Tecnologia');
+INSERT INTO container VALUES('1',2345,7,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('2',2235,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('3',2955,5,9500,500,25000,34,'20G0','Certificados','NotRepair','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('4',2945,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('5',2845,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('6',2245,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('7',2745,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('8',2645,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('9',2445,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('10',2355,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
 
-INSERT INTO local VALUES('30','BRAGA','EUROPA','PORTUGAL',61.183,-0.67977);
-INSERT INTO local VALUES('31','MATOSINHOS','EUROPA','PORTUGAL',41.183,-8.67977);
-INSERT INTO local VALUES('32','PORTO','EUROPA','PORTUGAL',41.15,-8.61024);
-INSERT INTO local VALUES('33','AVEIRO','EUROPA','PORTUGAL',40.64, -8.65362);
-INSERT INTO local VALUES('34','FIGUEIRA DA FOZ','EUROPA','PORTUGAL',40.15,-8.85121);
-INSERT INTO local VALUES('35','LISBOA','EUROPA','PORTUGAL',39.783,-9.13547);
-INSERT INTO local VALUES('36','ALGARVE','EUROPA','PORTUGAL',37.089, -8.25228);
-INSERT INTO local VALUES('37','BARCELONA','EUROPA','ESPANHA',41.3879,2.16992);
-INSERT INTO local VALUES('38','MARSELHA','EUROPA','FRANÇA',43.2698, 5.39585);
-INSERT INTO local VALUES('39','CAGLIARI','EUROPA','ITÁLIA',39.227779,9.111111);
+INSERT INTO local VALUES('30',228,'BRAGA','EUROPA','PORTUGAL',61.183,-0.67977);
+INSERT INTO local VALUES('31',227,'MATOSINHOS','EUROPA','PORTUGAL',41.183,-8.67977);
+INSERT INTO local VALUES('32',226,'PORTO','EUROPA','PORTUGAL',41.15,-8.61024);
+INSERT INTO local VALUES('33',231,'AVEIRO','EUROPA','PORTUGAL',40.64, -8.65362);
+INSERT INTO local VALUES('34',232,'FIGUEIRA DA FOZ','EUROPA','PORTUGAL',40.15,-8.85121);
+INSERT INTO local VALUES('35',239,'LISBOA','EUROPA','PORTUGAL',39.783,-9.13547);
+INSERT INTO local VALUES('36',238,'ALGARVE','EUROPA','PORTUGAL',37.089, -8.25228);
+INSERT INTO local VALUES('37',237,'BARCELONA','EUROPA','ESPANHA',41.3879,2.16992);
+INSERT INTO local VALUES('38',236,'MARSELHA','EUROPA','FRANÇA',43.2698, 5.39585);
+INSERT INTO local VALUES('39',235,'CAGLIARI','EUROPA','ITÁLIA',39.227779,9.111111);
 
 INSERT INTO vehicle VALUES('41','Ship');
 INSERT INTO vehicle VALUES('42','Ship');
