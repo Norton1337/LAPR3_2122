@@ -27,33 +27,42 @@ class ListAllShipsInfoControllerTest {
 
 
     //DB
-    VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
-    ShipDBMock shipDBMock = new ShipDBMock();
-    TrucksDBMock trucksDBMock = new TrucksDBMock();
-    GeneratorDBMock generatorDBMock = new GeneratorDBMock();
-    ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
+    VehiclesDBMock vehiclesDBMock;
+    ShipDBMock shipDBMock;
+    TrucksDBMock trucksDBMock;
+    GeneratorDBMock generatorDBMock;
+    ShipPositionDataDBMock shipPositionDataDBMock;
 
     //CONTROLLERS
-    VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
-    ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
-    ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
-    GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-    DataToBstController dataToBstController = new DataToBstController();
-    ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
-    ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
-    MostTravelledShipsController mostTravelledShips = new MostTravelledShipsController();
+    VehiclesController vehiclesController;
+    ShipController shipController;
+    ShipPositionDataController shipPositionDataController;
+    GeneratorController generatorController;
+    DataToBstController dataToBstController;
+    ShipUI shipUI;
+    ListAllShipsInfoController listAllShipsInfoController;
+    MostTravelledShipsController mostTravelledShips;
 
 
+    public ListAllShipsInfoControllerTest() {
+        this.vehiclesDBMock = new VehiclesDBMock();
+        this.shipDBMock = new ShipDBMock();
+        this.trucksDBMock = new TrucksDBMock();
+        this.generatorDBMock = new GeneratorDBMock();
+        this.shipPositionDataDBMock = new ShipPositionDataDBMock();
+        this.vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
+        this.shipController = new ShipController(shipDBMock, generatorDBMock);
+        this.shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
+        this.generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+        this.dataToBstController = new DataToBstController();
+        this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
+        this.listAllShipsInfoController  = new ListAllShipsInfoController();
+        this.mostTravelledShips = new MostTravelledShipsController();
 
 
-    @BeforeEach
-    void beforeAll() {
-        shipUI.importShips("Docs/Input/bships.csv");
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
-
-
+        this.shipUI.importShips("Docs/Input/bships.csv");
+        this.dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
+        this.dataToBstController.populateBST();
     }
 
 

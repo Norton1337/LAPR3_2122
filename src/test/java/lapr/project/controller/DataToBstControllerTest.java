@@ -49,37 +49,30 @@ class DataToBstControllerTest {
         this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
 
         this.shipUI.importShips("Docs/Input/bships.csv");
+
+        this.dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
+        this.dataToBstController.populateBST();
     }
 
 
 
     @Test
     void transformBeforeBST() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
         assertTrue(dataToBstController.getAllData().size() > 10);
     }
 
     @Test
     void populateBST() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         assertTrue(dataToBstController.getShipBst().size() > 10);
     }
 
     @Test
     void getShipBst() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         assertNotNull(dataToBstController.getShipBst());
     }
 
     @Test
     void getShipAndDataByMMSI() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         ShipAndData dataByMMSI = dataToBstController.getShipDetails("636015178");
 
         if(Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))System.out.println(dataByMMSI);
@@ -90,9 +83,7 @@ class DataToBstControllerTest {
     }
 
     @Test
-    void getShipAndDataByIMO() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
+    void getShipAndDataByIMO() {;
 
         ShipAndData dataByIMO = dataToBstController.getShipDetails("IMO9601833");
 
@@ -102,9 +93,6 @@ class DataToBstControllerTest {
 
     @Test
     void getShipDataByCallSign() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         ShipAndData dataByCallSign = dataToBstController.getShipDetails("A8ZC7");
 
         assertEquals("A8ZC7", dataByCallSign.getShip().getCallSign());
@@ -113,9 +101,6 @@ class DataToBstControllerTest {
 
     @Test
     void getShipDetails() {
-        dataToBstController.transformBeforeBST(vehiclesController.getAllShips(), shipPositionDataController.getShipData());
-        dataToBstController.populateBST();
-
         ShipAndData shipMMSI = dataToBstController.getShipDetails("211331640");
         assertEquals("SEOUL EXPRESS", shipMMSI.getShip().getShipName());
 
