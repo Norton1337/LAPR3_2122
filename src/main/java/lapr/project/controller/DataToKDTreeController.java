@@ -13,12 +13,10 @@ public class DataToKDTreeController {
 
     private KdTree<Locals> portsTree;
     private List<Node<Locals>> portsNodes;
-    private List<Locals> portsData;
 
     public DataToKDTreeController() {
         this.portsTree = new KdTree<>();
         this.portsNodes = new ArrayList<>();
-        this.portsData = new ArrayList<>();
     }
 
 
