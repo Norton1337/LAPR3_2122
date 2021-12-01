@@ -396,7 +396,7 @@ CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%
 BEGIN
     OPEN offload_containers FOR
 
-        SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z
+        SELECT operation.container_id,container.container_type,container.container_load
         FROM operation INNER JOIN container ON operation.container_id = container.container_id
         WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
                                                                                                                                       WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
