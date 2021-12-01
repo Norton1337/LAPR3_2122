@@ -197,4 +197,16 @@ class ShipTest {
 
     }
 
+    @Test
+    void setAndGetGeneratorsAmount(){
+        testShip.setGeneratorAmount(2);
+        assertEquals(2, testShip.getGeneratorAmount());
+    }
+
+    @Test
+    void setAndGetGeneratorsPower(){
+        testShip.setGeneratorsPower(3);
+        assertEquals(3, testShip.getGeneratorsPower());
+    }
+
 }
