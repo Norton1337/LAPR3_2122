@@ -1,4 +1,4 @@
-package lapr.project.controller;
+package lapr.project.data;
 
 import java.io.IOException;
 import java.sql.CallableStatement;
@@ -26,12 +26,16 @@ public class DBController {
     }
 
     public float capacity_rate(String ship_id, String cm_id) throws SQLException {
-        CallableStatement resultado = con.prepareCall("{?= call func_occupancy_rate (?)}");
-        resultado.registerOutParameter(1, Types.FLOAT);
-        resultado.setString("p_cargo_id", cm_id);
-        resultado.setString("p_ship_id", ship_id);
-        resultado.executeUpdate();
-        float fatorial = resultado.getFloat(1);
+        float fatorial = 0;
+        try (CallableStatement resultado = con.prepareCall("{?= call func_occupancy_rate (?)}")) {
+            resultado.registerOutParameter(1, Types.FLOAT);
+            resultado.setString("p_cargo_id", cm_id);
+            resultado.setString("p_ship_id", ship_id);
+            resultado.executeUpdate();
+            fatorial = resultado.getFloat(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return fatorial;
     }
 }
