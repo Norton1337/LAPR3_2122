@@ -1,6 +1,5 @@
 package lapr.project.ui;
 
-import lapr.project.controller.DBController;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
@@ -8,6 +7,7 @@ import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.PortsAndWarehousesController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.data.DBController;
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.PortsAndWarehousesDBMock;
@@ -20,6 +20,8 @@ import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
+
+import javax.sound.midi.ControllerEventListener;
 
 class Main {
 
@@ -139,7 +141,8 @@ class Main {
                  */
 
                 DBController controller = new DBController();
-                controller.createdb();
+                // controller.createdb();
+                System.out.println(controller.capacity_rate("43", "4000") + "%");
                 // System.out.println(dataToKDTreeController.getPortsTree().toString());
 
                 /*

@@ -25,7 +25,7 @@ public class VehiclesController {
     public boolean addShip(Vehicles vehicles, Ship newShip) {
         Vehicles elem = vehicleDB.addVehicle(vehicles);
 
-        newShip.setId(elem.getVehiclesId());
+        newShip.setId(elem.getId());
         return shipDB.addShip(newShip);
     }
 
