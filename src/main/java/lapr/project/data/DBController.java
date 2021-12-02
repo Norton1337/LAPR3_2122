@@ -76,4 +76,22 @@ public class DBController extends DataHandler {
         }
         return ls;
     }
+
+    public List<String> a_cm(Integer ano) throws SQLException {
+        List<String> ls = new ArrayList<>();
+        try (CallableStatement resultado = getConnection().prepareCall("{?= call a_cm (?)}")) {
+            resultado.registerOutParameter(1, OracleTypes.CURSOR);
+            resultado.setInt(2, ano);
+            resultado.executeUpdate();
+            ResultSet rs = (ResultSet) resultado.getObject(1);
+            ls.add(rs.getMetaData().getColumnLabel(1) + "|" + rs.getMetaData().getColumnLabel(2));
+            while (rs.next()) {
+                ls.add(rs.getString(1) + "|" + rs.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ls;
+    }
+
 }

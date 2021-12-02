@@ -136,7 +136,7 @@ class Main {
                 /*
                  * DBController controller = new DBController();
                  * controller.createdb();
-                 * List<String> ls1 = controller.freeships();
+                 * List<String> ls1 = controller.a_cm(2021);
                  * ListIterator<String> ls12 = ls1.listIterator();
                  * while (ls12.hasNext()) {
                  * System.out.println(ls12.next());

@@ -140,7 +140,54 @@ INSERT INTO container VALUES('6',2245,8,9500,500,25000,34,'20H0','Certificados',
 INSERT INTO container VALUES('7',2745,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
 INSERT INTO container VALUES('8',2645,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
 INSERT INTO container VALUES('9',2445,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
-INSERT INTO container VALUES('10',2355,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('10',2155,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('11',2336,7,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('12',2337,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('13',2338,5,9500,500,25000,34,'20G0','Certificados','NotRepair','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('14',2339,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('15',2340,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('16',2341,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('17',2342,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('18',2343,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('19',2344,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('20',2345,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('21',2346,7,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('22',2347,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('23',2348,5,9500,500,25000,34,'20G0','Certificados','NotRepair','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('24',2349,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('25',2350,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('26',2351,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('27',2352,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('28',2353,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('29',2354,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('30',2355,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('31',2356,7,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('32',2357,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('33',2358,5,9500,500,25000,34,'20G0','Certificados','NotRepair','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('34',2359,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('35',2360,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('36',2361,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('37',2362,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('38',2363,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('39',2364,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('40',2365,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('41',2366,7,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('42',2367,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Brinquedos');
+INSERT INTO container VALUES('43',2368,5,9500,500,25000,34,'20G0','Certificados','NotRepair','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('44',2369,6,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('45',2370,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('46',2371,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('47',2372,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('48',2373,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('49',2374,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('50',2375,5,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Tecnologia');
+INSERT INTO container VALUES('51',2376,7,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('52',2377,8,9500,500,25000,34,'20H0','Certificados','Reparar','Refrigerated','Comida');
+INSERT INTO container VALUES('53',2378,4,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+INSERT INTO container VALUES('54',2379,2,9500,500,25000,34,'20H0','Certificados','NotRepair','Refrigerated','Comida');
+INSERT INTO container VALUES('55',2370,3,9500,500,25000,34,'20G0','Certificados','Reparar','Not Refrigerated','Tecnologia');
+
+
 
 INSERT INTO local VALUES('30',228,'BRAGA','EUROPA','PORTUGAL',61.183,-0.67977);
 INSERT INTO local VALUES('31',227,'MATOSINHOS','EUROPA','PORTUGAL',41.183,-8.67977);
@@ -180,42 +227,153 @@ INSERT INTO position_data VALUES('650','43',(timestamp '2021-12-30 13:22:00'),39
 INSERT INTO position_data VALUES('1200','44',(timestamp '2021-11-30 21:22:23'),38.6412,-8.65362,35,140,200,50,'Class A');
 INSERT INTO position_data VALUES('1300','44',(timestamp '2021-12-15 02:22:23'),38.2512,-30.65362,35,140,200,50,'Class A');
 
-INSERT INTO cargo_manifest VALUES('2000','41','30','31',(timestamp '2021-09-15 21:12:23'),'Load');
-INSERT INTO cargo_manifest VALUES('3000','42','31','32',(timestamp '2021-10-20 22:02:23'),'Load');
-INSERT INTO cargo_manifest VALUES('4000','43','32','33',(timestamp '2021-11-14 21:42:23'),'Load');
-INSERT INTO cargo_manifest VALUES('5000','44','33','34',(timestamp '2021-11-12 22:20:23'),'Load');
-INSERT INTO cargo_manifest VALUES('2001','41','31',NULL,(timestamp '2021-11-30 21:12:23'),'Unload');
-INSERT INTO cargo_manifest VALUES('3001','42','32','33',(timestamp '2021-12-1 22:02:23'),'Unload');
-INSERT INTO cargo_manifest VALUES('4001','43','32','33',(timestamp '2021-12-1 21:42:23'),'Load');
-INSERT INTO cargo_manifest VALUES('5001','44','33','34',(timestamp '2021-12-1 22:20:23'),'Load');
-INSERT INTO cargo_manifest VALUES('6000','45','34','35',(timestamp '2021-11-17 12:22:23'),'Load');
-INSERT INTO cargo_manifest VALUES('7000','46','35','37',(timestamp '2021-11-30 05:22:23'),'Load');
-INSERT INTO cargo_manifest VALUES('8000','47','36','38',(timestamp '2021-12-27 07:22:23'),'Load');
-INSERT INTO cargo_manifest VALUES('9000','48','37','39',(timestamp '2021-12-14 23:22:23'),'Load');
-INSERT INTO cargo_manifest VALUES('10000','46','35',NULL,(timestamp '2022-11-24 21:42:23'),'Unload');
-INSERT INTO cargo_manifest VALUES('11000','47','36',NULL,(timestamp '2022-01-05 21:21:23'),'Unload');
-INSERT INTO cargo_manifest VALUES('12000','48','37',NULL,(timestamp '2022-02-08 20:24:23'),'Unload');
 
-INSERT INTO operation VALUES('100','1','2000',0,0,0);
-INSERT INTO operation VALUES('450','10','2000',1,0,6);
-INSERT INTO operation VALUES('150','2','3000',0,0,0);
-INSERT INTO operation VALUES('200','3','3000',1,0,6);
-INSERT INTO operation VALUES('250','4','4000',0,0,0);
-INSERT INTO operation VALUES('300','5','5000',0,0,0);
-INSERT INTO operation VALUES('350','6','6000',0,0,0);
-INSERT INTO operation VALUES('400','7','7000',0,0,0);
-INSERT INTO operation VALUES('451','8','8000',0,0,0);
-INSERT INTO operation VALUES('500','9','9000',0,0,0);
-INSERT INTO operation VALUES('550','7','10000',0,0,0);
-INSERT INTO operation VALUES('600','8','11000',0,0,0);
-INSERT INTO operation VALUES('650','9','12000',0,0,0);
-INSERT INTO operation VALUES('700','3','2001',0,0,0);
-INSERT INTO operation VALUES('750','9','3001',0,0,0);
-INSERT INTO operation VALUES('850','4','3001',0,0,0);
-INSERT INTO operation VALUES('900','5','4001',2,5,3);
-INSERT INTO operation VALUES('950','7','5001',1,5,0);
+INSERT INTO cargo_manifest VALUES('1001','41','30','31',(timestamp '2021-11-29 09:12:33'),'Load');
+INSERT INTO cargo_manifest VALUES('1002','41','31','32',(timestamp '2021-12-3 09:10:00'),'Load');
+INSERT INTO cargo_manifest VALUES('2001','42','31','32',(timestamp '2021-11-30 22:00:05'),'Load');
+INSERT INTO cargo_manifest VALUES('2002','42','32','31',(timestamp '2021-12-6 21:12:20'),'Load');
+INSERT INTO cargo_manifest VALUES('3001','43','31','36',(timestamp '2021-11-30 05:05:00'),'Load');
+INSERT INTO cargo_manifest VALUES('3002','43','36','39',(timestamp '2021-12-2 22:02:10'),'Load');
+INSERT INTO cargo_manifest VALUES('4001','44','35','37',(timestamp '2021-12-2 21:42:58'),'Load');
+INSERT INTO cargo_manifest VALUES('4002','44','37','38',(timestamp '2021-12-3 22:20:28'),'Load');
+INSERT INTO cargo_manifest VALUES('5001','45','31','32',(timestamp '2021-12-1 10:03:11'),'Load');
+INSERT INTO cargo_manifest VALUES('6001','46','34','33',(timestamp '2021-12-3 22:02:29'),'Load');
+INSERT INTO cargo_manifest VALUES('7001','47','35','31',(timestamp '2021-12-5 22:02:01'),'Load');
+INSERT INTO cargo_manifest VALUES('8001','48','32','36',(timestamp '2021-12-4 22:02:47'),'Load');
+INSERT INTO cargo_manifest VALUES('1101','41','31',NULL,(timestamp '2021-11-29 23:15:00'),'Unload');
+INSERT INTO cargo_manifest VALUES('1102','41','32',NULL,(timestamp '2021-12-3 22:20:34'),'Unload');
+INSERT INTO cargo_manifest VALUES('2201','42','32',NULL,(timestamp '2021-12-1 12:22:28'),'Unload');
+INSERT INTO cargo_manifest VALUES('2202','42','31',NULL,(timestamp '2021-12-7 05:22:12'),'Unload');
+INSERT INTO cargo_manifest VALUES('3301','43','36',NULL,(timestamp '2021-12-1 07:22:10'),'Unload');
+INSERT INTO cargo_manifest VALUES('3302','43','39',NULL,(timestamp '2021-12-3 15:22:15'),'Unload');
+INSERT INTO cargo_manifest VALUES('4401','44','37',NULL,(timestamp '2021-12-3 08:42:23'),'Unload');
+INSERT INTO cargo_manifest VALUES('4402','44','38',NULL,(timestamp '2021-12-4 21:21:56'),'Unload');
+INSERT INTO cargo_manifest VALUES('5501','45','32',NULL,(timestamp '2021-12-1 20:24:06'),'Unload');
+INSERT INTO cargo_manifest VALUES('6601','46','33',NULL,(timestamp '2021-12-4 09:24:20'),'Unload');
+INSERT INTO cargo_manifest VALUES('7701','47','31',NULL,(timestamp '2021-12-6 18:30:00'),'Unload');
+INSERT INTO cargo_manifest VALUES('8801','48','36',NULL,(timestamp '2021-12-5 17:24:23'),'Unload');
 
 
+INSERT INTO operation VALUES('101','1','1001',0,0,0);
+INSERT INTO operation VALUES('102','2','1001',1,0,0);
+INSERT INTO operation VALUES('103','3','1001',1,1,0);
+INSERT INTO operation VALUES('104','4','1001',1,1,1);
+INSERT INTO operation VALUES('105','5','1001',1,1,2);
+INSERT INTO operation VALUES('106','1','1002',0,0,0);
+INSERT INTO operation VALUES('107','2','1002',1,0,0);
+INSERT INTO operation VALUES('108','3','1002',1,1,0);
+INSERT INTO operation VALUES('109','4','1002',1,1,1);
+INSERT INTO operation VALUES('110','5','1002',1,1,2);
+INSERT INTO operation VALUES('201','6','2001',0,0,0);
+INSERT INTO operation VALUES('202','7','2001',1,0,0);
+INSERT INTO operation VALUES('203','8','2001',1,1,0);
+INSERT INTO operation VALUES('204','9','2001',1,1,1);
+INSERT INTO operation VALUES('205','10','2001',1,1,2);
+INSERT INTO operation VALUES('206','11','2002',0,0,0);
+INSERT INTO operation VALUES('207','12','2002',1,0,0);
+INSERT INTO operation VALUES('208','13','2002',1,1,0);
+INSERT INTO operation VALUES('209','14','2002',1,1,1);
+INSERT INTO operation VALUES('210','15','2002',1,1,2);
+INSERT INTO operation VALUES('301','16','3001',0,0,0);
+INSERT INTO operation VALUES('302','17','3001',1,0,0);
+INSERT INTO operation VALUES('303','18','3001',1,1,0);
+INSERT INTO operation VALUES('304','19','3001',1,1,1);
+INSERT INTO operation VALUES('305','20','3001',1,1,2);
+INSERT INTO operation VALUES('306','21','3002',1,0,0);
+INSERT INTO operation VALUES('307','22','3002',2,0,0);
+INSERT INTO operation VALUES('308','23','3002',2,1,0);
+INSERT INTO operation VALUES('309','24','3002',2,1,1);
+INSERT INTO operation VALUES('310','25','3002',2,1,2);
+INSERT INTO operation VALUES('401','26','4001',0,0,0);
+INSERT INTO operation VALUES('402','27','4001',1,0,0);
+INSERT INTO operation VALUES('403','28','4001',1,1,0);
+INSERT INTO operation VALUES('404','29','4001',1,1,1);
+INSERT INTO operation VALUES('405','30','4001',1,1,2);
+INSERT INTO operation VALUES('406','31','4002',1,0,0);
+INSERT INTO operation VALUES('407','32','4002',2,0,0);
+INSERT INTO operation VALUES('408','33','4002',2,1,0);
+INSERT INTO operation VALUES('409','34','4002',2,1,1);
+INSERT INTO operation VALUES('410','35','4002',2,1,2);
+INSERT INTO operation VALUES('501','36','5001',0,0,0);
+INSERT INTO operation VALUES('502','37','5001',1,0,0);
+INSERT INTO operation VALUES('503','38','5001',1,1,0);
+INSERT INTO operation VALUES('504','39','5001',1,1,1);
+INSERT INTO operation VALUES('505','40','5001',1,1,2);
+INSERT INTO operation VALUES('601','41','6001',1,0,0);
+INSERT INTO operation VALUES('602','42','6001',2,0,0);
+INSERT INTO operation VALUES('603','43','6001',2,1,0);
+INSERT INTO operation VALUES('604','44','6001',2,1,1);
+INSERT INTO operation VALUES('605','45','6001',2,1,2);
+INSERT INTO operation VALUES('701','46','7001',0,0,0);
+INSERT INTO operation VALUES('702','47','7001',1,0,0);
+INSERT INTO operation VALUES('703','48','7001',1,1,0);
+INSERT INTO operation VALUES('704','49','7001',1,1,1);
+INSERT INTO operation VALUES('705','50','7001',1,1,2);
+INSERT INTO operation VALUES('801','51','8001',1,0,0);
+INSERT INTO operation VALUES('802','52','8001',2,0,0);
+INSERT INTO operation VALUES('803','53','8001',2,1,0);
+INSERT INTO operation VALUES('804','54','8001',2,1,1);
+INSERT INTO operation VALUES('805','55','8001',2,1,2);
+INSERT INTO operation VALUES('111','1','1101',NULL,NULL,NULL);
+INSERT INTO operation VALUES('112','2','1101',NULL,NULL,NULL);
+INSERT INTO operation VALUES('113','3','1101',NULL,NULL,NULL);
+INSERT INTO operation VALUES('114','4','1101',NULL,NULL,NULL);
+INSERT INTO operation VALUES('115','5','1101',NULL,NULL,NULL);
+INSERT INTO operation VALUES('116','1','1102',NULL,NULL,NULL);
+INSERT INTO operation VALUES('117','2','1102',NULL,NULL,NULL);
+INSERT INTO operation VALUES('118','3','1102',NULL,NULL,NULL);
+INSERT INTO operation VALUES('119','4','1102',NULL,NULL,NULL);
+INSERT INTO operation VALUES('120','5','1102',NULL,NULL,NULL);
+INSERT INTO operation VALUES('211','6','2201',NULL,NULL,NULL);
+INSERT INTO operation VALUES('212','7','2201',NULL,NULL,NULL);
+INSERT INTO operation VALUES('213','8','2201',NULL,NULL,NULL);
+INSERT INTO operation VALUES('214','9','2201',NULL,NULL,NULL);
+INSERT INTO operation VALUES('215','10','2201',NULL,NULL,NULL);
+INSERT INTO operation VALUES('216','11','2202',NULL,NULL,NULL);
+INSERT INTO operation VALUES('217','12','2202',NULL,NULL,NULL);
+INSERT INTO operation VALUES('218','13','2202',NULL,NULL,NULL);
+INSERT INTO operation VALUES('219','14','2202',NULL,NULL,NULL);
+INSERT INTO operation VALUES('220','15','2202',NULL,NULL,NULL);
+INSERT INTO operation VALUES('311','16','3301',NULL,NULL,NULL);
+INSERT INTO operation VALUES('312','17','3301',NULL,NULL,NULL);
+INSERT INTO operation VALUES('313','18','3301',NULL,NULL,NULL);
+INSERT INTO operation VALUES('314','19','3301',NULL,NULL,NULL);
+INSERT INTO operation VALUES('315','20','3301',NULL,NULL,NULL);
+INSERT INTO operation VALUES('316','21','3302',NULL,NULL,NULL);
+INSERT INTO operation VALUES('317','22','3302',NULL,NULL,NULL);
+INSERT INTO operation VALUES('318','23','3302',NULL,NULL,NULL);
+INSERT INTO operation VALUES('319','24','3302',NULL,NULL,NULL);
+INSERT INTO operation VALUES('320','25','3302',NULL,NULL,NULL);
+INSERT INTO operation VALUES('411','26','4401',NULL,NULL,NULL);
+INSERT INTO operation VALUES('412','27','4401',NULL,NULL,NULL);
+INSERT INTO operation VALUES('413','28','4401',NULL,NULL,NULL);
+INSERT INTO operation VALUES('414','29','4401',NULL,NULL,NULL);
+INSERT INTO operation VALUES('415','30','4401',NULL,NULL,NULL);
+INSERT INTO operation VALUES('416','31','4402',NULL,NULL,NULL);
+INSERT INTO operation VALUES('417','32','4402',NULL,NULL,NULL);
+INSERT INTO operation VALUES('418','33','4402',NULL,NULL,NULL);
+INSERT INTO operation VALUES('419','34','4402',NULL,NULL,NULL);
+INSERT INTO operation VALUES('420','35','4402',NULL,NULL,NULL);
+INSERT INTO operation VALUES('511','36','5501',NULL,NULL,NULL);
+INSERT INTO operation VALUES('512','37','5501',NULL,NULL,NULL);
+INSERT INTO operation VALUES('513','38','5501',NULL,NULL,NULL);
+INSERT INTO operation VALUES('514','39','5501',NULL,NULL,NULL);
+INSERT INTO operation VALUES('515','40','5501',NULL,NULL,NULL);
+INSERT INTO operation VALUES('611','41','6601',NULL,NULL,NULL);
+INSERT INTO operation VALUES('612','42','6601',NULL,NULL,NULL);
+INSERT INTO operation VALUES('613','43','6601',NULL,NULL,NULL);
+INSERT INTO operation VALUES('614','44','6601',NULL,NULL,NULL);
+INSERT INTO operation VALUES('615','45','6601',NULL,NULL,NULL);
+INSERT INTO operation VALUES('711','46','7701',NULL,NULL,NULL);
+INSERT INTO operation VALUES('712','47','7701',NULL,NULL,NULL);
+INSERT INTO operation VALUES('713','48','7701',NULL,NULL,NULL);
+INSERT INTO operation VALUES('714','49','7701',NULL,NULL,NULL);
+INSERT INTO operation VALUES('715','50','7701',NULL,NULL,NULL);
+INSERT INTO operation VALUES('811','51','8801',NULL,NULL,NULL);
+INSERT INTO operation VALUES('812','52','8801',NULL,NULL,NULL);
+INSERT INTO operation VALUES('813','53','8801',NULL,NULL,NULL);
+INSERT INTO operation VALUES('814','54','8801',NULL,NULL,NULL);
+INSERT INTO operation VALUES('815','55','8801',NULL,NULL,NULL);
 
 --criar procedures
 CREATE OR REPLACE PROCEDURE insertContainer(
@@ -380,7 +538,7 @@ CREATE OR REPLACE function containers_to_load(p_ship_id ship.vehicle_ship_id%typ
 BEGIN
     OPEN load_containers FOR
 
-        SELECT operation.container_id,container.container_type,container.container_payload,COORDINATE_X,COORDINATE_Y,COORDINATE_Z
+        SELECT operation.container_id, container.container_type,container.container_load
         FROM operation INNER JOIN container ON operation.container_id = container.container_id
         WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'LOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
                                                                                                                                     WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
@@ -396,7 +554,7 @@ CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%
 BEGIN
     OPEN offload_containers FOR
 
-        SELECT operation.container_id,container.container_type,container.container_load
+        SELECT operation.container_id,container.container_type, COORDINATE_X,COORDINATE_Y,COORDINATE_Z,container.container_load
         FROM operation INNER JOIN container ON operation.container_id = container.container_id
         WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
                                                                                                                                       WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
@@ -430,5 +588,35 @@ BEGIN
     WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id
     ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY
     return func_occupancy_rate(p_ship_id,cm)
+END
+/
+
+create or replace FUNCTION a_cm (ano NUMBER) RETURN SYS_REFCURSOR
+    IS
+    cur sys_refcursor
+BEGIN
+    OPEN cur for
+        select count(DISTINCT cargo_manifest.cargo_manifest_id)
+            as CARGO_MANIFESTS,(COUNT(operation.CONTAINER_ID)/count(distinct CARGO_MANIFEST.cargo_manifest_id))
+            FROM cargo_manifest INNER JOIN operation ON OPERATION.CARGO_MANIFEST_ID=CARGO_MANIFEST.CARGO_MANIFEST_ID
+            where EXTRACT (YEAR FROM cm_date)= ano group by EXTRACT(YEAR FROM cargo_manifest.cm_date)
+    return cur
+end
+
+
+SET SERVEROUTPUT ON
+DECLARE
+    curs SYS_REFCURSOR
+    anos NUMBER
+    media FLOAT
+
+BEGIN
+    curs:=a_cm(2021)
+    LOOP
+        FETCH curs into anos,media
+        EXIT WHEN curs%NOTFOUND
+        DBMS_OUTPUT.PUT_LINE('cargo manifests:'||anos)
+        DBMS_OUTPUT.PUT_LINE('media por ano:'||media)
+    END LOOP
 END
 /
