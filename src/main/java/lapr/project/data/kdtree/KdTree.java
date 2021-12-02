@@ -1,4 +1,4 @@
-package lapr.project.data.kdtree;//Tree;
+package lapr.project.data.kdtree;
 
 
 import java.awt.geom.Point2D;
@@ -61,12 +61,6 @@ public class KdTree <T extends Comparable<T>>  {
 
 
 
-
-    public KdTree(List<Node<T>> nodes) {
-        buildBalancedTree(nodes);
-    }
-
-
     public void buildBalancedTree(List<Node<T>> nodes) {
         root = new Object() {
             Node<T> buildTree(boolean divX, List<Node<T>> nodes) {
@@ -109,8 +103,6 @@ public class KdTree <T extends Comparable<T>>  {
         }
         return node;
     }
-
-
 
     private void insert(Node<T> currentNode, Node<T> node, boolean divX){
 

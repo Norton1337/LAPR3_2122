@@ -9,20 +9,20 @@ import java.util.LinkedList;
 public class PortsAndWarehousesController {
 
     private final IShipsDB shipDB;
-    private final ILocals portsAndWarehousesDB;
+    private final ILocals localDB;
 
-    public PortsAndWarehousesController(IShipsDB shipDB, ILocals portsAndWarehousesDB) {
+    public PortsAndWarehousesController(IShipsDB shipDB, ILocals localDB) {
         this.shipDB = shipDB;
-        this.portsAndWarehousesDB = portsAndWarehousesDB;
+        this.localDB = localDB;
     }
 
     public boolean addPortAndWarehouse(Locals ports) {
-        portsAndWarehousesDB.addPortsAndWarehouses(ports);
+        localDB.addPortsAndWarehouses(ports);
         return true;
     }
 
     public LinkedList<Locals> getAllPortsAndWharehouse(){
-        return new LinkedList<>(portsAndWarehousesDB.getAllPortsAndWarehouses());
+        return new LinkedList<>(localDB.getAllPortsAndWarehouses());
     }
 
 }

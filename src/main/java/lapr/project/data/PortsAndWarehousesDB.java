@@ -1,37 +1,36 @@
-/*
+
 package lapr.project.data;
 
-import lapr.project.model.PortsAndWarehouses.IDB.IPortsAndWarehouses;
-import lapr.project.model.PortsAndWarehouses.PortsAndWarehouses;
+import lapr.project.model.locals.Locals;
 
 import java.util.List;
 
-public class PortsAndWarehousesDB implements IPortsAndWarehouses {
-    @Override
-    public List<PortsAndWarehouses> getAllPortsAndWarehouses() {
+public class PortsAndWarehousesDB  {
+
+    public List<Locals> getAllPortsAndWarehouses() {
         return null;
     }
 
-    @Override
-    public PortsAndWarehouses getPortsAndWarehousesById(String id) {
+
+    public Locals getPortsAndWarehousesById(String id) {
         return null;
     }
 
-    @Override
-    public boolean addPortsAndWarehouses(PortsAndWarehouses portsAndWarehouses) {
+
+    public boolean addPortsAndWarehouses(Locals portsAndWarehouses) {
         return false;
     }
 
-    @Override
-    public boolean updateShip(PortsAndWarehouses portsAndWarehouses) {
+
+    public boolean updateShip(Locals portsAndWarehouses) {
         return false;
     }
 
-    @Override
+
     public boolean removeShip(String id) {
         return false;
     }
 }
 
 
- */
+
