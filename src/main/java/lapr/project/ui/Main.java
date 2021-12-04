@@ -118,20 +118,19 @@ class Main {
                 //
 
                 /*
-                 * PortsAndWarehousesUI portsAndWarehousesUI = new
-                 * PortsAndWarehousesUI(portsAndWarehousesController);
-                 * portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-                 * LinkedList<Locals> portsAndWarehouses =
-                 * portsAndWarehousesController.getAllPortsAndWharehouse();
-                 * dataToKDTreeController.populateTree(portsAndWarehouses);
-                 * // System.out.println(dataToKDTreeController.getPortsNodes());
-                 * dataToKDTreeController.getPortsTree().print();
-                 * System.out.println("Height: " +
-                 * dataToKDTreeController.getPortsTree().height());
-                 * System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
-                 * System.out.println("-------");
-                 * System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
-                 */
+                  PortsAndWarehousesUI portsAndWarehousesUI = new
+                  PortsAndWarehousesUI(portsAndWarehousesController);
+                  portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+
+                  LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+                  dataToKDTreeController.populateTree(portsAndWarehouses);
+                  // System.out.println(dataToKDTreeController.getPortsNodes());
+                  //dataToKDTreeController.getPortsTree().print();
+                  //System.out.println("Height: " + dataToKDTreeController.getPortsTree().height());
+                  //System.out.println("Size: " + dataToKDTreeController.getPortsNodes().size());
+                  //System.out.println("-------");
+                  //System.out.println(dataToKDTreeController.getPortsTree().balanceFactor());
+                   */
 
                 /*
                  * DBController controller = new DBController();
