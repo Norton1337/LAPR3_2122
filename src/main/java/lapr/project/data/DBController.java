@@ -94,4 +94,17 @@ public class DBController extends DataHandler {
         return ls;
     }
 
+    public String cont_where(String cont) throws SQLException {
+        String whereCont = null;
+        try (CallableStatement resultado = getConnection().prepareCall("{?= call cont_where (?)}")) {
+            resultado.registerOutParameter(1, Types.VARCHAR);
+            resultado.setString(2, cont);
+            resultado.executeUpdate();
+            whereCont = resultado.getString(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return whereCont;
+    }
+
 }
