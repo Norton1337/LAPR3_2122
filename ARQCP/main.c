@@ -21,9 +21,9 @@ void printMatrix(int matrix[N_MAX][N_MAX][N_MAX]){
   printf("\nMatrix is :\n");
     for(int x=0;x<N_MAX;x++)
     {
-        for(int y=0;y<N_MAX;y++)
+        for(int y=0;y<N_MAX-1;y++)
         {
-            for(int z=0;z<N_MAX;z++){
+            for(int z=0;z<N_MAX-1;z++){
                 printf("%d\t",matrix[x][y][z]);
             }
         }
@@ -40,7 +40,7 @@ void printArray(int arr[]){
 
 int * divideByComma(char *pointer){
     int counter = 0;
-    
+
     static int arr[N_ELEM];
     while (pointer != NULL) {
             int a = atoi(pointer);
@@ -49,7 +49,7 @@ int * divideByComma(char *pointer){
             pointer = strtok (NULL, ",");
             counter++;
     }
-    
+
     return arr;
 }
 
@@ -59,8 +59,8 @@ int main()
 {
     int matrix[N_MAX][N_MAX][N_MAX];
     putRestWithZero(matrix);
-    
-    
+
+
     FILE* filePointer;
     int bufferLength = 255;
     char buffer[bufferLength];
@@ -68,24 +68,25 @@ int main()
     filePointer = fopen("cargo.txt", "r");
 
     while(fgets(buffer, bufferLength, filePointer)) {
-        char *s = buffer; 
+        char *s = buffer;
         char *pt;
         pt = strtok (s,",");
-        
+
         int *arrayOfInt = divideByComma(pt);
-        
+
         int elem = arrayOfInt[0];
         int x = arrayOfInt[1];
         int y = arrayOfInt[2];
         int z = arrayOfInt[3];
-        
+
         matrix[x][y][z] = elem;
-        
-        
+
+
         printMatrix(matrix);
         printArray(arrayOfInt);
     }
 
+    //Close file descriptor
     fclose(filePointer);
 }
 
