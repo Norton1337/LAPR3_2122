@@ -10,6 +10,7 @@
 		movl num(%rip), %ecx
 		subl $1, %ecx
 		
+		# Check if given coordinates are not larger than matrix size
 		cmpl %ecx, %edi
 		jg end
 		cmpl %ecx, %esi
@@ -17,6 +18,7 @@
 		cmpl %ecx, %edx
 		jg end
 		
+		# Check if given coordinates are not smaller than 0
 		cmpl $0, %edi
 		jl end
 		cmpl $0, %esi
@@ -26,16 +28,18 @@
 		addl $1, %ecx
 		movq $0, %rbx
 		
+		# Move in z axis
 		movl $4, %eax
-	
 		mull %edx
 		addl %eax, %ebx
 
+		# Move in y axis
 		movl $4, %eax
 		mull %ecx
 		mull %esi
 		addl %eax, %ebx
 		
+		# Move in x axis
 		movl $4, %eax
 		mull %ecx
 		mull %ecx
@@ -45,6 +49,7 @@
 		leaq matrix(%rip), %rdi 
 		movq $0, %rax
 		
+		# Check if desired position has a container
 		addq %rbx, %rdi
 		movl (%rdi), %ebx
 		cmpl $0, %ebx

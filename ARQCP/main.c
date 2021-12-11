@@ -43,26 +43,27 @@ int main(){
      //Close file descriptor
     fclose(filePointer);
     
-    
+    printf("\n----------------------------------------------------\n");
+    printf("US313: 'Fill matrix with each container's ID in its respective place.'\n\n");
     printMatrix(matrix);
     
-    printf("\n--------------------------\n");
-    printf("US314: 'get amount of containers and free slots.'\n\n");
+    printf("\n----------------------------------------------------\n");
+    printf("US314: 'Get amount of containers and free slots.'\n\n");
     long amountOfContainers = countContainers();
     int *amount = (int*) &amountOfContainers;
-	printf("There are %d containers\n",*amount);
-	printf("There are %d free slots\n",*(amount+1));
+	printf("There are %d containers.\n",*amount);
+	printf("There are %d free slots.\n",*(amount+1));
 	
-	printf("\n--------------------------\n");
-	printf("US315: 'verify if container exists, 1 if it does, 0 otherwise.'\n\n");
-	int exists = containerExists(4,4,4);
-	printf("Exists: %d\n",exists);
+	printf("\n----------------------------------------------------\n");
+	printf("US315: 'Verify if container exists, 1 if it does, 0 otherwise.'\n\n");
+	int exists = containerExists(1,1,0);
+	printf("Exists: %d.\n",exists);
 	
-	printf("\n--------------------------\n");
-	printf("US316: 'get amount of occupied positions in array.'\n\n");
+	printf("\n----------------------------------------------------\n");
+	printf("US316: 'Get amount of occupied positions in array.'\n\n");
 	Coordinates coords[SIZE] = {{1,1,1}, {3,2,0}, {4,4,4}, {5,8,4}};
 	int amountOccupied = totalOccupied(coords);
-    printf("There are %d occupied positions in this array\n\n",amountOccupied);
+    printf("There are %d occupied positions in this array.\n\n",amountOccupied);
 
     return 0;
 }

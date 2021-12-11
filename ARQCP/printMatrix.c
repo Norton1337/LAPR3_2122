@@ -6,9 +6,11 @@ void printMatrix(int matrix[N_MAX][N_MAX][N_MAX]){
     {
         for(int y=0;y<N_MAX;y++)
         {
+            printf("|");
             for(int z=0;z<N_MAX;z++){
                 printf("%d\t",matrix[x][y][z]);
             }
+            
         }
         printf("\n");
     }
