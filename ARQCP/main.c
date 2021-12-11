@@ -7,24 +7,13 @@
 #include "divideByComma.h"
 #include "US314.h"
 #include "US315.h"
-
-#define N_ELEM 4
-#define N_MAX 5
-#define SIZE 4
-typedef struct {
-	int x;
-	int y;
-	int z;
-} Coordinates;
-
-	
+#include "US316.h"
+#include "utility.h"
 
 int num = N_MAX;
 int elemSize = N_ELEM;
 int matrix[N_MAX][N_MAX][N_MAX];
 int structArraySize = SIZE;
-
-
 
 int main(){
 	
