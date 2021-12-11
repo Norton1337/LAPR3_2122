@@ -4,6 +4,7 @@
 #define N_ELEM 4
 #define N_MAX 5
 #define SIZE 4
+
 typedef struct {
 	int x;
 	int y;

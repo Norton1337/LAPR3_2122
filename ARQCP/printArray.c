@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define N_ELEM 4
+#include "utility.h"
 void printArray(int arr[]){
     printf("[");
     for(int i = 0; i < N_ELEM; i++)

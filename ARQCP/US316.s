@@ -17,9 +17,11 @@
 		addq $4, %rdi
 		movl (%rdi), %edx
 		pushq %rdi
+		pushq %rcx
 		movl %eax, %edi
 		movl %ebx, %esi
 		call containerExists
+		popq %rcx
 		popq %rdi
 		cmpl $0, %eax
 		je skip

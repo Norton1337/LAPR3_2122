@@ -1,4 +1,4 @@
-#define N_MAX 5
+#include "utility.h"
 void putRestWithZero(int matrixCopy[N_MAX][N_MAX][N_MAX]){
     for(int x=0;x<N_MAX;x++)
     {

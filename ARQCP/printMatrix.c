@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define N_MAX 5
+#include "utility.h"
 void printMatrix(int matrix[N_MAX][N_MAX][N_MAX]){
   printf("\nMatrix is :\n");
     for(int x=0;x<N_MAX;x++)
