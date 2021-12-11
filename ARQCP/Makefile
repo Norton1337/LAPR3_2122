@@ -1,7 +1,7 @@
-main: main.o putRestWithZero.o printMatrix.o printArray.o divideByComma.o US314.o US315.o
-	gcc -Wall -g main.o putRestWithZero.o printMatrix.o printArray.o divideByComma.o US314.o US315.o -o main
+main: main.o putRestWithZero.o printMatrix.o printArray.o divideByComma.o US314.o US315.o US316.o
+	gcc -Wall -g main.o putRestWithZero.o printMatrix.o printArray.o divideByComma.o US314.o US315.o US316.o -o main
 
-main.o: main.c putRestWithZero.h printMatrix.h printArray.h divideByComma.h US314.h US315.h
+main.o: main.c putRestWithZero.h printMatrix.h printArray.h divideByComma.h US314.h US315.h US316.h
 	gcc -Wall -g -c main.c -o main.o
 
 putRestWithZero.o: putRestWithZero.c
@@ -22,7 +22,9 @@ US314.o: US314.s
 US315.o: US315.s
 	gcc -Wall -g -c US315.s -o US315.o
 	
-
+US316.o: US316.s
+	gcc -Wall -g -c US316.s -o US316.o
+	
 run: main
 	./main
 
