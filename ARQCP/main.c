@@ -1,79 +1,36 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "putRestWithZero.h"
+#include "printMatrix.h"
+#include "printArray.h"
+#include "divideByComma.h"
+#include "US314.h"
+#include "US315.h"
+
 #define N_ELEM 4
 #define N_MAX 5
 
-void putRestWithZero(int matrixCopy[N_MAX][N_MAX][N_MAX]){
-    for(int x=0;x<N_MAX;x++)
-    {
-        for(int y=0;y<N_MAX;y++)
-        {
-            for(int z=0;z<N_MAX;z++){
-                matrixCopy[x][y][z] = 0;
-            }
-        }
-    }
-}
+int num = N_MAX;
+int elemSize = N_ELEM;
+int matrix[N_MAX][N_MAX][N_MAX];
 
-
-void printMatrix(int matrix[N_MAX][N_MAX][N_MAX]){
-  printf("\nMatrix is :\n");
-    for(int x=0;x<N_MAX;x++)
-    {
-        for(int y=0;y<N_MAX-1;y++)
-        {
-            for(int z=0;z<N_MAX-1;z++){
-                printf("%d\t",matrix[x][y][z]);
-            }
-        }
-        printf("\n");
-    }
-}
-
-void printArray(int arr[]){
-    printf("[");
-    for(int i = 0; i < N_ELEM; i++)
-      printf("%d ", arr[i]);
-    printf("]\n");
-}
-
-int * divideByComma(char *pointer){
-    int counter = 0;
-
-    static int arr[N_ELEM];
-    while (pointer != NULL) {
-            int a = atoi(pointer);
-            arr[counter] = a;
-            //printf("%d\n", counter);
-            pointer = strtok (NULL, ",");
-            counter++;
-    }
-
-    return arr;
-}
-
-
-
-int main()
-{
-    int matrix[N_MAX][N_MAX][N_MAX];
+int main(){
+	
     putRestWithZero(matrix);
-
 
     FILE* filePointer;
     int bufferLength = 255;
     char buffer[bufferLength];
 
     filePointer = fopen("cargo.txt", "r");
-
+	
     while(fgets(buffer, bufferLength, filePointer)) {
         char *s = buffer;
         char *pt;
         pt = strtok (s,",");
 
         int *arrayOfInt = divideByComma(pt);
-
         int elem = arrayOfInt[0];
         int x = arrayOfInt[1];
         int y = arrayOfInt[2];
@@ -81,13 +38,27 @@ int main()
 
         matrix[x][y][z] = elem;
 
-
-        printMatrix(matrix);
-        printArray(arrayOfInt);
+        //printMatrix(matrix);
+        //printArray(arrayOfInt);
     }
-
-    //Close file descriptor
+     //Close file descriptor
     fclose(filePointer);
+    
+    
+    printMatrix(matrix);
+    
+    printf("\n--------------------------\n");
+    printf("US314: 'get amount of containers and free slots.'\n\n");
+    long amountOfContainers = countContainers();
+    int *amount = (int*) &amountOfContainers;
+    
+	printf("There are %d containers\n",*amount);
+	printf("There are %d free slots\n",*(amount+1));
+	printf("\n--------------------------\n");
+	printf("US315: 'verify if container exists, 1 if it does, 0 otherwise.'\n\n");
+	int exists = containerExists(1,2,0);
+	printf("Exists: %d\n",exists);
+	printf("\n--------------------------\n");
+   
+    return 0;
 }
-
-
