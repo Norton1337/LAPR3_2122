@@ -14,7 +14,7 @@ class LocalsTest {
 
     @BeforeEach
     void setup(){
-        portsAndWarehouses = new Locals("Europe", "Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
+        portsAndWarehouses = new Locals("Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
     }
 
     @Test
@@ -24,12 +24,7 @@ class LocalsTest {
         assertEquals("12345", portsAndWarehouses.getId());
     }
 
-    @Test
-    void setAndGetContinentTest(){
-        assertEquals("Europe", portsAndWarehouses.getContinent());
-        portsAndWarehouses.setContinent("Africa");
-        assertEquals("Africa", portsAndWarehouses.getContinent());
-    }
+
 
     @Test
     void setAndGetCountryTest(){
