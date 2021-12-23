@@ -87,4 +87,18 @@ public class Country {
     public void setCoordinates(String coordinates) {
         this.coordinates = coordinates;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "id='" + id + '\'' +
+                ", continent='" + continent + '\'' +
+                ", alpha2Code='" + alpha2Code + '\'' +
+                ", alpha3Code='" + alpha3Code + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", population='" + population + '\'' +
+                ", capital='" + capital + '\'' +
+                ", coordinates='" + coordinates + '\'' +
+                '}';
+    }
 }

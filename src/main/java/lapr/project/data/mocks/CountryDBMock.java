@@ -18,7 +18,7 @@ public class CountryDBMock implements ICountryDB {
     }
 
     @Override
-    public Country getCountry(String id) {
+    public Country getCountryById(String id) {
         for(Country elems: allContries){
             if(elems.getId().equals(id)){
                 return elems;

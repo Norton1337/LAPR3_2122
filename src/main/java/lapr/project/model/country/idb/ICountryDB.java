@@ -9,7 +9,7 @@ public interface ICountryDB {
 
     List<Country> getAllCountries();
 
-    Country getCountry(String id);
+    Country getCountryById(String id);
 
     boolean addCountry(Country elem);
 
