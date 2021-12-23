@@ -27,7 +27,7 @@ public class ContainerDBMock implements IContainerDB {
     public Container getContainer(String id) {
         for(Container elems : allContainers){
             if(elems.getId().equals(id)){
-                return  elems;
+                return elems;
             }
         }
         return null;
