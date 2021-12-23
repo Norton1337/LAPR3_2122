@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.LinkedList;
 
+import lapr.project.data.mocks.CountryDBMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,10 +17,11 @@ import lapr.project.ui.PortsAndWarehousesUI;
 class DataToKDTreeControllerTest {
 
 
+    CountryDBMock countryDBMock = new CountryDBMock();
     ShipDBMock shipDBMock = new ShipDBMock();
     PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
 
-    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(shipDBMock, portsAndWarehousesDBMock);
+    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(countryDBMock, portsAndWarehousesDBMock);
 
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
 

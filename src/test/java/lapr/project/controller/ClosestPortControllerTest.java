@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import static lapr.project.utils.Utils.printList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -7,6 +8,7 @@ import java.util.LinkedList;
 
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
+import lapr.project.ui.CountryUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,28 +24,36 @@ class ClosestPortControllerTest {
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
     PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
+    CountryDBMock countryDBMock = new CountryDBMock();
+    BordersDBMock bordersDBMock = new BordersDBMock();
 
     //CONTROLLERS DO MODEL
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
     ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(shipDBMock, portsAndWarehousesDBMock);
+    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(countryDBMock, portsAndWarehousesDBMock);
 
     //CONTROLLERS
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
+    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock);
 
 
     //LEITURA DE FICHEIRO
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
     PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
+
+    CountryUI countryUI = new CountryUI(countryController);
+
     
 
     
     @BeforeEach
     void setup(){
+        countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
+
         shipUI.importShips("Docs/Input/bships.csv");
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
@@ -62,6 +72,12 @@ class ClosestPortControllerTest {
         Locals receivedPort2 = cpc.getPort(dataToBstController, dataToKDTreeController, "DHBN", "31/01/2020 05:36");
         assertEquals(dataToKDTreeController.getPortsTree().getAllElements().get(5), receivedPort);
         assertNull(receivedPort2);
+    }
+
+
+    @Test
+    void test(){
+       printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
     }
 
 

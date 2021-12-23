@@ -89,8 +89,8 @@ public class Locals implements Comparable<Locals> {
     public String toString() {
         return "PortsAndWarehouses{" +
                 "id='" + id + '\'' +
-                //", continent='" + continent + '\'' +
-               // ", country='" + country + '\'' +
+                ", continent='" + continent + '\'' +
+                ", country='" + country + '\'' +
                 ", code=" + code +
                 //", portName='" + portName + '\'' +
                 //", coordinates='" + coordinates + '\'' +
