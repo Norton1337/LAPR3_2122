@@ -11,6 +11,8 @@ public interface ICountryDB {
 
     Country getCountryById(String id);
 
+    String getCountryIdByName(String name);
+
     boolean addCountry(Country elem);
 
     boolean updateCountry(Country elem);

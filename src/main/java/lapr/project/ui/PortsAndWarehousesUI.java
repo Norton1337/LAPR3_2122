@@ -37,7 +37,6 @@ public class PortsAndWarehousesUI {
 
                     String coordinates = list.get(4)+ ","+ list.get(5);
 
-
                     newPortsAndWarehouses = new Locals(list.get(0), list.get(1), Integer.parseInt(list.get(2)), list.get(3), coordinates);
                     portsAndWarehousesController.addPortAndWarehouse(newPortsAndWarehouses);
 

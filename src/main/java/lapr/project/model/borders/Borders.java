@@ -4,13 +4,13 @@ public class Borders {
 
     private String Id;
 
-    private String country1;
-    private String country2;
+    private String country1Id;
+    private String country2Id;
 
 
     public Borders(String country1, String country2) {
-        this.country1 = country1;
-        this.country2 = country2;
+        this.country1Id = country1;
+        this.country2Id = country2;
     }
 
     public String getId() {
@@ -21,19 +21,28 @@ public class Borders {
         Id = id;
     }
 
-    public String getCountry1() {
-        return country1;
+    public String getCountry1Id() {
+        return country1Id;
     }
 
-    public void setCountry1(String country1) {
-        this.country1 = country1;
+    public void setCountry1Id(String country1Id) {
+        this.country1Id = country1Id;
     }
 
-    public String getCountry2() {
-        return country2;
+    public String getCountry2Id() {
+        return country2Id;
     }
 
-    public void setCountry2(String country2) {
-        this.country2 = country2;
+    public void setCountry2Id(String country2Id) {
+        this.country2Id = country2Id;
+    }
+
+    @Override
+    public String toString() {
+        return "Borders{" +
+                "Id='" + Id + '\'' +
+                ", country1Id='" + country1Id + '\'' +
+                ", country2Id='" + country2Id + '\'' +
+                '}';
     }
 }

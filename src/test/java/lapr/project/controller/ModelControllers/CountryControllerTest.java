@@ -1,6 +1,7 @@
 package lapr.project.controller.ModelControllers;
 
 import lapr.project.controller.model_controllers.CountryController;
+import lapr.project.data.mocks.BordersDBMock;
 import lapr.project.data.mocks.CountryDBMock;
 import lapr.project.ui.CountryUI;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +13,10 @@ class CountryControllerTest {
 
     //DB
     CountryDBMock countryDBMock = new CountryDBMock();
+    BordersDBMock bordersDBMock = new BordersDBMock();
 
     //Controller
-    CountryController countryController = new CountryController(countryDBMock);
+    CountryController countryController = new CountryController(countryDBMock, bordersDBMock);
 
 
     //LEITURA DE FICHEIRO
@@ -22,13 +24,15 @@ class CountryControllerTest {
 
     @BeforeEach
     void setup() {
-        countryUI.importCountries("Docs/Input/countries.csv");
+        countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
     }
 
 
     @Test
     void test() {
-        printList(countryController.getAllCountries());
+
+        //printList(countryController.getAllCountries());
+        printList(bordersDBMock.getAllBorders());
     }
 
 

@@ -28,6 +28,17 @@ public class CountryDBMock implements ICountryDB {
     }
 
     @Override
+    public String getCountryIdByName(String name) {
+        for(Country elems: allContries){
+            if(elems.getCountryName().trim().equals(name.trim())){
+                return elems.getId();
+            }
+        }
+        return null;
+    }
+
+
+    @Override
     public boolean addCountry(Country country) {
         country.setId(randomUUID());
         return allContries.add(country);

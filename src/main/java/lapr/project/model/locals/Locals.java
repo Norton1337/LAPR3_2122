@@ -2,8 +2,8 @@ package lapr.project.model.locals;
 
 public class Locals implements Comparable<Locals> {
     private String id;
-    private String continent;
 
+    private String continent;
     private String country;
 
     private int code;
