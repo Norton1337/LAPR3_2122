@@ -17,8 +17,8 @@ public class PortsAndWarehousesController {
     }
 
     public void addPortAndWarehouse(Locals ports) {
-        String countryId = countryDB.getCountryIdByName(ports.getCountry());
-        ports.setCountry(countryId);
+        String countryId = countryDB.getCountryIdByName(ports.getCountryId());
+        ports.setCountryId(countryId);
 
         localDB.addPortsAndWarehouses(ports);
     }

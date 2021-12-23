@@ -28,9 +28,9 @@ class LocalsTest {
 
     @Test
     void setAndGetCountryTest(){
-        assertEquals("Portugal", portsAndWarehouses.getCountry());
-        portsAndWarehouses.setCountry("Poland");
-        assertEquals("Poland", portsAndWarehouses.getCountry());
+        assertEquals("Portugal", portsAndWarehouses.getCountryId());
+        portsAndWarehouses.setCountryId("Poland");
+        assertEquals("Poland", portsAndWarehouses.getCountryId());
     }
 
     @Test
