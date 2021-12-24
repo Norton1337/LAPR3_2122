@@ -29,3 +29,54 @@ local_code,local_port_code,local_capacity,local_name,local_type,local_country,lo
 258,18012,500,Brest,Warehouse,France,46.4,-3.5
 259,18137,500,Batumi,Warehouse,Georgia,42.65,43.63333333
 260,18200,500,Vlore,Warehouse,Albania,43.48333333,18.48333333
+261,18326,500,Dunkirk,Warehouse,France,52.05,2.466666667
+262,18433,500,Horta,Warehouse,Portugal,39.53333333,-27.61666667
+263,18454,500,St Petersburg,Warehouse,Russia,58.88333333,31.21666667
+264,18476,500,Ponta Delgada,Warehouse,Portugal,38.73333333,-26.66666667
+265,18682,500,Poti,Warehouse,Georgia,44.13333333,42.65
+266,18867,500,Tallinn,Warehouse,Estonia,58.45,25.76666667
+267,18937,500,Valencia,Warehouse,Spain,38.45,-1.3
+268,19057,500,Antwerp,Warehouse,Belgium,52.23333333,5.466666667
+269,19473,500,Zeebrugge,Warehouse,Belgium,53.33333333,4.2
+270,20072,500,Rostock,Warehouse,Germany,53.15,14.1
+271,20301,500,Rio Grande,Warehouse,Brazil,-34.06666667,-53.06666667
+272,20351,500,Salvador,Warehouse,Brazil,-13.96666667,-37.51666667
+273,20512,500,Lysekil,Warehouse,Sweden,57.26666667,12.41666667
+274,20826,500,Bourgas,Warehouse,Bulgaria,43.5,28.48333333
+275,20847,500,Varna,Warehouse,Bulgaria,44.2,26.95
+276,21206,500,Stockholm,Warehouse,Sweden,58.33333333,19.05
+277,21381,500,Koper,Warehouse,Slovenia,46.55,14.73333333
+278,21451,500,Veracruz,Warehouse,Mexico,20.2,-94.13333333
+279,21457,500,Monaco,Warehouse,Monaco,44.73333333,8.45
+280,21556,500,Split,Warehouse,Croatia,44.5,17.43333333
+281,21852,500,Piraeus,Warehouse,Greece,38.95,24.63333333
+282,21863,500,Aspropyrgos,Warehouse,Greece,39.03333333,22.58333333
+283,22226,500,Halifax,Warehouse,Canada,43.65,-64.56666667
+284,22522,500,Mersin,Warehouse,Turkey,37.76666667,35.65
+285,22770,500,Piran,Warehouse,Slovenia,44.51666667,12.6
+286,23247,500,Vlissingen,Warehouse,Netherlands,53.45,4.6
+287,23428,500,Funchal,Warehouse,Portugal,33.65,-17.91666667
+288,24795,500,Izola,Warehouse,Slovenia,46.51666667,12.68333333
+289,25007,500,New Jersey,Warehouse,United States,41.66666667,-75.16666667
+289,25350,500,Vancouver,Warehouse,Canada,48.28333333,-122.1166667
+289,26147,500,Bergen,Warehouse,Norway,61.38333333,6.3
+289,26670,500,Buenos Aires,Warehouse,Argentina,-35.56666667,-57.38333333
+289,27248,500,Santos,Warehouse,Brazil,-24.93333333,-45.31666667
+289,27728,500,Narvik,Warehouse,Norway,67.41666667,18.41666667
+289,27792,500,San Vicente,Warehouse,Chile,-35.73333333,-72.15
+289,28082,500,Valparaiso,Warehouse,Chile,-32.01666667,-73.63333333
+289,28261,500,Buenaventura,Warehouse,Colombia,4.916666667,-76.05
+289,28313,500,Cartagena,Warehouse,Colombia,11.41666667,-76.53333333
+289,28781,500,Puerto Limon,Warehouse,Costa Rica,11,-82.01666667
+289,29002,500,Liverpool,Warehouse,United Kingdom,52.46666667,-4.033333333
+289,29239,500,London,Warehouse,United Kingdom,52.5,-1.066666667
+289,29749,500,Dublin,Warehouse,Ireland,52.35,-7.266666667
+289,29876,500,Guayaquil,Warehouse,Ecuador,-3.266666667,-78.9
+289,29973,500,Puerto Quetzal,Warehouse,Guatemala,14.91666667,-92.78333333
+289,30045,500,Callao,Warehouse,Peru,-13.05,-76.16666667
+289,213737,500,Feodosia,Warehouse,Ukraine,44.01666667,36.38333333
+289,216592,500,Cristobal,Warehouse,Panama,10.35,-78.91666667
+289,216593,500,Balboa,Warehouse,Panama,9.966666667,-78.56666667
+289,224858,500,Hamburg,Warehouse,Germany,52.55,10.983333333
+289,228264,500,Vlone,Warehouse,Albania,41.48333333,18.48333333
+289,246265,500,Ambarli,Warehouse,Turkey,41.98333333,27.53333333
