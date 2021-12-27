@@ -39,4 +39,15 @@ public class PortsAndWarehousesDBMock implements ILocals {
     public boolean removePortsAndWarehouses(String id) {
         return false;
     }
+
+    @Override
+    public Locals getPortByPortIdCode(String code) {
+        for(Locals elems : portsAndWarehouses){
+            if(elems.getPortId() == Integer.parseInt(code)){
+                return elems;
+            }
+        }
+
+        return null;
+    }
 }

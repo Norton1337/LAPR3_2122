@@ -18,6 +18,8 @@ public interface ILocals {
 
     boolean removePortsAndWarehouses(String id);
 
+    Locals getPortByPortIdCode(String code);
+
 }
 
 

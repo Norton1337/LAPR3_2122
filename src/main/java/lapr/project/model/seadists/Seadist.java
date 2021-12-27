@@ -46,4 +46,14 @@ public class Seadist {
     public void setDistance(float distance) {
         this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "Seadist{" +
+                "id='" + id + '\'' +
+                ", fromPortId='" + fromPortId + '\'' +
+                ", toPortId='" + toPortId + '\'' +
+                ", distance=" + distance +
+                '}';
+    }
 }

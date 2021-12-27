@@ -3,11 +3,13 @@ package lapr.project.controller.MostTravelledShips;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
+import lapr.project.controller.ToMatrixController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.locals.Locals;
 import lapr.project.ui.CountryUI;
 import lapr.project.ui.PortsAndWarehousesUI;
+import lapr.project.ui.SeadistUI;
 import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +29,7 @@ public class TestControll {
     PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
     CountryDBMock countryDBMock = new CountryDBMock();
     BordersDBMock bordersDBMock = new BordersDBMock();
+    SeadistDBMock seadistDBMock = new SeadistDBMock();
 
     //CONTROLLERS DO MODEL
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
@@ -40,13 +43,14 @@ public class TestControll {
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
     CountryController countryController =  new CountryController(countryDBMock, bordersDBMock);
-
+    SeadistController seadistController = new SeadistController(portsAndWarehousesDBMock, seadistDBMock);
+    ToMatrixController matrixController = new ToMatrixController(portsAndWarehousesDBMock, seadistDBMock);
 
     //LEITURA DE FICHEIRO
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
     PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
-
     CountryUI countryUI = new CountryUI(countryController);
+    SeadistUI seadistUI = new SeadistUI(seadistController);
 
 
 
@@ -64,11 +68,18 @@ public class TestControll {
         portsAndWarehouses.add(portsAndWarehouses.get(6));
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
+        seadistUI.importSeadist("Docs/Input/seadists.csv");
+
     }
 
     @Test
     void test(){
-        printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
+        //printList(countryController.getAllCountries());
+        //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
+        //printList(seadistController.getAllSeadist());
+
+        matrixController.buildMatrix(3);
+        matrixController.printMatrix();
     }
 
 

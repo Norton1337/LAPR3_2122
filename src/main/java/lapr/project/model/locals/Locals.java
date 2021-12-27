@@ -5,22 +5,21 @@ public class Locals implements Comparable<Locals> {
 
     private String countryId;
 
-    private int code;
+    private int portId;
     private String name;
     private String coordinates;
     private String shipId;
-
+    private String type;
 
     // TODO ACRESCENTAR
-    private String portId;
     private int localCapacity;
-    private String type;
+
 
 
     public Locals(String country, int code,
                               String portName, String coordinates) {
         this.countryId = country;
-        this.code = code;
+        this.portId = code;
         this.name = portName;
         this.coordinates = coordinates;
     }
@@ -41,12 +40,12 @@ public class Locals implements Comparable<Locals> {
         this.countryId = countryId;
     }
 
-    public int getCode() {
-        return code;
+    public int getPortId() {
+        return portId;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setPortId(int portId) {
+        this.portId = portId;
     }
 
     public String getPortName() {
@@ -73,20 +72,27 @@ public class Locals implements Comparable<Locals> {
         this.shipId = shipId;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
-        return "PortsAndWarehouses{" +
+        return "Locals{" +
                 "id='" + id + '\'' +
-                ", country='" + countryId + '\'' +
-                ", code=" + code +
-                ", name ='" + name + '\'' +
+                ", countryId='" + countryId + '\'' +
+                ", name='" + name + '\'' +
                 ", coordinates='" + coordinates + '\'' +
                 ", shipId='" + shipId + '\'' +
+                ", portId='" + portId + '\'' +
+                ", localCapacity=" + localCapacity +
+                ", type='" + type + '\'' +
                 '}';
     }
-
-
 
     @Override
     public int compareTo(Locals o) {

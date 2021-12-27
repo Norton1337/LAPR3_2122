@@ -35,9 +35,9 @@ class LocalsTest {
 
     @Test
     void setAndGetCodeTest(){
-        assertEquals(12345, portsAndWarehouses.getCode());
-        portsAndWarehouses.setCode(67890);
-        assertEquals(67890, portsAndWarehouses.getCode());
+        assertEquals(12345, portsAndWarehouses.getPortId());
+        portsAndWarehouses.setPortId(67890);
+        assertEquals(67890, portsAndWarehouses.getPortId());
     }
 
     @Test

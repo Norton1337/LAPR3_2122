@@ -16,9 +16,27 @@ public class PortsAndWarehousesController {
         this.localDB = localDB;
     }
 
-    public void addPortAndWarehouse(Locals ports) {
+    public void addPort(Locals ports) {
         String countryId = countryDB.getCountryIdByName(ports.getCountryId());
         ports.setCountryId(countryId);
+        ports.setType("Port");
+
+        localDB.addPortsAndWarehouses(ports);
+    }
+
+
+    public void addWarehouse(Locals ports) {
+        String countryId = countryDB.getCountryIdByName(ports.getCountryId());
+        ports.setCountryId(countryId);
+        ports.setType("Warehouse");
+
+        localDB.addPortsAndWarehouses(ports);
+    }
+
+    public void addCountry(Locals ports) {
+        String countryId = countryDB.getCountryIdByName(ports.getCountryId());
+        ports.setCountryId(countryId);
+        ports.setType("Country");
 
         localDB.addPortsAndWarehouses(ports);
     }
