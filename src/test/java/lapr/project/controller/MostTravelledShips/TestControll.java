@@ -79,7 +79,7 @@ public class TestControll {
         //printList(seadistController.getAllSeadist());
 
         matrixController.buildMatrix(3);
-        //matrixController.printMatrix();
+        matrixController.printMatrix();
 
 
     }

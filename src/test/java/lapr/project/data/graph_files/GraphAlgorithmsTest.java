@@ -135,6 +135,7 @@ public class GraphAlgorithmsTest {
 
 		
 		path = GraphAlgorithms.BFS(completeMap, "Porto");
+		System.out.println(path);
 		
 		assertTrue("Should give all vertices ", path.size()==11);
 

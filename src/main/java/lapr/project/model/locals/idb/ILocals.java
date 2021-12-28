@@ -12,7 +12,9 @@ public interface ILocals {
 
     List<Locals> getAllCapitals();
 
-    //Locals getLocalWithC
+    Locals getLocalWithLocalName(String name);
+
+    Locals getLocalWithCapital(String capital);
 
     Locals getPortsAndWarehousesById(String id);
 

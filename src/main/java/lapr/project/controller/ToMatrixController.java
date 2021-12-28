@@ -1,28 +1,30 @@
 package lapr.project.controller;
 
+import lapr.project.controller.helper_classes.KMTravelledCalculator;
 import lapr.project.controller.model_controllers.CountryController;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
+import lapr.project.data.graph_files.GraphAlgorithms;
 import lapr.project.model.borders.Borders;
 import lapr.project.model.borders.idb.IBordersDB;
+import lapr.project.model.country.Country;
 import lapr.project.model.country.idb.ICountryDB;
 import lapr.project.model.locals.Locals;
 import lapr.project.model.locals.idb.ILocals;
 import lapr.project.model.seadists.idb.ISeadist;
 
-import java.util.List;
-
+import static lapr.project.utils.Utils.convertCoordinates;
 import static lapr.project.utils.Utils.printList;
 
 
 public class ToMatrixController {
 
-    private AdjacencyMatrixGraph<Locals, Double> freightNetworkMatrix;
-    private ILocals localsDB;
-    private ISeadist seadistDB;
-    private ICountryDB countryDB;
-    private IBordersDB bordersDB;
+    private final AdjacencyMatrixGraph<Locals, Double> freightNetworkMatrix;
+    private final ILocals localsDB;
+    private final ISeadist seadistDB;
+    private final ICountryDB countryDB;
+    private final IBordersDB bordersDB;
 
-    private CountryController countryController;
+    private final CountryController countryController;
 
 
     public ToMatrixController(ILocals localsDB, ISeadist seadistDB, ICountryDB countryDB, IBordersDB bordersDB) {
@@ -31,12 +33,12 @@ public class ToMatrixController {
         this.seadistDB = seadistDB;
         this.countryDB = countryDB;
         this.bordersDB = bordersDB;
-        this.countryController = new CountryController(countryDB,bordersDB,localsDB);
+        this.countryController = new CountryController(countryDB, bordersDB, localsDB);
     }
 
 
-    public void buildMatrix(int nClosestPorts){
-        for(Locals elem: localsDB.getAllPortsAndWarehouses()){
+    public void buildMatrix(int nClosestPorts) {
+        for (Locals elem : localsDB.getAllPortsAndWarehouses()) {
             freightNetworkMatrix.insertVertex(elem);
         }
 
@@ -46,31 +48,50 @@ public class ToMatrixController {
          */
 
 
-        //TODO Buscar pelo nome, e se portId = -1
+        for (Locals elems : localsDB.getAllCapitals()) {
+            String countryName = countryDB.getCountryWithCapital(elems.getName()).getCountryName();
 
-        for(Locals elems: localsDB.getAllCapitals()){
-            List<Borders> bordersOfCountry = countryController.getAllBordersOfCountry(elems.getName());
-            for(Borders borders: bordersOfCountry){
-                //localsDB.get
+            for (Borders borders : countryController.getAllBordersOfCountry(countryName)) {
 
 
-                //freightNetworkMatrix.insertEdge(elems, localsDB.ge)
+                Country country1 = countryDB.getCountryById(borders.getCountry1Id());
+                Country country2 = countryDB.getCountryById(borders.getCountry2Id());
+
+                Locals locals1 = localsDB.getLocalWithCapital(country1.getCapital());
+                Locals locals2 = localsDB.getLocalWithCapital(country2.getCapital());
+
+                String lat1 = convertCoordinates(locals1.getCoordinates())[0];
+                String long1 = convertCoordinates(locals1.getCoordinates())[1];
+
+                String lat2 = convertCoordinates(locals2.getCoordinates())[0];
+                String long2 = convertCoordinates(locals2.getCoordinates())[1];
+
+                KMTravelledCalculator kmTravelledCalculator = new KMTravelledCalculator();
+                Double weight = kmTravelledCalculator.calculate(lat1, long1, lat2, long2);
+
+                //System.out.printf("DEBUG MATRIX: %s %s  %s\n", locals1.getName(), locals2.getName(), weight);
+                freightNetworkMatrix.insertEdge(locals1, locals2, weight);
             }
-            //System.out.println(elems.getName());
-            //printList(countryController.getAllBordersOfCountry(elems.getName()));
         }
 
-        printList(localsDB.getAllPortsAndWarehouses());
-        //freightNetworkMatrix.insertEdge()
+
+        /**
+         * Insert Edge relative to ports from seadist
+         */
+
+        //TODO
 
 
 
+        /**
+         * Insert Edge relative to n closest
+         */
 
 
     }
 
 
-    public void printMatrix(){
+    public void printMatrix() {
         System.out.println(freightNetworkMatrix.toString());
     }
 }

@@ -65,4 +65,29 @@ public class PortsAndWarehousesDBMock implements ILocals {
 
         return capitalList;
     }
+
+    @Override
+    public Locals getLocalWithLocalName(String name) {
+        Locals locals = null;
+
+        for(Locals elems : portsAndWarehouses){
+            if(elems.getName().equals(name)){
+                locals = elems;
+            }
+        }
+        return locals;
+    }
+
+    @Override
+    public Locals getLocalWithCapital(String capital) {
+        Locals locals = null;
+
+        for(Locals elems : getAllCapitals()){
+            if(elems.getName().equals(capital)){
+                locals = elems;
+            }
+        }
+        return locals;
+    }
+
 }

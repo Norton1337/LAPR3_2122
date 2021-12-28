@@ -28,6 +28,16 @@ public class CountryDBMock implements ICountryDB {
     }
 
     @Override
+    public Country getCountryWithCapital(String capital) {
+        for(Country elems: allContries){
+            if(elems.getCapital().equals(capital)){
+                return elems;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public String getCountryIdByName(String name) {
         for(Country elems: allContries){
             if(elems.getCountryName().trim().equals(name.trim())){

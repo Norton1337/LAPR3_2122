@@ -10,6 +10,8 @@ import lapr.project.model.locals.idb.ILocals;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.printList;
+
 public class CountryController {
 
     private final ICountryDB countryDB;
@@ -53,10 +55,12 @@ public class CountryController {
         String idCountry = countryDB.getCountryIdByName(countryName);
 
         for(Borders elems : borderDB.getAllBorders()){
-            //System.out.printf("DEBUG: id=%s    countryid=%s   exist=%s\n", idCountry, elems.getCountry1Id(), elems.getCountry1Id().contains(idCountry));
-            if(elems.getCountry1Id().contains(idCountry) || elems.getCountry2Id().contains(idCountry) ){
-                bordersOfCountry.add(elems);
+            if((!(countryDB.getCountryById(elems.getCountry1Id()) == null)) && (!(countryDB.getCountryById(elems.getCountry2Id()) == null ))){
+                if(elems.getCountry1Id().contains(idCountry) || elems.getCountry2Id().contains(idCountry) ){
+                    bordersOfCountry.add(elems);
+                }
             }
+
         }
 
         return bordersOfCountry;

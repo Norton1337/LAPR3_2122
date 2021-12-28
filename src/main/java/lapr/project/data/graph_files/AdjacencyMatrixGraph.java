@@ -420,7 +420,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         StringBuilder sb = new StringBuilder();
         sb.append("Vertices:\n");
         for (int i = 0; i < numVertices; i++) {
-            sb.append(vertices.get(i));
+            sb.append(i + " " + vertices.get(i));
             sb.append("\n");
         }
         sb.append("\nMatrix:\n");

@@ -73,6 +73,7 @@ public class CountryUI {
                     String country2Id = countryController.findByName(list.get(1));
 
                     newBorder = new Borders(country1Id, country2Id);
+
                     countryController.addBorder(newBorder);
                 }
             }
