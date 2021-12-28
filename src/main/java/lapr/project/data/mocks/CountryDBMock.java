@@ -34,7 +34,7 @@ public class CountryDBMock implements ICountryDB {
                 return elems.getId();
             }
         }
-        return null;
+        return "null";
     }
 
 

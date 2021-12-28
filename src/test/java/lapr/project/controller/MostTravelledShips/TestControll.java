@@ -42,9 +42,9 @@ public class TestControll {
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
-    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock);
+    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock, portsAndWarehousesDBMock);
     SeadistController seadistController = new SeadistController(portsAndWarehousesDBMock, seadistDBMock);
-    ToMatrixController matrixController = new ToMatrixController(portsAndWarehousesDBMock, seadistDBMock);
+    ToMatrixController matrixController = new ToMatrixController(portsAndWarehousesDBMock, seadistDBMock, countryDBMock, bordersDBMock);
 
     //LEITURA DE FICHEIRO
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
@@ -63,7 +63,7 @@ public class TestControll {
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
-        portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
+        portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");
         LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
         portsAndWarehouses.add(portsAndWarehouses.get(6));
         dataToKDTreeController.populateTree(portsAndWarehouses);
@@ -79,7 +79,9 @@ public class TestControll {
         //printList(seadistController.getAllSeadist());
 
         matrixController.buildMatrix(3);
-        matrixController.printMatrix();
+        //matrixController.printMatrix();
+
+
     }
 
 

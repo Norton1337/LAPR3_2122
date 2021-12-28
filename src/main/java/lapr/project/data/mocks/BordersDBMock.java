@@ -19,6 +19,7 @@ public class BordersDBMock implements IBordersDB {
         return new LinkedList<>(borders);
     }
 
+
     @Override
     public Borders getBorderById(String id) {
         for(Borders elems : getAllBorders()){

@@ -17,6 +17,8 @@ public class PortsAndWarehousesDBMock implements ILocals {
         return new LinkedList<>(portsAndWarehouses);
     }
 
+
+
     @Override
     public Locals getPortsAndWarehousesById(String id) {
         return null;
@@ -49,5 +51,18 @@ public class PortsAndWarehousesDBMock implements ILocals {
         }
 
         return null;
+    }
+
+
+    @Override
+    public List<Locals> getAllCapitals() {
+        List<Locals> capitalList = new LinkedList<>();
+        for(Locals elems : portsAndWarehouses){
+            if(elems.getType().equals("Capital")){
+                capitalList.add(elems);
+            }
+        }
+
+        return capitalList;
     }
 }

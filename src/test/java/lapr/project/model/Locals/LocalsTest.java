@@ -42,9 +42,9 @@ class LocalsTest {
 
     @Test
     void setAndGetPortNameTest(){
-        assertEquals("Leixões", portsAndWarehouses.getPortName());
-        portsAndWarehouses.setPortName("Port of Gdańsk");
-        assertEquals("Port of Gdańsk", portsAndWarehouses.getPortName());
+        assertEquals("Leixões", portsAndWarehouses.getName());
+        portsAndWarehouses.setName("Port of Gdańsk");
+        assertEquals("Port of Gdańsk", portsAndWarehouses.getName());
     }
 
     @Test
@@ -63,7 +63,9 @@ class LocalsTest {
 
     @Test
     void toStringTest(){
-        assertTrue(portsAndWarehouses.toString().contains("code=12345"));
+        portsAndWarehouses.setType("Port");
+        System.out.println(portsAndWarehouses.toString());
+        assertTrue(portsAndWarehouses.toString().contains("type='Port'"));
     }
 
     @Test

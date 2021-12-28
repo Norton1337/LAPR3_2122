@@ -10,6 +10,10 @@ public interface ILocals {
 
     List<Locals> getAllPortsAndWarehouses();
 
+    List<Locals> getAllCapitals();
+
+    //Locals getLocalWithC
+
     Locals getPortsAndWarehousesById(String id);
 
     boolean addPortsAndWarehouses(Locals portsAndWarehouses);
@@ -19,6 +23,8 @@ public interface ILocals {
     boolean removePortsAndWarehouses(String id);
 
     Locals getPortByPortIdCode(String code);
+
+
 
 }
 

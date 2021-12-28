@@ -48,11 +48,11 @@ public class Locals implements Comparable<Locals> {
         this.portId = portId;
     }
 
-    public String getPortName() {
+    public String getName() {
         return name;
     }
 
-    public void setPortName(String portName) {
+    public void setName(String portName) {
         this.name = portName;
     }
 

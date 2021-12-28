@@ -5,6 +5,7 @@ import lapr.project.model.locals.Locals;
 import lapr.project.model.locals.idb.ILocals;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class PortsAndWarehousesController {
 
@@ -43,6 +44,17 @@ public class PortsAndWarehousesController {
 
     public LinkedList<Locals> getAllPortsAndWharehouse(){
         return new LinkedList<>(localDB.getAllPortsAndWarehouses());
+    }
+
+
+    public LinkedList<Locals> getAllPorts(){
+        List<Locals> localsList = new LinkedList<>();
+        for(Locals elems: localDB.getAllPortsAndWarehouses()){
+            if(elems.getType().contains("Port")){
+                localsList.add(elems);
+            }
+        }
+        return new LinkedList<>(localsList);
     }
 
 }

@@ -38,7 +38,7 @@ class ClosestPortControllerTest {
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
-    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock);
+    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock, portsAndWarehousesDBMock);
 
 
     //LEITURA DE FICHEIRO
@@ -59,7 +59,7 @@ class ClosestPortControllerTest {
         dataToBstController.populateBST();
         
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPorts();
         portsAndWarehouses.add(portsAndWarehouses.get(6));
         dataToKDTreeController.populateTree(portsAndWarehouses); 
         
