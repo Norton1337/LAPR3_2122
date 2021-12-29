@@ -2,7 +2,12 @@ package lapr.project.data.mocks;
 
 import lapr.project.model.locals.Locals;
 import lapr.project.model.locals.idb.ILocals;
-
+import oracle.jdbc.OracleTypes;
+import lapr.project.data.db_scripts.DataHandler;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +55,11 @@ public class PortsAndWarehousesDBMock implements ILocals {
             }
         }
 
+        return null;
+    }
+
+    @Override
+    public List<String> freeships() throws SQLException {
         return null;
     }
 

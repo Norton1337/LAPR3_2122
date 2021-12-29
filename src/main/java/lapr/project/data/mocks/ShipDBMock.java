@@ -1,5 +1,6 @@
 package lapr.project.data.mocks;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +51,26 @@ public class ShipDBMock implements IShipsDB {
         }
 
         return null;
+    }
+
+    @Override
+    public List<String> containers_to_offload(String ship_id) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<String> a_cm(Integer ano) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public float capacity_rate_now(String ship_id) throws SQLException {
+        return 0;
+    }
+
+    @Override
+    public float capacity_rate(String ship_id, String cm_id) throws SQLException {
+        return 0;
     }
 
 
