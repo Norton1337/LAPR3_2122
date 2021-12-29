@@ -90,4 +90,16 @@ public class PortsAndWarehousesDBMock implements ILocals {
         return locals;
     }
 
+    @Override
+    public Locals getLocalWithPortId(String portId) {
+        Locals locals = null;
+
+        for(Locals elems : getAllPortsAndWarehouses()){
+            if(elems.getPortId() == Integer.parseInt(portId)){
+                locals = elems;
+            }
+        }
+        return locals;
+    }
+
 }

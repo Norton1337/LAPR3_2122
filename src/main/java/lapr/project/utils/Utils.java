@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Stream;
 
 import lapr.project.model.ship_position_data.ShipPositonData;
 
@@ -33,8 +34,24 @@ public class Utils {
             System.out.println(elems);
         }
 
+
         return true;
     }
+
+    public static <K,V> boolean printMap(Map<K,V> map) {
+        System.out.printf("[");
+        map.forEach((key, value) -> System.out.println(key + ":" + value));
+        System.out.println("]\n\n\n\n\n\n\n");
+
+        return true;
+    }
+
+
+//    public static <K,V> void sortMap(Map<K,V> map){
+//        try (Stream<Map.Entry<K, V>> sorted = map.entrySet().stream()
+//                .sorted(Map.Entry.<K, V>comparingByValue())) {
+//        }
+//    }
     
     public static Integer randomInt(){
         return ran.nextInt(1000) + 5;

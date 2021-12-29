@@ -96,6 +96,6 @@ public class Locals implements Comparable<Locals> {
 
     @Override
     public int compareTo(Locals o) {
-        return 0;
+        return (this.getId().compareTo(o.getId()));
     }
 }
