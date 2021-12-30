@@ -44,11 +44,18 @@ public class ToMatrixController {
     public void getNClosenessPlaces(Locals port, int nClosest){
         TreeMap<Locals, Double> closestMap = new TreeMap<>();
 
+        //TODO ana list
 
-        for(Locals elems : portsAndWarehousesController.getAllPorts()){
+
+        for(Locals elems : portsAndWarehousesController.getAllPortsAndWharehouse()){
+
+            //TODO if que verifica se e do mesmo continente e se o pais e diferente
+
             LinkedList<Locals> path = new LinkedList<>();
             double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
             if(weight > 0){
+
+                //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
                 closestMap.put(elems, weight);
             }
         }
@@ -58,6 +65,11 @@ public class ToMatrixController {
                 .stream()
                 .sorted(Map.Entry.comparingByValue())
                 .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+
+        //TODO pegar no numero do nClosest e adicionar para a lista as keys
+        Set<Locals> entry = sortedMap.keySet();
+
 
 
         printMap(sortedMap);
@@ -109,6 +121,9 @@ public class ToMatrixController {
          */
 
         for(Seadist elem: seadistDB.getAllSeadist()){
+
+            //TODO Connect only ports of the same country,
+
             //buscar fromPortId e tranformar em local
             Locals locals1 = localsDB.getLocalWithPortId(elem.getFromPortId());
 
