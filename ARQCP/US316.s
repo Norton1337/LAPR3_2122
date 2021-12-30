@@ -2,6 +2,7 @@
 	.global num
 	.global matrix
 	.global structArraySize
+	
 .section .text
 	.global totalOccupied
 	totalOccupied:
