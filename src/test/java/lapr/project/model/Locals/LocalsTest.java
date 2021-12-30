@@ -1,5 +1,6 @@
 package lapr.project.model.Locals;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -68,10 +69,7 @@ class LocalsTest {
         assertTrue(portsAndWarehouses.toString().contains("type='Port'"));
     }
 
-    @Test
-    void compareToTest(){
-        assertEquals(0, portsAndWarehouses.compareTo(portsAndWarehouses));
-    }
+
 
    
 }

@@ -64,11 +64,16 @@ public class TestControll {
         dataToBstController.populateBST();
 
         portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");
+
+
         LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
-        portsAndWarehouses.add(portsAndWarehouses.get(6));
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
         seadistUI.importSeadist("Docs/Input/seadists.csv");
+
+
+        //printList(portsAndWarehousesController.getAllPorts());
+        //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
 
     }
 
@@ -76,10 +81,13 @@ public class TestControll {
     void test(){
         //printList(countryController.getAllCountries());
         //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
+
+
         //printList(seadistController.getAllSeadist());
+        //printList(portsAndWarehousesController.getAllPorts());
 
         matrixController.buildMatrix(3);
-        matrixController.printMatrix();
+        //matrixController.printMatrix();
 
 
     }

@@ -18,11 +18,22 @@ public class PortsAndWarehousesController {
     }
 
     public void addPort(Locals ports) {
-        String countryId = countryDB.getCountryIdByName(ports.getCountryId());
-        ports.setCountryId(countryId);
-        ports.setType("Port");
+        boolean flag = true;
+        for(Locals elems : getAllPorts()){
+            if (elems.getName().equals(ports.getName())) {
+                System.out.println("Entrei");
+                flag = false;
+                break;
+            }
+        }
 
-        localDB.addPortsAndWarehouses(ports);
+        if(flag){
+            String countryId = countryDB.getCountryIdByName(ports.getCountryId());
+            ports.setCountryId(countryId);
+            ports.setType("Port");
+
+            localDB.addPortsAndWarehouses(ports);
+        }
     }
 
 
@@ -51,6 +62,17 @@ public class PortsAndWarehousesController {
         List<Locals> localsList = new LinkedList<>();
         for(Locals elems: localDB.getAllPortsAndWarehouses()){
             if(elems.getType().contains("Port")){
+                localsList.add(elems);
+            }
+        }
+        return new LinkedList<>(localsList);
+    }
+
+
+    public LinkedList<Locals> getAllCapitals(){
+        List<Locals> localsList = new LinkedList<>();
+        for(Locals elems: localDB.getAllPortsAndWarehouses()){
+            if(elems.getType().contains("Capital")){
                 localsList.add(elems);
             }
         }

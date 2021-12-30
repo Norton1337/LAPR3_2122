@@ -34,7 +34,6 @@
 		jl loop
 		
 	end:
-		
 		subl %r10d, %r9d #Subtracting amount of existing containers from total amount of slots
 		#Saving free slots in the 4 most significant bytes and the number of occupied slots in the four least significant bytes.
 		movslq %r9d, %rax

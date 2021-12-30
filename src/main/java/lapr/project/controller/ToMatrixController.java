@@ -2,18 +2,21 @@ package lapr.project.controller;
 
 import lapr.project.controller.helper_classes.KMTravelledCalculator;
 import lapr.project.controller.model_controllers.CountryController;
+import lapr.project.controller.model_controllers.PortsAndWarehousesController;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
-import lapr.project.data.graph_files.GraphAlgorithms;
+import lapr.project.data.graph_files.EdgeAsDoubleGraphAlgorithms;
 import lapr.project.model.borders.Borders;
 import lapr.project.model.borders.idb.IBordersDB;
 import lapr.project.model.country.Country;
 import lapr.project.model.country.idb.ICountryDB;
 import lapr.project.model.locals.Locals;
 import lapr.project.model.locals.idb.ILocals;
+import lapr.project.model.seadists.Seadist;
 import lapr.project.model.seadists.idb.ISeadist;
 
-import static lapr.project.utils.Utils.convertCoordinates;
-import static lapr.project.utils.Utils.printList;
+import java.util.*;
+
+import static lapr.project.utils.Utils.*;
 
 
 public class ToMatrixController {
@@ -25,6 +28,7 @@ public class ToMatrixController {
     private final IBordersDB bordersDB;
 
     private final CountryController countryController;
+    private final PortsAndWarehousesController portsAndWarehousesController;
 
 
     public ToMatrixController(ILocals localsDB, ISeadist seadistDB, ICountryDB countryDB, IBordersDB bordersDB) {
@@ -34,11 +38,47 @@ public class ToMatrixController {
         this.countryDB = countryDB;
         this.bordersDB = bordersDB;
         this.countryController = new CountryController(countryDB, bordersDB, localsDB);
+        this.portsAndWarehousesController = new PortsAndWarehousesController(countryDB, localsDB);
+    }
+
+    public void getNClosenessPlaces(Locals port, int nClosest){
+        TreeMap<Locals, Double> closestMap = new TreeMap<>();
+
+        //TODO ana list
+
+
+        for(Locals elems : portsAndWarehousesController.getAllPortsAndWharehouse()){
+
+            //TODO if que verifica se e do mesmo continente e se o pais e diferente
+
+            LinkedList<Locals> path = new LinkedList<>();
+            double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
+            if(weight > 0){
+
+                //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
+                closestMap.put(elems, weight);
+            }
+        }
+
+        LinkedHashMap<Locals, Double> sortedMap = new LinkedHashMap<>();
+        closestMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+
+        //TODO pegar no numero do nClosest e adicionar para a lista as keys
+        Set<Locals> entry = sortedMap.keySet();
+
+
+
+        printMap(sortedMap);
     }
 
 
     public void buildMatrix(int nClosestPorts) {
-        for (Locals elem : localsDB.getAllPortsAndWarehouses()) {
+
+        for (Locals elem : portsAndWarehousesController.getAllPorts()) {
             freightNetworkMatrix.insertVertex(elem);
         }
 
@@ -48,7 +88,7 @@ public class ToMatrixController {
          */
 
 
-        for (Locals elems : localsDB.getAllCapitals()) {
+        for (Locals elems : portsAndWarehousesController.getAllCapitals()) {
             String countryName = countryDB.getCountryWithCapital(elems.getName()).getCountryName();
 
             for (Borders borders : countryController.getAllBordersOfCountry(countryName)) {
@@ -75,11 +115,38 @@ public class ToMatrixController {
         }
 
 
+
         /**
          * Insert Edge relative to ports from seadist
          */
 
-        //TODO
+        for(Seadist elem: seadistDB.getAllSeadist()){
+
+            //TODO Connect only ports of the same country,
+
+            //buscar fromPortId e tranformar em local
+            Locals locals1 = localsDB.getLocalWithPortId(elem.getFromPortId());
+
+            //buscar portid e transformar em local
+            Locals locals2 = localsDB.getLocalWithPortId(elem.getToPortId());
+
+
+            //pegar distancia
+            float weight = elem.getDistance();
+
+
+            if(locals1 != null && locals2!=null){
+                //adicionar a matriz
+                freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
+
+
+                if(locals1.getName().equals("Leixoes")){
+                    getNClosenessPlaces(locals1, 3);
+                }
+            }
+
+
+        }
 
 
 

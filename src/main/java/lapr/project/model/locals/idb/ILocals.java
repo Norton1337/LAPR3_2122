@@ -17,6 +17,8 @@ public interface ILocals {
 
     Locals getLocalWithCapital(String capital);
 
+    Locals getLocalWithPortId(String portId);
+
     Locals getPortsAndWarehousesById(String id);
 
     boolean addPortsAndWarehouses(Locals portsAndWarehouses);
