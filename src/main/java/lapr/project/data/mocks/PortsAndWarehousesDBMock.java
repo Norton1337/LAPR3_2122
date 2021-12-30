@@ -59,7 +59,7 @@ public class PortsAndWarehousesDBMock implements ILocals {
     }
 
     @Override
-    public List<String> freeships() throws SQLException {
+    public List<String> freeships(){
         return null;
     }
 

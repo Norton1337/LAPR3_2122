@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortsAndWarehousesDB implements ILocals {
+public class PortsAndWarehousesDB extends DataHandler implements ILocals {
 
     public List<Locals> getAllPortsAndWarehouses() {
         return null;
@@ -33,13 +33,33 @@ public class PortsAndWarehousesDB implements ILocals {
         return null;
     }
 
+    @Override
+    public Locals getLocalWithPortId(String portId) {
+        return null;
+    }
+
     public Locals getPortsAndWarehousesById(String id) {
         return null;
     }
 
 
     public boolean addPortsAndWarehouses(Locals portsAndWarehouses) {
-        return false;
+        try (CallableStatement result = getConnection().prepareCall("{call insertLocal(?,?,?,?,?,?,?,?,?)}")) {
+            String[] coordinates = portsAndWarehouses.getCoordinates().split(",");
+            result.setString(1, portsAndWarehouses.getId());
+            result.setInt(2, portsAndWarehouses.getPortId());/*tem de ser string em vez de Int*/
+            result.setInt(3,portsAndWarehouses.getPortId());/*O code nao pode ser igual ao PortId*/
+            result.setInt(4,portsAndWarehouses.getLocalCapacity());
+            result.setString(5,portsAndWarehouses.getName());
+            result.setString(6,portsAndWarehouses.getType());
+            result.setString(7,portsAndWarehouses.getCountryId());
+            result.setFloat(8,Float.parseFloat(coordinates[0]));
+            result.setFloat(9,Float.parseFloat(coordinates[1]));
+            result.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
@@ -66,8 +86,8 @@ public class PortsAndWarehousesDB implements ILocals {
     }
 
     @Override
-    public List<String> freeships() throws SQLException {
-        /*List<String> ls = new ArrayList<>();
+    public List<String> freeships(){
+        List<String> ls = new ArrayList<>();
         try (CallableStatement resultado = getConnection().prepareCall("{?= call func_freeships()}")) {
             resultado.registerOutParameter(1, OracleTypes.CURSOR);
             resultado.executeUpdate();
@@ -80,9 +100,6 @@ public class PortsAndWarehousesDB implements ILocals {
             e.printStackTrace();
         }
         return ls;
-
-         */
-        return null;
     }
 }
 

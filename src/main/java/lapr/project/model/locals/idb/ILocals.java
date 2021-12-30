@@ -31,7 +31,7 @@ public interface ILocals {
 
 
 
-    public List<String> freeships() throws SQLException;
+    public List<String> freeships();
 
 }
 
