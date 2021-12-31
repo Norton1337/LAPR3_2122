@@ -4,6 +4,7 @@ package lapr.project.model.locals.idb;
 
 import lapr.project.model.locals.Locals;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface ILocals {
@@ -29,6 +30,8 @@ public interface ILocals {
     Locals getPortByPortIdCode(String code);
 
 
+
+    public List<String> freeships();
 
 }
 

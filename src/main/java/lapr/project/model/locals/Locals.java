@@ -2,13 +2,11 @@ package lapr.project.model.locals;
 
 public class Locals implements Comparable<Locals> {
     private String id;
-
     private String countryId;
-
     private int portId;
     private String name;
     private String coordinates;
-    private String shipId;
+    private String vehicleId;
     private String type;
 
     // TODO ACRESCENTAR
@@ -22,6 +20,14 @@ public class Locals implements Comparable<Locals> {
         this.portId = code;
         this.name = portName;
         this.coordinates = coordinates;
+    }
+
+    public int getLocalCapacity() {
+        return localCapacity;
+    }
+
+    public void setLocalCapacity(int localCapacity) {
+        this.localCapacity = localCapacity;
     }
 
     public String getId() {
@@ -64,12 +70,12 @@ public class Locals implements Comparable<Locals> {
         this.coordinates = coordinates;
     }
 
-    public String getShipId() {
-        return shipId;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setShipId(String shipId) {
-        this.shipId = shipId;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public String getType() {
@@ -87,7 +93,7 @@ public class Locals implements Comparable<Locals> {
                 //", countryId='" + countryId + '\'' +
                 " name='" + name + '\'' +
                 ", coordinates='" + coordinates + '\'' +
-                ", shipId='" + shipId + '\'' +
+                ", vehicleId='" + vehicleId + '\'' +
                 ", portId='" + portId + '\'' +
                 ", localCapacity=" + localCapacity +
                 ", type='" + type + '\'' +
