@@ -49,8 +49,9 @@ public class ToMatrixController {
         //vai buscar tudo e poe no mapa
         for(Locals elems : portsAndWarehousesController.getAllPortsAndWharehouse()){
 
-            //TODO if que verifica se e do mesmo continente e se o pais e diferente
+
             String portCountryId = port.getCountryId();
+            //String portCountry =
             String portContinent = countryController.findById(portCountryId).getContinent();
 
             String elemCountryId = elems.getCountryId();
@@ -75,7 +76,6 @@ public class ToMatrixController {
                 .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
 
 
-        //TODO pegar no numero do nClosest e adicionar para a lista as keys
         Set<Locals> entry = sortedMap.keySet();
 
         int count = 0;
@@ -143,24 +143,24 @@ public class ToMatrixController {
 
             //buscar fromPortId e tranformar em local
             Locals locals1 = localsDB.getLocalWithPortId(elem.getFromPortId());
+            String portCountry1 = "";
+
+            if(locals1 != null) portCountry1 = countryController.findById(locals1.getCountryId()).getCountryName();
+
 
             //buscar portid e transformar em local
             Locals locals2 = localsDB.getLocalWithPortId(elem.getToPortId());
+            String portCountry2 = "";
+
+            if(locals2 != null) portCountry2 = countryController.findById(locals2.getCountryId()).getCountryName();
 
 
             //pegar distancia
             float weight = elem.getDistance();
 
 
-            if(locals1 != null && locals2!=null){
-                //adicionar a matriz
+            if(portCountry1.equals(portCountry2) && locals1!=null && locals2!=null){
                 freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
-
-
-                if(locals1.getName().equals("Leixoes")){
-                    getNClosenessPlaces(locals1, 3);
-                    break;
-                }
             }
 
 
@@ -171,7 +171,10 @@ public class ToMatrixController {
         /**
          * Insert Edge relative to n closest
          */
-
+//        if(locals1.getName().equals("Leixoes")){
+//            getNClosenessPlaces(locals1, 3);
+//            break;
+//        }
 
     }
 
