@@ -23,7 +23,7 @@ public class OperationDB  extends DataHandler implements IOperation{
 
     @Override
     public Operation addOperation(Operation operation, String containerId, String cargoManifestId) {
-        try (CallableStatement result = getConnection().prepareCall("{call insertOperation()}")) {
+        try (CallableStatement result = getConnection().prepareCall("{call insertOperation(?,?,?,?,?,?,?)}")) {
               result.setString(1,operation.getId());
               result.setString(2,containerId);
               result.setString(3,cargoManifestId);

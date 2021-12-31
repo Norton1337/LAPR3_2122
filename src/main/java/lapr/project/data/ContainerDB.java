@@ -19,7 +19,7 @@ public class ContainerDB extends DataHandler implements IContainerDB {
 
     @Override
     public boolean addContainer(Container containers) {
-        try (CallableStatement result = getConnection().prepareCall("{call insertContainer()}")) {
+        try (CallableStatement result = getConnection().prepareCall("{call insertContainer(?,?,?,?,?,?,?,?,?,?,?,?)}")) {
             result.setString(1,containers.getId());
             result.setInt(2,containers.getContainerNumber());
             result.setInt(3,containers.getCheckDigit());

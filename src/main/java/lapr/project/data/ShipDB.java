@@ -72,7 +72,7 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
     @Override
-    public List<String> containers_to_offload(String ship_id) throws SQLException {
+    public List<String> containers_to_offload(String ship_id) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement result = getConnection().prepareCall("{?= call containers_to_offload(?)}")) {
             result.registerOutParameter(1, OracleTypes.CURSOR);
@@ -93,7 +93,7 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
     @Override
-    public List<String> a_cm(Integer ano) throws SQLException {
+    public List<String> a_cm(Integer ano) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement resultado = getConnection().prepareCall("{?= call a_cm (?)}")) {
             resultado.registerOutParameter(1, OracleTypes.CURSOR);
@@ -111,7 +111,7 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
     @Override
-    public float capacity_rate_now(String ship_id) throws SQLException {
+    public float capacity_rate_now(String ship_id) {
         float fatorial = 0;
         try (CallableStatement resultado = getConnection().prepareCall("{?= call func_occupancy_rate_now (?)}")) {
             resultado.registerOutParameter(1, Types.FLOAT);
@@ -125,7 +125,7 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
     @Override
-    public float capacity_rate(String ship_id, String cm_id) throws SQLException {
+    public float capacity_rate(String ship_id, String cm_id) {
         float fatorial = 0;
         try (CallableStatement resultado = getConnection().prepareCall("{?= call func_occupancy_rate (?,?)}")) {
             resultado.registerOutParameter(1, Types.FLOAT);
@@ -139,7 +139,8 @@ public class ShipDB extends DataHandler implements IShipsDB {
         return fatorial;
     }
 
-    public List<String> containers_to_load(String ship_id) throws SQLException {
+    @Override
+    public List<String> containers_to_load(String ship_id) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement result = getConnection().prepareCall("{?= call containers_to_load(?)}")) {
             result.registerOutParameter(1, OracleTypes.CURSOR);

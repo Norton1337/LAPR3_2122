@@ -24,14 +24,13 @@ public class CargoManifestDB extends DataHandler implements ICargoManifest {
 
     @Override
     public CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId) {
-        try (CallableStatement result = getConnection().prepareCall("{call insertCargoManifest()}")) {
+        try (CallableStatement result = getConnection().prepareCall("{call insertCargoManifest(?,?,?,?,?,?)}")) {
         result.setString(1,localId);
         result.setString(2,vehicleId);
         result.setString(3,cargo.getCurrentLocalId());
         result.setString(4,cargo.getNextLocal());
         result.setTimestamp(5,(Timestamp.valueOf(cargo.getDate())));
         result.setString(6,cargo.getOperationType());
-
         result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

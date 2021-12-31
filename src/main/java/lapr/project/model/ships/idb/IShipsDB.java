@@ -19,11 +19,13 @@ public interface IShipsDB {
 
     Ship getShipByMMSI(String mmsi);
 
-    public List<String> containers_to_offload(String ship_id) throws SQLException;
+    public List<String> containers_to_offload(String ship_id);
 
-    public List<String> a_cm(Integer ano) throws SQLException;
+    public List<String> a_cm(Integer ano);
 
-    public float capacity_rate_now(String ship_id) throws SQLException;
+    public float capacity_rate_now(String ship_id);
 
-    public float capacity_rate(String ship_id, String cm_id) throws SQLException;
+    public float capacity_rate(String ship_id, String cm_id);
+
+    public List<String> containers_to_load(String ship_id);
 }

@@ -7,6 +7,7 @@ import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.PortsAndWarehousesController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.data.*;
 import lapr.project.data.mocks.*;
 
 import java.io.IOException;
@@ -23,6 +24,13 @@ class Main {
                 ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
                 PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
                 CountryDBMock countryDBMock = new CountryDBMock();
+
+                // DB
+                ShipDB shipDB = new ShipDB();
+                GeneratorDB generatorDB = new GeneratorDB();
+                ShipPositionDataDB shipPositionDataDB = new ShipPositionDataDB();
+                PortsAndWarehousesDB portsAndWarehousesDB = new PortsAndWarehousesDB();
+                CountryDB countryDB = new CountryDB();
 
                 // CONTROLLERS DO MODEL
                 ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
