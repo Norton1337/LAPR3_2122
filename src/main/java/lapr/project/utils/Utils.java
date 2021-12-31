@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Stream;
 
 import lapr.project.model.ship_position_data.ShipPositonData;
 
@@ -106,6 +105,16 @@ public class Utils {
         } 
 
         return null;
+    }
+
+    public static <K> LinkedHashMap<K, Double> sortMapByValue(Map<K,Double> paramMap){
+        LinkedHashMap<K, Double> sortedMap = new LinkedHashMap<>();
+        paramMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEachOrdered(x -> sortedMap.put(x.getKey(), x.getValue()));
+
+        return sortedMap;
     }
 
 

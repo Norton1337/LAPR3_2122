@@ -88,8 +88,6 @@ public class TestControll {
 
         matrixController.buildMatrix(3);
         //matrixController.printMatrix();
-
-
     }
 
 
