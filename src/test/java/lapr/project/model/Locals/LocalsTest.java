@@ -56,10 +56,10 @@ class LocalsTest {
     }
 
     @Test
-    void setAndGetShipIdTest(){
-        assertNull(portsAndWarehouses.getShipId());
-        portsAndWarehouses.setShipId("112233");
-        assertEquals("112233", portsAndWarehouses.getShipId());
+    void setAndGetVehicleIdTest(){
+        assertNull(portsAndWarehouses.getVehicleId());
+        portsAndWarehouses.setVehicleId("112233");
+        assertEquals("112233", portsAndWarehouses.getVehicleId());
     }
 
     @Test

@@ -8,6 +8,7 @@ public class Operation {
         private int z;
         private String containerId;
         private String cargoManifestId;
+        private String operation_warehouse;
 
         public Operation(int x, int y, int z) {
             this.x = x;
@@ -15,7 +16,15 @@ public class Operation {
             this.z = z;
         }
 
-        public String getId() {
+    public String getOperation_warehouse() {
+        return operation_warehouse;
+    }
+
+    public void setOperation_warehouse(String operation_warehouse) {
+        this.operation_warehouse = operation_warehouse;
+    }
+
+    public String getId() {
             return id;
         }
 

@@ -1,5 +1,6 @@
 package lapr.project.model.ships.idb;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import lapr.project.model.ships.Ship;
@@ -18,5 +19,13 @@ public interface IShipsDB {
 
     Ship getShipByMMSI(String mmsi);
 
+    public List<String> containers_to_offload(String ship_id);
 
+    public List<String> a_cm(Integer ano);
+
+    public float capacity_rate_now(String ship_id);
+
+    public float capacity_rate(String ship_id, String cm_id);
+
+    public List<String> containers_to_load(String ship_id);
 }

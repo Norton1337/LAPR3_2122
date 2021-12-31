@@ -1,5 +1,6 @@
 package lapr.project.data.mocks;
 
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,5 +38,10 @@ public class ContainerDBMock implements IContainerDB {
     public boolean removeContainer(String id) {
         Container containerToBeRemoved = getContainer(id);
         return allContainers.remove(containerToBeRemoved);
+    }
+
+    @Override
+    public String cont_where(String cont) throws SQLException {
+        return null;
     }
 }

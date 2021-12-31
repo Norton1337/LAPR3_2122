@@ -4,7 +4,7 @@ import lapr.project.model.ships.Ship;
 import lapr.project.model.truck.Truck;
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
-
+import lapr.project.data.TruckDB;
 import java.util.List;
 
 public class VehiclesDB implements IVehicle {
@@ -21,7 +21,14 @@ public class VehiclesDB implements IVehicle {
 
     @Override
     public Vehicles addVehicle(Vehicles vehicle) {
-        return null;
+        if(vehicle == null){
+            return null;
+        }
+        if(vehicle.getType() == "Truck"){
+        }else if(vehicle.getType() == "Ship"){
+
+        }
+        return new Vehicles(vehicle.getType());
     }
 
 
