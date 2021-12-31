@@ -8,6 +8,7 @@ import lapr.project.controller.model_controllers.PortsAndWarehousesController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.data.*;
+import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.data.mocks.*;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ class Main {
 
         public static void main(String[] args) throws IOException, SQLException, ParseException {
 
-                // DB
+                // DBMock
                 ShipDBMock shipDBMock = new ShipDBMock();
                 GeneratorDBMock generatorDBMock = new GeneratorDBMock();
                 ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
@@ -26,6 +27,8 @@ class Main {
                 CountryDBMock countryDBMock = new CountryDBMock();
 
                 // DB
+                DBController dbController = new DBController();
+                dbController.createdb();
                 ShipDB shipDB = new ShipDB();
                 GeneratorDB generatorDB = new GeneratorDB();
                 ShipPositionDataDB shipPositionDataDB = new ShipPositionDataDB();
