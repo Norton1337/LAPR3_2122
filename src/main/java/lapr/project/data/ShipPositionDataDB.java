@@ -8,7 +8,6 @@ import java.util.List;
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.ship_position_data.ShipPositonData;
 import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
-import org.graalvm.compiler.code.DataSection;
 
 public class ShipPositionDataDB extends DataHandler implements IShipPositionDataDB {
     @Override
