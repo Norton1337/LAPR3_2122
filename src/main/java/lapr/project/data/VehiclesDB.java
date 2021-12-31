@@ -25,7 +25,6 @@ public class VehiclesDB implements IVehicle {
             return null;
         }
         if(vehicle.getType() == "Truck"){
-
         }else if(vehicle.getType() == "Ship"){
 
         }

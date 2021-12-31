@@ -583,6 +583,30 @@ end;//
 DELIMITER;
 
 DELIMITER //
+create or replace function warehouse_cont(port NUMBER)return SYS_REFCURSOR
+    IS
+    cur SYS_REFCURSOR;
+BEGIN
+    OPEN cur for
+
+        select t1.local_id,t1.operation_warehouse_id,t1.container_id,t1.cm_date,MIN(t2.cm_date) as saida
+        from (select local_id,operation_warehouse_id,container_id,cargo_manifest.cm_date,operation_type
+              from operation inner join cargo_manifest on operation.cargo_manifest_id = cargo_manifest.cargo_manifest_id
+              where local_id=port and operation_type='Unload') T1
+                 left join
+             (select local_id,operation_warehouse_id,container_id,cargo_manifest.cm_date,operation_type
+              from operation
+                       inner join cargo_manifest on operation.cargo_manifest_id = cargo_manifest.cargo_manifest_id
+              where local_id=port and operation_type='Load') T2
+             on T1.container_id=T2.container_id
+        where (T1.cm_date<T2.CM_DATE and t1.operation_warehouse_id=t2.operation_warehouse_id) or (t2.cm_date is null)
+        group by t1.local_id,t1.container_id,t1.cm_date,t1.operation_warehouse_id;
+    RETURN CUR;
+
+END;//
+DELIMITER;
+
+DELIMITER //
 create or replace function cont_where(cont NUMBER)RETURN VARCHAR
 IS 
 tipo varchar(100);

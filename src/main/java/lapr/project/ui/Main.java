@@ -3,13 +3,11 @@ package lapr.project.ui;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
-import lapr.project.controller.model_controllers.GeneratorController;
-import lapr.project.controller.model_controllers.PortsAndWarehousesController;
-import lapr.project.controller.model_controllers.ShipController;
-import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.controller.model_controllers.*;
 import lapr.project.data.*;
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.data.mocks.*;
+import lapr.project.model.truck.Truck;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,15 +18,17 @@ class Main {
         public static void main(String[] args) throws IOException, SQLException, ParseException {
 
                 // DBMock
-                ShipDBMock shipDBMock = new ShipDBMock();
+                /*ShipDBMock shipDBMock = new ShipDBMock();
                 GeneratorDBMock generatorDBMock = new GeneratorDBMock();
                 ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
                 PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
-                CountryDBMock countryDBMock = new CountryDBMock();
+                CountryDBMock countryDBMock = new CountryDBMock();*/
 
                 // DB
                 DBController dbController = new DBController();
                 dbController.createdb();
+                VehiclesDB vehiclesDB = new VehiclesDB();
+                TruckDB truckDB = new TruckDB();
                 ShipDB shipDB = new ShipDB();
                 GeneratorDB generatorDB = new GeneratorDB();
                 ShipPositionDataDB shipPositionDataDB = new ShipPositionDataDB();
@@ -36,24 +36,25 @@ class Main {
                 CountryDB countryDB = new CountryDB();
 
                 // CONTROLLERS DO MODEL
-                ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
-                ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,
-                                shipPositionDataDBMock);
-                GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
+                ShipController shipController = new ShipController(shipDB, generatorDB);
+                VehiclesController vehiclesController = new VehiclesController(vehiclesDB,shipDB,truckDB);
+                ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDB,
+                                shipPositionDataDB);
+                GeneratorController generatorController = new GeneratorController(shipDB, generatorDB);
                 PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(
-                                countryDBMock,
-                                portsAndWarehousesDBMock);
+                                countryDB,
+                                portsAndWarehousesDB);
 
                 // CONTROLLERS
                 DataToBstController dataToBstController = new DataToBstController();
                 ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
                 DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
+
+                 //LEITURA DE FICHEIRO
+                 ShipUI shipUI = new ShipUI(shipController, shipPositionDataController,
+                 generatorController,vehiclesController);
+                 shipUI.importShips("Docs/Input/bships.csv");
                 /*
-                 * //LEITURA DE FICHEIRO
-                 * ShipUI shipUI = new ShipUI(shipController, shipPositionDataController,
-                 * generatorController);
-                 * shipUI.importShips("Docs/Input/bships.csv");
-                 *
                  *
                  * portsAndWarehousesController.addPortAndWarehouse(new
                  * PortsAndWarehouses("Europe","Cyprus",10136,
