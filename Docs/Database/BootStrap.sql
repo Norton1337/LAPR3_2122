@@ -457,7 +457,7 @@ DELIMITER;
 DELIMITER //
 CREATE OR REPLACE function containers_to_load(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
     IS
-    load_containers sys_refcursor
+    load_containers sys_refcursor;
 BEGIN
     OPEN load_containers FOR
 
@@ -466,15 +466,15 @@ BEGIN
         WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'LOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
                                                                                                                                     WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
                                                                                   AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    return (load_containers)
-END//
+                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY);
+    return (load_containers);
+END;//
 DELIMITER;
 
 DELIMITER //
 CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
     IS
-    offload_containers sys_refcursor
+    offload_containers sys_refcursor;
 BEGIN
     OPEN offload_containers FOR
 
@@ -483,9 +483,9 @@ BEGIN
         WHERE cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE UPPER(operation_type) = 'UNLOAD' AND cm_date > (SELECT cm_date FROM cargo_manifest
                                                                                                                                       WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
                                                                                   AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
-    return (offload_containers)
-END//
+                                                                                  AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY);
+    return (offload_containers);
+END;//
 DELIMITER;
 
 DELIMITER //
@@ -571,15 +571,15 @@ DELIMITER;
 DELIMITER //
 CREATE OR REPLACE FUNCTION a_cm (ano NUMBER) RETURN SYS_REFCURSOR
     IS
-    cur sys_refcursor
+    cur sys_refcursor;
 BEGIN
     OPEN cur FOR
         select count(DISTINCT cargo_manifest.cargo_manifest_id)
             as CARGO_MANIFESTS,(COUNT(operation.CONTAINER_ID)/count(distinct CARGO_MANIFEST.cargo_manifest_id))
             FROM cargo_manifest INNER JOIN operation ON OPERATION.CARGO_MANIFEST_ID=CARGO_MANIFEST.CARGO_MANIFEST_ID
-            where EXTRACT (YEAR FROM cm_date)= ano group by EXTRACT(YEAR FROM cargo_manifest.cm_date)
-    return cur
-end//
+            where EXTRACT (YEAR FROM cm_date)= ano group by EXTRACT(YEAR FROM cargo_manifest.cm_date);
+    return cur;
+end;//
 DELIMITER;
 
 DELIMITER //
