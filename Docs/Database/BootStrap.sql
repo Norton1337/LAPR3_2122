@@ -218,224 +218,243 @@ CREATE TABLE audit_trail (
                              CONSTRAINT fk_audit_container_id FOREIGN KEY (audit_container_id) REFERENCES container(container_id)
 );
 
---criar procedures
+-- criar procedures
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertContainer(
-    p_container_id IN container.container_id%type,
-    p_container_number IN container.container_number%type,
-    p_container_checkDigit IN container.container_checkdigit%type,
-    p_container_payload IN container.container_payload%type,
-    p_container_tare IN container.container_tare%type,
-    p_container_gross IN container.container_gross%type,
-    p_container_volume IN container.container_volume%type,
-    p_iso_code IN container.iso_code%type,
-    p_container_certificates IN container.container_certificates%type,
-    p_container_repair IN container.container_repair%type,
-    p_container_type IN container.container_type%type,
-    p_container_load IN container.container_load%type)
-    IS
+            p_container_id IN container.container_id%type,
+            p_container_number IN container.container_number%type,
+            p_container_checkDigit IN container.container_checkdigit%type,
+            p_container_payload IN container.container_payload%type,
+            p_container_tare IN container.container_tare%type,
+            p_container_gross IN container.container_gross%type,
+            p_container_volume IN container.container_volume%type,
+            p_iso_code IN container.iso_code%type,
+            p_container_certificates IN container.container_certificates%type,
+            p_container_repair IN container.container_repair%type,
+            p_container_type IN container.container_type%type,
+            p_container_load IN container.container_load%type)
+IS
 BEGIN
 
     INSERT INTO container
     VALUES(p_container_id,p_container_number,p_container_checkDigit,
-           p_container_payload,p_container_tare,p_container_gross,p_container_volume,
-           p_iso_code,p_container_certificates,p_container_repair,
-           p_container_type,p_container_load)
-END
-/
+            p_container_payload,p_container_tare,p_container_gross,p_container_volume,
+            p_iso_code,p_container_certificates,p_container_repair,
+            p_container_type,p_container_load);
 
+    COMMIT;
+END;//
+DELIMITER ;
+
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertVehicle(
-    p_vehicle_id IN vehicle.vehicle_id%type,
-    p_vehicle_type IN vehicle.type%type)
-    IS
+            p_vehicle_id IN vehicle.vehicle_id%type,
+            p_vehicle_type IN vehicle.type%type)
+IS
 BEGIN
+    
+    INSERT INTO vehicle 
+    VALUES(p_vehicle_id,p_vehicle_type);
+    
+    COMMIT;
+END;//
+DELIMITER ;
 
-    INSERT INTO vehicle
-    VALUES(p_vehicle_id,p_vehicle_type)
-
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertTruck(
-    p_truck_id IN truck.vehicle_truck_id%type,
-    p_plate IN truck.plate%type)
-    IS
+            p_truck_id IN truck.vehicle_truck_id%type,
+            p_plate IN truck.plate%type)
+IS
 BEGIN
+    
+    INSERT INTO vehicle 
+    VALUES(p_truck_id,'Truck');
+    INSERT INTO truck 
+    VALUES(p_truck_id,p_plate);
+    
+    COMMIT;
+END;//
+DELIMITER ;
 
-    INSERT INTO vehicle
-    VALUES(p_truck_id,'Truck')
-    INSERT INTO truck
-    VALUES(p_truck_id,p_plate)
-
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertShip(
-    p_ship_id IN ship.vehicle_ship_id%type,
-    p_shipname IN ship.shipname%type,
-    p_mmsi IN ship.mmsi%type,
-    p_imo IN ship.imo%type,
-    p_generators_number IN ship.generators_number%type,
-    p_generators_power IN ship.generators_power%type,
-    p_call_sign IN ship.call_sign%type,
-    p_vesel_type IN ship.vesel_type%type,
-    p_length IN ship.length%type,
-    p_width IN ship.width%type,
-    p_capacity IN ship.capacity%type,
-    p_draft IN ship.draft%type)
-    IS
+            p_ship_id IN ship.vehicle_ship_id%type,
+            p_shipname IN ship.shipname%type,
+            p_mmsi IN ship.mmsi%type,
+            p_imo IN ship.imo%type,
+            p_generators_number IN ship.generators_number%type,
+            p_generators_power IN ship.generators_power%type,
+            p_call_sign IN ship.call_sign%type,
+            p_vesel_type IN ship.vesel_type%type,
+            p_length IN ship.length%type,
+            p_width IN ship.width%type,
+            p_capacity IN ship.capacity%type,
+            p_draft IN ship.draft%type)
+IS
 BEGIN
-
-
-    INSERT INTO vehicle
-    VALUES(p_ship_id,'Ship')
+    
+    
+    INSERT INTO vehicle 
+    VALUES(p_ship_id,'Ship');
     INSERT INTO ship
-    VALUES(p_ship_id,p_shipname,p_mmsi,p_imo,p_generators_number,p_generators_power,p_call_sign,p_vesel_type,p_length,p_width,p_capacity,p_draft)
+    VALUES(p_ship_id,p_shipname,p_mmsi,p_imo,p_generators_number,p_generators_power,p_call_sign,p_vesel_type,p_length,p_width,p_capacity,p_draft);
+    
+    COMMIT;
+END;//
+DELIMITER ;
 
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertPositionData(
-    p_position_data_id IN position_data.position_data_id%type,
-    p_vehicle_ship_id IN position_data.vehicle_ship_id%type,
-    p_bdt IN position_data.bdt%type,
-    p_latitude IN position_data.latitude%type,
-    p_longitude IN position_data.longitude%type,
-    p_sog IN position_data.sog%type,
-    p_cog IN position_data.cog%type,
-    p_heading IN position_data.heading%type,
-    p_position IN position_data.position%type,
-    p_transceiver_class IN position_data.transceiver_class%type)
-    IS
+            p_position_data_id IN position_data.position_data_id%type,
+            p_vehicle_ship_id IN position_data.vehicle_ship_id%type,
+            p_bdt IN position_data.bdt%type,
+            p_latitude IN position_data.latitude%type,
+            p_longitude IN position_data.longitude%type,
+            p_sog IN position_data.sog%type,
+            p_cog IN position_data.cog%type,
+            p_heading IN position_data.heading%type,
+            p_position IN position_data.position%type,
+            p_transceiver_class IN position_data.transceiver_class%type)
+IS
 BEGIN
-
+    
     INSERT INTO position_data
-    VALUES(p_position_data_id,p_vehicle_ship_id,p_bdt,p_latitude,p_longitude,p_sog,p_cog,p_heading,p_position,p_transceiver_class)
+    VALUES(p_position_data_id,p_vehicle_ship_id,p_bdt,p_latitude,p_longitude,p_sog,p_cog,p_heading,p_position,p_transceiver_class);
+    
+    COMMIT;
+END;//
+DELIMITER ;
 
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertLocal(
-    p_local_id IN local.local_id%type,
-    p_local_port_id IN local.local_port_id%type,
-    p_local_code IN local.local_code%type,
-    p_local_capacity IN local.local_capacity%type,
-    p_local_name IN local.local_name%type,
-    p_local_type IN local.local_type%type,
-    p_local_country_id IN local.local_country_id%type,
-    p_local_latitude IN local.local_lalitude%type,
-    p_local_altitude IN local.local_altitude%type)
-    IS
+            p_local_id IN local.local_id%type,
+            p_local_port_id IN local.local_port_id%type,
+            p_local_code IN local.local_code%type,
+            p_local_capacity IN local.local_capacity%type,
+            p_local_name IN local.local_name%type,
+            p_local_type IN local.local_type%type,
+            p_local_country_id IN local.local_country_id%type,
+            p_local_latitude IN local.local_lalitude%type,
+            p_local_altitude IN local.LOCAL_LONGITUDE%type)
+IS
 BEGIN
-
+    
     INSERT INTO local
-    VALUES(p_local_id,p_local_port_id,p_local_code,p_local_capacity,p_local_name,p_local_country_id,p_local_latitude,p_local_altitude)
+    VALUES(p_local_id,p_local_port_id,p_local_code,p_local_capacity,p_local_name,p_local_type,p_local_country_id,p_local_latitude,p_local_altitude);
+    
+    COMMIT;
+END;//
+DELIMITER ;
 
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertCargoManifest(
-    p_cargo_manifest_id IN cargo_manifest.cargo_manifest_id%type,
-    p_vehicle_id IN cargo_manifest.vehicle_id%type,
-    p_local_id IN cargo_manifest.local_id%type,
-    p_next_local_id IN cargo_manifest.next_local_id%type,
-    p_cm_date IN cargo_manifest.cm_date%type,
-    p_operation_type IN cargo_manifest.operation_type%type)
-    IS
+            p_cargo_manifest_id IN cargo_manifest.cargo_manifest_id%type,
+            p_vehicle_id IN cargo_manifest.vehicle_id%type,
+            p_local_id IN cargo_manifest.local_id%type,
+            p_next_local_id IN cargo_manifest.next_local_id%type,
+            p_cm_date IN cargo_manifest.cm_date%type,
+            p_operation_type IN cargo_manifest.operation_type%type)
+IS
 BEGIN
-
+    
     INSERT INTO cargo_manifest
-    VALUES(p_cargo_manifest_id,p_vehicle_id,p_local_id,p_next_local_id,p_cm_date,p_operation_type)
+    VALUES(p_cargo_manifest_id,p_vehicle_id,p_local_id,p_next_local_id,p_cm_date,p_operation_type);
+    
+    COMMIT;
+END;//
+DELIMITER;
 
-    COMMIT
-END
-/
-
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertOperation(
-    p_operation_id IN operation.operation_id%type,
-    p_container_id IN operation.container_id%type,
-    p_cargo_manifest_id IN operation.cargo_manifest_id%type,
-    p_operation_warehouse_id IN operation.operation_warehouse_id%type,
-    p_coordinate_x IN operation.coordinate_x%type,
-    p_coordinate_y IN operation.coordinate_y%type,
-    p_coordinate_z IN operation.coordinate_z%type)
-    IS
+            p_operation_id IN operation.operation_id%type,
+            p_container_id IN operation.container_id%type,
+            p_cargo_manifest_id IN operation.cargo_manifest_id%type,
+            p_operation_warehouse_id IN operation.operation_warehouse_id%type,
+            p_coordinate_x IN operation.coordinate_x%type,
+            p_coordinate_y IN operation.coordinate_y%type,
+            p_coordinate_z IN operation.coordinate_z%type)
+IS
 BEGIN
-
+    
     INSERT INTO operation
-    VALUES(p_operation_id,p_container_id,p_cargo_manifest_id,p_operation_warehouse_id,p_coordinate_x,p_coordinate_y,p_coordinate_z)
+    VALUES(p_operation_id,p_container_id,p_cargo_manifest_id,p_operation_warehouse_id,p_coordinate_x,p_coordinate_y,p_coordinate_z);
+    
+    COMMIT;
+END;//
+DELIMITER;
 
-    COMMIT
-END
-/
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertBorders(
-    p_border_id IN borders.border_id%type,
-    p_country_id IN borders.country_id%type,
-    p_country_id2 IN borders.country_id2%type)
-    IS
+            p_border_id IN borders.border_id%type,
+            p_country_id IN borders.country_id%type,
+            p_country_id2 IN borders.country_id2%type)
+IS
 BEGIN
-
+    
     INSERT INTO borders
-    VALUES(p_border_id,p_country_id,p_country_id2)
+    VALUES(p_border_id,p_country_id,p_country_id2);
+    
+    COMMIT;
+END;//
+DELIMITER;
 
-    COMMIT
-END
-/
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertCountry(
-    p_country_id IN country.country_id%type,
-    p_continent IN country.continent%type,
-    p_alpha_2_code IN country.alpha_2_code%type,
-    p_alpha_3_code IN country.alpha_3_code%type,
-    p_country_name IN country.country_name%type,
-    p_population IN country.population%type,
-    p_country_capital IN country.country_capital%type,
-    p_latitude IN country.latitude%type,
-    p_longitude IN country.longitude%type)
-    IS
+            p_country_id IN country.country_id%type,
+            p_continent IN country.continent%type,
+            p_alpha_2_code IN country.alpha_2_code%type,
+            p_alpha_3_code IN country.alpha_3_code%type,
+            p_country_name IN country.country_name%type,
+            p_population IN country.population%type,
+            p_country_capital IN country.country_capital%type,
+            p_latitude IN country.latitude%type,
+            p_longitude IN country.longitude%type)
+IS
 BEGIN
-
+    
     INSERT INTO country
-    VALUES(p_country_id,p_continent,p_alpha_2_code,p_alpha_3_code,p_country_name,p_population,p_country_capital,p_latitude,p_longitude)
+    VALUES(p_country_id,p_continent,p_alpha_2_code,p_alpha_3_code,p_country_name,p_population,p_country_capital,p_latitude,p_longitude);
+    
+    COMMIT;
+END;//
+DELIMITER;
 
-    COMMIT
-END
-/
+DELIMITER //
 CREATE OR REPLACE PROCEDURE insertSeadist(
-    p_seadist_id IN seadists.seadist_id%type,
-    p_fromPort IN seadists.fromport%type,
-    p_toPort IN seadists.toport%type,
-    p_distance IN seadists.distance%type)
-    IS
+            p_seadist_id IN seadists.seadist_id%type,
+            p_fromPort IN seadists.fromport%type,
+            p_toPort IN seadists.toport%type,
+            p_distance IN seadists.distance%type)
+IS
 BEGIN
-
+    
     INSERT INTO seadists
-    VALUES(p_seadist_id,p_fromPort,p_toPort,p_distance)
-
-    COMMIT
-END
-/
+    VALUES(p_seadist_id,p_fromPort,p_toPort,p_distance);
+    
+    COMMIT;
+END;//
+DELIMITER;
 
 --criar funções
-CREATE OR REPLACE function func_freeships return sys_refcursor
-    IS
-    ships_available sys_refcursor
-BEGIN
+DELIMITER //
+create or replace function func_freeships return sys_refcursor
+is
+    ships_available sys_refcursor;
+begin
     open ships_available for
         SELECT NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') AS NEXT_MONDAY, vehicle_ship_id as AVAILABLE_SHIP
-        FROM ship WHERE vehicle_ship_id NOT IN (SELECT vehicle_id FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id)
-                     OR vehicle_ship_id IN (SELECT vehicle_ship_id FROM ship where
-                    vehicle_ship_id in (SELECT cargo_manifest.vehicle_id FROM cargo_manifest
-                                                                                  INNER JOIN (SELECT vehicle_id, MAX(CM_DATE) AS maxdate
-                                                                                              FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) md ON cargo_manifest.vehicle_id = md.vehicle_id AND CM_DATE = maxdate
-                                        WHERE next_local_id is null))
-    return ships_available
-END
-/
+        FROM ship WHERE vehicle_ship_id NOT IN (SELECT vehicle_id FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) 
+        OR vehicle_ship_id IN (SELECT vehicle_ship_id FROM ship where 
+        vehicle_ship_id in (SELECT cargo_manifest.vehicle_id FROM cargo_manifest INNER JOIN (SELECT vehicle_id, MAX(CM_DATE) AS maxdate FROM cargo_manifest WHERE cm_date <= NEXT_DAY(CURRENT_TIMESTAMP,'MONDAY') GROUP BY vehicle_id) md ON cargo_manifest.vehicle_id = md.vehicle_id AND CM_DATE = maxdate
+        WHERE next_local_id is null));
+return ships_available;
+ EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      RAISE_APPLICATION_ERROR(-20003, 'No Free Ships');
+end;//
+DELIMITER;
 
+DELIMITER //
 CREATE OR REPLACE function containers_to_load(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
     IS
     load_containers sys_refcursor
@@ -449,9 +468,10 @@ BEGIN
                                                                                   AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
                                                                                   AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
     return (load_containers)
-END
-/
+END//
+DELIMITER;
 
+DELIMITER //
 CREATE OR REPLACE function containers_to_offload(p_ship_id ship.vehicle_ship_id%type) return sys_refcursor
     IS
     offload_containers sys_refcursor
@@ -465,89 +485,121 @@ BEGIN
                                                                                   AND local_id = (SELECT next_local_id FROM cargo_manifest WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
                                                                                   AND vehicle_id = p_ship_id ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY)
     return (offload_containers)
-END
-/
+END//
+DELIMITER;
 
-CREATE OR REPLACE function func_occupancy_rate(p_ship_id ship.vehicle_ship_id%type,p_cargo_id cargo_manifest.cargo_manifest_id%type) return float
-    IS
-    containers_cargo int
-    ship_capacity float
-BEGIN
-    select count(container_id) into containers_cargo
-    from operation
-    where cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE cargo_manifest_id = p_cargo_id and UPPER(operation_type) = 'LOAD')
-    select capacity into ship_capacity
-    from ship
-    where vehicle_ship_id = p_ship_id
-    return containers_cargo / ship_capacity * 100
-END
-/
-
-CREATE OR REPLACE function func_occupancy_rate_now(p_ship_id ship.vehicle_ship_id%type) return float
-    IS
-    cm cargo_manifest.cargo_manifest_id%type
-BEGIN
+DELIMITER //
+create or replace function func_occupancy_rate_now(p_ship_id ship.vehicle_ship_id%type) return float
+is
+    cm cargo_manifest.cargo_manifest_id%type;
+begin
     SELECT cargo_manifest_id into cm
-    FROM cargo_manifest
+    FROM cargo_manifest 
     WHERE cm_date <= CURRENT_TIMESTAMP AND vehicle_id = p_ship_id
-    ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY
-    return func_occupancy_rate(p_ship_id,cm)
-END
-/
+    ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY;
+    return func_occupancy_rate(p_ship_id,cm);
+ EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      RAISE_APPLICATION_ERROR(-20001, 'Ship Does not exist');
+end;//
+DELIMITER;
 
-create or replace FUNCTION container_route(c_id container.container_id%type,cl_id client.client_id%type) RETURN sys_refcursor
-    IS
-    di leasing.leasing_start_date%type
-    df leasing.leasing_end_date%type
-    c_route sys_refcursor
+DELIMITER //
+create or replace function func_occupancy_rate(p_ship_id ship.vehicle_ship_id%type,p_cargo_id cargo_manifest.cargo_manifest_id%type) return float
+is
+    containers_cargo int;
+    ship_capacity float;
+begin
+    select count(container_id) into containers_cargo
+        from operation
+        where cargo_manifest_id = (SELECT cargo_manifest_id FROM cargo_manifest WHERE cargo_manifest_id = p_cargo_id and UPPER(operation_type) = 'LOAD');
+    select capacity into ship_capacity
+        from ship
+        where vehicle_ship_id = p_ship_id;
+    return containers_cargo / ship_capacity * 100;
+ EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+      RAISE_APPLICATION_ERROR(-20002, 'VALID DATA INSERTED');
+end;//
+DELIMITER;
+
+DELIMITER //
+CREATE OR REPLACE FUNCTION container_route(c_id container.container_id%type,cl_id client.client_id%type) RETURN sys_refcursor 
+IS
+di leasing.leasing_start_date%type;
+df leasing.leasing_end_date%type;
+c_route sys_refcursor;
 BEGIN
 
-    select leasing_start_date
+  select leasing_start_date
     into di
     from leasing
-    where client_id = cl_id AND container_id = c_id
+   where client_id = cl_id AND container_id = c_id;
 
-    select leasing_end_date
-    into df
-    from leasing
-    where client_id = cl_id AND container_id = c_id
+   select leasing_end_date
+     into df
+     from leasing
+    where client_id = cl_id AND container_id = c_id;
 
-
+    
     open c_route for
-        SELECT MIN(l1.LOCAL_NAME) AS "Origem",
-               MIN(CARGO_MANIFEST.CM_DATE) AS "Departure Time",
-               MIN(VEHICLE.TYPE) AS "Metodo De Transporte",
-               MIN(l2.LOCAL_NAME) AS "Destino",MIN(s."Arrival_Time") AS "Arrival Time"
-        FROM CARGO_MANIFEST
-                 INNER JOIN VEHICLE ON CARGO_MANIFEST.VEHICLE_ID = VEHICLE.VEHICLE_ID
-                 INNER JOIN LOCAL l1 ON CARGO_MANIFEST.LOCAL_ID = l1.LOCAL_ID
-                 INNER JOIN (SELECT local_id as "Destino",CARGO_MANIFEST.CM_DATE AS "Arrival_Time",VEHICLE_ID
-                             FROM CARGO_MANIFEST) s on cargo_manifest.next_local_id = s."Destino"
-            And cargo_manifest.VEHICLE_ID = s.VEHICLE_ID And cargo_manifest.cm_date < s."Arrival_Time"
-                 INNER JOIN LOCAL l2 ON s."Destino" = l2.local_id
-        WHERE CARGO_MANIFEST_ID IN (SELECT CARGO_MANIFEST_id FROM OPERATION WHERE CONTAINER_ID = c_id)
-          AND CM_DATE >= di AND CM_DATE <= df
-        GROUP BY cargo_manifest.cargo_manifest_id
+      SELECT MIN(l1.LOCAL_NAME) AS "Origem",
+        MIN(CARGO_MANIFEST.CM_DATE) AS "Departure Time",
+        MIN(VEHICLE.TYPE) AS "Metodo De Transporte",
+        MIN(l2.LOCAL_NAME) AS "Destino",MIN(s."Arrival_Time") AS "Arrival Time"
+      FROM CARGO_MANIFEST
+      INNER JOIN VEHICLE ON CARGO_MANIFEST.VEHICLE_ID = VEHICLE.VEHICLE_ID
+      INNER JOIN LOCAL l1 ON CARGO_MANIFEST.LOCAL_ID = l1.LOCAL_ID
+      INNER JOIN (SELECT local_id as "Destino",CARGO_MANIFEST.CM_DATE AS "Arrival_Time",VEHICLE_ID
+      FROM CARGO_MANIFEST) s on cargo_manifest.next_local_id = s."Destino" 
+      And cargo_manifest.VEHICLE_ID = s.VEHICLE_ID And cargo_manifest.cm_date < s."Arrival_Time" 
+      INNER JOIN LOCAL l2 ON s."Destino" = l2.local_id
+      WHERE CARGO_MANIFEST_ID IN (SELECT CARGO_MANIFEST_id FROM OPERATION WHERE CONTAINER_ID = c_id)
+      AND CM_DATE >= di AND CM_DATE <= df
+      GROUP BY cargo_manifest.cargo_manifest_id;
 
 
-    RETURN c_route
+  RETURN c_route;
 
-EXCEPTION
+ EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        RAISE_APPLICATION_ERROR(-20201, 'Leasing does not exist')
+      RAISE_APPLICATION_ERROR(-20201, 'Leasing does not exist');
 
-END
-/
+END;//
+DELIMITER;
 
-create or replace FUNCTION a_cm (ano NUMBER) RETURN SYS_REFCURSOR
+DELIMITER //
+CREATE OR REPLACE FUNCTION a_cm (ano NUMBER) RETURN SYS_REFCURSOR
     IS
     cur sys_refcursor
 BEGIN
-    OPEN cur for
+    OPEN cur FOR
         select count(DISTINCT cargo_manifest.cargo_manifest_id)
             as CARGO_MANIFESTS,(COUNT(operation.CONTAINER_ID)/count(distinct CARGO_MANIFEST.cargo_manifest_id))
             FROM cargo_manifest INNER JOIN operation ON OPERATION.CARGO_MANIFEST_ID=CARGO_MANIFEST.CARGO_MANIFEST_ID
             where EXTRACT (YEAR FROM cm_date)= ano group by EXTRACT(YEAR FROM cargo_manifest.cm_date)
     return cur
-end
-/
+end//
+DELIMITER;
+
+DELIMITER //
+create or replace function cont_where(cont NUMBER)RETURN VARCHAR
+IS 
+tipo varchar(100);
+ids varchar(100);
+BEGIN
+select cargo_manifest.operation_type into tipo from operation inner join cargo_manifest on operation.cargo_manifest_id=cargo_manifest.cargo_manifest_id where container_id=cont and cargo_manifest.cm_date < CURRENT_TIMESTAMP order by cargo_manifest.cm_date DESC FETCH FIRST ROW ONLY;
+
+
+IF (UPPER(tipo) = 'LOAD') THEN
+    select cargo_manifest.vehicle_id into ids from operation inner join cargo_manifest on operation.cargo_manifest_id=cargo_manifest.cargo_manifest_id where operation.container_id=cont and cargo_manifest.cm_date < CURRENT_TIMESTAMP order by cargo_manifest.cm_date DESC FETCH FIRST ROW ONLY;
+
+ELSE
+    select cargo_manifest.local_id into ids from operation inner join cargo_manifest on operation.cargo_manifest_id=cargo_manifest.cargo_manifest_id where operation.container_id=cont and cargo_manifest.cm_date < CURRENT_TIMESTAMP order by cargo_manifest.cm_date DESC FETCH FIRST ROW ONLY;
+END IF;
+return ids;
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+  return 'NO DATA';
+
+END;//
