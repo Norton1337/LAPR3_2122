@@ -44,20 +44,28 @@ public class ToMatrixController {
     public void getNClosenessPlaces(Locals port, int nClosest){
         TreeMap<Locals, Double> closestMap = new TreeMap<>();
 
-        //TODO ana list
+        List<Locals> nClosestPorts = new LinkedList<>();
 
-
+        //vai buscar tudo e poe no mapa
         for(Locals elems : portsAndWarehousesController.getAllPortsAndWharehouse()){
 
             //TODO if que verifica se e do mesmo continente e se o pais e diferente
+            String portCountryId = port.getCountryId();
+            String portContinent = countryController.findById(portCountryId).getContinent();
 
-            LinkedList<Locals> path = new LinkedList<>();
-            double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
-            if(weight > 0){
+            String elemCountryId = elems.getCountryId();
+            String elemContinent = countryController.findById(elemCountryId).getContinent();
 
-                //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
-                closestMap.put(elems, weight);
+            if (elemContinent.equals(portContinent)){
+                LinkedList<Locals> path = new LinkedList<>();
+                double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
+                if(weight > 0){
+
+                    //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
+                    closestMap.put(elems, weight);
+                }
             }
+
         }
 
         LinkedHashMap<Locals, Double> sortedMap = new LinkedHashMap<>();
@@ -70,9 +78,18 @@ public class ToMatrixController {
         //TODO pegar no numero do nClosest e adicionar para a lista as keys
         Set<Locals> entry = sortedMap.keySet();
 
+        int count = 0;
+        for (Locals locals : entry){
 
+            if (count < nClosest){
+                nClosestPorts.add(locals);
+                count++;
+            }
 
-        printMap(sortedMap);
+        }
+
+        printList(nClosestPorts);
+        //printMap(sortedMap);
     }
 
 
@@ -142,6 +159,7 @@ public class ToMatrixController {
 
                 if(locals1.getName().equals("Leixoes")){
                     getNClosenessPlaces(locals1, 3);
+                    break;
                 }
             }
 
