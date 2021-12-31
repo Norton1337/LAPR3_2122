@@ -44,6 +44,9 @@ public class PortsAndWarehousesDB extends DataHandler implements ILocals {
 
 
     public boolean addPortsAndWarehouses(Locals portsAndWarehouses) {
+        if(portsAndWarehouses == null){
+            return false;
+        }
         try (CallableStatement result = getConnection().prepareCall("{call insertLocal(?,?,?,?,?,?,?,?,?)}")) {
             String[] coordinates = portsAndWarehouses.getCoordinates().split(",");
             result.setString(1, portsAndWarehouses.getId());

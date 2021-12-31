@@ -17,6 +17,9 @@ public class ShipPositionDataDB extends DataHandler implements IShipPositionData
 
     @Override
     public boolean addShipData(ShipPositonData shipPositonData) {
+        if(shipPositonData == null){
+            return false;
+        }
         try (CallableStatement result = getConnection().prepareCall("{call insertShip(?,?,?,?,?,?,?,?,?,?)}")) {
             String[] coordinates = shipPositonData.getCoordinates().split(",");
             result.setString(1,shipPositonData.getId());

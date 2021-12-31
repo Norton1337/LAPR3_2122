@@ -24,6 +24,9 @@ public class CargoManifestDB extends DataHandler implements ICargoManifest {
 
     @Override
     public CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId) {
+        if(cargo == null){
+            return null;
+        }
         try (CallableStatement result = getConnection().prepareCall("{call insertCargoManifest(?,?,?,?,?,?)}")) {
         result.setString(1,localId);
         result.setString(2,vehicleId);

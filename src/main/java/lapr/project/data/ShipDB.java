@@ -35,6 +35,9 @@ public class ShipDB extends DataHandler implements IShipsDB {
 
     @Override
     public boolean addShip(Ship ship) {
+        if(ship == null){
+            return false;
+        }
         try (CallableStatement result = getConnection().prepareCall("{call insertShip()}")) {
             result.setString(1,ship.getId());
             result.setString(2,ship.getShipName());
