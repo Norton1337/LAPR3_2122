@@ -83,9 +83,9 @@ public class Locals implements Comparable<Locals> {
     @Override
     public String toString() {
         return "Locals{" +
-                "id='" + id + '\'' +
-                ", countryId='" + countryId + '\'' +
-                ", name='" + name + '\'' +
+                //"id='" + id + '\'' +
+                //", countryId='" + countryId + '\'' +
+                " name='" + name + '\'' +
                 ", coordinates='" + coordinates + '\'' +
                 ", shipId='" + shipId + '\'' +
                 ", portId='" + portId + '\'' +

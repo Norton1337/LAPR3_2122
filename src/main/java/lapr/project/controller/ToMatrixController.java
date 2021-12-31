@@ -47,7 +47,7 @@ public class ToMatrixController {
         //TODO ana list
 
 
-        for(Locals elems : portsAndWarehousesController.getAllPortsAndWharehouse()){
+        for(Locals elems : portsAndWarehousesController.getAllPorts()){
 
             //TODO if que verifica se e do mesmo continente e se o pais e diferente
 
@@ -59,6 +59,7 @@ public class ToMatrixController {
                 closestMap.put(elems, weight);
             }
         }
+
 
         LinkedHashMap<Locals, Double> sortedMap = new LinkedHashMap<>();
         closestMap.entrySet()
@@ -76,9 +77,10 @@ public class ToMatrixController {
     }
 
 
+
     public void buildMatrix(int nClosestPorts) {
 
-        for (Locals elem : portsAndWarehousesController.getAllPorts()) {
+        for (Locals elem : portsAndWarehousesController.getAllPortsAndWharehouse()) {
             freightNetworkMatrix.insertVertex(elem);
         }
 
@@ -117,37 +119,52 @@ public class ToMatrixController {
 
 
         /**
-         * Insert Edge relative to ports from seadist
+         * Insert Port with other ports of same country
          */
 
         for(Seadist elem: seadistDB.getAllSeadist()){
 
-            //TODO Connect only ports of the same country,
-
             //buscar fromPortId e tranformar em local
             Locals locals1 = localsDB.getLocalWithPortId(elem.getFromPortId());
 
+            Country country1 = null;
+            if(locals1 != null) country1 = countryDB.getCountryById(locals1.getCountryId());
+
+
             //buscar portid e transformar em local
             Locals locals2 = localsDB.getLocalWithPortId(elem.getToPortId());
-
+            Country country2 = null;
+            if(locals2 != null) country2 = countryDB.getCountryById(locals2.getCountryId());
 
             //pegar distancia
             float weight = elem.getDistance();
 
+            if(country1 != null && country2 != null){
+                if(country1.getCountryName().equals(country2.getCountryName())){
+                    //adicionar a matriz
+                    freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
 
-            if(locals1 != null && locals2!=null){
-                //adicionar a matriz
-                freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
-
-
-                if(locals1.getName().equals("Leixoes")){
-                    getNClosenessPlaces(locals1, 3);
+                    if(locals1.getName().equals("Leixoes")){
+                        getNClosenessPlaces(locals1, 3);
+                    }
                 }
             }
-
-
         }
 
+
+
+        /**
+         * Port closest to capital
+         */
+/*
+        for(Locals elems : portsAndWarehousesController.getAllCapitals()){
+            if(elems.getName().equals("Lisbon")){
+                for(Locals ports: portsAndWarehousesController.getAllPorts()){
+                    KMTravelledCalculator cal = new KMTravelledCalculator();
+                    double
+                }
+            }
+        }*/
 
 
         /**
