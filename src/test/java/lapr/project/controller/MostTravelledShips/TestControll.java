@@ -88,13 +88,13 @@ public class TestControll {
         //printList(seadistController.getAllSeadist());
         //printList(portsAndWarehousesController.getAllPorts());
 
-        matrixController.buildMatrix(3);
-        matrixController.printMatrix();
+        AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
+        matrixController.printFreightNetworkMatrix();
     }
 
     @Test
     void leixoesTest() {
-        AdjacencyMatrixGraph<Locals, Double> matrix = matrixController.buildMatrix(3);
+        AdjacencyMatrixGraph<Locals, Double> matrix = matrixController.buildFreightNetwork(3);
         Locals leixoes = localsController.getLocalWithName("Leixoes");
         List<Object> outgoingVerticesList = matrix.outgoingVertices(leixoes);
         List<String> expectResult = Arrays.asList("Setubal", "Barcelona", "Dunkirk", "Horta", "Ponta Delgada", "Valencia", "Funchal");
@@ -109,4 +109,9 @@ public class TestControll {
     }
 
 
+    @Test
+    void colourMatrix() {
+        matrixController.buildMatrixToColour();
+        matrixController.colorMatrix();
+    }
 }

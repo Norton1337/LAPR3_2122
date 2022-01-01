@@ -1,5 +1,6 @@
 package lapr.project.controller;
 
+import lapr.project.controller.helper_classes.CountryColour;
 import lapr.project.controller.helper_classes.KMTravelledCalculator;
 import lapr.project.controller.model_controllers.CountryController;
 import lapr.project.controller.model_controllers.LocalsController;
@@ -15,10 +16,7 @@ import lapr.project.model.locals.idb.ILocals;
 import lapr.project.model.seadists.Seadist;
 import lapr.project.model.seadists.idb.ISeadist;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static lapr.project.utils.Utils.convertCoordinates;
 import static lapr.project.utils.Utils.sortMapByValue;
@@ -27,6 +25,7 @@ import static lapr.project.utils.Utils.sortMapByValue;
 public class ToMatrixController {
 
     private final AdjacencyMatrixGraph<Locals, Double> freightNetworkMatrix;
+    private final AdjacencyMatrixGraph<String, Double> matrixToColour;
 
     private final CountryController countryController;
     private final LocalsController localsController;
@@ -35,17 +34,21 @@ public class ToMatrixController {
 
     public ToMatrixController(ILocals localsDB, ISeadist seadistDB, ICountryDB countryDB, IBordersDB bordersDB) {
         this.freightNetworkMatrix = new AdjacencyMatrixGraph<>();
+        this.matrixToColour = new AdjacencyMatrixGraph<>();
+
         this.countryController = new CountryController(countryDB, bordersDB, localsDB);
         this.localsController = new LocalsController(countryDB, localsDB);
         this.seadistController = new SeadistController(localsDB, seadistDB);
     }
 
-    public Map<Locals, Double> getNClosenessPlaces(Locals port, int nClosest) {
+    public Map<Locals, Double> getNClosenessPlaces(List<Locals> localsList, Locals port, int nClosest) {
         TreeMap<Locals, Double> closestMap = new TreeMap<>();
         Map<Locals, Double> returnMap = new LinkedHashMap<>();
 
-        //vai buscar tudo e poe no mapa
-        for (Locals elems : localsController.getAllPorts()) {
+        /**
+         * Vai buscar tudo e poe no mapa
+         */
+        for (Locals elems : localsList) {
 
 
             String portCountryId = port.getCountryId();
@@ -86,7 +89,7 @@ public class ToMatrixController {
     }
 
 
-    public AdjacencyMatrixGraph<Locals, Double> buildMatrix(int nClosestPorts) {
+    public AdjacencyMatrixGraph<Locals, Double> buildFreightNetwork(int nClosestPorts) {
 
         for (Locals elem : localsController.getAllLocals()) {
             freightNetworkMatrix.insertVertex(elem);
@@ -199,7 +202,7 @@ public class ToMatrixController {
          */
 
         for (Locals elems : localsController.getAllPorts()) {
-            Map<Locals, Double> nearestPorts = getNClosenessPlaces(elems, nClosestPorts);
+            Map<Locals, Double> nearestPorts = getNClosenessPlaces(localsController.getAllPorts(), elems, nClosestPorts);
             if (nearestPorts.size() != 0) {
                 /* Show that's working
                 if(elems.getName().equals("Leixoes")){
@@ -220,7 +223,92 @@ public class ToMatrixController {
     }
 
 
-    public void printMatrix() {
-        System.out.println(freightNetworkMatrix.toString());
+    public void printFreightNetworkMatrix() {
+        System.out.println(freightNetworkMatrix);
     }
+
+    public void printMatrixToColour() {
+        System.out.println(matrixToColour);
+    }
+
+
+    public AdjacencyMatrixGraph<Locals, Double> buildMatrixToColour() {
+
+        /**
+         * Insert all vertices, all Countries
+         */
+
+        for (Country elems : countryController.getAllCountries()) {
+            List<Borders> borders = countryController.getAllBordersOfCountry(elems.getCountryName());
+            if(borders.size() > 0){
+                matrixToColour.insertVertex(elems.getCountryName());
+            }
+        }
+
+
+        /**
+         * Insert all edges, all Country borders
+         */
+
+        for (Country elems : countryController.getAllCountries()) {
+            String country = elems.getCountryName();
+            List<Borders> countryBorders = countryController.getAllBordersOfCountry(elems.getCountryName());
+
+            for (Borders borders : countryBorders) {
+                String country1 = countryController.findById(borders.getCountry1Id()).getCountryName();
+                String country2 = countryController.findById(borders.getCountry2Id()).getCountryName();
+
+                if (country.equals(country1) && !country.equals(country2)) {
+                    matrixToColour.insertEdge(country, country2, 0.0);
+                }
+
+                if (country.equals(country2) && !country.equals(country1)) {
+                    matrixToColour.insertEdge(country, country1, 0.0);
+                }
+            }
+        }
+
+        /*
+        var p = new LinkedList<String>();
+        EdgeAsDoubleGraphAlgorithms.shortestPath(matrixToColour, "Portugal","Poland",p);
+
+        System.out.println(p);
+
+         */
+        return null;
+    }
+
+
+    public void colorMatrix(){
+        Queue<CountryColour> countryQueue = new LinkedList<>();
+
+        int numVert = matrixToColour.numVertices();
+        int beginColour = 1;
+
+        /**
+         * Declarar todas as posicoes sem cor
+         */
+        int vertPos[] = new int[numVert];
+        Arrays.fill(vertPos, -1);
+
+
+        /**
+         * Iniciar a primeira posicao com a primeira cor
+         */
+        vertPos[0] = beginColour;
+
+
+
+        //System.out.println(Arrays.toString(vertPos));
+
+
+
+        for(String elems : matrixToColour.vertices()){
+            System.out.printf("%s   %s\n", elems, matrixToColour.outgoingVertices(elems));
+            countryQueue.add(new CountryColour(elems, beginColour));
+        }
+
+    }
+
+
 }
