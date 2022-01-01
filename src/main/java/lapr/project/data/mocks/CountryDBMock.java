@@ -27,15 +27,6 @@ public class CountryDBMock implements ICountryDB {
         return null;
     }
 
-    @Override
-    public Country getCountryWithCapital(String capital) {
-        for(Country elems: allContries){
-            if(elems.getCapital().equals(capital)){
-                return elems;
-            }
-        }
-        return null;
-    }
 
     @Override
     public String getCountryIdByName(String name) {
@@ -54,13 +45,4 @@ public class CountryDBMock implements ICountryDB {
         return allContries.add(country);
     }
 
-    @Override
-    public boolean updateCountry(Country elem) {
-        return false;
-    }
-
-    @Override
-    public boolean removeCountry(String id) {
-        return false;
-    }
 }

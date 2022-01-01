@@ -20,10 +20,6 @@ public class CountryDB extends DataHandler implements ICountryDB {
         return null;
     }
 
-    @Override
-    public Country getCountryWithCapital(String capital) {
-        return null;
-    }
 
     @Override
     public String getCountryIdByName(String name) {
@@ -53,13 +49,4 @@ public class CountryDB extends DataHandler implements ICountryDB {
         return true;
     }
 
-    @Override
-    public boolean updateCountry(Country elem) {
-        return false;
-    }
-
-    @Override
-    public boolean removeCountry(String id) {
-        return false;
-    }
 }

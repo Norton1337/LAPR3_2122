@@ -15,6 +15,24 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
     E[][] edgeMatrix;
 
     /**
+     * Constructs an empty graph.
+     */
+    public AdjacencyMatrixGraph() {
+        this(INITIAL_CAPACITY);
+    }
+
+    /**
+     * Constructs a graph with an initial capacity.
+     *
+     * @param initialSize
+     */
+    @SuppressWarnings("unchecked")
+    public AdjacencyMatrixGraph(int initialSize) {
+        vertices = new ArrayList(initialSize);
+        edgeMatrix = (E[][]) new Object[initialSize][initialSize];
+    }
+
+    /**
      * Returns the edge reference associated with edgeMatrix x,y position used
      * as workaround to work with edgeMatrix from the EdgeAsDoubleGraphAlgorithm
      * Class as Java generic types are not available at runtime
@@ -32,7 +50,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
      * Class as Java generic types are not available at runtime
      *
      * @param x,y the position in the matrix
-     * @param e the new reference
+     * @param e   the new reference
      */
     void privateSet(int x, int y, E e) {
         edgeMatrix[x][y] = e;
@@ -64,24 +82,6 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
     }
 
     /**
-     * Constructs an empty graph.
-     */
-    public AdjacencyMatrixGraph() {
-        this(INITIAL_CAPACITY);
-    }
-
-    /**
-     * Constructs a graph with an initial capacity.
-     *
-     * @param initialSize
-     */
-    @SuppressWarnings("unchecked")
-    public AdjacencyMatrixGraph(int initialSize) {
-        vertices = new ArrayList(initialSize);
-        edgeMatrix = (E[][]) new Object[initialSize][initialSize];
-    }
-
-    /**
      * Returns the number of vertices in the graph
      *
      * @return number of vertices of the graph
@@ -110,8 +110,8 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
     public boolean checkVertex(V vertex) {
         return (vertices.indexOf(vertex) != -1);
     }
-    
-    public List getVertices(){
+
+    public List getVertices() {
         return vertices;
     }
 
@@ -411,6 +411,23 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         return removeEdge(indexA, indexB);
     }
 
+
+    @Override
+    public List<Object> outgoingVertices(V vert) {
+        int vertNum = toIndex(vert);
+        List<Object> outgoingVerticesList = new ArrayList<>();
+
+
+        for (int j = 0; j < numVertices; j++) {
+            if (edgeMatrix[vertNum][j] != null) {
+                outgoingVerticesList.add(getVertices().get(j));
+            }
+        }
+
+        return outgoingVerticesList;
+
+    }
+
     /**
      * Returns a string representation of the graph. Matrix only represents
      * existence of Edge
@@ -496,11 +513,8 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         if (!vertices.equals(other.vertices)) {
             return false;
         }
-        if (!Arrays.deepEquals(edgeMatrix, other.edgeMatrix)) {
-            return false;
-        }
+        return Arrays.deepEquals(edgeMatrix, other.edgeMatrix);
         // fails to recognise difference between objects with different <E> type
         // when vertices are the same and both graphs have no edges
-        return true;
     }
 }

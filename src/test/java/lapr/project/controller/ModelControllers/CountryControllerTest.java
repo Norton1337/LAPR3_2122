@@ -3,7 +3,7 @@ package lapr.project.controller.ModelControllers;
 import lapr.project.controller.model_controllers.CountryController;
 import lapr.project.data.mocks.BordersDBMock;
 import lapr.project.data.mocks.CountryDBMock;
-import lapr.project.data.mocks.PortsAndWarehousesDBMock;
+import lapr.project.data.mocks.LocalsDBMock;
 import lapr.project.ui.CountryUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,7 @@ class CountryControllerTest {
     //DB
     CountryDBMock countryDBMock = new CountryDBMock();
     BordersDBMock bordersDBMock = new BordersDBMock();
-    PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
+    LocalsDBMock portsAndWarehousesDBMock = new LocalsDBMock();
 
     //Controller
     CountryController countryController = new CountryController(countryDBMock, bordersDBMock, portsAndWarehousesDBMock);

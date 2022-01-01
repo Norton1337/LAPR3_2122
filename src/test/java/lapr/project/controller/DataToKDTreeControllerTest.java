@@ -8,8 +8,8 @@ import lapr.project.data.mocks.CountryDBMock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.controller.model_controllers.PortsAndWarehousesController;
-import lapr.project.data.mocks.PortsAndWarehousesDBMock;
+import lapr.project.controller.model_controllers.LocalsController;
+import lapr.project.data.mocks.LocalsDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.model.locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
@@ -19,9 +19,9 @@ class DataToKDTreeControllerTest {
 
     CountryDBMock countryDBMock = new CountryDBMock();
     ShipDBMock shipDBMock = new ShipDBMock();
-    PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
+    LocalsDBMock portsAndWarehousesDBMock = new LocalsDBMock();
 
-    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(countryDBMock, portsAndWarehousesDBMock);
+    LocalsController portsAndWarehousesController = new LocalsController(countryDBMock, portsAndWarehousesDBMock);
 
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
 
@@ -32,7 +32,7 @@ class DataToKDTreeControllerTest {
     @BeforeEach
     void setup(){
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
-        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPortsAndWharehouse();
+        LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllLocals();
         dataToKDTreeController.populateTree(portsAndWarehouses); 
     }
 

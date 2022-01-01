@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.PortsAndWarehousesController;
+import lapr.project.controller.model_controllers.LocalsController;
 import lapr.project.model.locals.Locals;
 
 import java.io.BufferedReader;
@@ -13,8 +13,8 @@ import java.util.List;
 public class PortsAndWarehousesUI {
 
 
-    private PortsAndWarehousesController portsAndWarehousesController;
-    public PortsAndWarehousesUI(PortsAndWarehousesController portsAndWarehousesController) {
+    private LocalsController portsAndWarehousesController;
+    public PortsAndWarehousesUI(LocalsController portsAndWarehousesController) {
         this.portsAndWarehousesController = portsAndWarehousesController;
     }
 

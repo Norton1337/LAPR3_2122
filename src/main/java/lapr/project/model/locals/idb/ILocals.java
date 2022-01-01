@@ -9,26 +9,11 @@ import java.util.List;
 
 public interface ILocals {
 
-    List<Locals> getAllPortsAndWarehouses();
-
-    List<Locals> getAllCapitals();
-
-    Locals getLocalWithLocalName(String name);
-
-    Locals getLocalWithCapital(String capital);
-
-    Locals getLocalWithPortId(String portId);
-
-    Locals getPortsAndWarehousesById(String id);
+    List<Locals> getAllLocals();
 
     boolean addPortsAndWarehouses(Locals portsAndWarehouses);
 
-    boolean updatePortsAndWarehouses(Locals portsAndWarehouses);
-
-    boolean removePortsAndWarehouses(String id);
-
     Locals getPortByPortIdCode(String code);
-
 
 
     public List<String> freeships();

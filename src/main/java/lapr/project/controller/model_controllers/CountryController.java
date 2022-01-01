@@ -10,7 +10,6 @@ import lapr.project.model.locals.idb.ILocals;
 import java.util.LinkedList;
 import java.util.List;
 
-import static lapr.project.utils.Utils.printList;
 
 public class CountryController {
 
@@ -64,6 +63,15 @@ public class CountryController {
         }
 
         return bordersOfCountry;
+    }
+
+    public Country getCountryWithCapital(String capital) {
+        for(Country elems: getAllCountries()){
+            if(elems.getCapital().equals(capital)){
+                return elems;
+            }
+        }
+        return null;
     }
 
 }

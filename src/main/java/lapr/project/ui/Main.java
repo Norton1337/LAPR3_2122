@@ -5,9 +5,6 @@ import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.*;
-import lapr.project.data.db_scripts.DataHandler;
-import lapr.project.data.mocks.*;
-import lapr.project.model.truck.Truck;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,7 +29,7 @@ class Main {
                 ShipDB shipDB = new ShipDB();
                 GeneratorDB generatorDB = new GeneratorDB();
                 ShipPositionDataDB shipPositionDataDB = new ShipPositionDataDB();
-                PortsAndWarehousesDB portsAndWarehousesDB = new PortsAndWarehousesDB();
+                LocalsDB portsAndWarehousesDB = new LocalsDB();
                 CountryDB countryDB = new CountryDB();
 
                 // CONTROLLERS DO MODEL
@@ -41,7 +38,7 @@ class Main {
                 ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDB,
                                 shipPositionDataDB);
                 GeneratorController generatorController = new GeneratorController(shipDB, generatorDB);
-                PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(
+                LocalsController portsAndWarehousesController = new LocalsController(
                                 countryDB,
                                 portsAndWarehousesDB);
 

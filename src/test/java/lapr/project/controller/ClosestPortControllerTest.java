@@ -23,7 +23,7 @@ class ClosestPortControllerTest {
     ShipDBMock shipDBMock = new ShipDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
-    PortsAndWarehousesDBMock portsAndWarehousesDBMock = new PortsAndWarehousesDBMock();
+    LocalsDBMock portsAndWarehousesDBMock = new LocalsDBMock();
     CountryDBMock countryDBMock = new CountryDBMock();
     BordersDBMock bordersDBMock = new BordersDBMock();
 
@@ -32,7 +32,7 @@ class ClosestPortControllerTest {
     ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
-    PortsAndWarehousesController portsAndWarehousesController = new PortsAndWarehousesController(countryDBMock, portsAndWarehousesDBMock);
+    LocalsController portsAndWarehousesController = new LocalsController(countryDBMock, portsAndWarehousesDBMock);
 
     //CONTROLLERS
     DataToBstController dataToBstController = new DataToBstController();
@@ -77,7 +77,7 @@ class ClosestPortControllerTest {
 
     @Test
     void test(){
-       printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
+       printList(portsAndWarehousesDBMock.getAllLocals());
     }
 
 

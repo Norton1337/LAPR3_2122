@@ -12,33 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PortsAndWarehousesDB extends DataHandler implements ILocals {
+public class LocalsDB extends DataHandler implements ILocals {
 
-    public List<Locals> getAllPortsAndWarehouses() {
-        return null;
-    }
-
-    @Override
-    public List<Locals> getAllCapitals() {
-        return null;
-    }
-
-    @Override
-    public Locals getLocalWithLocalName(String name) {
-        return null;
-    }
-
-    @Override
-    public Locals getLocalWithCapital(String capital) {
-        return null;
-    }
-
-    @Override
-    public Locals getLocalWithPortId(String portId) {
-        return null;
-    }
-
-    public Locals getPortsAndWarehousesById(String id) {
+    public List<Locals> getAllLocals() {
         return null;
     }
 
@@ -63,16 +39,6 @@ public class PortsAndWarehousesDB extends DataHandler implements ILocals {
             e.printStackTrace();
         }
         return true;
-    }
-
-    @Override
-    public boolean updatePortsAndWarehouses(Locals portsAndWarehouses) {
-        return false;
-    }
-
-    @Override
-    public boolean removePortsAndWarehouses(String id) {
-        return false;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package lapr.project.data.graph_files;
 
+import java.util.List;
+
 public interface BasicGraph<V, E> {
 
     /**
@@ -129,4 +131,6 @@ public interface BasicGraph<V, E> {
      * connected
      */
     E removeEdge(V va, V vb);
+
+    List<Object> outgoingVertices(V vertex);
 }
