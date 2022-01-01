@@ -2,12 +2,12 @@ package lapr.project.model.cargoManifest;
 
 public class CargoManifest {
 
-        private String id;
-        private String nextLocal;
-        private String date;
-        private String operationType;
-        private String currentLocalId;
-        private String vehicleId;
+    private String id;
+    private String nextLocal;
+    private String date;
+    private String operationType;
+    private String currentLocalId;
+    private String vehicleId;
 
     public CargoManifest(String nextLocal, String date, String operationType) {
         this.nextLocal = nextLocal;

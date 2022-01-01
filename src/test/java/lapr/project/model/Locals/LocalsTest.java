@@ -1,75 +1,70 @@
 package lapr.project.model.Locals;
 
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import lapr.project.model.locals.Locals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.locals.Locals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class LocalsTest {
     private Locals portsAndWarehouses;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         portsAndWarehouses = new Locals("Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
     }
 
     @Test
-    void setAndGetIdTest(){
+    void setAndGetIdTest() {
         assertNull(portsAndWarehouses.getId());
         portsAndWarehouses.setId("12345");
         assertEquals("12345", portsAndWarehouses.getId());
     }
 
 
-
     @Test
-    void setAndGetCountryTest(){
+    void setAndGetCountryTest() {
         assertEquals("Portugal", portsAndWarehouses.getCountryId());
         portsAndWarehouses.setCountryId("Poland");
         assertEquals("Poland", portsAndWarehouses.getCountryId());
     }
 
     @Test
-    void setAndGetCodeTest(){
+    void setAndGetCodeTest() {
         assertEquals(12345, portsAndWarehouses.getPortId());
         portsAndWarehouses.setPortId(67890);
         assertEquals(67890, portsAndWarehouses.getPortId());
     }
 
     @Test
-    void setAndGetPortNameTest(){
+    void setAndGetPortNameTest() {
         assertEquals("Leixões", portsAndWarehouses.getName());
         portsAndWarehouses.setName("Port of Gdańsk");
         assertEquals("Port of Gdańsk", portsAndWarehouses.getName());
     }
 
     @Test
-    void setAndGetCoordinatesTest(){
-        assertEquals("41.1827759,-8.7205652",portsAndWarehouses.getCoordinates());
+    void setAndGetCoordinatesTest() {
+        assertEquals("41.1827759,-8.7205652", portsAndWarehouses.getCoordinates());
         portsAndWarehouses.setCoordinates("54.393333,18.67");
         assertEquals("54.393333,18.67", portsAndWarehouses.getCoordinates());
     }
 
     @Test
-    void setAndGetVehicleIdTest(){
+    void setAndGetVehicleIdTest() {
         assertNull(portsAndWarehouses.getVehicleId());
         portsAndWarehouses.setVehicleId("112233");
         assertEquals("112233", portsAndWarehouses.getVehicleId());
     }
 
     @Test
-    void toStringTest(){
+    void toStringTest() {
         portsAndWarehouses.setType("Port");
         System.out.println(portsAndWarehouses.toString());
         assertTrue(portsAndWarehouses.toString().contains("type='Port'"));
     }
 
 
-
-   
 }

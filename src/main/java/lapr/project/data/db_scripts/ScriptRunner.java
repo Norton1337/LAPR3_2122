@@ -168,8 +168,8 @@ public class ScriptRunner {
     private void execCommand(Connection conn, StringBuffer command,
                              LineNumberReader lineReader) throws SQLException {
 
-        
-        try ( Statement statement = conn.createStatement()) {
+
+        try (Statement statement = conn.createStatement()) {
             println(command);
 
             boolean hasResults = false;
@@ -188,7 +188,7 @@ public class ScriptRunner {
             if (autoCommit && !conn.getAutoCommit()) {
                 conn.commit();
             }
-            
+
             try (ResultSet rs = statement.getResultSet()) {
                 if (hasResults && rs != null) {
                     ResultSetMetaData md = rs.getMetaData();
@@ -209,14 +209,13 @@ public class ScriptRunner {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-            
+
+
         } catch (Exception e) {
             e.printStackTrace();
-        }                                
-       
+        }
 
-        
+
     }
 
     private String getDelimiter() {

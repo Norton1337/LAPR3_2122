@@ -5,19 +5,18 @@
  */
 package lapr.project.controller;
 
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import lapr.project.controller.helper_classes.ShipSummary;
 import lapr.project.model.helper_classes.ShipAndData;
 import lapr.project.model.ship_position_data.ShipPositonData;
 import lapr.project.utils.Utils;
 
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import static lapr.project.utils.Utils.orderedByTime;
 
 /**
- *
  * @author gonca
  */
 public class ShipSummaryController {

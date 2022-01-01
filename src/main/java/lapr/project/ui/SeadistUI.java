@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.CountryController;
 import lapr.project.controller.model_controllers.SeadistController;
-import lapr.project.model.borders.Borders;
-import lapr.project.model.country.Country;
 import lapr.project.model.seadists.Seadist;
 
 import java.io.BufferedReader;
@@ -12,8 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static lapr.project.utils.Utils.coordinates;
 
 public class SeadistUI {
 

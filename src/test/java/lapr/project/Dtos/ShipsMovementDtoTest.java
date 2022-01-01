@@ -1,8 +1,7 @@
 package lapr.project.Dtos;
 
-import org.junit.jupiter.api.Test;
-
 import lapr.project.dtos.ShipsMovementDto;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,11 +11,12 @@ class ShipsMovementDtoTest {
 
 
     @Test
-    void getMMSITest(){
-        assertEquals("210950000",shipsMovementDto.getMMSI() );
+    void getMMSITest() {
+        assertEquals("210950000", shipsMovementDto.getMMSI());
     }
+
     @Test
-    void setMMSITest(){
+    void setMMSITest() {
         String initialMMSI = shipsMovementDto.getMMSI();
         shipsMovementDto.setMMSI("210950875");
 
@@ -25,12 +25,12 @@ class ShipsMovementDtoTest {
     }
 
     @Test
-    void getTravelledDistanceTest(){
+    void getTravelledDistanceTest() {
         assertEquals("23054", shipsMovementDto.getTravelledDistance());
     }
 
     @Test
-    void setTravelledDistanceTest(){
+    void setTravelledDistanceTest() {
         String inicialTravelledDistance = shipsMovementDto.getTravelledDistance();
         shipsMovementDto.setTravelledDistance("23006");
 
@@ -39,11 +39,12 @@ class ShipsMovementDtoTest {
     }
 
     @Test
-    void getDeltaDistanceTest(){
+    void getDeltaDistanceTest() {
         assertEquals("450", shipsMovementDto.getDeltaDistance());
     }
+
     @Test
-    void setDeltaDistanceTest(){
+    void setDeltaDistanceTest() {
         String initialDeltaDistance = shipsMovementDto.getDeltaDistance();
         shipsMovementDto.setDeltaDistance("940");
 
@@ -52,11 +53,12 @@ class ShipsMovementDtoTest {
     }
 
     @Test
-    void getNumberOfMovementsTest(){
+    void getNumberOfMovementsTest() {
         assertEquals("7", shipsMovementDto.getNumberOfMovements());
     }
+
     @Test
-    void setNumberOfMovementsTest(){
+    void setNumberOfMovementsTest() {
         String initialNumberOfMovements = shipsMovementDto.getNumberOfMovements();
         shipsMovementDto.setNumberOfMovements("24");
 
@@ -65,18 +67,18 @@ class ShipsMovementDtoTest {
     }
 
     @Test
-    void compareToTest(){
+    void compareToTest() {
         assertEquals(0, shipsMovementDto.compareTo(shipsMovementDto));
     }
 
     @Test
-    void toStringTest(){
+    void toStringTest() {
         String string = "ShipsMovementDto{" +
-                        "MMSI='" + shipsMovementDto.getMMSI() + '\'' +
-                        ", travelledDistance='" + shipsMovementDto.getTravelledDistance() + '\'' +
-                        ", deltaDistance='" + shipsMovementDto.getDeltaDistance() + '\'' +
-                        ", numberOfMovements='" + shipsMovementDto.getNumberOfMovements() + '\'' +
-                        '}';
+                "MMSI='" + shipsMovementDto.getMMSI() + '\'' +
+                ", travelledDistance='" + shipsMovementDto.getTravelledDistance() + '\'' +
+                ", deltaDistance='" + shipsMovementDto.getDeltaDistance() + '\'' +
+                ", numberOfMovements='" + shipsMovementDto.getNumberOfMovements() + '\'' +
+                '}';
         assertEquals(string, shipsMovementDto.toString());
     }
 

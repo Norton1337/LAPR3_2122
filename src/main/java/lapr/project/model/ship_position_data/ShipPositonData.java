@@ -1,7 +1,7 @@
 package lapr.project.model.ship_position_data;
 
 
-public class ShipPositonData{
+public class ShipPositonData {
 
     private String id;
     private String baseDateTime;
@@ -12,7 +12,6 @@ public class ShipPositonData{
     private String positon;
     private String transcieverClass;
     private String shipId;
-
 
 
     public ShipPositonData(String baseDateTime, String coordinates, double sog, double cog,

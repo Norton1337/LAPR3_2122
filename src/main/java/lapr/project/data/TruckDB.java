@@ -17,12 +17,12 @@ public class TruckDB extends DataHandler implements ITruck {
 
     @Override
     public boolean addTruck(Truck truck, String id) {
-        if(truck == null){
+        if (truck == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertTruck()}")) {
-            result.setString(1,truck.getTruckId());
-            result.setString(2,truck.getPlate());
+            result.setString(1, truck.getTruckId());
+            result.setString(2, truck.getPlate());
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

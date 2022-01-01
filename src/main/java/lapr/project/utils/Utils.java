@@ -1,27 +1,29 @@
 package lapr.project.utils;
 
+import lapr.project.model.ship_position_data.ShipPositonData;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import lapr.project.model.ship_position_data.ShipPositonData;
-
 public class Utils {
 
-    private Utils(){}
     private static Random ran = new Random();
 
-    public static Integer toInt(String string){
-        if(string.contains("NA")){
+    private Utils() {
+    }
+
+    public static Integer toInt(String string) {
+        if (string.contains("NA")) {
             return 0;
         }
         return Integer.parseInt(string.trim());
     }
 
-    public static Double toDouble(String string){
-        if(string.contains("NA")){
+    public static Double toDouble(String string) {
+        if (string.contains("NA")) {
             return 0.0;
         }
         return Double.parseDouble(string.trim());
@@ -29,7 +31,7 @@ public class Utils {
 
     public static <T> boolean printList(List<T> list) {
 
-        for(T elems : list){
+        for (T elems : list) {
             System.out.println(elems);
         }
 
@@ -37,7 +39,7 @@ public class Utils {
         return true;
     }
 
-    public static <K,V> boolean printMap(Map<K,V> map) {
+    public static <K, V> boolean printMap(Map<K, V> map) {
         System.out.printf("[");
         map.forEach((key, value) -> System.out.println(key + ":" + value));
         System.out.println("]\n\n\n\n\n\n\n");
@@ -51,28 +53,28 @@ public class Utils {
 //                .sorted(Map.Entry.<K, V>comparingByValue())) {
 //        }
 //    }
-    
-    public static Integer randomInt(){
+
+    public static Integer randomInt() {
         return ran.nextInt(1000) + 5;
     }
 
-    public static String coordinates (String latitude, String longitude){
+    public static String coordinates(String latitude, String longitude) {
         return new StringBuilder().append(latitude).append("/").append(longitude).toString();
     }
 
-    public static String randomUUID(){
+    public static String randomUUID() {
         UUID uuid = UUID.randomUUID();
         return uuid.toString();
     }
 
-    public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list){
+    public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list) {
         Collections.sort(list, Comparator.comparing(ShipPositonData::getBaseDateTime));
 
         return list;
     }
 
-    public static Date convertDate(String dateTime){
-        SimpleDateFormat format1 =new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    public static Date convertDate(String dateTime) {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = null;
         try {
             date = format1.parse(dateTime);
@@ -83,31 +85,31 @@ public class Utils {
         return date;
     }
 
-    public static String[] convertCoordinates(String coords){
+    public static String[] convertCoordinates(String coords) {
         return coords.split("[,/]");
     }
 
 
-    public static String[] stripC(String coordinate){
+    public static String[] stripC(String coordinate) {
         return coordinate.split("/");
     }
 
 
-    public static String readFromProp(String prop, String newReader){
+    public static String readFromProp(String prop, String newReader) {
 
-        try (FileReader reader = new FileReader(newReader)){
-            Properties p=new Properties();
+        try (FileReader reader = new FileReader(newReader)) {
+            Properties p = new Properties();
             p.load(reader);
             return p.getProperty(prop);
-            
+
         } catch (IOException e) {
             e.printStackTrace();
-        } 
+        }
 
         return null;
     }
 
-    public static <K> LinkedHashMap<K, Double> sortMapByValue(Map<K,Double> paramMap){
+    public static <K> LinkedHashMap<K, Double> sortMapByValue(Map<K, Double> paramMap) {
         LinkedHashMap<K, Double> sortedMap = new LinkedHashMap<>();
         paramMap.entrySet()
                 .stream()

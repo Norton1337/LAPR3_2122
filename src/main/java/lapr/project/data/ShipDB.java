@@ -5,18 +5,12 @@ import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IShipsDB;
 import oracle.jdbc.OracleTypes;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import static lapr.project.utils.Utils.*;
 
 public class ShipDB extends DataHandler implements IShipsDB {
 
@@ -35,22 +29,22 @@ public class ShipDB extends DataHandler implements IShipsDB {
 
     @Override
     public boolean addShip(Ship ship) {
-        if(ship == null){
+        if (ship == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertShip(?,?,?,?,?,?,?,?,?,?,?,?)}")) {
-            result.setString(1,ship.getId());
-            result.setString(2,ship.getShipName());
-            result.setString(3,ship.getMMSI());
-            result.setString(4,ship.getIMO());
-            result.setInt(5,ship.getGeneratorAmount());
-            result.setFloat(6,ship.getGeneratorsPower());
-            result.setString(7,ship.getCallSign());
-            result.setInt(8,ship.getVesselType());
-            result.setFloat(9,ship.getLength());
-            result.setFloat(10,ship.getWidth());
-            result.setFloat(11,(float)ship.getLoadCapacity());
-            result.setFloat(12,(float)ship.getDraft());
+            result.setString(1, ship.getId());
+            result.setString(2, ship.getShipName());
+            result.setString(3, ship.getMMSI());
+            result.setString(4, ship.getIMO());
+            result.setInt(5, ship.getGeneratorAmount());
+            result.setFloat(6, ship.getGeneratorsPower());
+            result.setString(7, ship.getCallSign());
+            result.setInt(8, ship.getVesselType());
+            result.setFloat(9, ship.getLength());
+            result.setFloat(10, ship.getWidth());
+            result.setFloat(11, (float) ship.getLoadCapacity());
+            result.setFloat(12, (float) ship.getDraft());
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

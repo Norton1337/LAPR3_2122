@@ -19,9 +19,9 @@ public class CargoManifestDBMock implements ICargoManifest {
 
     @Override
     public CargoManifest getCargoManifest(String id) {
-        for(CargoManifest elems : cargoManifests){
-            if(elems.getId().equals(id)){
-                return  elems;
+        for (CargoManifest elems : cargoManifests) {
+            if (elems.getId().equals(id)) {
+                return elems;
             }
         }
 
@@ -40,8 +40,8 @@ public class CargoManifestDBMock implements ICargoManifest {
     @Override
     public boolean removeCargoManifest(String id) {
         CargoManifest cargoToBeDeleted = null;
-        for(CargoManifest elems : cargoManifests){
-            if(elems.getId().equals(id)){
+        for (CargoManifest elems : cargoManifests) {
+            if (elems.getId().equals(id)) {
                 cargoToBeDeleted = elems;
             }
         }

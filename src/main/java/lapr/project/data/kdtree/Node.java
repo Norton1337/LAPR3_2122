@@ -2,7 +2,7 @@ package lapr.project.data.kdtree;
 
 import java.awt.geom.Point2D;
 
-public class Node <T> {
+public class Node<T> {
 
     private Point2D.Double coordinates; // representar pela class point2d, representa ponto de duas dimensoes atraves das coordenadas x, y
     private T element;
@@ -10,17 +10,17 @@ public class Node <T> {
     private Node<T> right;
 
 
-    public Node(T element, double x, double y){
+    public Node(T element, double x, double y) {
         this.coordinates = new Point2D.Double(x, y);
         this.element = element;
     }
 
 
-    public Double getX(){
+    public Double getX() {
         return coordinates.getX();
     }
 
-    public Double getY(){
+    public Double getY() {
         return coordinates.getY();
     }
 
@@ -57,11 +57,10 @@ public class Node <T> {
     }
 
 
-
     @Override
     public String toString() {
         return "Node{" + element +
-                " - Coordinates=" + coordinates.getX()+", "+coordinates.getY() +
+                " - Coordinates=" + coordinates.getX() + ", " + coordinates.getY() +
                 //", Left=" + left +
                 //", Right=" + right +
                 '}';

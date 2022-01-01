@@ -1,9 +1,9 @@
 package lapr.project.model.containers.idb;
 
+import lapr.project.model.containers.Container;
+
 import java.sql.SQLException;
 import java.util.List;
-
-import lapr.project.model.containers.Container;
 
 public interface IContainerDB {
 

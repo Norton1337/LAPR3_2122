@@ -1,20 +1,19 @@
 package lapr.project.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import lapr.project.model.vehicle.Vehicles;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.vehicle.Vehicles;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class VehicleTest {
 
-    
+
     Vehicles vehicle;
 
     @BeforeEach
-    void setup(){
-        vehicle=new Vehicles("truck");
+    void setup() {
+        vehicle = new Vehicles("truck");
         vehicle.setId("vehiclesId");
     }
 
@@ -34,7 +33,7 @@ class VehicleTest {
     }
 
     @Test
-    void toStringTest(){
+    void toStringTest() {
         String string = "Vehicles{vehiclesId='vehiclesId', type='truck'}";
         assertEquals(string, vehicle.toString());
     }

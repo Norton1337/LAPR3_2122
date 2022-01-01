@@ -1,7 +1,5 @@
 package lapr.project.data.graph_files;
 
-import lapr.project.data.graph_files.AdjacencyMatrixGraph;
-
 import java.util.LinkedList;
 
 public class GraphAlgorithms {
@@ -12,11 +10,10 @@ public class GraphAlgorithms {
      *
      * @param <V>
      * @param <E>
-     * @param graph Graph object
+     * @param graph  Graph object
      * @param vertex Vertex of graph that will be the source of the search
      * @return queue of vertices found by search (including vertex), null if
      * vertex does not exist
-     *
      */
     public static <V, E> LinkedList<V> BFS(AdjacencyMatrixGraph<V, E> graph, V vertex) {
         int index = graph.toIndex(vertex);
@@ -47,7 +44,7 @@ public class GraphAlgorithms {
      *
      * @param <V>
      * @param <E>
-     * @param graph Graph object
+     * @param graph  Graph object
      * @param vertex Vertex of graph that will be the source of the search
      * @return queue of vertices found by search (empty if none), null if vertex
      * does not exist
@@ -67,11 +64,10 @@ public class GraphAlgorithms {
      * Actual depth-first search of the graph starting at vertex. The method
      * adds discovered vertices (including vertex) to the queue of vertices
      *
-     * @param graph Graph object
-     * @param index Index of vertex of graph that will be the source of the
-     * search
+     * @param graph         Graph object
+     * @param index         Index of vertex of graph that will be the source of the
+     *                      search
      * @param verticesQueue queue of vertices found by search
-     *
      */
     static <V, E> void DFS(AdjacencyMatrixGraph<V, E> graph, int index, boolean[] knownVertices, LinkedList<V> verticesQueue) {
         V vOrig = graph.vertices.get(index);
@@ -90,7 +86,7 @@ public class GraphAlgorithms {
      *
      * @param <V>
      * @param <E>
-     * @param graph Graph object
+     * @param graph     Graph object
      * @param dummyEdge object to insert in the newly created edges
      * @return the new graph
      */

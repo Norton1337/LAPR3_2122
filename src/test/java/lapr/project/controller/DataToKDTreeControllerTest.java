@@ -1,18 +1,17 @@
 package lapr.project.controller;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.LinkedList;
-
-import lapr.project.data.mocks.CountryDBMock;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import lapr.project.controller.model_controllers.LocalsController;
+import lapr.project.data.mocks.CountryDBMock;
 import lapr.project.data.mocks.LocalsDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.model.locals.Locals;
 import lapr.project.ui.PortsAndWarehousesUI;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DataToKDTreeControllerTest {
 
@@ -28,16 +27,15 @@ class DataToKDTreeControllerTest {
     PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(portsAndWarehousesController);
 
 
-
     @BeforeEach
-    void setup(){
+    void setup() {
         portsAndWarehousesUI.importPorts("Docs/Input/sports.csv");
         LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllLocals();
-        dataToKDTreeController.populateTree(portsAndWarehouses); 
+        dataToKDTreeController.populateTree(portsAndWarehouses);
     }
 
     @Test
-    void getPortsNodesTest(){
+    void getPortsNodesTest() {
         assertEquals(22, dataToKDTreeController.getPortsNodes().size());
     }
 

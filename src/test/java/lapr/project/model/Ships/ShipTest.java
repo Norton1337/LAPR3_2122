@@ -1,8 +1,7 @@
 package lapr.project.model.Ships;
 
-import org.junit.jupiter.api.Test;
-
 import lapr.project.model.ships.Ship;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +15,7 @@ class ShipTest {
     }
 
     @Test
-    void constructorTest(){
+    void constructorTest() {
         assertThrows(IllegalArgumentException.class, () -> {
             new Ship("34567", "VARAMO", "9395044", "C4SQ2", 70, 166, 25, 9.5, 0.0);
         });
@@ -67,7 +66,7 @@ class ShipTest {
 
     @Test
     void getIMO() {
-        assertEquals(testShip.getIMO(), "9395044" );
+        assertEquals(testShip.getIMO(), "9395044");
     }
 
     @Test
@@ -81,7 +80,7 @@ class ShipTest {
 
     @Test
     void getCallSign() {
-        assertEquals("C4SQ2",testShip.getCallSign() );
+        assertEquals("C4SQ2", testShip.getCallSign());
     }
 
     @Test
@@ -198,13 +197,13 @@ class ShipTest {
     }
 
     @Test
-    void setAndGetGeneratorsAmount(){
+    void setAndGetGeneratorsAmount() {
         testShip.setGeneratorAmount(2);
         assertEquals(2, testShip.getGeneratorAmount());
     }
 
     @Test
-    void setAndGetGeneratorsPower(){
+    void setAndGetGeneratorsPower() {
         testShip.setGeneratorsPower(3);
         assertEquals(3, testShip.getGeneratorsPower());
     }

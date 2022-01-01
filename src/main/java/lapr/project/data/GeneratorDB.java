@@ -1,9 +1,9 @@
 package lapr.project.data;
 
-import java.util.List;
-
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.idb.IGeneratorDB;
+
+import java.util.List;
 
 public class GeneratorDB implements IGeneratorDB {
 

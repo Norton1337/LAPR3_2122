@@ -13,9 +13,8 @@ public class Locals implements Comparable<Locals> {
     private int localCapacity;
 
 
-
     public Locals(String country, int code,
-                              String portName, String coordinates) {
+                  String portName, String coordinates) {
         this.countryId = country;
         this.portId = code;
         this.name = portName;

@@ -28,20 +28,20 @@ public class CountryDB extends DataHandler implements ICountryDB {
 
     @Override
     public boolean addCountry(Country elem) {
-        if(elem == null){
+        if (elem == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertCountry(?,?,?,?,?,?,?,?,?)}")) {
             String[] coordinates = elem.getCoordinates().split(",");
-            result.setString(1,elem.getId());
-            result.setString(2,elem.getContinent());
-            result.setString(3,elem.getAlpha2Code());
-            result.setString(4,elem.getAlpha3Code());
-            result.setString(5,elem.getCountryName());
-            result.setFloat(6,Float.parseFloat(elem.getPopulation()));
-            result.setString(7,elem.getCapital());
-            result.setFloat(8,Float.parseFloat(coordinates[0]));
-            result.setFloat(9,Float.parseFloat(coordinates[1]));
+            result.setString(1, elem.getId());
+            result.setString(2, elem.getContinent());
+            result.setString(3, elem.getAlpha2Code());
+            result.setString(4, elem.getAlpha3Code());
+            result.setString(5, elem.getCountryName());
+            result.setFloat(6, Float.parseFloat(elem.getPopulation()));
+            result.setString(7, elem.getCapital());
+            result.setFloat(8, Float.parseFloat(coordinates[0]));
+            result.setFloat(9, Float.parseFloat(coordinates[1]));
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

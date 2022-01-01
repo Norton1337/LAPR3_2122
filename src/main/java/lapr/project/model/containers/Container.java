@@ -1,9 +1,5 @@
 package lapr.project.model.containers;
 
-import java.sql.CallableStatement;
-import java.sql.SQLException;
-import java.sql.Types;
-
 public class Container {
 
     private String id;

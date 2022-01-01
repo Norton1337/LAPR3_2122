@@ -1,9 +1,8 @@
 package lapr.project.data.BSTFiles;
 
+import lapr.project.data.bst_files.BST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import lapr.project.data.bst_files.BST;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,19 +18,19 @@ class BSTTest {
     List<Integer> testElements = new ArrayList<>();
 
     @BeforeEach
-    void populateBST(){
+    void populateBST() {
 
-       testElements.add(3);
-       testElements.add(5);
-       testElements.add(2);
-       testElements.add(8);
-       testElements.add(12);
-       testElements.add(9);
+        testElements.add(3);
+        testElements.add(5);
+        testElements.add(2);
+        testElements.add(8);
+        testElements.add(12);
+        testElements.add(9);
 
 
-       for(Integer elems : testElements){
-           newBst.insert(elems);
-       }
+        for (Integer elems : testElements) {
+            newBst.insert(elems);
+        }
 
     }
 
@@ -41,8 +40,8 @@ class BSTTest {
         Iterable<Integer> list = newBst.preOrder();
         boolean flag = false;
 
-        for(Integer elems : list){
-            if(elems == 43243){
+        for (Integer elems : list) {
+            if (elems == 43243) {
                 flag = true;
             }
         }
@@ -58,8 +57,8 @@ class BSTTest {
         Iterable<Integer> list = newBst.preOrder();
         boolean flag = true;
 
-        for(Integer elems : list){
-            if(elems == 43243){
+        for (Integer elems : list) {
+            if (elems == 43243) {
                 flag = false;
             }
         }
@@ -82,7 +81,7 @@ class BSTTest {
     void findByRange() {
         List<Integer> list = new ArrayList<>();
 
-        newBst.findByRange(3,12,list);
+        newBst.findByRange(3, 12, list);
 
         assertEquals(list.size(), 5);
     }
@@ -91,12 +90,13 @@ class BSTTest {
     @Test
     void preOrder() throws IOException {
 
-        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(newBst.inOrder());
+        if (readFromProp("debug", "src/main/resources/application.properties").equals("1"))
+            System.out.println(newBst.inOrder());
     }
 
     @Test
     void posOrder() {
-        for(Integer elems : testElements){
+        for (Integer elems : testElements) {
             assertTrue(testElements.indexOf(elems) != -1);
         }
     }
@@ -120,7 +120,7 @@ class BSTTest {
     void testToString() {
         String bst = newBst.toString();
 
-        for(Integer elems : testElements){
+        for (Integer elems : testElements) {
             assertTrue(bst.contains(String.valueOf(elems)));
         }
     }

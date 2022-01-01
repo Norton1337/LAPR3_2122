@@ -14,11 +14,12 @@ public class PortsAndWarehousesUI {
 
 
     private LocalsController portsAndWarehousesController;
+
     public PortsAndWarehousesUI(LocalsController portsAndWarehousesController) {
         this.portsAndWarehousesController = portsAndWarehousesController;
     }
 
-    public void importPorts(String file){
+    public void importPorts(String file) {
 
         Locals newPortsAndWarehouses = null;
 
@@ -27,15 +28,15 @@ public class PortsAndWarehousesUI {
 
             String line = "";
 
-            while ((line = br.readLine()) !=null){
+            while ((line = br.readLine()) != null) {
 
 
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
 
-                if (!list.get(2).contains("code")){
+                if (!list.get(2).contains("code")) {
 
-                    String coordinates = list.get(4)+ ","+ list.get(5);
+                    String coordinates = list.get(4) + "," + list.get(5);
 
                     newPortsAndWarehouses = new Locals(list.get(1), Integer.parseInt(list.get(2)), list.get(3), coordinates);
                     portsAndWarehousesController.addPort(newPortsAndWarehouses);

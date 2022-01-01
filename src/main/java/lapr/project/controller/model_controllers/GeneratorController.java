@@ -1,7 +1,5 @@
 package lapr.project.controller.model_controllers;
 
-import java.util.List;
-
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IGeneratorDB;
@@ -17,7 +15,7 @@ public class GeneratorController {
         this.generatorDB = generatorDB;
     }
 
-    public boolean addGenartor(Ship ship, Generator gen){
+    public boolean addGenartor(Ship ship, Generator gen) {
         generatorDB.addGenerator(ship.getId(), gen);
 
         return true;

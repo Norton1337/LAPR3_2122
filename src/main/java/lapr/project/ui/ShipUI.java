@@ -26,8 +26,6 @@ public class ShipUI {
     private VehiclesController vehiclesController;
 
 
-    
-
     public ShipUI(ShipController shipController, ShipPositionDataController shipPositionDataController,
                   GeneratorController generatorController, VehiclesController vehiclesController) {
         this.shipController = shipController;
@@ -36,7 +34,7 @@ public class ShipUI {
         this.vehiclesController = vehiclesController;
     }
 
-    public void importShips(String filePath){
+    public void importShips(String filePath) {
         List<String> alreadyUsed = new ArrayList<>();
         Ship newShip;
         ShipPositonData shipPositonData;
@@ -46,12 +44,12 @@ public class ShipUI {
         try (BufferedReader input = new BufferedReader(new FileReader(filePath))) {
             String line;
 
-            while ((line = input.readLine()) != null){
-                
+            while ((line = input.readLine()) != null) {
+
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
                 //GENERATING OBJ
-                if(!alreadyUsed.contains(list.get(0)) && !list.get(0).contains("MMSI")){
+                if (!alreadyUsed.contains(list.get(0)) && !list.get(0).contains("MMSI")) {
 
                     /**
                      * Ship Object Created
@@ -62,16 +60,17 @@ public class ShipUI {
                     /**
                      * Generator Object To Be Created
                      */
-                    shipGenerator =  new Generator(1,5.0);
+                    shipGenerator = new Generator(1, 5.0);
 
                     boolean resultShip = vehiclesController.addShip(new Vehicles("barco"), newShip);
                     boolean resultGen = generatorController.addGenartor(newShip, shipGenerator);
 
-                    if(resultShip && resultGen){
+                    if (resultShip && resultGen) {
                         alreadyUsed.add(newShip.getMMSI());
                     }
 
-                }if(!list.get(0).contains("MMSI")){
+                }
+                if (!list.get(0).contains("MMSI")) {
                     String mmsi = list.get(0);
                     Ship ship = shipController.findShipByMMSI(mmsi);
 

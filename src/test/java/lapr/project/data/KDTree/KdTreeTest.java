@@ -48,7 +48,6 @@ class KdTreeTest {
      */
 
 
-
     @Test
     void insertDeleteSizeTest() {
         kdTree.insert("elem", -85.14, -24.8);

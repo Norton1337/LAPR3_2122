@@ -23,7 +23,7 @@ public class CountryController {
         this.localsDB = localsDB;
     }
 
-    public boolean addCountry(Country country){
+    public boolean addCountry(Country country) {
         Locals newLocal = new Locals("", -1, country.getCapital(), country.getCoordinates());
         newLocal.setType("Capital");
         boolean result = countryDB.addCountry(country);
@@ -32,30 +32,30 @@ public class CountryController {
         return result;
     }
 
-    public boolean addBorder(Borders borders){
+    public boolean addBorder(Borders borders) {
         return borderDB.addBorder(borders);
     }
 
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
         return countryDB.getAllCountries();
     }
 
-    public Country findById(String id){
+    public Country findById(String id) {
         return countryDB.getCountryById(id);
     }
 
-    public String findByName(String name){
+    public String findByName(String name) {
         return countryDB.getCountryIdByName(name);
     }
 
 
-    public List<Borders> getAllBordersOfCountry(String countryName){
+    public List<Borders> getAllBordersOfCountry(String countryName) {
         List<Borders> bordersOfCountry = new LinkedList<>();
         String idCountry = countryDB.getCountryIdByName(countryName);
 
-        for(Borders elems : borderDB.getAllBorders()){
-            if((!(countryDB.getCountryById(elems.getCountry1Id()) == null)) && (!(countryDB.getCountryById(elems.getCountry2Id()) == null ))){
-                if(elems.getCountry1Id().contains(idCountry) || elems.getCountry2Id().contains(idCountry) ){
+        for (Borders elems : borderDB.getAllBorders()) {
+            if ((!(countryDB.getCountryById(elems.getCountry1Id()) == null)) && (!(countryDB.getCountryById(elems.getCountry2Id()) == null))) {
+                if (elems.getCountry1Id().contains(idCountry) || elems.getCountry2Id().contains(idCountry)) {
                     bordersOfCountry.add(elems);
                 }
             }
@@ -66,8 +66,8 @@ public class CountryController {
     }
 
     public Country getCountryWithCapital(String capital) {
-        for(Country elems: getAllCountries()){
-            if(elems.getCapital().equals(capital)){
+        for (Country elems : getAllCountries()) {
+            if (elems.getCapital().equals(capital)) {
                 return elems;
             }
         }

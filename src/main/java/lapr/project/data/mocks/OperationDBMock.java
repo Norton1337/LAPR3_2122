@@ -20,8 +20,8 @@ public class OperationDBMock implements IOperation {
 
     @Override
     public Operation getOperation(String id) {
-        for(Operation elems : operations){
-            if(elems.getId().equals(id)){
+        for (Operation elems : operations) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }
@@ -41,8 +41,8 @@ public class OperationDBMock implements IOperation {
     public boolean removeOperation(String id) {
         Operation toBeDeleted = null;
 
-        for(Operation elems : operations){
-            if(elems.getId().equals(id)){
+        for (Operation elems : operations) {
+            if (elems.getId().equals(id)) {
                 toBeDeleted = elems;
             }
         }

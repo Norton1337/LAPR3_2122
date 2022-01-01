@@ -18,13 +18,13 @@ public class SeadistController {
         this.seadistDB = seadistDB;
     }
 
-    public void addElemToSeaDist(Seadist elem){
+    public void addElemToSeaDist(Seadist elem) {
         seadistDB.addSeadist(elem);
     }
 
-    public Locals getPortWithPortId(String portId){
-        for(Seadist elem:seadistDB.getAllSeadist()){
-            if(elem.getToPortId().equals(portId)){
+    public Locals getPortWithPortId(String portId) {
+        for (Seadist elem : seadistDB.getAllSeadist()) {
+            if (elem.getToPortId().equals(portId)) {
                 Locals returnVal = localDB.getPortByPortIdCode(portId);
                 return returnVal;
             }
@@ -33,7 +33,7 @@ public class SeadistController {
     }
 
 
-    public LinkedList<Seadist> getAllSeadist(){
+    public LinkedList<Seadist> getAllSeadist() {
         return new LinkedList<>(seadistDB.getAllSeadist());
     }
 }

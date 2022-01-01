@@ -1,10 +1,10 @@
 package lapr.project.model.Ships;
 
+import lapr.project.model.ships.Generator;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.ships.Generator;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GeneratorTest {
 
@@ -17,7 +17,7 @@ class GeneratorTest {
 
     @Test
     void getNumberOfGenerator() {
-        assertEquals(2,testGenerator.getNumberOfGenerator());
+        assertEquals(2, testGenerator.getNumberOfGenerator());
     }
 
     @Test

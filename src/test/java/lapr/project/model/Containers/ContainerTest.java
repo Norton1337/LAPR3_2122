@@ -1,11 +1,11 @@
 package lapr.project.model.Containers;
 
+import lapr.project.model.containers.Container;
 import lapr.project.utils.Utils;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.model.containers.Container;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class ContainerTest {
@@ -66,7 +66,7 @@ class ContainerTest {
 
     @Test
     void getISOCODE() {
-        assertEquals("CBCU",testContainer.getISOCODE());
+        assertEquals("CBCU", testContainer.getISOCODE());
     }
 
     @Test
@@ -122,7 +122,7 @@ class ContainerTest {
 
     @Test
     void getMaxVolToBePacked() {
-        assertEquals(30.0,testContainer.getContainerVolume());
+        assertEquals(30.0, testContainer.getContainerVolume());
     }
 
     @Test
@@ -158,7 +158,7 @@ class ContainerTest {
         String initialRepair = testContainer.getRepairRecommendations();
         testContainer.setRepairRecommendations("abcdef");
 
-        assertEquals("abcdef",testContainer.getRepairRecommendations());
+        assertEquals("abcdef", testContainer.getRepairRecommendations());
         testContainer.setRepairRecommendations(initialRepair);
     }
 
@@ -172,7 +172,7 @@ class ContainerTest {
         String initialType = testContainer.getContainerType();
         testContainer.setContainerType("not refrigerated");
 
-        assertEquals("not refrigerated",testContainer.getContainerType());
+        assertEquals("not refrigerated", testContainer.getContainerType());
         testContainer.setRepairRecommendations(initialType);
     }
 }

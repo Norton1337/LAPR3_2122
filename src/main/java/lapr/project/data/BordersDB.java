@@ -21,13 +21,13 @@ public class BordersDB extends DataHandler implements IBordersDB {
 
     @Override
     public boolean addBorder(Borders elem) {
-        if(elem == null){
+        if (elem == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertBorders(?,?,?)}")) {
-            result.setString(1,elem.getId());
-            result.setString(2,elem.getCountry1Id());
-            result.setString(3,elem.getCountry2Id());
+            result.setString(1, elem.getId());
+            result.setString(2, elem.getCountry1Id());
+            result.setString(3, elem.getCountry2Id());
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

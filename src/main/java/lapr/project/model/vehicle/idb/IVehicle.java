@@ -1,7 +1,5 @@
 package lapr.project.model.vehicle.idb;
 
-import lapr.project.model.ships.Ship;
-import lapr.project.model.truck.Truck;
 import lapr.project.model.vehicle.Vehicles;
 
 import java.util.List;

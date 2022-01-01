@@ -19,8 +19,8 @@ public class CountryDBMock implements ICountryDB {
 
     @Override
     public Country getCountryById(String id) {
-        for(Country elems: allContries){
-            if(elems.getId().equals(id)){
+        for (Country elems : allContries) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }
@@ -30,8 +30,8 @@ public class CountryDBMock implements ICountryDB {
 
     @Override
     public String getCountryIdByName(String name) {
-        for(Country elems: allContries){
-            if(elems.getCountryName().trim().equals(name.trim())){
+        for (Country elems : allContries) {
+            if (elems.getCountryName().trim().equals(name.trim())) {
                 return elems.getId();
             }
         }

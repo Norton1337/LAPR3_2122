@@ -437,18 +437,18 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         StringBuilder sb = new StringBuilder();
         sb.append("Vertices:\n");
         for (int i = 0; i < numVertices; i++) {
-            sb.append(i + " " + vertices.get(i));
+            sb.append(i).append(" ").append(vertices.get(i));
             sb.append("\n");
         }
         sb.append("\nMatrix:\n");
         sb.append("  ");
         for (int i = 0; i < numVertices; i++) {
-            sb.append(" |  " + i + " ");
+            sb.append(" |  ").append(i).append(" ");
         }
         sb.append("\n");
         // aligned only when vertices < 10
         for (int i = 0; i < numVertices; i++) {
-            sb.append(" " + i + " ");
+            sb.append(" ").append(i).append(" ");
             for (int j = 0; j < numVertices; j++) {
                 if (edgeMatrix[i][j] != null) {
                     sb.append("|  X  ");
@@ -462,7 +462,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 if (edgeMatrix[i][j] != null) {
-                    sb.append("From " + i + " to " + j + "-> " + edgeMatrix[i][j] + "\n");
+                    sb.append("From ").append(i).append(" to ").append(j).append("-> ").append(edgeMatrix[i][j]).append("\n");
                 }
             }
         }

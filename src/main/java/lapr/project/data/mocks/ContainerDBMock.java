@@ -1,11 +1,11 @@
 package lapr.project.data.mocks;
 
+import lapr.project.model.containers.Container;
+import lapr.project.model.containers.idb.IContainerDB;
+
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
-import lapr.project.model.containers.Container;
-import lapr.project.model.containers.idb.IContainerDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 
@@ -26,8 +26,8 @@ public class ContainerDBMock implements IContainerDB {
 
     @Override
     public Container getContainer(String id) {
-        for(Container elems : allContainers){
-            if(elems.getId().equals(id)){
+        for (Container elems : allContainers) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }

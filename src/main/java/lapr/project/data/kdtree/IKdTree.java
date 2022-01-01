@@ -6,14 +6,18 @@ import java.util.Map;
 public interface IKdTree<T> {
 
 
-    public boolean isEmpty();
-    public void insert(T element, double x, double y);
-    public void remove(T element);
+    boolean isEmpty();
 
-    public int size();
-    public int height();
+    void insert(T element, double x, double y);
 
-    public T smallestElement();
-    public Map<Integer, List<T>> nodesByLevel();
+    void remove(T element);
+
+    int size();
+
+    int height();
+
+    T smallestElement();
+
+    Map<Integer, List<T>> nodesByLevel();
 
 }

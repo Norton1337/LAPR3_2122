@@ -1,24 +1,41 @@
 package lapr.project.controller.MostTravelledShips;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import lapr.project.controller.MostTravelledShipsController;
+import lapr.project.controller.helper_classes.KMTravelledCalculator;
+import lapr.project.controller.helper_classes.TopShips;
+import lapr.project.model.helper_classes.ShipAndData;
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ships.Ship;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import lapr.project.controller.MostTravelledShipsController;
-import lapr.project.controller.helper_classes.KMTravelledCalculator;
-import lapr.project.controller.helper_classes.TopShips;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import lapr.project.model.helper_classes.ShipAndData;
-import lapr.project.model.ship_position_data.ShipPositonData;
-import lapr.project.model.ships.Ship;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MostTravelledShipsTest {
+    Ship ship = new Ship("211331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
+    List<ShipPositonData> shipPositionDataList = new ArrayList<>();
+    ShipAndData shipAndData = new ShipAndData(ship, shipPositionDataList);
+    ShipPositonData spd = new ShipPositonData("31/12/2020 21:02", "33.0/-118.4523", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd1 = new ShipPositonData("31/12/2020 21:00", "33.5/-118.1295", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd2 = new ShipPositonData("31/12/2020 22:30", "34.7856/-118.4597", 8.6, 42.6, 44, "?", "B");
+    Ship ship2 = new Ship("311331640", "shipName", "IMO1234567", "callSign", 60, 295, 32, 13.6, 79.0);
+    List<ShipPositonData> shipPositionDataList2 = new ArrayList<>();
+    ShipAndData shipAndData2 = new ShipAndData(ship2, shipPositionDataList2);
+    ShipPositonData spd11 = new ShipPositonData("31/12/2020 21:02", "33.1/-118.4", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd12 = new ShipPositonData("31/12/2020 21:00", "33.50/-118.12", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd13 = new ShipPositonData("31/12/2020 22:30", "33.78/-118.45", 8.6, 42.6, 44, "?", "B");
+    Ship ship3 = new Ship("411331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
+    List<ShipPositonData> shipPositionDataList3 = new ArrayList<>();
+    ShipAndData shipAndData3 = new ShipAndData(ship3, shipPositionDataList3);
+    ShipPositonData spd21 = new ShipPositonData("31/12/2020 21:02", "33.68384/-118.4523", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd22 = new ShipPositonData("31/12/2020 21:00", "33.50465/-118.1295", 8.6, 42.6, 44, "?", "B");
+    ShipPositonData spd23 = new ShipPositonData("31/12/2020 22:30", "35.785623/-118.4597", 8.6, 42.6, 44, "?", "B");
+    List<ShipAndData> listShipAndData = new ArrayList<>();
     private List<Ship> listOfShips = new ArrayList<>();
     private List<Ship> listOfShips2 = new ArrayList<>();
     private List<Ship> listOfShips3 = new ArrayList<>();
@@ -27,44 +44,16 @@ class MostTravelledShipsTest {
     private List<Double> listOfDistances3 = new ArrayList<>();
     private List<Double> listOfSOG = new ArrayList<>();
     private List<Double> listOfSOG2 = new ArrayList<>();
-    
     private TopShips topShipsOrdered;
     private TopShips topShipsUnordered;
     private TopShips topShipsUnordered2;
-    
-
-    Ship ship = new Ship("211331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
-    
-    List<ShipPositonData> shipPositionDataList = new ArrayList<>();
-    ShipAndData shipAndData = new ShipAndData(ship, shipPositionDataList);
-    ShipPositonData spd = new ShipPositonData("31/12/2020 21:02", "33.0/-118.4523", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd1 = new ShipPositonData("31/12/2020 21:00", "33.5/-118.1295", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd2 = new ShipPositonData("31/12/2020 22:30", "34.7856/-118.4597", 8.6, 42.6, 44, "?", "B");
-
-    Ship ship2 = new Ship("311331640", "shipName", "IMO1234567", "callSign", 60, 295, 32, 13.6, 79.0);
-    List<ShipPositonData> shipPositionDataList2 = new ArrayList<>();
-    ShipAndData shipAndData2 = new ShipAndData(ship2, shipPositionDataList2);
-    ShipPositonData spd11 = new ShipPositonData("31/12/2020 21:02", "33.1/-118.4", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd12 = new ShipPositonData("31/12/2020 21:00", "33.50/-118.12", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd13 = new ShipPositonData("31/12/2020 22:30", "33.78/-118.45", 8.6, 42.6, 44, "?", "B");
-
-    Ship ship3 = new Ship("411331640", "shipName", "IMO1234567", "callSign", 70, 295, 32, 13.6, 79.0);
-    List<ShipPositonData> shipPositionDataList3 = new ArrayList<>();
-    ShipAndData shipAndData3 = new ShipAndData(ship3, shipPositionDataList3);
-    ShipPositonData spd21 = new ShipPositonData("31/12/2020 21:02", "33.68384/-118.4523", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd22 = new ShipPositonData("31/12/2020 21:00", "33.50465/-118.1295", 8.6, 42.6, 44, "?", "B");
-    ShipPositonData spd23 = new ShipPositonData("31/12/2020 22:30", "35.785623/-118.4597", 8.6, 42.6, 44, "?", "B");
-    
-    List<ShipAndData> listShipAndData = new ArrayList<>();
-    
-
 
     @BeforeEach
-    void startUp(){
+    void startUp() {
         listOfShips.add(new Ship("211331642", "shipName3", "IMO3", "callSign3", 13, 5, 5, 62.5, 90.5));
         listOfShips.add(new Ship("211331641", "shipName2", "IMO2", "callSign2", 12, 5, 5, 61.5, 80.6));
         listOfShips.add(new Ship("211331640", "shipName1", "IMO1", "callSign1", 11, 5, 5, 60.5, 70.8));
-        
+
         listOfShips2.add(new Ship("211331642", "shipName3", "IMO3", "callSign3", 13, 5, 5, 62.5, 90.5));
         listOfShips2.add(new Ship("211331640", "shipName1", "IMO1", "callSign1", 11, 5, 5, 60.5, 70.8));
         listOfShips2.add(new Ship("211331641", "shipName2", "IMO2", "callSign2", 12, 5, 5, 61.5, 80.6));
@@ -91,11 +80,11 @@ class MostTravelledShipsTest {
         listOfSOG.add(30.8);
         listOfSOG.add(20.8);
         listOfSOG.add(10.8);
-        
+
         listOfSOG2.add(30.8);
         listOfSOG2.add(10.8);
         listOfSOG2.add(20.8);
-        
+
 
         topShipsOrdered = new TopShips(listOfShips, listOfDistances, listOfSOG);
         topShipsUnordered = new TopShips(listOfShips2, listOfDistances2, listOfSOG2);
@@ -127,23 +116,23 @@ class MostTravelledShipsTest {
         listShipAndData.add(shipAndData);
         listShipAndData.add(shipAndData2);
         listShipAndData.add(shipAndData3);
-        
+
 
     }
 
 
     @Test
-    void getTopNShipsTest1(){
+    void getTopNShipsTest1() {
         MostTravelledShipsController mts = new MostTravelledShipsController();
 
-        List <ShipAndData> shipList2 = new ArrayList<>();
+        List<ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
         shipList2.add(listShipAndData.get(0));
         shipList2.add(listShipAndData.get(1));
 
         TopShips ts = mts.getTopNShips(listShipAndData, 3);
 
- 
+
         assertEquals(shipList2.get(0).getShip(), ts.getListOfShip().get(0));
         assertEquals(shipList2.get(1).getShip(), ts.getListOfShip().get(1));
         assertEquals(shipList2.get(2).getShip(), ts.getListOfShip().get(2));
@@ -152,27 +141,27 @@ class MostTravelledShipsTest {
     }
 
     @Test
-    void getTopNShipsTest2() throws ParseException{
+    void getTopNShipsTest2() throws ParseException {
         MostTravelledShipsController mts = new MostTravelledShipsController();
 
-        List <ShipAndData> shipList2 = new ArrayList<>();
+        List<ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
         shipList2.add(listShipAndData.get(0));
         shipList2.add(listShipAndData.get(1));
 
         TopShips ts = mts.getTopNShips(listShipAndData, 3, "31/12/2020 21:30", "31/12/2020 22:00");
 
- 
+
         assertEquals(0, ts.getListOfDistances().get(0));
 
 
     }
 
     @Test
-    void getTopNShipsTest3() throws ParseException{
+    void getTopNShipsTest3() throws ParseException {
         MostTravelledShipsController mts = new MostTravelledShipsController();
 
-        List <ShipAndData> shipList2 = new ArrayList<>();
+        List<ShipAndData> shipList2 = new ArrayList<>();
         shipList2.add(listShipAndData.get(2));
         shipList2.add(listShipAndData.get(0));
         shipList2.add(listShipAndData.get(1));
@@ -180,17 +169,15 @@ class MostTravelledShipsTest {
 
         TopShips ts = mts.getTopNShips(listShipAndData, 2, "31/12/2020 21:00", "31/12/2020 22:00", 70);
 
- 
-        assertEquals(2, ts.getListOfDistances().size());
 
+        assertEquals(2, ts.getListOfDistances().size());
 
 
     }
 
 
-
     @Test
-    void orderListsTest(){
+    void orderListsTest() {
         MostTravelledShipsController mts = new MostTravelledShipsController();
         assertEquals(topShipsOrdered.getListOfDistances(), mts.orderLists(topShipsUnordered, 0, 50, 0, 0).getListOfDistances());
         assertEquals(topShipsOrdered.getListOfDistances(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfDistances());
@@ -198,34 +185,35 @@ class MostTravelledShipsTest {
         assertEquals(topShipsOrdered.getListOfShip().get(0).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(0).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(1).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(1).getMMSI());
         assertEquals(topShipsOrdered.getListOfShip().get(2).getMMSI(), mts.orderLists(topShipsUnordered, 0, 3, 0, 0).getListOfShip().get(2).getMMSI());
-            
-        
-    }
-    @Test
-    void orderListsTest2(){
-        MostTravelledShipsController mts = new MostTravelledShipsController(); 
-        assertEquals(2, mts.orderLists(topShipsUnordered2, 0, 3, 0, 0).getListOfDistances().size());
-        assertEquals(2,mts.orderLists(topShipsUnordered, 0, 2, 0, 0).getListOfDistances().size());
+
+
     }
 
     @Test
-    void getTotalPerShipTest(){
+    void orderListsTest2() {
+        MostTravelledShipsController mts = new MostTravelledShipsController();
+        assertEquals(2, mts.orderLists(topShipsUnordered2, 0, 3, 0, 0).getListOfDistances().size());
+        assertEquals(2, mts.orderLists(topShipsUnordered, 0, 2, 0, 0).getListOfDistances().size());
+    }
+
+    @Test
+    void getTotalPerShipTest() {
         MostTravelledShipsController mts = new MostTravelledShipsController();
         List<ShipPositonData> posList = new ArrayList<>();
         DecimalFormat df = new DecimalFormat("###.###");
         posList.add(listShipAndData.get(0).getShipPositonData().get(0));
         posList.add(listShipAndData.get(0).getShipPositonData().get(1));
-        posList.add(listShipAndData.get(0).getShipPositonData().get(2)); 
-        
+        posList.add(listShipAndData.get(0).getShipPositonData().get(2));
+
         assertEquals(df.format(209.329), df.format(mts.getTotalPerShip(posList)));
     }
 
     @Test
-    void getDeltaDistance(){
+    void getDeltaDistance() {
         DecimalFormat df = new DecimalFormat("###.######");
         KMTravelledCalculator calculator = new KMTravelledCalculator();
-        assertEquals(df.format(5054.94879), df.format(calculator.calculate("-11.27406", "120.44982", "-46.06957", "154.96855")) );
+        assertEquals(df.format(5054.94879), df.format(calculator.calculate("-11.27406", "120.44982", "-46.06957", "154.96855")));
     }
 
-    
+
 }

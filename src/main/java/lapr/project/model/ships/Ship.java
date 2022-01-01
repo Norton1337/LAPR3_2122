@@ -1,6 +1,6 @@
 package lapr.project.model.ships;
 
-public class Ship{
+public class Ship {
 
     private String id;
     private String MMSI;
@@ -20,7 +20,7 @@ public class Ship{
                 int vesselType, int length, int width, double draft, double loadCapacity) {
 
         // VALIDATIONS
-        if(!isMMSIValid(MMSI)){
+        if (!isMMSIValid(MMSI)) {
             throw new IllegalArgumentException("Not a valid MMSI.");
         }
 
@@ -33,6 +33,14 @@ public class Ship{
         this.width = width;
         this.draft = draft;
         this.loadCapacity = loadCapacity;
+    }
+
+    public static boolean isMMSIValid(String mmsi) {
+        return mmsi.length() == 9;
+    }
+
+    public static boolean isIMOValid(String imo) {
+        return imo.length() == 7;
     }
 
     public String getId() {
@@ -48,7 +56,7 @@ public class Ship{
     }
 
     public void setMMSI(String MMSI) {
-        if(!isMMSIValid(MMSI)){
+        if (!isMMSIValid(MMSI)) {
             throw new IllegalArgumentException("Not a valid MMSI.");
         }
         this.MMSI = MMSI;
@@ -121,14 +129,6 @@ public class Ship{
         this.draft = draft;
     }
 
-    public static boolean isMMSIValid(String mmsi) {
-        return mmsi.length() == 9;
-    }
-
-    public static boolean isIMOValid(String imo) {
-        return imo.length() == 7;
-    }
-
     public double getDistanceTravelled() {
         return distanceTravelled;
     }
@@ -168,7 +168,6 @@ public class Ship{
                 ", loadCapacity=" + loadCapacity +
                 '}';
     }
-
 
 
 }

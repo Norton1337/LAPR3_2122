@@ -1,13 +1,13 @@
 package lapr.project.data;
 
+import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;
-import lapr.project.data.db_scripts.DataHandler;
+
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
-
 
 
 public class ContainerDB extends DataHandler implements IContainerDB {
@@ -19,22 +19,22 @@ public class ContainerDB extends DataHandler implements IContainerDB {
 
     @Override
     public boolean addContainer(Container containers) {
-        if(containers == null){
+        if (containers == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertContainer(?,?,?,?,?,?,?,?,?,?,?,?)}")) {
-            result.setString(1,containers.getId());
-            result.setInt(2,containers.getContainerNumber());
-            result.setInt(3,containers.getCheckDigit());
-            result.setFloat(4,(float)containers.getContainerPayload());
-            result.setFloat(5,(float)containers.getContainerTare());
-            result.setFloat(6,(float)containers.getContainerGross());
-            result.setFloat(7,(float)containers.getContainerVolume());
-            result.setString(8,containers.getISOCODE());
-            result.setString(9,containers.getCertificates());
-            result.setString(10,containers.getRepairRecommendations());
-            result.setString(11,containers.getContainerType());
-            result.setString(12,"Default");
+            result.setString(1, containers.getId());
+            result.setInt(2, containers.getContainerNumber());
+            result.setInt(3, containers.getCheckDigit());
+            result.setFloat(4, (float) containers.getContainerPayload());
+            result.setFloat(5, (float) containers.getContainerTare());
+            result.setFloat(6, (float) containers.getContainerGross());
+            result.setFloat(7, (float) containers.getContainerVolume());
+            result.setString(8, containers.getISOCODE());
+            result.setString(9, containers.getCertificates());
+            result.setString(10, containers.getRepairRecommendations());
+            result.setString(11, containers.getContainerType());
+            result.setString(12, "Default");
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

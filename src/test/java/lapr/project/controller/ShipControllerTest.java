@@ -7,17 +7,16 @@ import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IGeneratorDB;
 import lapr.project.model.ships.idb.IShipsDB;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static lapr.project.utils.Utils.readFromProp;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static lapr.project.utils.Utils.readFromProp;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShipControllerTest {
 
@@ -33,12 +32,13 @@ class ShipControllerTest {
     }
 
     @Test
-    void CreateShip() throws IOException{
+    void CreateShip() throws IOException {
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
         newShip.getId();
         addShipController.addShip(newShip);
-        if(readFromProp("debug","src/main/resources/application.properties").equals("1"))System.out.println(iShipsDB.getAllShips());
+        if (readFromProp("debug", "src/main/resources/application.properties").equals("1"))
+            System.out.println(iShipsDB.getAllShips());
 
 
         assertTrue(iShipsDB.getAllShips().contains(newShip));
@@ -47,14 +47,14 @@ class ShipControllerTest {
     }
 
     @Test
-    void getAllGeneratorFromShipTest(){
+    void getAllGeneratorFromShipTest() {
         ShipController ship = new ShipController(iShipsDB, iGeneratorDB);
 
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
         newShip.setId("test");
         List<Generator> allGeneratorFromShip = new ArrayList<>();
-        
+
         assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip("test"));
         assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip(null));
         assertEquals(allGeneratorFromShip, ship.getAllGeneratorFromShip("wrongID"));

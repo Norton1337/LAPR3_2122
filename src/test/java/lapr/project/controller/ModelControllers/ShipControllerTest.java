@@ -5,10 +5,10 @@ import lapr.project.data.mocks.GeneratorDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.Ship;
-
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShipControllerTest {
 
@@ -41,7 +41,7 @@ class ShipControllerTest {
     void getAllGeneratorFromShip() {
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
-        generatorDBMock.addGenerator(newShip.getId(), new Generator(2,2, newShip.getId()));
+        generatorDBMock.addGenerator(newShip.getId(), new Generator(2, 2, newShip.getId()));
         assertTrue(generatorDBMock.getAllGenerator().size() > 0);
     }
 

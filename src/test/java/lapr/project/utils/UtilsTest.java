@@ -82,26 +82,26 @@ class UtilsTest {
     }
 
     @Test
-    void readFromPropTest(){
+    void readFromPropTest() {
         try {
-            Utils.readFromProp("debug","null");
-        } catch (Exception e) {
-            assertTrue(true);
-        }
-        
-        try {
-            Utils.readFromProp("debug",null);
+            Utils.readFromProp("debug", "null");
         } catch (Exception e) {
             assertTrue(true);
         }
 
         try {
-            Utils.readFromProp(null,"src/main/resources/application.properties");
+            Utils.readFromProp("debug", null);
         } catch (Exception e) {
             assertTrue(true);
         }
-        
-        assertNull(Utils.readFromProp("nothing","src/main/resources/application.properties"));
+
+        try {
+            Utils.readFromProp(null, "src/main/resources/application.properties");
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+
+        assertNull(Utils.readFromProp("nothing", "src/main/resources/application.properties"));
 
     }
 }

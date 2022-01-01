@@ -22,8 +22,8 @@ public class VehiclesDBMock implements IVehicle {
 
     @Override
     public Vehicles getVehicle(String id) {
-        for(Vehicles elems : vehicles){
-            if(elems.getId().equals(id)){
+        for (Vehicles elems : vehicles) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }
@@ -51,8 +51,8 @@ public class VehiclesDBMock implements IVehicle {
     public List<Vehicles> getAllTrucks() {
         List<Vehicles> allTrucks = new ArrayList<>();
 
-        for(Vehicles elems : vehicles){
-            if(elems.getType().contains("truck")){
+        for (Vehicles elems : vehicles) {
+            if (elems.getType().contains("truck")) {
                 allTrucks.add(elems);
             }
         }
@@ -64,8 +64,8 @@ public class VehiclesDBMock implements IVehicle {
     public List<Vehicles> getAllShips() {
         List<Vehicles> allShips = new ArrayList<>();
 
-        for(Vehicles elems : vehicles){
-            if(elems.getType().contains("ship")){
+        for (Vehicles elems : vehicles) {
+            if (elems.getType().contains("ship")) {
                 allShips.add(elems);
             }
         }

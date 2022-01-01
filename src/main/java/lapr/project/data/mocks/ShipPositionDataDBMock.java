@@ -1,11 +1,11 @@
 package lapr.project.data.mocks;
 
+import lapr.project.model.ship_position_data.ShipPositonData;
+import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import lapr.project.model.ship_position_data.ShipPositonData;
-import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 
@@ -34,13 +34,13 @@ public class ShipPositionDataDBMock implements IShipPositionDataDB {
     public List<ShipPositonData> getAllPositionDataFromShip(int shipID) {
         List<ShipPositonData> positonData = new ArrayList<>();
 
-        for(ShipPositonData elems : shipPositonData){
-            if(elems.getShipId().equals(shipID)){
+        for (ShipPositonData elems : shipPositonData) {
+            if (elems.getShipId().equals(shipID)) {
                 positonData.add(elems);
             }
         }
 
-        if(positonData.isEmpty()){
+        if (positonData.isEmpty()) {
             return new ArrayList<>();
         }
 

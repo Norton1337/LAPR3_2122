@@ -1,19 +1,18 @@
 package lapr.project.Dtos;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import lapr.project.dtos.ShipPairsDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.dtos.ShipPairsDTO;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShipPairsDTOTest {
-    
+
 
     ShipPairsDTO shipPairsDTO;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         shipPairsDTO = new ShipPairsDTO("ship1MMSI", "ship2MMSI", "ship1Mov", "ship2Mov", "1.234", "5.678");
     }
 
@@ -50,11 +49,10 @@ public class ShipPairsDTOTest {
 
     @Test
     void getAndSetShip1TraveldistanceTest() {
-       assertEquals("1.234", shipPairsDTO.getShip1Traveldistance());
-       shipPairsDTO.setShip1Traveldistance("1234");
-       assertEquals("1234", shipPairsDTO.getShip1Traveldistance());
+        assertEquals("1.234", shipPairsDTO.getShip1Traveldistance());
+        shipPairsDTO.setShip1Traveldistance("1234");
+        assertEquals("1234", shipPairsDTO.getShip1Traveldistance());
     }
-
 
 
     @Test
@@ -63,7 +61,6 @@ public class ShipPairsDTOTest {
         shipPairsDTO.setShip2Trabeldistance("5678");
         assertEquals("5678", shipPairsDTO.getShip2Trabeldistance());
     }
-
 
 
     @Test

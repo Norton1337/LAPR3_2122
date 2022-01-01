@@ -5,13 +5,12 @@
  */
 package lapr.project.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import lapr.project.controller.helper_classes.ShipSummary;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.controller.helper_classes.ShipSummary;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- *
  * @author gonca
  */
 class ShipSummaryTest {
@@ -137,7 +136,7 @@ class ShipSummaryTest {
         s.setDeparture("20.48627, -31.22163");
         assertEquals("20.48627, -31.22163", s.getDeparture());
     }
-    
+
     @Test
     void getArrivalTest() {
         s.setArrival("30.48630, -40.22140");
@@ -149,7 +148,7 @@ class ShipSummaryTest {
         s.setArrival("30.48630, -40.22140");
         assertEquals("30.48630, -40.22140", s.getArrival());
     }
-    
+
     @Test
     void getTravelledDistanceTest() {
         s.setTravelledDistance(497.7);
@@ -161,7 +160,7 @@ class ShipSummaryTest {
         s.setTravelledDistance(497.7);
         assertEquals(497.7, s.getTravelledDistance());
     }
-    
+
     @Test
     void getDeltaDistanceTest() {
         s.setDeltaDistance(430.80);
@@ -175,7 +174,7 @@ class ShipSummaryTest {
     }
 
     @Test
-    void toStringTest(){
+    void toStringTest() {
         s.setVesselName("SPAR ARIES");
         s.setStartDateTime("31/12/2003 00:01");
         s.setEndDateTime("31/12/2003 23:59");
@@ -191,22 +190,22 @@ class ShipSummaryTest {
         s.setDeltaDistance(430.80);
 
         String string = "ShipsSummary:\n"
-                        +"Vessel Name:SPAR ARIES\n"
-                        +"Start Data Time:31/12/2003 00:01\n"
-                        +"End Data Time:31/12/2003 23:59\n"
-                        +"Total Time Travelled:Days:0	Hours:5	Minutes:3\n"
-                        +"Total Movements:3\n"
-                        +"Max SOG:12.5\n"
-                        +"Mean SOG:11.45\n"
-                        +"Max COG:13.5\n"
-                        +"Mean COG:17.5\n"
-                        +"Departure:20.48627, -31.22163\n"
-                        +"Arrival:30.48630, -40.22140\n"
-                        +"Travelled Distance=497.7\n"
-                        +"Delta Distance=430.8";
+                + "Vessel Name:SPAR ARIES\n"
+                + "Start Data Time:31/12/2003 00:01\n"
+                + "End Data Time:31/12/2003 23:59\n"
+                + "Total Time Travelled:Days:0	Hours:5	Minutes:3\n"
+                + "Total Movements:3\n"
+                + "Max SOG:12.5\n"
+                + "Mean SOG:11.45\n"
+                + "Max COG:13.5\n"
+                + "Mean COG:17.5\n"
+                + "Departure:20.48627, -31.22163\n"
+                + "Arrival:30.48630, -40.22140\n"
+                + "Travelled Distance=497.7\n"
+                + "Delta Distance=430.8";
         assertEquals(string, s.toString());
-    
-    
+
+
     }
 
 }

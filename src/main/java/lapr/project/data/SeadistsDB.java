@@ -21,14 +21,14 @@ public class SeadistsDB extends DataHandler implements ISeadist {
 
     @Override
     public boolean addSeadist(Seadist elem) {
-        if(elem == null){
+        if (elem == null) {
             return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertSeadist(?,?,?,?)}")) {
-            result.setString(1,elem.getId());
-            result.setString(2,elem.getFromPortId());
-            result.setString(3,elem.getToPortId());
-            result.setFloat(4,elem.getDistance());
+            result.setString(1, elem.getId());
+            result.setString(2, elem.getFromPortId());
+            result.setString(3, elem.getToPortId());
+            result.setFloat(4, elem.getDistance());
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

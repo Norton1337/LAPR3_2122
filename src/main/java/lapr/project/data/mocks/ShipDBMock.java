@@ -1,13 +1,10 @@
 package lapr.project.data.mocks;
 
-import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
-
 import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IShipsDB;
 
-import static lapr.project.utils.Utils.randomUUID;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ShipDBMock implements IShipsDB {
 
@@ -44,8 +41,8 @@ public class ShipDBMock implements IShipsDB {
 
     @Override
     public Ship getShipByMMSI(String mmsi) {
-        for(Ship elems : getAllShips()){
-            if(elems.getMMSI().equals(mmsi)){
+        for (Ship elems : getAllShips()) {
+            if (elems.getMMSI().equals(mmsi)) {
                 return elems;
             }
         }
@@ -54,17 +51,17 @@ public class ShipDBMock implements IShipsDB {
     }
 
     @Override
-    public List<String> containers_to_offload(String ship_id){
+    public List<String> containers_to_offload(String ship_id) {
         return null;
     }
 
     @Override
-    public List<String> a_cm(Integer ano){
+    public List<String> a_cm(Integer ano) {
         return null;
     }
 
     @Override
-    public float capacity_rate_now(String ship_id){
+    public float capacity_rate_now(String ship_id) {
         return 0;
     }
 
@@ -80,10 +77,10 @@ public class ShipDBMock implements IShipsDB {
     }
 
 
-    public Ship findShipById(String id){
-        for(Ship elems : ships){
-            if(elems.getId().equals(id)){
-                return  elems;
+    public Ship findShipById(String id) {
+        for (Ship elems : ships) {
+            if (elems.getId().equals(id)) {
+                return elems;
             }
         }
         return null;

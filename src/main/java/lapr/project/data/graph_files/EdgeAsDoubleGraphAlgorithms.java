@@ -1,7 +1,5 @@
 package lapr.project.data.graph_files;
 
-import lapr.project.data.graph_files.AdjacencyMatrixGraph;
-
 import java.util.LinkedList;
 
 public class EdgeAsDoubleGraphAlgorithms {
@@ -10,12 +8,11 @@ public class EdgeAsDoubleGraphAlgorithms {
      * Determine the shortest path to all vertices from a vertex using
      * Dijkstra's algorithm To be called by public short method
      *
-     * @param graph Graph object
-     * @param sourceIdx Source vertex
+     * @param graph         Graph object
+     * @param sourceIdx     Source vertex
      * @param knownVertices previously discovered vertices
      * @param verticesIndex index of vertices in the minimum path
-     * @param minDist minimum distances in the path
-     *
+     * @param minDist       minimum distances in the path
      */
     private static <V> void shortestPath(AdjacencyMatrixGraph<V, Double> graph, int sourceIdx, boolean[] knownVertices, int[] verticesIndex, double[] minDist) {
         minDist[sourceIdx] = 0;
@@ -45,12 +42,11 @@ public class EdgeAsDoubleGraphAlgorithms {
      * Determine the shortest path between two vertices using Dijkstra's
      * algorithm
      *
-     * @param graph Graph object
+     * @param graph  Graph object
      * @param source Source vertex
-     * @param dest Destination vertices
-     * @param path Returns the vertices in the path (empty if no path)
+     * @param dest   Destination vertices
+     * @param path   Returns the vertices in the path (empty if no path)
      * @return minimum distance, -1 if vertices not in graph or no path
-     *
      */
     public static <V> double shortestPath(AdjacencyMatrixGraph<V, Double> graph, V source, V dest, LinkedList<V> path) {
         int sourceIdx = graph.toIndex(source);
@@ -89,14 +85,14 @@ public class EdgeAsDoubleGraphAlgorithms {
      * Recreates the minimum path between two vertex, from the result of
      * Dikstra's algorithm
      *
-     * @param graph Graph object
-     * @param sourceIdx Source vertex
-     * @param destIdx Destination vertices
+     * @param graph         Graph object
+     * @param sourceIdx     Source vertex
+     * @param destIdx       Destination vertices
      * @param verticesIndex index of vertices in the minimum path
-     * @param Queue Vertices in the path (empty if no path)
+     * @param Queue         Vertices in the path (empty if no path)
      */
     private static <V> void recreatePath(AdjacencyMatrixGraph<V, Double> graph, int sourceIdx,
-            int destIdx, int[] verticesIndex, LinkedList<V> path) {
+                                         int destIdx, int[] verticesIndex, LinkedList<V> path) {
         path.add(graph.vertices.get(destIdx));
         if (sourceIdx != destIdx) {
             destIdx = verticesIndex[destIdx];

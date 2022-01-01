@@ -1,14 +1,13 @@
 package lapr.project.model;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.containers.Container;
 import lapr.project.model.operation.Operation;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OperationTest {
 
@@ -18,11 +17,11 @@ class OperationTest {
     Container container;
 
     @BeforeEach
-    void setup(){
-       
+    void setup() {
+
         String nextLocal = "Gdánsk";
         String date = "31/12/2020";
-        String operationType="load";
+        String operationType = "load";
         cargoManifest = new CargoManifest(nextLocal, date, operationType);
         cargoManifest.setId("cargoManifestID");
 
@@ -31,42 +30,41 @@ class OperationTest {
     }
 
 
-
     @Test
-    void setAndGetIdTest(){
+    void setAndGetIdTest() {
         assertEquals("operationID", operation.getId());
         operation.setId("newOperationID");
         assertEquals("newOperationID", operation.getId());
     }
 
     @Test
-    void setAndGetContainerIdTest(){
+    void setAndGetContainerIdTest() {
         operation.setContainerId("containerId");
         assertEquals("containerId", operation.getContainerId());
     }
 
     @Test
-    void setAndGetCargoManifestIdTest(){
+    void setAndGetCargoManifestIdTest() {
         operation.setCargoManifestId("cargoManifestId");
         assertEquals("cargoManifestId", operation.getCargoManifestId());
     }
-    
+
     @Test
-    void setAndGetXTest(){
+    void setAndGetXTest() {
         operation.setX(1);
         assertEquals(1, operation.getX());
     }
 
     @Test
-    void setAndGetYTest(){
+    void setAndGetYTest() {
         operation.setY(2);
         assertEquals(2, operation.getY());
     }
 
     @Test
-    void setAndGetZTest(){
+    void setAndGetZTest() {
         operation.setZ(2);
         assertEquals(2, operation.getZ());
     }
-   
+
 }

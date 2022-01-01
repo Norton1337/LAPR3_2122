@@ -6,7 +6,7 @@ import lapr.project.model.ships.Ship;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShipAndData implements Comparable<ShipAndData>{
+public class ShipAndData implements Comparable<ShipAndData> {
 
     private Ship ship;
     private List<ShipPositonData> shipPositonData;
@@ -36,17 +36,12 @@ public class ShipAndData implements Comparable<ShipAndData>{
     }
 
 
-
     @Override
     public String toString() {
         return "ShipAndData{" +
                 "ship=" + ship +
-                 '}' + '\n';
+                '}' + '\n';
     }
-
-
-
-
 
 
     @Override

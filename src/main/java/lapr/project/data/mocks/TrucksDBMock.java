@@ -12,15 +12,14 @@ public class TrucksDBMock implements ITruck {
 
     @Override
     public Truck getTruck(String id) {
-        for(Truck elems : trucks){
-            if(elems.getTruckId().equals(id)){
+        for (Truck elems : trucks) {
+            if (elems.getTruckId().equals(id)) {
                 return elems;
             }
         }
 
         return null;
     }
-
 
 
     @Override

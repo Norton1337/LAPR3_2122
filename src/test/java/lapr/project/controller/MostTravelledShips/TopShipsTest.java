@@ -1,15 +1,14 @@
 package lapr.project.controller.MostTravelledShips;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import lapr.project.controller.helper_classes.TopShips;
+import lapr.project.model.ships.Ship;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import lapr.project.controller.helper_classes.TopShips;
-import lapr.project.model.ships.Ship;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TopShipsTest {
     private List<Ship> listOfShips = new ArrayList<>();
@@ -19,7 +18,7 @@ class TopShipsTest {
     private TopShips topShips;
 
     @BeforeEach
-    void startUp(){
+    void startUp() {
         listOfShips.add(new Ship("211331640", "shipName1", "IMO1", "callSign1", 11, 5, 5, 60.5, 70.8));
         listOfShips.add(new Ship("211331641", "shipName2", "IMO2", "callSign2", 12, 5, 5, 61.5, 80.6));
         listOfShips.add(new Ship("211331642", "shipName3", "IMO3", "callSign3", 13, 5, 5, 62.5, 90.5));
@@ -36,17 +35,17 @@ class TopShipsTest {
     }
 
     @Test
-    void getListOfShipTest(){
+    void getListOfShipTest() {
         assertEquals(listOfShips, topShips.getListOfShip());
     }
 
     @Test
-    void getListOfDistancesTest(){
+    void getListOfDistancesTest() {
         assertEquals(listOfDistances, topShips.getListOfDistances());
     }
 
     @Test
-    void getListOfSOGTest(){
+    void getListOfSOGTest() {
         assertEquals(listOfSOG, topShips.getListOfSOG());
     }
 

@@ -1,11 +1,11 @@
 package lapr.project.data.mocks;
 
+import lapr.project.model.ships.Generator;
+import lapr.project.model.ships.idb.IGeneratorDB;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import lapr.project.model.ships.Generator;
-import lapr.project.model.ships.idb.IGeneratorDB;
 
 import static lapr.project.utils.Utils.randomUUID;
 
@@ -23,11 +23,10 @@ public class GeneratorDBMock implements IGeneratorDB {
     }
 
 
-
     @Override
     public Generator getGeneratorData(String id) {
-        for(Generator elems : generators){
-            if(elems.getId().equals(id)){
+        for (Generator elems : generators) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }
@@ -43,13 +42,13 @@ public class GeneratorDBMock implements IGeneratorDB {
     public List<Generator> getAllGeneratorsFromShip(String shipID) {
         List<Generator> allGen = new ArrayList<>();
 
-        for(Generator elems : generators){
-            if(elems.getShipId().equals(shipID)){
+        for (Generator elems : generators) {
+            if (elems.getShipId().equals(shipID)) {
                 allGen.add(elems);
             }
         }
 
-        if(allGen.isEmpty()){
+        if (allGen.isEmpty()) {
             return new ArrayList<>();
         }
 

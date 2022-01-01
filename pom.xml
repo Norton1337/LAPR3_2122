@@ -146,7 +146,7 @@
                         <param>lapr.project.utils.*</param>
                     </inScopeClasses>-->
                     <targetClasses>
-                       <param>lapr.project.model.*</param>
+                        <param>lapr.project.model.*</param>
                         <param>lapr.project.utils.*</param>
                         <param>lapr.project.controller.*</param>
                     </targetClasses>

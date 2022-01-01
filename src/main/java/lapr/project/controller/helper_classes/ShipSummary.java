@@ -6,7 +6,6 @@
 package lapr.project.controller.helper_classes;
 
 /**
- *
  * @author Gonçalo Ramalho
  */
 public class ShipSummary {
@@ -40,9 +39,9 @@ public class ShipSummary {
         this.travelledDistance = -1;
         this.deltaDistance = -1;
     }
-    
+
     /***
-     * 
+     *
      * @return String with vesselName
      */
     public String getVesselName() {
@@ -50,7 +49,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param vesselName receives a String with the vesselName to set
      */
     public void setVesselName(String vesselName) {
@@ -58,7 +57,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return a String with the startDateTime of the ship route
      */
     public String getStartDateTime() {
@@ -66,7 +65,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param startDataTime receives a string with the time to set
      */
     public void setStartDateTime(String startDataTime) {
@@ -74,7 +73,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return a String with the EndDateTime of the ship route 
      */
     public String getEndDateTime() {
@@ -82,7 +81,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param endDataTime receives a string with the time to set
      */
     public void setEndDateTime(String endDataTime) {
@@ -90,7 +89,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return a String with the total time travelled by the ship
      */
     public String getTotalTimeTravelled() {
@@ -98,7 +97,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param totalTimeTravelled receives a string with the time to set
      */
     public void setTotalTimeTravelled(String totalTimeTravelled) {
@@ -106,7 +105,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the total number of the ship movements
      */
     public int getTotalMovements() {
@@ -114,7 +113,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param totalMovements receives a number to set the totalMovements
      */
     public void setTotalMovements(int totalMovements) {
@@ -122,7 +121,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the max SOG in the ship route
      */
     public double getMaxSOG() {
@@ -130,7 +129,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param MaxSOG receives a value to set the MaxSOG
      */
     public void setMaxSOG(double MaxSOG) {
@@ -138,7 +137,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the mean SOG in the ship route
      */
     public double getMeanSOG() {
@@ -146,7 +145,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param meanSOG receives a value to set the meanSOG
      */
     public void setMeanSOG(double meanSOG) {
@@ -154,7 +153,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the MaxCOG in the ship route
      */
     public double getMaxCOG() {
@@ -162,7 +161,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param MaxCOG receives a value to set the MaxCOG
      */
     public void setMaxCOG(double MaxCOG) {
@@ -170,7 +169,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the meanCOG in the ship route
      */
     public double getMeanCOG() {
@@ -178,7 +177,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param MeanCOG receives a value to set the meanCOG
      */
     public void setMeanCOG(double MeanCOG) {
@@ -186,7 +185,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return a String with the departure coordinates
      */
     public String getDeparture() {
@@ -194,7 +193,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param departure receives a string to set the departure coordinates
      */
     public void setDeparture(String departure) {
@@ -202,7 +201,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return a String with the arrival coordinates
      */
     public String getArrival() {
@@ -210,7 +209,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param arrival receives a string to set the arrival coordinates
      */
     public void setArrival(String arrival) {
@@ -218,7 +217,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the total travelled distance in the ship route
      */
     public double getTravelledDistance() {
@@ -226,7 +225,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param travelledDistance receives a value to set the travelled distance
      */
     public void setTravelledDistance(double travelledDistance) {
@@ -234,7 +233,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @return the value of the distance between arrival and departure
      */
     public double getDeltaDistance() {
@@ -242,7 +241,7 @@ public class ShipSummary {
     }
 
     /***
-     * 
+     *
      * @param deltaDistance receives a value to set the deltaDistance
      */
     public void setDeltaDistance(double deltaDistance) {
@@ -251,7 +250,7 @@ public class ShipSummary {
 
     @Override
     public String toString() {
-        return "ShipsSummary:" + "\nVessel Name:" + getVesselName()+ "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
+        return "ShipsSummary:" + "\nVessel Name:" + getVesselName() + "\nStart Data Time:" + getStartDateTime() + "\nEnd Data Time:" + getEndDateTime()
                 + "\nTotal Time Travelled:" + getTotalTimeTravelled() + "\nTotal Movements:" + getTotalMovements() + "\nMax SOG:" + getMaxSOG() + "\nMean SOG:" + getMeanSOG() + "\nMax COG:" + getMaxCOG()
                 + "\nMean COG:" + getMeanCOG() + "\nDeparture:" + getDeparture() + "\nArrival:" + getArrival() + "\nTravelled Distance=" + getTravelledDistance() + "\nDelta Distance=" + getDeltaDistance();
     }

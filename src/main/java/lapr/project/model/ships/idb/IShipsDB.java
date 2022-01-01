@@ -1,9 +1,8 @@
 package lapr.project.model.ships.idb;
 
-import java.sql.SQLException;
-import java.util.List;
-
 import lapr.project.model.ships.Ship;
+
+import java.util.List;
 
 public interface IShipsDB {
 

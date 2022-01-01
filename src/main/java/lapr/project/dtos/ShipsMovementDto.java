@@ -1,6 +1,6 @@
 package lapr.project.dtos;
 
-public class ShipsMovementDto  implements Comparable<ShipsMovementDto> {
+public class ShipsMovementDto implements Comparable<ShipsMovementDto> {
 
     private String MMSI;
     private String travelledDistance;

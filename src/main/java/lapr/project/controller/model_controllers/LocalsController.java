@@ -19,14 +19,14 @@ public class LocalsController {
 
     public void addPort(Locals ports) {
         boolean flag = true;
-        for(Locals elems : getAllPorts()){
+        for (Locals elems : getAllPorts()) {
             if (elems.getName().equals(ports.getName())) {
                 flag = false;
                 break;
             }
         }
 
-        if(flag){
+        if (flag) {
             String countryId = countryDB.getCountryIdByName(ports.getCountryId());
             ports.setCountryId(countryId);
             ports.setType("Port");
@@ -35,22 +35,22 @@ public class LocalsController {
         }
     }
 
-    public Locals getLocalWithPortId(String portId){
+    public Locals getLocalWithPortId(String portId) {
         Locals locals = null;
 
-        for(Locals elems : getAllPorts()){
-            if(elems.getPortId() == Integer.parseInt(portId)){
+        for (Locals elems : getAllPorts()) {
+            if (elems.getPortId() == Integer.parseInt(portId)) {
                 locals = elems;
             }
         }
         return locals;
     }
 
-    public Locals getLocalWithCapital(String capital){
+    public Locals getLocalWithCapital(String capital) {
         Locals locals = null;
 
-        for(Locals elems : getAllCapitals()){
-            if(elems.getName().equals(capital)){
+        for (Locals elems : getAllCapitals()) {
+            if (elems.getName().equals(capital)) {
                 locals = elems;
             }
         }
@@ -58,11 +58,11 @@ public class LocalsController {
     }
 
 
-    public Locals getLocalWithName(String capital){
+    public Locals getLocalWithName(String capital) {
         Locals locals = null;
 
-        for(Locals elems : getAllLocals()){
-            if(elems.getName().equals(capital)){
+        for (Locals elems : getAllLocals()) {
+            if (elems.getName().equals(capital)) {
                 locals = elems;
             }
         }
@@ -78,15 +78,15 @@ public class LocalsController {
     }
 
 
-    public LinkedList<Locals> getAllLocals(){
+    public LinkedList<Locals> getAllLocals() {
         return new LinkedList<>(localDB.getAllLocals());
     }
 
 
-    public LinkedList<Locals> getAllPorts(){
+    public LinkedList<Locals> getAllPorts() {
         List<Locals> localsList = new LinkedList<>();
-        for(Locals elems: localDB.getAllLocals()){
-            if(elems.getType().contains("Port")){
+        for (Locals elems : localDB.getAllLocals()) {
+            if (elems.getType().contains("Port")) {
                 localsList.add(elems);
             }
         }
@@ -94,10 +94,10 @@ public class LocalsController {
     }
 
 
-    public LinkedList<Locals> getAllCapitals(){
+    public LinkedList<Locals> getAllCapitals() {
         List<Locals> localsList = new LinkedList<>();
-        for(Locals elems: localDB.getAllLocals()){
-            if(elems.getType().contains("Capital")){
+        for (Locals elems : localDB.getAllLocals()) {
+            if (elems.getType().contains("Capital")) {
                 localsList.add(elems);
             }
         }

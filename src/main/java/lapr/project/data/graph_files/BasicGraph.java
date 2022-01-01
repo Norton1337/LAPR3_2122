@@ -8,7 +8,6 @@ public interface BasicGraph<V, E> {
      * Returns the number of vertices in the graph
      *
      * @return number of vertices of the graph
-     *
      */
     int numVertices();
 
@@ -16,7 +15,6 @@ public interface BasicGraph<V, E> {
      * Returns the number of edges in the graph
      *
      * @return number of edges of the graph
-     *
      */
     int numEdges();
 
@@ -24,7 +22,6 @@ public interface BasicGraph<V, E> {
      * Returns the actual vertices of the graph
      *
      * @return an iterable collection of vertices
-     *
      */
     Iterable<V> vertices();
 
@@ -32,7 +29,6 @@ public interface BasicGraph<V, E> {
      * Returns the actual edges of the graph
      *
      * @return an iterable collection of all edges
-     *
      */
     Iterable<E> edges();
 

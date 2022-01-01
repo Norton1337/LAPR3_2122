@@ -15,9 +15,13 @@ import lapr.project.model.locals.idb.ILocals;
 import lapr.project.model.seadists.Seadist;
 import lapr.project.model.seadists.idb.ISeadist;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.TreeMap;
 
-import static lapr.project.utils.Utils.*;
+import static lapr.project.utils.Utils.convertCoordinates;
+import static lapr.project.utils.Utils.sortMapByValue;
 
 
 public class ToMatrixController {
@@ -36,12 +40,12 @@ public class ToMatrixController {
         this.seadistController = new SeadistController(localsDB, seadistDB);
     }
 
-    public Map<Locals, Double> getNClosenessPlaces(Locals port, int nClosest){
+    public Map<Locals, Double> getNClosenessPlaces(Locals port, int nClosest) {
         TreeMap<Locals, Double> closestMap = new TreeMap<>();
         Map<Locals, Double> returnMap = new LinkedHashMap<>();
 
         //vai buscar tudo e poe no mapa
-        for(Locals elems : localsController.getAllPorts()){
+        for (Locals elems : localsController.getAllPorts()) {
 
 
             String portCountryId = port.getCountryId();
@@ -53,13 +57,11 @@ public class ToMatrixController {
             String elemContinent = countryController.findById(elemCountryId).getContinent();
 
 
-
-
-            if (elemContinent.equals(portContinent) && !portCountry.equals(elemCountry)){
+            if (elemContinent.equals(portContinent) && !portCountry.equals(elemCountry)) {
 
                 LinkedList<Locals> path = new LinkedList<>();
                 double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
-                if(weight > 0){
+                if (weight > 0) {
 
                     //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
                     closestMap.put(elems, weight);
@@ -71,9 +73,9 @@ public class ToMatrixController {
         LinkedHashMap<Locals, Double> sortedMap = sortMapByValue(closestMap);
 
         int count = 0;
-        for (Locals locals : sortedMap.keySet()){
+        for (Locals locals : sortedMap.keySet()) {
 
-            if (count < nClosest){
+            if (count < nClosest) {
                 returnMap.put(locals, sortedMap.get(locals));
                 count++;
             }
@@ -123,12 +125,11 @@ public class ToMatrixController {
         }
 
 
-
         /**
          * Insert Edge relative to ports from seadist with same country
          */
 
-        for(Seadist elem: seadistController.getAllSeadist()){
+        for (Seadist elem : seadistController.getAllSeadist()) {
 
             //TODO Connect only ports of the same country,
 
@@ -136,21 +137,21 @@ public class ToMatrixController {
             Locals locals1 = localsController.getLocalWithPortId(elem.getFromPortId());
             String portCountry1 = "";
 
-            if(locals1 != null) portCountry1 = countryController.findById(locals1.getCountryId()).getCountryName();
+            if (locals1 != null) portCountry1 = countryController.findById(locals1.getCountryId()).getCountryName();
 
 
             //buscar portid e transformar em local
             Locals locals2 = localsController.getLocalWithPortId(elem.getToPortId());
             String portCountry2 = "";
 
-            if(locals2 != null) portCountry2 = countryController.findById(locals2.getCountryId()).getCountryName();
+            if (locals2 != null) portCountry2 = countryController.findById(locals2.getCountryId()).getCountryName();
 
 
             //pegar distancia
             float weight = elem.getDistance();
 
 
-            if(portCountry1.equals(portCountry2) && locals1!=null && locals2!=null){
+            if (portCountry1.equals(portCountry2) && locals1 != null && locals2 != null) {
                 freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
             }
         }
@@ -160,9 +161,9 @@ public class ToMatrixController {
          * Insert Edge relative port closest to capital
          */
 
-        for(Locals capitals : localsController.getAllCapitals()){
+        for (Locals capitals : localsController.getAllCapitals()) {
             Map<Locals, Double> smallElem = new TreeMap<>();
-            for(Locals ports: localsController.getAllPorts()){
+            for (Locals ports : localsController.getAllPorts()) {
 
                 String countryIdCapital = capitals.getCountryId();
                 String countryName = countryController.findById(countryIdCapital).getCountryName();
@@ -171,7 +172,7 @@ public class ToMatrixController {
                 String portsCountryName = countryController.findById(portsIdCapital).getCountryName();
 
 
-                if(countryName.equals(portsCountryName)){
+                if (countryName.equals(portsCountryName)) {
                     KMTravelledCalculator cal = new KMTravelledCalculator();
 
                     String capitalLat = convertCoordinates(capitals.getCoordinates())[0];
@@ -181,11 +182,11 @@ public class ToMatrixController {
                     String portLon = convertCoordinates(ports.getCoordinates())[1];
 
                     double weight = cal.calculate(capitalLat, capitalLon, portLat, portLon);
-                    smallElem.put(ports,weight);
+                    smallElem.put(ports, weight);
                 }
             }
 
-            if(smallElem.size()>0){
+            if (smallElem.size() > 0) {
                 Locals nearest = sortMapByValue(smallElem).keySet().iterator().next();
                 //System.out.printf("%s   %s  weight=%s\n",capitals.getName(), nearest.getName(), smallElem.get(nearest));
                 freightNetworkMatrix.insertEdge(capitals, nearest, smallElem.get(nearest));
@@ -199,7 +200,7 @@ public class ToMatrixController {
 
         for (Locals elems : localsController.getAllPorts()) {
             Map<Locals, Double> nearestPorts = getNClosenessPlaces(elems, nClosestPorts);
-            if(nearestPorts.size() != 0){
+            if (nearestPorts.size() != 0) {
                 /* Show that's working
                 if(elems.getName().equals("Leixoes")){
                     //System.out.printf("%s   %s\n",elems.getName(), nearestPorts);
@@ -207,7 +208,7 @@ public class ToMatrixController {
                  */
 
 
-                for(Locals elemsOfNearest: nearestPorts.keySet()){
+                for (Locals elemsOfNearest : nearestPorts.keySet()) {
                     freightNetworkMatrix.insertEdge(elems, elemsOfNearest, nearestPorts.get(elemsOfNearest));
                     //System.out.printf("%s   %s  %s\n",elems.getName(), elemsOfNearest.getName(),nearestPorts.get(elemsOfNearest) );
                 }

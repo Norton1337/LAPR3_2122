@@ -2,21 +2,49 @@ package lapr.project.data.kdtree;
 
 
 import java.awt.geom.Point2D;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
-public class KdTree <T extends Comparable<T>>  {
+public class KdTree<T extends Comparable<T>> {
 
 
+    private final Comparator<Node<T>> compX = new Comparator<Node<T>>() {
+        @Override
+        public int compare(Node<T> p1, Node<T> p2) {
+            return Double.compare(p1.getCoordinates().getX(), p2.getCoordinates().getX());
+        }
+    };
+    private final Comparator<Node<T>> compY = new Comparator<Node<T>>() {
+        @Override
+        public int compare(Node<T> p1, Node<T> p2) {
+            return Double.compare(p1.getY(), p2.getY());
+        }
+    };
+    // TO COMPARE COORDINATES
+    private final Comparator<Point2D> coordX = new Comparator<Point2D>() {
+        @Override
+        public int compare(Point2D c1, Point2D c2) {
+            return Double.compare(c1.getX(), c2.getX());
+        }
+    };
+    private final Comparator<Point2D> coordY = new Comparator<Point2D>() {
+        @Override
+        public int compare(Point2D c1, Point2D c2) {
+            return Double.compare(c1.getY(), c2.getY());
+        }
+    };
     protected Node<T> root; // root of the tree
 
-    public KdTree(){
+    public KdTree() {
         root = null;
     }
 
     /*
      * @return root Node of the tree (or null if tree is empty)
      */
-    protected Node<T> root(){
+    protected Node<T> root() {
         return root;
     }
 
@@ -28,39 +56,6 @@ public class KdTree <T extends Comparable<T>>  {
         return root == null;
     }
 
-
-
-    private final Comparator<Node<T>> compX = new Comparator<Node<T>>() {
-        @Override
-        public int compare(Node<T> p1, Node<T> p2) {
-            return Double.compare(p1.getCoordinates().getX(), p2.getCoordinates().getX());
-        }
-    };
-
-    private final Comparator<Node<T>> compY = new Comparator<Node<T>>() {
-        @Override
-        public int compare(Node<T> p1, Node<T> p2) {
-            return Double.compare(p1.getY(), p2.getY());
-        }
-    };
-
-    // TO COMPARE COORDINATES
-    private final Comparator<Point2D> coordX = new Comparator<Point2D>() {
-        @Override
-        public int compare(Point2D c1, Point2D c2) {
-            return Double.compare(c1.getX(), c2.getX());
-        }
-    };
-
-    private final Comparator<Point2D> coordY = new Comparator<Point2D>() {
-        @Override
-        public int compare(Point2D c1, Point2D c2) {
-            return Double.compare(c1.getY(), c2.getY());
-        }
-    };
-
-
-
     public void buildBalancedTree(List<Node<T>> nodes) {
         root = new Object() {
             Node<T> buildTree(boolean divX, List<Node<T>> nodes) {
@@ -68,16 +63,16 @@ public class KdTree <T extends Comparable<T>>  {
                     return null;
 
                 Collections.sort(nodes, divX ? compX : compY);
-                int mid = ((nodes.size()-1) >> 1) ; //(nodes.size() >> 1) (PREVIOUS)
+                int mid = ((nodes.size() - 1) >> 1); //(nodes.size() >> 1) (PREVIOUS)
 
 
-                Node<T> node = new Node<>(nodes.get(mid).getElement(),nodes.get(mid).getX(), nodes.get(mid).getY());
+                Node<T> node = new Node<>(nodes.get(mid).getElement(), nodes.get(mid).getX(), nodes.get(mid).getY());
 
 
                 node.setLeft(buildTree(!divX, nodes.subList(0, mid)));
 
-                if (mid + 1 < nodes.size() ) // if (mid + 1 < nodes.size() - 1) (PREVIOUS)
-                    node.setRight( buildTree(!divX, nodes.subList(mid +1, nodes.size())));
+                if (mid + 1 < nodes.size()) // if (mid + 1 < nodes.size() - 1) (PREVIOUS)
+                    node.setRight(buildTree(!divX, nodes.subList(mid + 1, nodes.size())));
 
 
                 return node;
@@ -88,7 +83,6 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
     /*
      * Inserts an element in the tree.
      */
@@ -96,41 +90,38 @@ public class KdTree <T extends Comparable<T>>  {
 
         Node<T> node = new Node<>(element, x, y);
 
-        if (root == null){
+        if (root == null) {
             root = node;
-        }else {
+        } else {
             insert(root, node, true);
         }
         return node;
     }
 
-    private void insert(Node<T> currentNode, Node<T> node, boolean divX){
+    private void insert(Node<T> currentNode, Node<T> node, boolean divX) {
 
-        if (node == null){
+        if (node == null) {
             return;
         }
 
-        if (node.getCoordinates().equals(currentNode.getCoordinates())){
+        if (node.getCoordinates().equals(currentNode.getCoordinates())) {
             return;
         }
 
         int compResult = (divX ? compX : compY).compare(node, currentNode);
 
-        if (compResult == -1){
+        if (compResult == -1) {
 
-            if (currentNode.getLeft() == null){
+            if (currentNode.getLeft() == null) {
                 currentNode.setLeft(node);
-            }
-            else {
+            } else {
                 insert(currentNode.getLeft(), node, !divX);
             }
-        }
-        else {
+        } else {
 
-            if (currentNode.getRight() == null){
+            if (currentNode.getRight() == null) {
                 currentNode.setRight(node);
-            }
-            else {
+            } else {
                 insert(currentNode.getRight(), node, !divX);
             }
         }
@@ -138,10 +129,11 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-    public int size(){
+    public int size() {
 
         return new Object() {
             int cnt = 0;
+
             int getSize(Node<T> node) {
                 if (node == null)
                     return cnt - 1;
@@ -160,25 +152,24 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
     public List<T> getAllElements() {
 
         return getAllElements(root);
     }
 
-    private List<T> getAllElements(Node<T> root){
+    private List<T> getAllElements(Node<T> root) {
 
         final List<T> list = new LinkedList<>();
 
         new Object() {
             void getElements(Node<T> node) {
-                if(node == null){
+                if (node == null) {
                     return;
                 }
                 list.add(node.getElement());
-                if(node.getLeft() != null)
+                if (node.getLeft() != null)
                     getElements(node.getLeft());
-                if(node.getRight() != null)
+                if (node.getRight() != null)
                     getElements(node.getRight());
             }
         }.getElements(root);
@@ -186,31 +177,29 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
     // Find element through coordinates
-    public Node<T> find(Point2D coordinates){
+    public Node<T> find(Point2D coordinates) {
         return find(root, coordinates, true);
     }
 
-    private Node<T> find(Node<T> node, Point2D coordinates, boolean divX){
+    private Node<T> find(Node<T> node, Point2D coordinates, boolean divX) {
 
-        if (node == null){
+        if (node == null) {
             return null;
         }
-        if (node.getCoordinates().equals(coordinates)){
+        if (node.getCoordinates().equals(coordinates)) {
             return node;
         }
 
 
         int compCoords = (divX ? coordX : coordY).compare(node.getCoordinates(), coordinates);
 
-        if (compCoords >0){
+        if (compCoords > 0) {
             return find(node.getLeft(), coordinates, !divX);
         }
 
-        return find(node.getRight(), coordinates,!divX);
+        return find(node.getRight(), coordinates, !divX);
     }
-
 
 
     private Node<T> findMin(Node<T> node, boolean divX) {
@@ -221,15 +210,14 @@ public class KdTree <T extends Comparable<T>>  {
                 return node;
             else
                 return findMin(node.getLeft(), false);
-        }
-        else {
+        } else {
             List<Node<T>> list = new LinkedList<>();
             list.add(findMin(node, true));
 
-            if(node.getLeft() != null)
+            if (node.getLeft() != null)
                 list.add(findMin(node.getLeft(), true));
 
-            if(node.getRight() != null)
+            if (node.getRight() != null)
                 list.add(findMin(node.getRight(), true));
 
             Collections.sort(list, compY);
@@ -243,25 +231,22 @@ public class KdTree <T extends Comparable<T>>  {
     public Node<T> delete(final T element) {
         root = new Object() {
             Node<T> delete(T elem, Node<T> node, boolean divX) {
-                if(node == null)
+                if (node == null)
                     return null;
                 if (elem.equals(node.getElement())) {
-                    if(node.getRight() != null) {
+                    if (node.getRight() != null) {
                         Node<T> minNode = findMin(node.getRight(), !divX);
-                        node.setElement( minNode.getElement());
-                        node.setCoordinates( minNode.getCoordinates());
+                        node.setElement(minNode.getElement());
+                        node.setCoordinates(minNode.getCoordinates());
                         node.setRight(delete(node.getElement(), node.getRight(), !divX));
-                    }
-                    else if (node.getLeft() != null) {
+                    } else if (node.getLeft() != null) {
                         Node<T> minNode = findMin(node.getLeft(), !divX);
-                        node.setElement( minNode.getElement());
-                        node.setCoordinates( minNode.getCoordinates());
+                        node.setElement(minNode.getElement());
+                        node.setCoordinates(minNode.getCoordinates());
                         node.setLeft(delete(node.getElement(), node.getLeft(), !divX));
-                    }
-                    else
+                    } else
                         node = null;
-                }
-                else {
+                } else {
                     node.setLeft(delete(elem, node.getLeft(), !divX));
                     node.setRight(delete(elem, node.getRight(), !divX));
                 }
@@ -271,7 +256,6 @@ public class KdTree <T extends Comparable<T>>  {
 
         return root;
     }
-
 
 
     public int height() {
@@ -296,22 +280,20 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
-
-    public String print(){
+    public String print() {
         return print(root);
     }
 
-    private String print(Node<T> node){
-        if (node == null){
+    private String print(Node<T> node) {
+        if (node == null) {
             return "";
         }
-        if (node.getRight() == null && node.getLeft() == null){
+        if (node.getRight() == null && node.getLeft() == null) {
             return "";
         }
 
-        System.out.println("Node: " + node.getElement()+ " [" + node.getX()+" ,"+ node.getY() +"]"+
-                "\nLeft: "+node.getLeft() + "\nRight: "+node.getRight());
+        System.out.println("Node: " + node.getElement() + " [" + node.getX() + " ," + node.getY() + "]" +
+                "\nLeft: " + node.getLeft() + "\nRight: " + node.getRight());
         System.out.println("\n");
 
         print(node.getLeft());
@@ -320,24 +302,23 @@ public class KdTree <T extends Comparable<T>>  {
     }
 
 
-
-    public int balanceFactor(){
+    public int balanceFactor() {
         return balanceFactor(root);
     }
 
     private int balanceFactor(Node<T> node) {
-        if (node == null){
+        if (node == null) {
             return 0;
         }
 
         int val = height(node.getRight()) - height(node.getLeft());
 
-        if (val< -1 || val > 1){
+        if (val < -1 || val > 1) {
             return 0;
         }
         balanceFactor(node.getRight());
         balanceFactor(node.getLeft());
-        System.out.println(" [" + node.getX()+" ,"+ node.getY() +"]" + ": Balance Factor: " + (height(node.getRight()) - height(node.getLeft())));
+        System.out.println(" [" + node.getX() + " ," + node.getY() + "]" + ": Balance Factor: " + (height(node.getRight()) - height(node.getLeft())));
         return 0;
     }
 

@@ -2,7 +2,6 @@ package lapr.project.data.mocks;
 
 import lapr.project.model.borders.Borders;
 import lapr.project.model.borders.idb.IBordersDB;
-import lapr.project.model.ships.Ship;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,8 +21,8 @@ public class BordersDBMock implements IBordersDB {
 
     @Override
     public Borders getBorderById(String id) {
-        for(Borders elems : getAllBorders()){
-            if(elems.getId().equals(id)){
+        for (Borders elems : getAllBorders()) {
+            if (elems.getId().equals(id)) {
                 return elems;
             }
         }

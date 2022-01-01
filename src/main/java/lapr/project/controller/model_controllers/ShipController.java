@@ -1,12 +1,12 @@
 package lapr.project.controller.model_controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IGeneratorDB;
 import lapr.project.model.ships.idb.IShipsDB;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShipController {
 
@@ -24,12 +24,12 @@ public class ShipController {
         return true;
     }
 
-    public List<Ship> getAllShips(){
+    public List<Ship> getAllShips() {
         return shipDB.getAllShips();
     }
 
 
-    public List<Generator> getAllGeneratorFromShip(String shipId){
+    public List<Generator> getAllGeneratorFromShip(String shipId) {
         List<Generator> allGeneratorFromShip = new ArrayList<>();
 
         // for(Generator elems : generatorDB.getAllGenerator()){
@@ -41,7 +41,7 @@ public class ShipController {
     }
 
 
-    public Ship findShipByMMSI(String mmsi){
+    public Ship findShipByMMSI(String mmsi) {
         return shipDB.getShipByMMSI(mmsi);
     }
 

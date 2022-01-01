@@ -20,9 +20,9 @@ public class SeadistDBMock implements ISeadist {
 
     @Override
     public Seadist getSeadistById(String id) {
-        for(Seadist elems : allSeadist){
-            if(elems.getId().equals(id)){
-                return  elems;
+        for (Seadist elems : allSeadist) {
+            if (elems.getId().equals(id)) {
+                return elems;
             }
         }
         return null;

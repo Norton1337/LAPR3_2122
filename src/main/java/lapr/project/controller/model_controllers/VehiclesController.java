@@ -29,7 +29,7 @@ public class VehiclesController {
         return shipDB.addShip(newShip);
     }
 
-    public List<Ship> getAllShips(){
+    public List<Ship> getAllShips() {
 
         return new ArrayList<>(shipDB.getAllShips());
     }

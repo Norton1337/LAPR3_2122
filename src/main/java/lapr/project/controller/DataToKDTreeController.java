@@ -20,17 +20,18 @@ public class DataToKDTreeController {
     }
 
 
-    public void transformBeforeTree(List<Locals> ports){
+    public void transformBeforeTree(List<Locals> ports) {
 
-        for (Locals elems: ports){
+        for (Locals elems : ports) {
             String[] coordinates = convertCoordinates(elems.getCoordinates());
             double x = Double.parseDouble(coordinates[0]);
             double y = Double.parseDouble(coordinates[1]);
 
-            portsNodes.add(new Node<>(elems,x, y));
+            portsNodes.add(new Node<>(elems, x, y));
         }
     }
-    public void populateTree(List<Locals> ports){
+
+    public void populateTree(List<Locals> ports) {
 
         transformBeforeTree(ports);
         portsTree.buildBalancedTree(portsNodes);

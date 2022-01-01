@@ -1,16 +1,15 @@
 package lapr.project.controller.ModelControllers;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import lapr.project.controller.model_controllers.VehiclesController;
-import lapr.project.data.mocks.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import lapr.project.controller.model_controllers.GeneratorController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
+import lapr.project.controller.model_controllers.VehiclesController;
+import lapr.project.data.mocks.*;
 import lapr.project.ui.ShipUI;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShipPositionDataControllerTest {
 
@@ -22,7 +21,6 @@ class ShipPositionDataControllerTest {
     ShipPositionDataDBMock shipPositionDataDBMock;
 
 
-
     //CONTROLLERS
     VehiclesController vehiclesController;
     ShipController shipController;
@@ -31,7 +29,7 @@ class ShipPositionDataControllerTest {
     ShipUI shipUI;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         this.shipDBMock = new ShipDBMock();
         this.generatorDBMock = new GeneratorDBMock();
         this.shipPositionDataDBMock = new ShipPositionDataDBMock();
@@ -43,8 +41,9 @@ class ShipPositionDataControllerTest {
 
         this.shipUI.importShips("Docs/Input/sships.csv");
     }
+
     @Test
-    void removeDataFromShipTest(){
+    void removeDataFromShipTest() {
         assertTrue(this.shipPositionDataController.removeDataFromShip(this.shipPositionDataController.getShipData().get(0)));
 
     }

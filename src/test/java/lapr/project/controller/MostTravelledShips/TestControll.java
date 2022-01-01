@@ -15,12 +15,10 @@ import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static lapr.project.utils.Utils.printList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -48,7 +46,7 @@ public class TestControll {
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
-    CountryController countryController =  new CountryController(countryDBMock, bordersDBMock, localsDBMock);
+    CountryController countryController = new CountryController(countryDBMock, bordersDBMock, localsDBMock);
     SeadistController seadistController = new SeadistController(localsDBMock, seadistDBMock);
     ToMatrixController matrixController = new ToMatrixController(localsDBMock, seadistDBMock, countryDBMock, bordersDBMock);
 
@@ -59,10 +57,8 @@ public class TestControll {
     SeadistUI seadistUI = new SeadistUI(seadistController);
 
 
-
-
     @BeforeEach
-    void setup(){
+    void setup() {
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
         shipUI.importShips("Docs/Input/bships.csv");
@@ -84,7 +80,7 @@ public class TestControll {
     }
 
     @Test
-    void test(){
+    void test() {
         //printList(countryController.getAllCountries());
         //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
 
@@ -97,13 +93,13 @@ public class TestControll {
     }
 
     @Test
-    void leixoesTest(){
+    void leixoesTest() {
         AdjacencyMatrixGraph<Locals, Double> matrix = matrixController.buildMatrix(3);
         Locals leixoes = localsController.getLocalWithName("Leixoes");
         List<Object> outgoingVerticesList = matrix.outgoingVertices(leixoes);
         List<String> expectResult = Arrays.asList("Setubal", "Barcelona", "Dunkirk", "Horta", "Ponta Delgada", "Valencia", "Funchal");
 
-        for(Object elems : outgoingVerticesList){
+        for (Object elems : outgoingVerticesList) {
             Locals conv = (Locals) elems;
             int index = expectResult.indexOf(conv.getName());
             assertTrue(index != -1);

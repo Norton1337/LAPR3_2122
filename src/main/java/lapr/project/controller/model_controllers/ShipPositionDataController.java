@@ -19,19 +19,19 @@ public class ShipPositionDataController {
         this.shipPositionDataDB = shipPositionDataDB;
     }
 
-    public boolean addDataToShip(Ship ship, ShipPositonData shipData){
+    public boolean addDataToShip(Ship ship, ShipPositonData shipData) {
         shipData.setShipId(ship.getId());
         shipPositionDataDB.addShipData(shipData);
 
         return true;
     }
 
-    public boolean removeDataFromShip(ShipPositonData shipData){
+    public boolean removeDataFromShip(ShipPositonData shipData) {
         shipPositionDataDB.removeDataFromShip(shipData);
         return true;
     }
 
-    public List<ShipPositonData> getShipData (){
+    public List<ShipPositonData> getShipData() {
         return new LinkedList<>(shipPositionDataDB.getShipData());
     }
 

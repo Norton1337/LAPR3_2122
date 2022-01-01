@@ -53,7 +53,7 @@ class ListAllShipsInfoControllerTest {
         this.generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         this.dataToBstController = new DataToBstController();
         this.shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
-        this.listAllShipsInfoController  = new ListAllShipsInfoController();
+        this.listAllShipsInfoController = new ListAllShipsInfoController();
         this.mostTravelledShips = new MostTravelledShipsController();
 
 
@@ -67,25 +67,24 @@ class ListAllShipsInfoControllerTest {
     void shipLogTest() {
         List<ShipAndData> andDataList = new ArrayList<>();
 
-        for(Object elems : dataToBstController.getShipBst().inOrder()){
+        for (Object elems : dataToBstController.getShipBst().inOrder()) {
             andDataList.add((ShipAndData) elems);
         }
 
 
-
-
         List<ShipsMovementDto> allData = listAllShipsInfoController.shipLog(andDataList);
-        if(Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))Utils.printList(allData);
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
+            Utils.printList(allData);
         assertTrue(allData.size() > 10);
 
-        for(ShipsMovementDto elems : allData){
+        for (ShipsMovementDto elems : allData) {
             ShipAndData shipAndData = dataToBstController.getShipDetails(elems.getMMSI());
             double travelDist = mostTravelledShips.getTotalPerShip(shipAndData.getShipPositonData());
 
             assertEquals(elems.getMMSI(), shipAndData.getShip().getMMSI());
             assertEquals(elems.getTravelledDistance(), String.valueOf(travelDist));
         }
-   }
+    }
 
 
     @Test
@@ -93,27 +92,29 @@ class ListAllShipsInfoControllerTest {
 
         List<ShipAndData> andDataList = new ArrayList<>();
 
-        for(Object elems : dataToBstController.getShipBst().inOrder()){
+        for (Object elems : dataToBstController.getShipBst().inOrder()) {
             andDataList.add((ShipAndData) elems);
         }
         System.out.println(andDataList.size());
 
-        if(Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
+            System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
         List<ShipPairsDTO> pairShips = listAllShipsInfoController.pairShips(andDataList);
-        if(Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))Utils.printList(pairShips);
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
+            Utils.printList(pairShips);
 
         List<ShipPairsDTO> expectResult = new ArrayList<>();
-        expectResult.add(new ShipPairsDTO("366759530","366772760","1217","1238","78","335,179"));
+        expectResult.add(new ShipPairsDTO("366759530", "366772760", "1217", "1238", "78", "335,179"));
 
 
         assertTrue(pairShips.size() > 0);
         boolean flag = false;
 
-        for(ShipPairsDTO elems : pairShips){
+        for (ShipPairsDTO elems : pairShips) {
             if (elems.getShip1MMSI().equals(expectResult.get(0).getShip1MMSI()) &&
                     elems.getShip2MMSI().equals(expectResult.get(0).getShip2MMSI()) &&
-                    Math.abs(Double.parseDouble(elems.getShip1Traveldistance())-Double.parseDouble(expectResult.get(0).getShip1Traveldistance().replace(",",".")))<1.0  &&
-                    Math.abs(Double.parseDouble( elems.getShip2Trabeldistance())-Double.parseDouble(expectResult.get(0).getShip2Trabeldistance().replace(",",".")))<1.0 ) {
+                    Math.abs(Double.parseDouble(elems.getShip1Traveldistance()) - Double.parseDouble(expectResult.get(0).getShip1Traveldistance().replace(",", "."))) < 1.0 &&
+                    Math.abs(Double.parseDouble(elems.getShip2Trabeldistance()) - Double.parseDouble(expectResult.get(0).getShip2Trabeldistance().replace(",", "."))) < 1.0) {
                 flag = true;
 
 

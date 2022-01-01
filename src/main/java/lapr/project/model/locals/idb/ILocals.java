@@ -1,10 +1,8 @@
-
 package lapr.project.model.locals.idb;
 
 
 import lapr.project.model.locals.Locals;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface ILocals {

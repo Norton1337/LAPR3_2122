@@ -1,24 +1,23 @@
 package lapr.project.model.ShipPositionData;
 
+import lapr.project.model.ship_position_data.ShipPositonData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import lapr.project.model.ship_position_data.ShipPositonData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ShipPositonDataTest {
 
-    private final ShipPositonData testShipPosition ;
+    private final ShipPositonData testShipPosition;
 
-    public ShipPositonDataTest(){
-        this.testShipPosition = new ShipPositonData("31/12/2020", "42.97875,-66.97001",12.9,
-                13.1,355,"0","B");
+    public ShipPositonDataTest() {
+        this.testShipPosition = new ShipPositonData("31/12/2020", "42.97875,-66.97001", 12.9,
+                13.1, 355, "0", "B");
     }
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         testShipPosition.setId("1");
         testShipPosition.setShipId("13");
     }
@@ -47,7 +46,7 @@ class ShipPositonDataTest {
         String initialBaseDateTime = testShipPosition.getBaseDateTime();
         testShipPosition.setBaseDateTime("2/7/2018");
 
-        assertEquals("2/7/2018",testShipPosition.getBaseDateTime());
+        assertEquals("2/7/2018", testShipPosition.getBaseDateTime());
         testShipPosition.setBaseDateTime(initialBaseDateTime);
     }
 
@@ -61,7 +60,7 @@ class ShipPositonDataTest {
         String initialCoordinates = testShipPosition.getCoordinates();
         testShipPosition.setCoordinates("20.82103, 74.96304");
 
-        assertEquals("20.82103, 74.96304",testShipPosition.getCoordinates());
+        assertEquals("20.82103, 74.96304", testShipPosition.getCoordinates());
         testShipPosition.setCoordinates(initialCoordinates);
     }
 
@@ -89,14 +88,14 @@ class ShipPositonDataTest {
         double initialCog = testShipPosition.getCog();
         testShipPosition.setCog(24.7);
 
-        assertEquals(24.7,testShipPosition.getCog());
+        assertEquals(24.7, testShipPosition.getCog());
         testShipPosition.setCog(initialCog);
 
     }
 
     @Test
     void getHeading() {
-        assertEquals(355,testShipPosition.getHeading());
+        assertEquals(355, testShipPosition.getHeading());
     }
 
     @Test

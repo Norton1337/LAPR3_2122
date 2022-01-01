@@ -1,8 +1,8 @@
 package lapr.project.model.ship_position_data.idb;
 
-import java.util.List;
-
 import lapr.project.model.ship_position_data.ShipPositonData;
+
+import java.util.List;
 
 public interface IShipPositionDataDB {
 

@@ -18,7 +18,6 @@ public class LocalsDBMock implements ILocals {
     }
 
 
-
     @Override
     public boolean addPortsAndWarehouses(Locals portsAndWarehouses) {
         portsAndWarehouses.setId(randomUUID());
@@ -32,10 +31,9 @@ public class LocalsDBMock implements ILocals {
 
 
     @Override
-    public List<String> freeships(){
+    public List<String> freeships() {
         return null;
     }
-
 
 
 }
