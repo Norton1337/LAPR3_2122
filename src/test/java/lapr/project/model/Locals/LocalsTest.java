@@ -4,6 +4,9 @@ import lapr.project.model.locals.Locals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -71,7 +74,9 @@ class LocalsTest {
     @Test
     void toStringTest() {
         portsAndWarehouses.setType("Port");
-        System.out.println(portsAndWarehouses.toString());
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(portsAndWarehouses.toString());
+        }
         assertTrue(portsAndWarehouses.toString().contains("type='Port'"));
     }
 

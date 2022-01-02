@@ -10,8 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static lapr.project.utils.Utils.printList;
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -74,7 +76,7 @@ class ClosestPortControllerTest {
 
     @Test
     void test() {
-        printList(portsAndWarehousesDBMock.getAllLocals());
+        portsAndWarehousesDBMock.getAllLocals();
     }
 
 

@@ -240,7 +240,7 @@ public class ToMatrixController {
 
         for (Country elems : countryController.getAllCountries()) {
             List<Borders> borders = countryController.getAllBordersOfCountry(elems.getCountryName());
-            if(borders.size() > 0){
+            if (borders.size() > 0) {
                 matrixToColour.insertVertex(elems.getCountryName());
             }
         }
@@ -268,46 +268,92 @@ public class ToMatrixController {
             }
         }
 
-        /*
-        var p = new LinkedList<String>();
-        EdgeAsDoubleGraphAlgorithms.shortestPath(matrixToColour, "Portugal","Poland",p);
 
-        System.out.println(p);
-
-         */
         return null;
     }
 
+    public CountryColour findCountryColourWithName(List<CountryColour> allC, String name) {
+        for (CountryColour elems : allC) {
+            if (elems.getCountry().equals(name)) {
+                return elems;
+            }
+        }
+        return null;
+    }
 
-    public void colorMatrix(){
-        Queue<CountryColour> countryQueue = new LinkedList<>();
+    public int returnColoursFromGoingVert(List<CountryColour> allC, List<Object> borders) {
+        List<Integer> colours = new LinkedList<>();
 
-        int numVert = matrixToColour.numVertices();
-        int beginColour = 1;
-
-        /**
-         * Declarar todas as posicoes sem cor
-         */
-        int vertPos[] = new int[numVert];
-        Arrays.fill(vertPos, -1);
-
-
-        /**
-         * Iniciar a primeira posicao com a primeira cor
-         */
-        vertPos[0] = beginColour;
-
-
-
-        //System.out.println(Arrays.toString(vertPos));
-
-
-
-        for(String elems : matrixToColour.vertices()){
-            System.out.printf("%s   %s\n", elems, matrixToColour.outgoingVertices(elems));
-            countryQueue.add(new CountryColour(elems, beginColour));
+        for (Object elems : borders) {
+            String country = (String) elems;
+            CountryColour countryColour = findCountryColourWithName(allC, country);
+            colours.add(findCountryColourWithName(allC, countryColour.getCountry()).getColour());
         }
 
+        for (int i = 0; i < 1000; i++) {
+            if (!colours.contains(i)) {
+                return i;
+            }
+        }
+
+        System.out.println(colours);
+
+        return -1;
+    }
+
+
+    public void colorMatrix() {
+        Stack<CountryColour> colourStack = new Stack<>();
+        List<CountryColour> allVert = new LinkedList<>();
+        List<String> alreadyUsed = new LinkedList<>();
+
+        List<CountryColour> finalResult = new LinkedList<>();
+
+
+        for (String elems : matrixToColour.vertices()) {
+            allVert.add(new CountryColour(elems, -1));
+        }
+
+
+        /**
+         * Adicionar a stack o primeiro elemento a nossa escolha, neste caso Portugal
+         */
+
+        CountryColour countryColourWithName = findCountryColourWithName(allVert, "Portugal");
+        countryColourWithName.setColour(0);
+        colourStack.add(countryColourWithName);
+
+        while (!colourStack.isEmpty()) {
+            /**
+             * Remover ultimo elemento a entrar LIFO
+             */
+
+            CountryColour last = colourStack.pop();
+
+            if (!alreadyUsed.contains(last.getCountry())) {
+                /**
+                 * Ver todas as bordas os valores das cores
+                 */
+                int minColor = returnColoursFromGoingVert(allVert, matrixToColour.outgoingVertices(last.getCountry()));
+
+                CountryColour countryColour = findCountryColourWithName(allVert, last.getCountry());
+                countryColour.setColour(minColor);
+                last.setColour(minColor);
+
+                System.out.printf("%s   %s\n", last, minColor);
+
+
+                /**
+                 * Adicionar restantes bordas a Stack
+                 */
+
+                for (Object elems : matrixToColour.outgoingVertices(last.getCountry())) {
+                    colourStack.add(new CountryColour((String) elems, -1));
+                }
+            }
+
+            alreadyUsed.add(last.getCountry());
+        }
     }
 
 

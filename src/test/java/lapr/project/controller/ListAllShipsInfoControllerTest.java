@@ -95,7 +95,10 @@ class ListAllShipsInfoControllerTest {
         for (Object elems : dataToBstController.getShipBst().inOrder()) {
             andDataList.add((ShipAndData) elems);
         }
-        System.out.println(andDataList.size());
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(andDataList.size());
+        }
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
             System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");

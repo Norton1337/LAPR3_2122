@@ -5,7 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
+import java.util.Objects;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -630,7 +632,9 @@ public class AdjacencyMatrixGraphTest {
         instance.insertEdge("Vert 2", "Vert 3", "Edge 4");
         instance.insertEdge("Vert 1", "Vert 5", "Edge 5");
 
-        System.out.println(instance);
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(instance);
+        }
     }
 
 

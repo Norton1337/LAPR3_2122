@@ -25,4 +25,12 @@ public class CountryColour {
     public void setColour(int colour) {
         this.colour = colour;
     }
+
+    @Override
+    public String toString() {
+        return "CountryColour{" +
+                "country='" + country + '\'' +
+                ", colour=" + colour +
+                '}';
+    }
 }

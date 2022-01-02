@@ -7,7 +7,9 @@ import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Objects;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -69,98 +71,105 @@ public class GraphAlgorithmsTest {
 
     @Test
     public void testDFS() {
-        System.out.println("Test of DFS");
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println("Test of DFS");
 
-        LinkedList<String> path;
+            LinkedList<String> path;
 
-        assertTrue("Should be null if vertex does not exist", GraphAlgorithms.DFS(completeMap, "LX") == null);
+            assertTrue("Should be null if vertex does not exist", GraphAlgorithms.DFS(completeMap, "LX") == null);
 
-        path = GraphAlgorithms.DFS(incompleteMap, "Faro");
+            path = GraphAlgorithms.DFS(incompleteMap, "Faro");
 
-        assertTrue("Should be just one", path.size() == 1);
+            assertTrue("Should be just one", path.size() == 1);
 
-        Iterator<String> it = path.iterator();
+            Iterator<String> it = path.iterator();
 
-        assertTrue("it should be Faro", it.next().compareTo("Faro") == 0);
+            assertTrue("it should be Faro", it.next().compareTo("Faro") == 0);
 
-        path = GraphAlgorithms.DFS(completeMap, "Porto");
+            path = GraphAlgorithms.DFS(completeMap, "Porto");
 
-        assertTrue("Should give all vertices ", path.size() == 11);
+            assertTrue("Should give all vertices ", path.size() == 11);
 
-        it = path.iterator();
+            it = path.iterator();
 
-        assertTrue("First in visit should be Porto", it.next().compareTo("Porto") == 0);
-        assertTrue("then Braga", it.next().compareTo("Braga") == 0);
-        assertTrue("then Vila Real", it.next().compareTo("Vila Real") == 0);
-        assertTrue("then Aveiro", it.next().compareTo("Aveiro") == 0);
+            assertTrue("First in visit should be Porto", it.next().compareTo("Porto") == 0);
+            assertTrue("then Braga", it.next().compareTo("Braga") == 0);
+            assertTrue("then Vila Real", it.next().compareTo("Vila Real") == 0);
+            assertTrue("then Aveiro", it.next().compareTo("Aveiro") == 0);
 
-        assertTrue("then Coimbra", it.next().compareTo("Coimbra") == 0);
-        assertTrue("then Leiria", it.next().compareTo("Leiria") == 0);
-        assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
-        assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
-        assertTrue("then Viseu", it.next().compareTo("Viseu") == 0);
-        assertTrue("then Lisboa", it.next().compareTo("Lisboa") == 0);
-        assertTrue("then Faro", it.next().compareTo("Faro") == 0);
+            assertTrue("then Coimbra", it.next().compareTo("Coimbra") == 0);
+            assertTrue("then Leiria", it.next().compareTo("Leiria") == 0);
+            assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+            assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
+            assertTrue("then Viseu", it.next().compareTo("Viseu") == 0);
+            assertTrue("then Lisboa", it.next().compareTo("Lisboa") == 0);
+            assertTrue("then Faro", it.next().compareTo("Faro") == 0);
 
 
-        path = GraphAlgorithms.DFS(incompleteMap, "Viseu");
+            path = GraphAlgorithms.DFS(incompleteMap, "Viseu");
 
-        assertTrue("Should give 3 vertices", path.size() == 3);
+            assertTrue("Should give 3 vertices", path.size() == 3);
 
-        it = path.iterator();
+            it = path.iterator();
 
-        assertTrue("First in visit should be Viseu", it.next().compareTo("Viseu") == 0);
-        assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
-        assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+            assertTrue("First in visit should be Viseu", it.next().compareTo("Viseu") == 0);
+            assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
+            assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+        }
+
     }
 
     @Test
     public void testBFS() {
-        System.out.println("Test of BFS");
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println("Test of BFS");
 
-        LinkedList<String> path;
+            LinkedList<String> path;
 
-        assertTrue("Should be null if vertex does not exist", GraphAlgorithms.BFS(completeMap, "LX") == null);
+            assertTrue("Should be null if vertex does not exist", GraphAlgorithms.BFS(completeMap, "LX") == null);
 
-        path = GraphAlgorithms.BFS(incompleteMap, "Faro");
+            path = GraphAlgorithms.BFS(incompleteMap, "Faro");
 
-        assertTrue("Should be just one", path.size() == 1);
+            assertTrue("Should be just one", path.size() == 1);
 
-        Iterator<String> it = path.iterator();
+            Iterator<String> it = path.iterator();
 
-        assertTrue("it should be Faro", it.next().compareTo("Faro") == 0);
-
-
-        path = GraphAlgorithms.BFS(completeMap, "Porto");
-        System.out.println(path);
-
-        assertTrue("Should give all vertices ", path.size() == 11);
-
-        it = path.iterator();
-
-        assertTrue("First in visit should be Porto", it.next().compareTo("Porto") == 0);
-        assertTrue("then Braga", it.next().compareTo("Braga") == 0);
-        assertTrue("then Vila Real", it.next().compareTo("Vila Real") == 0);
-        assertTrue("then Aveiro", it.next().compareTo("Aveiro") == 0);
-
-        assertTrue("then Coimbra", it.next().compareTo("Coimbra") == 0);
-        assertTrue("then Leiria", it.next().compareTo("Leiria") == 0);
-        assertTrue("then Viseu", it.next().compareTo("Viseu") == 0);
-        assertTrue("then Lisboa", it.next().compareTo("Lisboa") == 0);
-        assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
-        assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
-        assertTrue("then Faro", it.next().compareTo("Faro") == 0);
+            assertTrue("it should be Faro", it.next().compareTo("Faro") == 0);
 
 
-        path = GraphAlgorithms.BFS(incompleteMap, "Viseu");
+            path = GraphAlgorithms.BFS(completeMap, "Porto");
+            System.out.println(path);
 
-        assertTrue("Should give 3 vertices", path.size() == 3);
+            assertTrue("Should give all vertices ", path.size() == 11);
 
-        it = path.iterator();
+            it = path.iterator();
 
-        assertTrue("First in visit should be Viseu", it.next().compareTo("Viseu") == 0);
-        assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
-        assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+            assertTrue("First in visit should be Porto", it.next().compareTo("Porto") == 0);
+            assertTrue("then Braga", it.next().compareTo("Braga") == 0);
+            assertTrue("then Vila Real", it.next().compareTo("Vila Real") == 0);
+            assertTrue("then Aveiro", it.next().compareTo("Aveiro") == 0);
+
+            assertTrue("then Coimbra", it.next().compareTo("Coimbra") == 0);
+            assertTrue("then Leiria", it.next().compareTo("Leiria") == 0);
+            assertTrue("then Viseu", it.next().compareTo("Viseu") == 0);
+            assertTrue("then Lisboa", it.next().compareTo("Lisboa") == 0);
+            assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+            assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
+            assertTrue("then Faro", it.next().compareTo("Faro") == 0);
+
+
+            path = GraphAlgorithms.BFS(incompleteMap, "Viseu");
+
+            assertTrue("Should give 3 vertices", path.size() == 3);
+
+            it = path.iterator();
+
+            assertTrue("First in visit should be Viseu", it.next().compareTo("Viseu") == 0);
+            assertTrue("then Guarda", it.next().compareTo("Guarda") == 0);
+            assertTrue("then Castelo Branco", it.next().compareTo("Castelo Branco") == 0);
+        }
+
+
 
     }
 

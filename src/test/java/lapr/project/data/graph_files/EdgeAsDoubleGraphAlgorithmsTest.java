@@ -5,7 +5,9 @@ import org.junit.Test;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Objects;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -56,8 +58,9 @@ public class EdgeAsDoubleGraphAlgorithmsTest {
 
     @Test
     public void testShortestPath() {
-
-        System.out.println("Test of shortest path");
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
+            System.out.println("Test of shortest path");
+        }
 
         LinkedList<String> path = new LinkedList<>();
 

@@ -8,7 +8,10 @@ import lapr.project.ui.CountryUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static lapr.project.utils.Utils.printList;
+import static lapr.project.utils.Utils.readFromProp;
 
 class CountryControllerTest {
 
@@ -33,8 +36,10 @@ class CountryControllerTest {
     @Test
     void test() {
 
-        //printList(countryController.getAllCountries());
-        printList(bordersDBMock.getAllBorders());
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            printList(bordersDBMock.getAllBorders());
+        }
+
     }
 
 

@@ -18,7 +18,9 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
+import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -81,15 +83,12 @@ public class TestControll {
 
     @Test
     void test() {
-        //printList(countryController.getAllCountries());
-        //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
-
-
-        //printList(seadistController.getAllSeadist());
-        //printList(portsAndWarehousesController.getAllPorts());
-
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
-        matrixController.printFreightNetworkMatrix();
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+
+            matrixController.printFreightNetworkMatrix();
+        }
     }
 
     @Test
