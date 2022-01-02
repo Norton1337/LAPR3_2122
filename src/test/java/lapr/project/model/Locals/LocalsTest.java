@@ -14,6 +14,15 @@ class LocalsTest {
     @BeforeEach
     void setup() {
         portsAndWarehouses = new Locals("Portugal", 12345, "Leixões", "41.1827759,-8.7205652");
+        portsAndWarehouses.setLocalCapacity(420);
+    }
+
+
+    @Test
+    void setAndGetLocalCapaticyTest() {
+        assertEquals(420, portsAndWarehouses.getLocalCapacity());
+        portsAndWarehouses.setLocalCapacity(58);
+        assertEquals(58, portsAndWarehouses.getLocalCapacity());
     }
 
     @Test

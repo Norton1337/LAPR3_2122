@@ -4,7 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,6 +34,12 @@ class UtilsTest {
         list.add(7);
 
         assertTrue(Utils.printList(list));
+    }
+
+    @Test
+    <K, V> void printMapTest(){
+        Map<K, V> map  = new HashMap<K, V>();
+        assertTrue(Utils.printMap(map));
     }
 
     @Test

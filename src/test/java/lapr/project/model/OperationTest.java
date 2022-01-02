@@ -27,8 +27,15 @@ class OperationTest {
 
         operation = new Operation(1, 2, 3);
         operation.setId("operationID");
+        operation.setOperation_warehouse("operation_warehouse");
     }
 
+    @Test
+    void setAndGetOperationWarehouseTest() {
+        assertEquals("operation_warehouse", operation.getOperation_warehouse());
+        operation.setOperation_warehouse("operation_warehouse2");
+        assertEquals("operation_warehouse2", operation.getOperation_warehouse());
+    }
 
     @Test
     void setAndGetIdTest() {
