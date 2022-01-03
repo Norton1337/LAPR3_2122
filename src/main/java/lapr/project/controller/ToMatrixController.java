@@ -290,7 +290,7 @@ public class ToMatrixController {
             colours.add(findCountryColourWithName(allC, countryColour.getCountry()).getColour());
         }
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < borders.size(); i++) {
             if (!colours.contains(i)) {
                 return i;
             }
@@ -329,7 +329,7 @@ public class ToMatrixController {
              */
 
             CountryColour last = colourStack.pop();
-
+            // V^3
             if (!alreadyUsed.contains(last.getCountry())) {
                 /**
                  * Ver todas as bordas os valores das cores
