@@ -41,7 +41,7 @@ public class ToMatrixController {
         this.seadistController = new SeadistController(localsDB, seadistDB);
     }
 
-    public Map<Locals, Double> getNClosenessPlaces(List<Locals> localsList, Locals port, int nClosest) {
+    public Map<Locals, Double> getNClosenessPlaces(List<Locals> localsList, Locals local, int nClosest) {
         TreeMap<Locals, Double> closestMap = new TreeMap<>();
         Map<Locals, Double> returnMap = new LinkedHashMap<>();
 
@@ -51,7 +51,7 @@ public class ToMatrixController {
         for (Locals elems : localsList) {
 
 
-            String portCountryId = port.getCountryId();
+            String portCountryId = local.getCountryId();
             String portCountry = countryController.findById(portCountryId).getCountryName();
             String portContinent = countryController.findById(portCountryId).getContinent();
 
@@ -63,7 +63,7 @@ public class ToMatrixController {
             if (elemContinent.equals(portContinent) && !portCountry.equals(elemCountry)) {
 
                 LinkedList<Locals> path = new LinkedList<>();
-                double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, port, elems, path);
+                double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(this.freightNetworkMatrix, local, elems, path);
                 if (weight > 0) {
 
                     //System.out.printf("%s   %s  %s  %s\n", port.getName(), elems.getName(), weight, path );
@@ -268,6 +268,13 @@ public class ToMatrixController {
             }
         }
 
+        /**
+         *  Print Countries and Each Borders
+         */
+        for(String elems: matrixToColour.vertices()){
+            //System.out.printf("%s   %s\n", elems, matrixToColour.outgoingVertices(elems));
+        }
+
 
         return null;
     }
@@ -290,19 +297,17 @@ public class ToMatrixController {
             colours.add(findCountryColourWithName(allC, countryColour.getCountry()).getColour());
         }
 
-        for (int i = 0; i < borders.size(); i++) {
+        for (int i = 0; i < 1000; i++) {
             if (!colours.contains(i)) {
                 return i;
             }
         }
 
-        System.out.println(colours);
-
         return -1;
     }
 
 
-    public void colorMatrix() {
+    public List<CountryColour> colorMatrix() {
         Stack<CountryColour> colourStack = new Stack<>();
         List<CountryColour> allVert = new LinkedList<>();
         List<String> alreadyUsed = new LinkedList<>();
@@ -336,11 +341,16 @@ public class ToMatrixController {
                  */
                 int minColor = returnColoursFromGoingVert(allVert, matrixToColour.outgoingVertices(last.getCountry()));
 
-                CountryColour countryColour = findCountryColourWithName(allVert, last.getCountry());
-                countryColour.setColour(minColor);
-                last.setColour(minColor);
+                if(minColor <= 3){
+                    CountryColour countryColour = findCountryColourWithName(allVert, last.getCountry());
+                    countryColour.setColour(minColor);
+                    last.setColour(minColor);
 
-                System.out.printf("%s   %s\n", last, minColor);
+                    finalResult.add(last);
+                }else {
+                    colourStack.add(last);
+                }
+
 
 
                 /**
@@ -354,6 +364,8 @@ public class ToMatrixController {
 
             alreadyUsed.add(last.getCountry());
         }
+
+        return finalResult;
     }
 
 

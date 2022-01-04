@@ -4,6 +4,7 @@ import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ToMatrixController;
+import lapr.project.controller.helper_classes.CountryColour;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
 import lapr.project.data.mocks.*;
@@ -20,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import static lapr.project.utils.Utils.printList;
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -110,7 +112,20 @@ public class TestControll {
 
     @Test
     void colourMatrix() {
+        List<CountryColour> expResult = new LinkedList<>();
+        expResult.add(new CountryColour("Portugal", 0));
+        expResult.add(new CountryColour("Spain", 1));
+        expResult.add(new CountryColour("France", 0));
+        expResult.add(new CountryColour("Luxembourg", 3));
+
         matrixController.buildMatrixToColour();
-        matrixController.colorMatrix();
+        List<CountryColour> result = matrixController.colorMatrix();
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            printList(result);
+        }
+
+        //System.out.printf("%s   %s  %s\n",result.get(0), expResult.get(0), result.get(0).getCountry().equals(expResult.get(0).getCountry()));
+
     }
 }
