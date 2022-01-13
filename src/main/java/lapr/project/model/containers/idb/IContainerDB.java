@@ -13,6 +13,8 @@ public interface IContainerDB {
 
     Container getContainer(String id);
 
+    Container getContainerByNumber(String number);
+
     boolean removeContainer(String id);
 
     public String cont_where(String cont) throws SQLException;

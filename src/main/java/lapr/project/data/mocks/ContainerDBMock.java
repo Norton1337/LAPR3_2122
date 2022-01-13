@@ -35,6 +35,16 @@ public class ContainerDBMock implements IContainerDB {
     }
 
     @Override
+    public Container getContainerByNumber(String number) {
+        for(Container elems : allContainers) {
+            if(elems.getContainerNumber() == Integer.parseInt(number)){
+                return elems;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public boolean removeContainer(String id) {
         Container containerToBeRemoved = getContainer(id);
         return allContainers.remove(containerToBeRemoved);

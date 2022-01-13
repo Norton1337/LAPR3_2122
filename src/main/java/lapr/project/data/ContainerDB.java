@@ -49,6 +49,11 @@ public class ContainerDB extends DataHandler implements IContainerDB {
     }
 
     @Override
+    public Container getContainerByNumber(String number) {
+        return null;
+    }
+
+    @Override
     public boolean removeContainer(String id) {
         return false;
     }
