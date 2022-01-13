@@ -18,8 +18,7 @@ import lapr.project.model.seadists.idb.ISeadist;
 
 import java.util.*;
 
-import static lapr.project.utils.Utils.convertCoordinates;
-import static lapr.project.utils.Utils.sortMapByValue;
+import static lapr.project.utils.Utils.*;
 
 
 public class ToMatrixController {
@@ -367,6 +366,73 @@ public class ToMatrixController {
 
         return finalResult;
     }
+
+
+
+    public Map<Locals, Double> centralPorts( ){
+
+
+        Map<Locals, Double> portsMap = new LinkedHashMap<>();
+        Map<Locals, Double> portsFinalMap = new LinkedHashMap<>();
+
+
+        /*
+         * Add all existing Ports to map and initialize their value to 0
+         */
+        for (Locals ports : localsController.getAllLocals()){
+            portsMap.put(ports, 0.0);
+        }
+
+
+        for (Locals port1 : portsMap.keySet()){
+
+            for (Locals port2 : portsMap.keySet()){
+
+                LinkedList<Locals> path = new LinkedList<>();
+
+                String port1Continent = countryController.findById(port1.getCountryId()).getContinent();
+                String port2Continent = countryController.findById(port2.getCountryId()).getContinent();
+
+
+                if (!port1.getName().equals(port2.getName()) && (port1Continent.equals(port2Continent)) ){
+
+                    double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, port1, port2, path);
+                    System.out.println(path);
+                    if (!path.isEmpty()){
+
+                        path.remove(0);
+                        path.remove(path.size()-1);
+
+                        for (Locals elem : path){
+
+                            double portValue = portsMap.get(elem);
+                            portsMap.put(elem, portValue +1.0);
+                        }
+                    }
+
+                    //System.out.println("port1 "+port1.getName() + "  \nports2 "+port2.getName());
+                    //System.out.println(weight +"\n");
+                    //System.out.println("path "+path.size());
+                }
+
+            }
+
+        }
+
+        for (Locals ports : portsMap.keySet() ){
+            if (ports.getType().equals("Port")){
+                portsFinalMap.put(ports, portsMap.get(ports));
+
+            }
+        }
+
+        printMap(sortMapByValue(portsFinalMap));
+
+        return portsMap;
+
+    }
+
+
 
 
 }

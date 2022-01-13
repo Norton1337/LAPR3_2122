@@ -16,10 +16,7 @@ import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static lapr.project.utils.Utils.printList;
 import static lapr.project.utils.Utils.readFromProp;
@@ -126,6 +123,28 @@ public class TestControll {
         }
 
         //System.out.printf("%s   %s  %s\n",result.get(0), expResult.get(0), result.get(0).getCountry().equals(expResult.get(0).getCountry()));
+
+    }
+
+
+    @Test
+    void portsTest(){
+        AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
+        Map<Locals, Double> portsList = new LinkedHashMap<>();
+
+
+        portsList = matrixController.centralPorts();
+
+        /*
+        for (Locals ports : portsList.keySet()){
+            //System.out.println(ports);
+            if (ports.getType().equals("Port")){
+                portsList.replace(ports,   portsList.get(ports) +1);
+            }
+        }
+         System.out.println(portsList);
+
+         */
 
     }
 }
