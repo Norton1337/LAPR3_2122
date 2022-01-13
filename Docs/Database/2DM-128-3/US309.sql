@@ -1,0 +1,16 @@
+CREATE OR REPLACE TRIGGER available_ship
+BEFORE INSERT ON cargo_manifest
+FOR EACH ROW
+DECLARE 
+    c_s NUMBER;
+    t_local cargo_manifest.NEXT_LOCAL_ID%TYPE;
+BEGIN
+    SELECT COUNT(CARGO_MANIFEST_ID) into c_s from CARGO_MANIFEST WHERE VEHICLE_ID = :new.VEHICLE_ID AND CM_DATE <=:new.CM_DATE;
+    IF c_s != 0 THEN
+        SELECT NEXT_LOCAL_ID into t_local FROM CARGO_MANIFEST WHERE VEHICLE_ID = :new.VEHICLE_ID AND CM_DATE <=:new.CM_DATE ORDER BY cm_date DESC FETCH FIRST 1 ROWS ONLY;
+        IF t_local IS NOT NULL THEN
+            RAISE_APPLICATION_ERROR(-20301, 'Vehicle is not available');
+        END IF;
+    END IF;
+END;
+/
