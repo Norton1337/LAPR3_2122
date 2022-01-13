@@ -1,0 +1,55 @@
+1,0,0,2345,7,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+1,0,1,2235,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+1,1,0,2955,5,9500,500,25000,34,20G0,Certificados,NotRepair,Not Refrigerated,Tecnologia
+1,1,1,2945,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+1,2,0,2845,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+1,2,1,2245,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+1,2,2,2745,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+2,0,0,2645,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+2,0,1,2445,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+2,0,2,2155,5,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Tecnologia
+2,1,2,2336,7,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+2,2,2,2337,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+3,0,0,2338,5,9500,500,25000,34,20G0,Certificados,NotRepair,Not Refrigerated,Tecnologia
+3,0,1,2339,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+3,0,2,2340,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+3,0,3,2341,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+3,3,3,2342,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+4,0,0,2343,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+4,0,1,2344,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+4,0,2,2345,5,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Tecnologia
+4,0,3,2346,7,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+4,0,4,2347,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+4,1,4,2348,5,9500,500,25000,34,20G0,Certificados,NotRepair,Not Refrigerated,Tecnologia
+4,2,4,2349,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+4,3,4,2350,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+4,4,4,2351,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+5,0,0,2352,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+5,0,1,2353,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+5,0,2,2354,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+5,0,3,2355,5,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Tecnologia
+5,0,4,2356,7,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+5,0,5,2357,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+5,1,5,2358,5,9500,500,25000,34,20G0,Certificados,NotRepair,Not Refrigerated,Tecnologia
+5,2,5,2359,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+5,3,5,2360,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+5,4,5,2361,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+5,5,5,2362,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+6,0,0,2363,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+6,0,1,2364,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+6,0,2,2365,5,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Tecnologia
+6,0,3,2366,7,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+6,0,4,2367,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Brinquedos
+6,0,5,2368,5,9500,500,25000,34,20G0,Certificados,NotRepair,Not Refrigerated,Tecnologia
+6,0,6,2369,6,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+6,1,6,2370,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+6,2,6,2371,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+6,3,6,2372,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+6,4,6,2373,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+6,5,6,2374,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+6,6,6,2375,5,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Tecnologia
+7,0,1,2376,7,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+7,0,2,2377,8,9500,500,25000,34,20H0,Certificados,Reparar,Refrigerated,Comida
+7,0,3,2378,4,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
+7,0,4,2379,2,9500,500,25000,34,20H0,Certificados,NotRepair,Refrigerated,Comida
+7,0,5,2370,3,9500,500,25000,34,20G0,Certificados,Reparar,Not Refrigerated,Tecnologia
