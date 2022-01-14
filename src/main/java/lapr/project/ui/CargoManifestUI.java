@@ -1,12 +1,7 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.CargoManifestController;
-import lapr.project.controller.model_controllers.ContainerController;
-import lapr.project.controller.model_controllers.LocalsController;
-import lapr.project.controller.model_controllers.OperationController;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.containers.Container;
-import lapr.project.model.locals.Locals;
 import lapr.project.model.operation.Operation;
 
 import java.io.BufferedReader;
@@ -16,16 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OperationsUI {
+public class CargoManifestUI {
 
-    private OperationController operationController;
-    private ContainerController containerController;
-    private CargoManifestController cargoManifestController;
-    public OperationsUI(OperationController operationController) {
-        this.operationController = operationController;
-    }
-
-    public void importOperations(String file) {
+    public void importCargoManifest(String file) {
 
         Operation newOperation = null;
 
@@ -58,4 +46,5 @@ public class OperationsUI {
             e.printStackTrace();
         }
     }
+}
 }

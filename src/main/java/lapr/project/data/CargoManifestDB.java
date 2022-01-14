@@ -43,6 +43,11 @@ public class CargoManifestDB extends DataHandler implements ICargoManifest {
     }
 
     @Override
+    public CargoManifest getCargoManifestByRecon(String recon) {
+        return null;
+    }
+
+    @Override
     public boolean removeCargoManifest(String id) {
         return false;
     }

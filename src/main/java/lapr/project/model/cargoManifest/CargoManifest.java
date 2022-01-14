@@ -8,6 +8,16 @@ public class CargoManifest {
     private String operationType;
     private String currentLocalId;
     private String vehicleId;
+    private String cargo_recon;
+
+
+
+    public CargoManifest(String nextLocal, String date, String operationType, String cargo_recon) {
+        this.nextLocal = nextLocal;
+        this.date = date;
+        this.operationType = operationType;
+        this.cargo_recon = cargo_recon;
+    }
 
     public CargoManifest(String nextLocal, String date, String operationType) {
         this.nextLocal = nextLocal;
@@ -61,6 +71,14 @@ public class CargoManifest {
 
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public String getCargo_recon() {
+        return cargo_recon;
+    }
+
+    public void setCargo_recon(String cargo_recon) {
+        this.cargo_recon = cargo_recon;
     }
 }
 

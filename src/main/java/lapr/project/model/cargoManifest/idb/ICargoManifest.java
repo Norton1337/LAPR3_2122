@@ -13,6 +13,8 @@ public interface ICargoManifest {
 
     CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId);
 
+    CargoManifest getCargoManifestByRecon(String recon);
+
     boolean removeCargoManifest(String id);
 
 }

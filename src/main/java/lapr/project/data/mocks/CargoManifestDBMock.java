@@ -38,6 +38,17 @@ public class CargoManifestDBMock implements ICargoManifest {
     }
 
     @Override
+    public CargoManifest getCargoManifestByRecon(String recon) {
+        for (CargoManifest elems : cargoManifests) {
+            if (elems.getCargo_recon().equals(recon)) {
+                return elems;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public boolean removeCargoManifest(String id) {
         CargoManifest cargoToBeDeleted = null;
         for (CargoManifest elems : cargoManifests) {
