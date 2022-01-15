@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CargoManifestUI {
+/*public class CargoManifestUI {
 
     public void importCargoManifest(String file) {
 
@@ -47,4 +47,4 @@ public class CargoManifestUI {
         }
     }
 }
-}
+}*/

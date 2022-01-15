@@ -1,13 +1,9 @@
 package lapr.project.ui;
 
-import jdk.vm.ci.meta.Local;
 import lapr.project.controller.model_controllers.CargoManifestController;
 import lapr.project.controller.model_controllers.ContainerController;
 import lapr.project.controller.model_controllers.LocalsController;
 import lapr.project.controller.model_controllers.OperationController;
-import lapr.project.model.cargoManifest.CargoManifest;
-import lapr.project.model.containers.Container;
-import lapr.project.model.locals.Locals;
 import lapr.project.model.operation.Operation;
 
 import java.io.BufferedReader;
@@ -16,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static lapr.project.utils.Utils.toInt;
 
 public class OperationsUI {
 
@@ -43,15 +41,12 @@ public class OperationsUI {
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
 
-                if (!list.get(1).contains("container_number")) {
+                if (!list.get(0).contains("container_number")) {
 
-                    Container newContainer = containerController.findContainerByNumber(list.get(1));
-                    CargoManifest newCargoManifest = cargoManifestController.findCargoByRecon(list.get(2));
-                    Locals newLocal = localsController.getWarehouseByCode(list.get(3));
 
-                    newOperation = new Operation();
+                    newOperation = new Operation(toInt(list.get(3)),toInt(list.get(4)),toInt(list.get(5)));
 
-                    operationController.addOperation(newOperation);
+                    operationController.addOperation(newOperation,list.get(0),list.get(1),list.get(2));
 
                 }
 

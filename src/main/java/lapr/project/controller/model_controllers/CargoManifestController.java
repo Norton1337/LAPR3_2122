@@ -15,10 +15,10 @@ public class CargoManifestController {
         this.cargoManifestDB = cargoManifestDB;
     }
 
-    public boolean addCargoManifest(CargoManifest newCargoManifest) {
-        cargoManifestDB.addCargoManifest(newCargoManifest,);
+    /*public boolean addCargoManifest(CargoManifest newCargoManifest) {
+        cargoManifestDB.addCargoManifest(newCargoManifest);
         return true;
-    }
+    }*/
 
     public List<CargoManifest> getAllCargoManifest() {
         return cargoManifestDB.getAllCargoManifest();

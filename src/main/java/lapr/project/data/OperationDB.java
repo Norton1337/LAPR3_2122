@@ -21,14 +21,14 @@ public class OperationDB extends DataHandler implements IOperation {
     }
 
     @Override
-    public Operation addOperation(Operation operation, String containerId, String cargoManifestId) {
+    public Operation addOperation(Operation operation) {
         if (operation == null) {
             return null;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertOperation(?,?,?,?,?,?,?)}")) {
             result.setString(1, operation.getId());
-            result.setString(2, containerId);
-            result.setString(3, cargoManifestId);
+            result.setString(2, operation.getContainerId());
+            result.setString(3, operation.getCargoManifestId());
             result.setString(4, operation.getOperation_warehouse());
             result.setInt(5, operation.getX());
             result.setInt(6, operation.getY());

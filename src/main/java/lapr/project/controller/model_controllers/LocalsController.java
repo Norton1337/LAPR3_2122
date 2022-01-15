@@ -39,7 +39,7 @@ public class LocalsController {
         Locals locals = null;
 
         for (Locals elems : getAllPorts()) {
-            if (elems.getPortId() == Integer.parseInt(portId)) {
+            if (elems.getLocalCode() == Integer.parseInt(portId)) {
                 locals = elems;
             }
         }
@@ -104,7 +104,7 @@ public class LocalsController {
         return new LinkedList<>(localsList);
     }
 
-    public Locals getWarehouseByCode(String code){
+    /*public Locals getWarehouseByCode(String code){
         Locals locals = null;
 
         for (Locals elems : getAllLocals()) {
@@ -113,6 +113,6 @@ public class LocalsController {
             }
         }
         return locals;
-    }
+    }*/
 
 }

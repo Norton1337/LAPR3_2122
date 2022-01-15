@@ -10,16 +10,6 @@ public class Operation {
     private String cargoManifestId;
     private String operation_warehouse;
 
-    public Operation(String id, int x, int y, int z, String containerId, String cargoManifestId, String operation_warehouse) {
-        this.id = id;
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.containerId = containerId;
-        this.cargoManifestId = cargoManifestId;
-        this.operation_warehouse = operation_warehouse;
-    }
-
     public Operation(int x, int y, int z) {
         this.x = x;
         this.y = y;

@@ -30,10 +30,8 @@ public class OperationDBMock implements IOperation {
     }
 
     @Override
-    public Operation addOperation(Operation operation, String containerId, String cargoManifestId) {
+    public Operation addOperation(Operation operation) {
         operation.setId(randomUUID());
-        operation.setContainerId(containerId);
-        operation.setCargoManifestId(cargoManifestId);
         return null;
     }
 

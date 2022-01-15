@@ -11,7 +11,7 @@ public interface IOperation {
 
     Operation getOperation(String id);
 
-    Operation addOperation(Operation operation, String containerId, String cargoManifestId);
+    Operation addOperation(Operation operation);
 
     boolean removeOperation(String id);
 

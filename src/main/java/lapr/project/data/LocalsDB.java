@@ -25,8 +25,8 @@ public class LocalsDB extends DataHandler implements ILocals {
         try (CallableStatement result = getConnection().prepareCall("{call insertLocal(?,?,?,?,?,?,?,?,?)}")) {
             String[] coordinates = portsAndWarehouses.getCoordinates().split(",");
             result.setString(1, portsAndWarehouses.getId());
-            result.setInt(2, portsAndWarehouses.getPortId());/*tem de ser string em vez de Int*/
-            result.setInt(3, portsAndWarehouses.getPortId());/*O code nao pode ser igual ao PortId*/
+            result.setInt(2, portsAndWarehouses.getLocalCode());/*tem de ser string em vez de Int*/
+            result.setInt(3, portsAndWarehouses.getLocalCode());/*O code nao pode ser igual ao PortId*/
             result.setInt(4, portsAndWarehouses.getLocalCapacity());
             result.setString(5, portsAndWarehouses.getName());
             result.setString(6, portsAndWarehouses.getType());
