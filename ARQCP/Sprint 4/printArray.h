@@ -1,5 +1,5 @@
 #ifndef PRINT_MATRIX_H
 #define PRINT_MATRIX_H
 #include "info.h"
-void printMatrix(Containers*** matrix,int x,int y,int z);
+void printArray(Containers* arrayContainers, int size);
 #endif

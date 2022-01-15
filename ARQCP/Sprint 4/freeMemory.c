@@ -1,16 +1,16 @@
 #include <stdlib.h>
 #include "info.h"
 
-int freeMemory(Containers*** matrix, int x,int y,int z){
+int freeMemory(Containers* array, int size){
 
-	for (int i = 0; i < x; i++)
-    {
-        for (int j = 0; j < y; j++) {
-            free(matrix[i][j]);
-        }
-        free(matrix[i]);
+	for (int i = 0; i < size; i++){
+		free(array[i].type);
+		for(int j = 0; j < array[i].materialAmount; j++){
+			free(array[i].materials[j].materialType);
+		}
+		free(array[i].materials);
     }
-    free(matrix);
+    free(array);
 
 	return 1;
 }
