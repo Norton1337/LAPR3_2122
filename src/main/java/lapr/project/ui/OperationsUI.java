@@ -1,5 +1,6 @@
 package lapr.project.ui;
 
+import jdk.vm.ci.meta.Local;
 import lapr.project.controller.model_controllers.CargoManifestController;
 import lapr.project.controller.model_controllers.ContainerController;
 import lapr.project.controller.model_controllers.LocalsController;
@@ -21,6 +22,8 @@ public class OperationsUI {
     private OperationController operationController;
     private ContainerController containerController;
     private CargoManifestController cargoManifestController;
+    private LocalsController localsController;
+
     public OperationsUI(OperationController operationController) {
         this.operationController = operationController;
     }
@@ -44,9 +47,9 @@ public class OperationsUI {
 
                     Container newContainer = containerController.findContainerByNumber(list.get(1));
                     CargoManifest newCargoManifest = cargoManifestController.findCargoByRecon(list.get(2));
+                    Locals newLocal = localsController.getWarehouseByCode(list.get(3));
 
-
-                    newOperation = new Operation(newContainer.getId(),newCargoManifest.getId(),,Integer.parseInt(list.get(4)),Integer.parseInt(list.get(5)),Integer.parseInt(list.get(6)));
+                    newOperation = new Operation();
 
                     operationController.addOperation(newOperation);
 

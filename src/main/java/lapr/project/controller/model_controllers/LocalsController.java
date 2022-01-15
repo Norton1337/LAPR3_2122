@@ -104,4 +104,15 @@ public class LocalsController {
         return new LinkedList<>(localsList);
     }
 
+    public Locals getWarehouseByCode(String code){
+        Locals locals = null;
+
+        for (Locals elems : getAllLocals()) {
+            if (elems.getequals(code)) {
+                locals = elems;
+            }
+        }
+        return locals;
+    }
+
 }

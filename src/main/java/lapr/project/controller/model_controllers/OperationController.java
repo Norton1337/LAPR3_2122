@@ -21,12 +21,8 @@ public class OperationController {
     }
 
     public boolean addOperation(Operation operation) {
-        Locals newLocal = new Locals("", -1, country.getCapital(), country.getCoordinates());
-        newLocal.setType("Capital");
-        boolean result = countryDB.addCountry(country);
-        newLocal.setCountryId(country.getId());
-        localsDB.addPortsAndWarehouses(newLocal);
-        return result;
+
+        return false;
     }
 
     public List<Operation> getAllOperations() {
