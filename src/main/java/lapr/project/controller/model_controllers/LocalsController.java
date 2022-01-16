@@ -93,6 +93,15 @@ public class LocalsController {
         return new LinkedList<>(localsList);
     }
 
+    public LinkedList<Locals> getAllWarehouses() {
+        List<Locals> localsList = new LinkedList<>();
+        for (Locals elems : localDB.getAllLocals()) {
+            if (elems.getType().contains("Warehouse")) {
+                localsList.add(elems);
+            }
+        }
+        return new LinkedList<>(localsList);
+    }
 
     public LinkedList<Locals> getAllCapitals() {
         List<Locals> localsList = new LinkedList<>();
