@@ -11,7 +11,7 @@ public interface IOperation {
 
     Operation getOperation(String id);
 
-    Operation addOperation(Operation operation);
+    boolean addOperation(Operation operation);
 
     boolean removeOperation(String id);
 

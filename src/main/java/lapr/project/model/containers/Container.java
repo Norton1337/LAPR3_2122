@@ -109,6 +109,22 @@ public class Container {
         this.repairRecommendations = repairRecommendations;
     }
 
+    @Override
+    public String toString() {
+        return "Container{" +
+                "containerNumber=" + containerNumber +
+                ", checkDigit=" + checkDigit +
+                ", ISOCODE='" + ISOCODE + '\'' +
+                ", containerGross=" + containerGross +
+                ", containerTare=" + containerTare +
+                ", containerPayload=" + containerPayload +
+                ", containerVolume=" + containerVolume +
+                ", certificates='" + certificates + '\'' +
+                ", repairRecommendations='" + repairRecommendations + '\'' +
+                ", containerType='" + containerType + '\'' +
+                '}';
+    }
+
     public String getContainerType() {
         return containerType;
     }

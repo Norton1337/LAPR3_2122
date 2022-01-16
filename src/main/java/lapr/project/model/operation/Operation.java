@@ -72,5 +72,17 @@ public class Operation {
         this.cargoManifestId = cargoManifestId;
     }
 
+    @Override
+    public String toString() {
+        return "Operation{" +
+                "id='" + id + '\'' +
+                ", x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                ", containerId='" + containerId + '\'' +
+                ", cargoManifestId='" + cargoManifestId + '\'' +
+                ", operation_warehouse='" + operation_warehouse + '\'' +
+                '}';
+    }
 }
 

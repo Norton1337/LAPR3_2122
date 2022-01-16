@@ -29,12 +29,9 @@ public class OperationController {
     }
 
     public boolean addOperation(Operation operation,String containerNumber,String cargoManifestRecon, String warehouseCode) {
-        if(operation == null || containerNumber == null || cargoManifestRecon == null || warehouseCode == null){
-            return false;
-        }
 
         for (Locals elems : localsDB.getAllLocals()) {
-            if (elems.getLocalCode() == toInt(cargoManifestRecon)) {
+            if (elems.getLocalCode() == toInt(warehouseCode)) {
                 operation.setOperation_warehouse(elems.getId());
             }
         }

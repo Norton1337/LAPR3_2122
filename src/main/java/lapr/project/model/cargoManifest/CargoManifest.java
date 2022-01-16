@@ -14,6 +14,7 @@ public class CargoManifest {
 
     public CargoManifest(String nextLocal, String currentLocalId, String date, String operationType, String cargo_recon) {
         this.nextLocal = nextLocal;
+        this.currentLocalId = currentLocalId;
         this.date = date;
         this.operationType = operationType;
         this.cargo_recon = cargo_recon;
@@ -79,6 +80,19 @@ public class CargoManifest {
 
     public void setCargo_recon(String cargo_recon) {
         this.cargo_recon = cargo_recon;
+    }
+
+    @Override
+    public String toString() {
+        return "CargoManifest{" +
+                "id='" + id + '\'' +
+                ", nextLocal='" + nextLocal + '\'' +
+                ", date='" + date + '\'' +
+                ", operationType='" + operationType + '\'' +
+                ", currentLocalId='" + currentLocalId + '\'' +
+                ", vehicleId='" + vehicleId + '\'' +
+                ", cargo_recon='" + cargo_recon + '\'' +
+                '}';
     }
 }
 

@@ -30,9 +30,10 @@ public class OperationDBMock implements IOperation {
     }
 
     @Override
-    public Operation addOperation(Operation operation) {
+    public boolean addOperation(Operation operation) {
         operation.setId(randomUUID());
-        return null;
+
+        return operations.add(operation);
     }
 
     @Override

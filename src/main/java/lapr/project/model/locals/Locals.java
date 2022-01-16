@@ -3,8 +3,8 @@ package lapr.project.model.locals;
 public class Locals implements Comparable<Locals> {
     private String id;
     private String countryId;
-    private int localCode;
     private String portId;
+    private int localCode;
     private String name;
     private String coordinates;
     private String vehicleId;
@@ -97,14 +97,13 @@ public class Locals implements Comparable<Locals> {
     @Override
     public String toString() {
         return "Locals{" +
-                //"id='" + id + '\'' +
-                //", countryId='" + countryId + '\'' +
-                " name='" + name + '\'' +
+                "portId='" + portId + '\'' +
+                ", localCode=" + localCode +
+                ", name='" + name + '\'' +
                 ", coordinates='" + coordinates + '\'' +
                 ", vehicleId='" + vehicleId + '\'' +
-                ", portId='" + localCode + '\'' +
-                ", localCapacity=" + localCapacity +
                 ", type='" + type + '\'' +
+                ", localCapacity=" + localCapacity +
                 '}';
     }
 

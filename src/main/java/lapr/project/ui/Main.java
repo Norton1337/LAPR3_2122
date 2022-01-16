@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
+import static lapr.project.utils.Utils.printList;
+
 class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -38,6 +40,8 @@ class Main {
         ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
         GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
+        CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock);
+        ContainerController containerController = new ContainerController(containerDBMock);
         OperationController operationController = new OperationController(operationDBMock,localsDBMock,cargoManifestDBMock,containerDBMock);
 
         //CONTROLLERS
@@ -54,7 +58,10 @@ class Main {
         PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(localsController);
         CountryUI countryUI = new CountryUI(countryController);
         SeadistUI seadistUI = new SeadistUI(seadistController);
-        //CargoManifesUI = new CargoManifesUI();
+        ContainerUI containerUI = new ContainerUI(containerController);
+        WarehouseUI warehouseUI = new WarehouseUI(localsController);
+        CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
+        OperationsUI operationsUI = new OperationsUI(operationController);
 
 
         //SETUP
@@ -64,6 +71,7 @@ class Main {
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
 
+
         portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");
 
 
@@ -72,7 +80,14 @@ class Main {
 
         seadistUI.importSeadist("Docs/Input/seadists.csv");
 
+        containerUI.importContainers("Docs/Input/container.csv");
+        warehouseUI.importWarehouses("Docs/Input/warehouses.csv");
+        cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
+        operationsUI.importOperations("Docs/Input/operations.csv");
 
+        printList(cargoManifestController.getAllCargoManifest());
+        System.out.println("\n\n\n\n");
+        printList(operationController.getAllOperations());
 
     }
 }

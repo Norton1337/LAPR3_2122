@@ -21,9 +21,9 @@ public class OperationDB extends DataHandler implements IOperation {
     }
 
     @Override
-    public Operation addOperation(Operation operation) {
+    public boolean addOperation(Operation operation) {
         if (operation == null) {
-            return null;
+            return false;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertOperation(?,?,?,?,?,?,?)}")) {
             result.setString(1, operation.getId());
@@ -36,9 +36,9 @@ public class OperationDB extends DataHandler implements IOperation {
             result.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
-        return new Operation(operation.getX(), operation.getY(), operation.getZ());
+        return true;
     }
 
     @Override

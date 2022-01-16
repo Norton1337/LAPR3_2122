@@ -90,10 +90,13 @@ public class ToMatrixController {
 
     public AdjacencyMatrixGraph<Locals, Double> buildFreightNetwork(int nClosestPorts) {
 
-        for (Locals elem : localsController.getAllLocals()) {
+        for (Locals elem : localsController.getAllPorts()) {
             freightNetworkMatrix.insertVertex(elem);
         }
 
+        for (Locals elem : localsController.getAllCapitals()) {
+            freightNetworkMatrix.insertVertex(elem);
+        }
 
         /**
          * Insert Edge relative to borders

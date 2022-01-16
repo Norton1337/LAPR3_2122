@@ -72,7 +72,7 @@ public class LocalsController {
     }
 
     public void addWarehouse(Locals warehouse, String port_code, String warehouse_capacity) {
-        for (Locals elems : localDB.getAllLocals()) {
+        for (Locals elems : getAllPorts()) {
             if (elems.getLocalCode() == toInt(port_code)) {
                 warehouse.setPortId(elems.getId());
             }
