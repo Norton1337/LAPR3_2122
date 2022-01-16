@@ -1,6 +1,7 @@
 package lapr.project.ui;
 
 import lapr.project.controller.model_controllers.ContainerController;
+import lapr.project.controller.model_controllers.LocalsController;
 import lapr.project.model.containers.Container;
 import lapr.project.model.operation.Operation;
 
@@ -16,6 +17,10 @@ import static lapr.project.utils.Utils.toInt;
 public class ContainerUI {
 
     private ContainerController containerController;
+
+    public ContainerUI(ContainerController containerController) {
+        this.containerController = containerController;
+    }
 
     public void importContainers(String file) {
 

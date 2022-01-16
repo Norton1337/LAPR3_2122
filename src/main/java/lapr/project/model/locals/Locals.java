@@ -22,6 +22,14 @@ public class Locals implements Comparable<Locals> {
         this.coordinates = coordinates;
     }
 
+    public String getPortId() {
+        return portId;
+    }
+
+    public void setPortId(String portId) {
+        this.portId = portId;
+    }
+
     public int getLocalCapacity() {
         return localCapacity;
     }

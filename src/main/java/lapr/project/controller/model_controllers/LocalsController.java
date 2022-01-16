@@ -7,6 +7,8 @@ import lapr.project.model.locals.idb.ILocals;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.toInt;
+
 public class LocalsController {
 
     private final ICountryDB countryDB;
@@ -69,12 +71,18 @@ public class LocalsController {
         return locals;
     }
 
-    public void addWarehouse(Locals ports) {
-        String countryId = countryDB.getCountryIdByName(ports.getCountryId());
-        ports.setCountryId(countryId);
-        ports.setType("Warehouse");
+    public void addWarehouse(Locals warehouse, String port_code, String warehouse_capacity) {
+        for (Locals elems : localDB.getAllLocals()) {
+            if (elems.getLocalCode() == toInt(port_code)) {
+                warehouse.setPortId(elems.getId());
+            }
+        }
 
-        localDB.addPortsAndWarehouses(ports);
+        String countryId = countryDB.getCountryIdByName(warehouse.getCountryId());
+        warehouse.setCountryId(countryId);
+        warehouse.setType("Warehouse");
+        warehouse.setLocalCapacity(toInt(warehouse_capacity));
+        localDB.addPortsAndWarehouses(warehouse);
     }
 
 
