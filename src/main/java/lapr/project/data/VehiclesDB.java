@@ -19,14 +19,7 @@ public class VehiclesDB implements IVehicle {
 
     @Override
     public Vehicles addVehicle(Vehicles vehicle) {
-        if (vehicle == null) {
-            return null;
-        }
-        if (vehicle.getType() == "Truck") {
-        } else if (vehicle.getType() == "Ship") {
-
-        }
-        return new Vehicles(vehicle.getType());
+        return null;
     }
 
 

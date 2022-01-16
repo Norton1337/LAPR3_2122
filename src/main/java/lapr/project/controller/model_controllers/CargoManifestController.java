@@ -2,23 +2,31 @@ package lapr.project.controller.model_controllers;
 
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.cargoManifest.idb.ICargoManifest;
-import lapr.project.model.containers.Container;
-import lapr.project.model.containers.idb.IContainerDB;
+import lapr.project.model.locals.Locals;
+import lapr.project.model.vehicle.Vehicles;
+import lapr.project.model.vehicle.idb.IVehicle;
 
 import java.util.List;
 
 public class CargoManifestController {
 
+    private final IVehicle vehicleDB;
     private final ICargoManifest cargoManifestDB;
 
-    public CargoManifestController(ICargoManifest cargoManifestDB) {
+    public CargoManifestController(IVehicle vehicleDB, ICargoManifest cargoManifestDB) {
+        this.vehicleDB = vehicleDB;
         this.cargoManifestDB = cargoManifestDB;
     }
 
-    /*public boolean addCargoManifest(CargoManifest newCargoManifest) {
+    public boolean addCargoManifest(CargoManifest newCargoManifest, String vehicleID) {
+        for (Vehicles elems : vehicleDB.getAllVehicles()) {
+            if (elems.getVehicle_recon().equals(vehicleID)) {
+                newCargoManifest.setVehicleId(elems.getId());
+            }
+        }
         cargoManifestDB.addCargoManifest(newCargoManifest);
         return true;
-    }*/
+    }
 
     public List<CargoManifest> getAllCargoManifest() {
         return cargoManifestDB.getAllCargoManifest();

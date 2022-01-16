@@ -11,7 +11,7 @@ public interface ICargoManifest {
 
     CargoManifest getCargoManifest(String id);
 
-    CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId);
+    CargoManifest addCargoManifest(CargoManifest cargo);
 
     CargoManifest getCargoManifestByRecon(String recon);
 

@@ -29,10 +29,8 @@ public class CargoManifestDBMock implements ICargoManifest {
     }
 
     @Override
-    public CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId) {
+    public CargoManifest addCargoManifest(CargoManifest cargo) {
         cargo.setId(randomUUID());
-        cargo.setCurrentLocalId(localId);
-        cargo.setVehicleId(vehicleId);
         cargoManifests.add(cargo);
         return cargo;
     }

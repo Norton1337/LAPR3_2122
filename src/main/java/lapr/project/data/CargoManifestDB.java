@@ -22,13 +22,13 @@ public class CargoManifestDB extends DataHandler implements ICargoManifest {
     }
 
     @Override
-    public CargoManifest addCargoManifest(CargoManifest cargo, String localId, String vehicleId) {
+    public CargoManifest addCargoManifest(CargoManifest cargo) {
         if (cargo == null) {
             return null;
         }
         try (CallableStatement result = getConnection().prepareCall("{call insertCargoManifest(?,?,?,?,?,?)}")) {
-            result.setString(1, localId);
-            result.setString(2, vehicleId);
+            result.setString(1, cargo.getCurrentLocalId());
+            result.setString(2, cargo.getVehicleId());
             result.setString(3, cargo.getCurrentLocalId());
             result.setString(4, cargo.getNextLocal());
             result.setTimestamp(5, (Timestamp.valueOf(cargo.getDate())));

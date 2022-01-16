@@ -62,7 +62,7 @@ public class ShipUI {
                      */
                     shipGenerator = new Generator(1, 5.0);
 
-                    boolean resultShip = vehiclesController.addShip(new Vehicles("Ship"), newShip);
+                    boolean resultShip = vehiclesController.addShip(new Vehicles("Ship", newShip.getMMSI()), newShip);
                     boolean resultGen = generatorController.addGenartor(newShip, shipGenerator);
 
                     if (resultShip && resultGen) {

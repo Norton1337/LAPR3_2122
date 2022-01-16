@@ -1,8 +1,7 @@
 package lapr.project.ui;
 
+import lapr.project.controller.model_controllers.CargoManifestController;
 import lapr.project.model.cargoManifest.CargoManifest;
-import lapr.project.model.containers.Container;
-import lapr.project.model.operation.Operation;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,12 +10,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/*public class CargoManifestUI {
+public class CargoManifestUI {
+
+
+    private final CargoManifestController cargoManifestController;
+
+    public CargoManifestUI(CargoManifestController cargoManifestController) {
+        this.cargoManifestController = cargoManifestController;
+    }
 
     public void importCargoManifest(String file) {
 
-        Operation newOperation = null;
-
+        CargoManifest newCargoManifest = null;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 
@@ -28,16 +33,11 @@ import java.util.List;
                 List<String> list = new ArrayList<>(Arrays.asList(line.split(",")));
 
 
-                if (!list.get(1).contains("container_number")) {
+                if (!list.get(1).contains("cargo_recon")) {
 
-                    Container newContainer = containerController.findContainerByNumber(list.get(1));
-                    CargoManifest newCargoManifest = cargoManifestController.findCargoByRecon(list.get(2));
+                    newCargoManifest = new CargoManifest(list.get(3),list.get(2),list.get(4),list.get(5),list.get(1));
 
-
-                    newOperation = new Operation(newContainer.getId(),newCargoManifest.getId(),,Integer.parseInt(list.get(4)),Integer.parseInt(list.get(5)),Integer.parseInt(list.get(6)));
-
-                    operationController.addOperation(newOperation);
-
+                    cargoManifestController.addCargoManifest(newCargoManifest,list.get(0));
                 }
 
             }
@@ -47,4 +47,4 @@ import java.util.List;
         }
     }
 }
-}*/
+

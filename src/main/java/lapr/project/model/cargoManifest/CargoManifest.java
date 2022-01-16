@@ -12,7 +12,7 @@ public class CargoManifest {
 
 
 
-    public CargoManifest(String nextLocal, String date, String operationType, String cargo_recon) {
+    public CargoManifest(String nextLocal, String currentLocalId, String date, String operationType, String cargo_recon) {
         this.nextLocal = nextLocal;
         this.date = date;
         this.operationType = operationType;

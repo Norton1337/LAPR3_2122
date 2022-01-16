@@ -13,7 +13,7 @@ class VehicleTest {
 
     @BeforeEach
     void setup() {
-        vehicle = new Vehicles("truck");
+        vehicle = new Vehicles("truck","78-28-VR");
         vehicle.setId("vehiclesId");
     }
 

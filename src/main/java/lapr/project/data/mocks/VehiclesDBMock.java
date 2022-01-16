@@ -35,8 +35,6 @@ public class VehiclesDBMock implements IVehicle {
     public Vehicles addVehicle(Vehicles elem) {
         elem.setId(randomUUID());
         vehicles.add(elem);
-
-
         return elem;
     }
 
