@@ -25,6 +25,8 @@ public class ToMatrixController {
 
     private final AdjacencyMatrixGraph<Locals, Double> freightNetworkMatrix;
     private final AdjacencyMatrixGraph<String, Double> matrixToColour;
+    private final AdjacencyMatrixGraph<Locals, Double> landMatrix;
+    private final AdjacencyMatrixGraph<Locals, Double> maritimeMatrix;
 
     private final CountryController countryController;
     private final LocalsController localsController;
@@ -34,6 +36,8 @@ public class ToMatrixController {
     public ToMatrixController(ILocals localsDB, ISeadist seadistDB, ICountryDB countryDB, IBordersDB bordersDB) {
         this.freightNetworkMatrix = new AdjacencyMatrixGraph<>();
         this.matrixToColour = new AdjacencyMatrixGraph<>();
+        this.landMatrix = new AdjacencyMatrixGraph<>();
+        this.maritimeMatrix = new AdjacencyMatrixGraph<>();
 
         this.countryController = new CountryController(countryDB, bordersDB, localsDB);
         this.localsController = new LocalsController(countryDB, localsDB);
@@ -92,10 +96,12 @@ public class ToMatrixController {
 
         for (Locals elem : localsController.getAllPorts()) {
             freightNetworkMatrix.insertVertex(elem);
+            maritimeMatrix.insertVertex(elem);
         }
 
         for (Locals elem : localsController.getAllCapitals()) {
             freightNetworkMatrix.insertVertex(elem);
+            landMatrix.insertVertex(elem);
         }
 
         /**
@@ -126,6 +132,8 @@ public class ToMatrixController {
 
                 //System.out.printf("DEBUG MATRIX: %s %s  %s\n", locals1.getName(), locals2.getName(), weight);
                 freightNetworkMatrix.insertEdge(locals1, locals2, weight);
+                landMatrix.insertEdge(locals1, locals2, weight);
+
             }
         }
 
@@ -135,8 +143,6 @@ public class ToMatrixController {
          */
 
         for (Seadist elem : seadistController.getAllSeadist()) {
-
-            //TODO Connect only ports of the same country,
 
             //buscar fromPortId e tranformar em local
             Locals locals1 = localsController.getLocalWithPortId(elem.getFromPortId());
@@ -158,6 +164,7 @@ public class ToMatrixController {
 
             if (portCountry1.equals(portCountry2) && locals1 != null && locals2 != null) {
                 freightNetworkMatrix.insertEdge(locals1, locals2, (double) weight);
+                maritimeMatrix.insertEdge(locals1, locals2, (double) weight);
             }
         }
 
@@ -206,12 +213,6 @@ public class ToMatrixController {
         for (Locals elems : localsController.getAllPorts()) {
             Map<Locals, Double> nearestPorts = getNClosenessPlaces(localsController.getAllPorts(), elems, nClosestPorts);
             if (nearestPorts.size() != 0) {
-                /* Show that's working
-                if(elems.getName().equals("Leixoes")){
-                    //System.out.printf("%s   %s\n",elems.getName(), nearestPorts);
-                }
-                 */
-
 
                 for (Locals elemsOfNearest : nearestPorts.keySet()) {
                     freightNetworkMatrix.insertEdge(elems, elemsOfNearest, nearestPorts.get(elemsOfNearest));
@@ -269,14 +270,6 @@ public class ToMatrixController {
                 }
             }
         }
-
-        /**
-         *  Print Countries and Each Borders
-         */
-        for(String elems: matrixToColour.vertices()){
-            //System.out.printf("%s   %s\n", elems, matrixToColour.outgoingVertices(elems));
-        }
-
 
         return null;
     }
@@ -435,6 +428,12 @@ public class ToMatrixController {
 
     }
 
+
+    public void printLandMaritime(){
+        //printList(landMatrix.getVertices());
+        //printList(maritimeMatrix.getVertices());
+        //System.out.println(maritimeMatrix);
+    }
 
 
 

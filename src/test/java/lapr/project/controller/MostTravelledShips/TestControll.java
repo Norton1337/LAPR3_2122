@@ -86,7 +86,8 @@ public class TestControll {
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
 
-            matrixController.printFreightNetworkMatrix();
+            //matrixController.printFreightNetworkMatrix();
+            matrixController.printLandMaritime();
         }
     }
 
