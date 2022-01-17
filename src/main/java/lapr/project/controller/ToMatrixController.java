@@ -393,7 +393,6 @@ public class ToMatrixController {
                 if (!port1.getName().equals(port2.getName()) && (port1Continent.equals(port2Continent)) ){
 
                     double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, port1, port2, path);
-                    System.out.println(path);
                     if (!path.isEmpty()){
 
                         path.remove(0);
@@ -422,7 +421,6 @@ public class ToMatrixController {
             }
         }
 
-        printMap(sortMapByValue(portsFinalMap));
 
         return portsMap;
 

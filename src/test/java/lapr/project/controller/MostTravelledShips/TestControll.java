@@ -18,8 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static lapr.project.utils.Utils.printList;
-import static lapr.project.utils.Utils.readFromProp;
+import static lapr.project.utils.Utils.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -131,10 +130,16 @@ public class TestControll {
     @Test
     void portsTest(){
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
-        Map<Locals, Double> portsList = new LinkedHashMap<>();
+        Map<Locals, Double> portsList;
 
 
         portsList = matrixController.centralPorts();
+
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            printMap(portsList);
+        }
+
 
         /*
         for (Locals ports : portsList.keySet()){
