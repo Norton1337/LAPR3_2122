@@ -434,5 +434,58 @@ public class ToMatrixController {
     }
 
 
+    public LinkedList<LinkedList<Locals>> shortestPaths(Locals origPort, Locals destPort, List<Locals> portsToPass){
+
+        LinkedList<LinkedList<Locals>> allPaths = new LinkedList<>();
+        LinkedList<Locals> shortestPath = new LinkedList<>();
+
+        /**
+         * shortest path, whether is port or city (using original matrix)
+         */
+        EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, origPort, destPort, shortestPath);
+        allPaths.add(shortestPath);
+
+        allPaths.add(maritimePath(origPort, destPort));
+
+
+        return allPaths;
+
+    }
+
+    /**
+     * Land path only includes capitals, except for origin and
+     * destiny that can be capitals or ports
+     */
+    public void landPath(Locals orig, Locals dest){ // change to return path
+
+        LinkedList<Locals> path = new LinkedList<>();
+
+        if (orig.getType().equals("Capital") && dest.getType().equals("Capital")){
+
+            EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, dest, path);
+        }
+
+
+    }
+
+    /**
+     *  Maritime path only includes ports. If no ports
+     *  are passed by parameter there is no maritime
+     *  path, returns null
+     */
+    public LinkedList<Locals> maritimePath(Locals orig, Locals dest){
+
+        LinkedList<Locals> path = new LinkedList<>();
+
+        if (orig.getType().equals("Port") && dest.getType().equals("Port")){
+
+            EdgeAsDoubleGraphAlgorithms.shortestPath(maritimeMatrix, orig, dest, path);
+            return path;
+        }
+        System.out.println("No maritime path found");
+        return null;
+    }
+
+
 
 }
