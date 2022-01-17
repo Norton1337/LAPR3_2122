@@ -35,6 +35,13 @@ public class VehiclesController {
         return new ArrayList<>(shipDB.getAllShips());
     }
 
+    public List<Vehicles> getAllVehicles(){
+        return new ArrayList<>(vehicleDB.getAllVehicles());
+    }
+
+    public List<Truck> getAllTrucks(){
+        return new ArrayList<>(truckDB.getAllTrucks());
+    }
 
     public boolean addTruck(Vehicles truck, Truck newTruck) {
         Vehicles elem = vehicleDB.addVehicle(truck);

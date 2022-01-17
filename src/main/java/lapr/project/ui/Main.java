@@ -43,6 +43,7 @@ class Main {
         CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock, operationDBMock);
         ContainerController containerController = new ContainerController(containerDBMock);
         OperationController operationController = new OperationController(operationDBMock,localsDBMock,cargoManifestDBMock,containerDBMock);
+        TruckController truckController = new TruckController(trucksDBMock);
 
         //CONTROLLERS
         DataToBstController dataToBstController = new DataToBstController();
@@ -62,11 +63,12 @@ class Main {
         WarehouseUI warehouseUI = new WarehouseUI(localsController);
         CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
         OperationsUI operationsUI = new OperationsUI(operationController);
-
+        TruckUI truckUI = new TruckUI(vehiclesController);
 
         //SETUP
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
+        truckUI.importTrucks("Docs/Input/truck.csv");
         shipUI.importShips("Docs/Input/bships.csv");
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
@@ -85,9 +87,11 @@ class Main {
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
         operationsUI.importOperations("Docs/Input/operations.csv");
 
-        printList(cargoManifestController.getAllCargoManifest());
+        //printList(cargoManifestController.getAllCargoManifest());
+        printList(vehiclesController.getAllVehicles());
         System.out.println("\n\n\n\n");
-        printList(operationController.getAllOperations());
+        printList(vehiclesController.getAllTrucks());
+        //printList(operationController.getAllOperations());
 
     }
 }

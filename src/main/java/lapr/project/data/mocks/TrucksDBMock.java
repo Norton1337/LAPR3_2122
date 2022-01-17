@@ -31,7 +31,6 @@ public class TrucksDBMock implements ITruck {
 
     @Override
     public boolean addTruck(Truck elem) {
-        elem.setTruckId(randomUUID());
         return trucks.add(elem);
     }
 
