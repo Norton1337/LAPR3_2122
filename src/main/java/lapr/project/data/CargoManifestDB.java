@@ -3,6 +3,7 @@ package lapr.project.data;
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.cargoManifest.idb.ICargoManifest;
+import lapr.project.model.operation.Operation;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;

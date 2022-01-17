@@ -15,6 +15,17 @@ public class Utils {
     private Utils() {
     }
 
+    public static Date toDate (String string){
+        try{
+            Date date = new SimpleDateFormat("dd/MM/yyyy HH/mm/ss").parse(string);
+            return date;
+        }
+        catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static Integer toInt(String string) {
         if (string.contains("NA")) {
             return 0;

@@ -50,33 +50,6 @@ public class ShipDBMock implements IShipsDB {
         return null;
     }
 
-    @Override
-    public List<String> containers_to_offload(String ship_id) {
-        return null;
-    }
-
-    @Override
-    public List<String> a_cm(Integer ano) {
-        return null;
-    }
-
-    @Override
-    public float capacity_rate_now(String ship_id) {
-        return 0;
-    }
-
-    @Override
-    public float capacity_rate(String ship_id, String cm_id) {
-        return 0;
-    }
-
-    // TODO
-    @Override
-    public List<String> containers_to_load(String ship_id) {
-        return null;
-    }
-
-
     public Ship findShipById(String id) {
         for (Ship elems : ships) {
             if (elems.getId().equals(id)) {

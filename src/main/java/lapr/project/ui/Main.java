@@ -5,7 +5,6 @@ import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ToMatrixController;
 import lapr.project.controller.model_controllers.*;
-import lapr.project.data.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.locals.Locals;
 
@@ -34,13 +33,14 @@ class Main {
         CargoManifestDBMock cargoManifestDBMock = new CargoManifestDBMock();
         ContainerDBMock containerDBMock = new ContainerDBMock();
 
+
         //CONTROLLERS DO MODEL
         VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
         ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
         ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
         GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
-        CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock);
+        CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock, operationDBMock);
         ContainerController containerController = new ContainerController(containerDBMock);
         OperationController operationController = new OperationController(operationDBMock,localsDBMock,cargoManifestDBMock,containerDBMock);
 
