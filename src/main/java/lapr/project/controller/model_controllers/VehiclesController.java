@@ -2,6 +2,7 @@ package lapr.project.controller.model_controllers;
 
 import lapr.project.model.ships.Ship;
 import lapr.project.model.ships.idb.IShipsDB;
+import lapr.project.model.truck.Truck;
 import lapr.project.model.truck.idb.ITruck;
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
@@ -34,15 +35,15 @@ public class VehiclesController {
         return new ArrayList<>(shipDB.getAllShips());
     }
 
-/*
-    public boolean addTruck(Truck truck) {
-        truckDB.addTruck(truck);
-        String truckAddedId = truckDB.
 
-        return vehicleDB.addVehicle(vehicles, shipAddedId);
+    public boolean addTruck(Vehicles truck, Truck newTruck) {
+        Vehicles elem = vehicleDB.addVehicle(truck);
+
+        newTruck.setTruckId(elem.getId());
+
+        return truckDB.addTruck(newTruck);
     }
 
- */
 
 
 }

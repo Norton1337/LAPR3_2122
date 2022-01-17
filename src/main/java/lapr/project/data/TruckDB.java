@@ -6,6 +6,7 @@ import lapr.project.model.truck.idb.ITruck;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class TruckDB extends DataHandler implements ITruck {
 
@@ -16,7 +17,12 @@ public class TruckDB extends DataHandler implements ITruck {
     }
 
     @Override
-    public boolean addTruck(Truck truck, String id) {
+    public List<Truck> getAllTrucks() {
+        return null;
+    }
+
+    @Override
+    public boolean addTruck(Truck truck) {
         if (truck == null) {
             return false;
         }

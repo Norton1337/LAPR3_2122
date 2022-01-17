@@ -6,6 +6,8 @@ import lapr.project.model.truck.idb.ITruck;
 import java.util.LinkedList;
 import java.util.List;
 
+import static lapr.project.utils.Utils.randomUUID;
+
 public class TrucksDBMock implements ITruck {
 
     private final List<Truck> trucks = new LinkedList<>();
@@ -21,10 +23,15 @@ public class TrucksDBMock implements ITruck {
         return null;
     }
 
+    @Override
+    public List<Truck> getAllTrucks() {
+        return this.trucks;
+    }
+
 
     @Override
-    public boolean addTruck(Truck elem, String id) {
-        elem.setTruckId(id);
+    public boolean addTruck(Truck elem) {
+        elem.setTruckId(randomUUID());
         return trucks.add(elem);
     }
 
