@@ -1,5 +1,6 @@
 package lapr.project.utils;
 
+import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.ship_position_data.ShipPositonData;
 
 import java.io.FileReader;
@@ -80,6 +81,12 @@ public class Utils {
 
     public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list) {
         Collections.sort(list, Comparator.comparing(ShipPositonData::getBaseDateTime));
+
+        return list;
+    }
+
+    public static List<CargoManifest> cargosOrderedByTime(List<CargoManifest> list) {
+        Collections.sort(list, Comparator.comparing(CargoManifest::getDate));
 
         return list;
     }

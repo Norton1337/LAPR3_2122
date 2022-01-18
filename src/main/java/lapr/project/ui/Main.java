@@ -7,6 +7,7 @@ import lapr.project.controller.ToMatrixController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.locals.Locals;
+import lapr.project.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -87,10 +88,12 @@ class Main {
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
         operationsUI.importOperations("Docs/Input/operations.csv");
 
-        //printList(cargoManifestController.getAllCargoManifest());
-        printList(vehiclesController.getAllVehicles());
+        printList(Utils.cargosOrderedByTime(cargoManifestController.getAllCargoManifest()));
+        //printList(vehiclesController.getAllVehicles());
+        //printList(cargoManifestController.containers_to_offload("229767000"));
         System.out.println("\n\n\n\n");
-        printList(vehiclesController.getAllTrucks());
+        printList(vehiclesController.getAllShips());
+        //printList(vehiclesController.getAllTrucks());
         //printList(operationController.getAllOperations());
 
     }

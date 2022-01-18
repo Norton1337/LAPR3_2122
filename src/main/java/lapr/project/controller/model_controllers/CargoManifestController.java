@@ -6,9 +6,14 @@ import lapr.project.model.operation.Operation;
 import lapr.project.model.operation.idb.IOperation;
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
+import lapr.project.utils.Utils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static lapr.project.utils.Utils.toDate;
 
 public class CargoManifestController {
 
@@ -45,44 +50,69 @@ public class CargoManifestController {
         return cargoManifestDB.getCargoManifestByRecon(recon);
     }
 
-    public List<String> containers_to_offload(String ship_id) {
+    public List<String> containers_to_offload(String mmsi) {
+        String ship_id = null;
+        for(Vehicles elem : vehicleDB.getAllShips()){
+            if(elem.getVehicle_recon().equals(mmsi)){
+                ship_id = elem.getId();
+            }
+        }
         List<String> containersOffload = new ArrayList<>();
         List<CargoManifest> shipCargos = new ArrayList<>();
         CargoManifest shipOffloadCargo = null;
+        double date = (double) System.currentTimeMillis();
         for(CargoManifest elem : getAllCargoManifest()){
+
             if(elem.getVehicleId().equals(ship_id)){
                 if(elem.getOperationType().equals("Unload")) {
-                    shipCargos.add(elem);
+                    Date dateElem = toDate(elem.getDate());
+                    double dateElemMilli = (double)dateElem.getTime();
+                    if(dateElemMilli > date) {
+                        shipCargos.add(elem);
+                    }
                 }
             }
         }
-
-        for(CargoManifest elem : shipCargos){
-
-
+        Utils.cargosOrderedByTime(shipCargos);
+        shipOffloadCargo = shipCargos.get(0);
+        for(Operation elem : operationDB.allOperations()){
+            if(elem.getCargoManifestId().equals(shipOffloadCargo.getId())){
+                containersOffload.add(elem.getContainerId());
+            }
         }
-
-        return null;
+        return containersOffload;
     }
 
-    public List<String> containers_to_load(String ship_id) {
+    public List<String> containers_to_load(String mmsi) {
+        String ship_id = null;
+        for(Vehicles elem : vehicleDB.getAllShips()){
+            if(elem.getVehicle_recon().equals(mmsi)){
+                ship_id = elem.getId();
+            }
+        }
         List<String> containersToLoad = new ArrayList<>();
         List<CargoManifest> shipCargos = new ArrayList<>();
-        CargoManifest shipLoadCargo = null;
+        CargoManifest shipToLoadCargo = null;
+        double date = (double) System.currentTimeMillis();
         for(CargoManifest elem : getAllCargoManifest()){
             if(elem.getVehicleId().equals(ship_id)){
                 if(elem.getOperationType().equals("Load")) {
-                    shipCargos.add(elem);
+                    Date dateElem = toDate(elem.getDate());
+                    double dateElemMilli = (double)dateElem.getTime();
+                    if(dateElemMilli > date) {
+                        shipCargos.add(elem);
+                    }
                 }
             }
         }
-
-        for(CargoManifest elem : shipCargos){
-
-
+        Utils.cargosOrderedByTime(shipCargos);
+        shipToLoadCargo = shipCargos.get(0);
+        for(Operation elem : operationDB.allOperations()){
+            if(elem.getCargoManifestId().equals(shipToLoadCargo.getId())){
+                containersToLoad.add(elem.getContainerId());
+            }
         }
-
-        return null;
+        return containersToLoad;
     }
 
     public List<String> a_cm(String ano,String ship_id) {
