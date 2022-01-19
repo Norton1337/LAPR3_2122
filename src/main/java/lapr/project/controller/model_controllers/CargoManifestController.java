@@ -188,14 +188,14 @@ public class CargoManifestController {
         for (CargoManifest cm : getAllCargoManifest()) {
             if (cm.getVehicleId().equals(ship_id)
                     && toDate(cm.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0) {
-                if (cargo_recon.isBlank()) {
+                if (cargo_recon.isEmpty()) {
                     cargo_recon = cm.getCargo_recon();
                 } else if (toDate(this.findCargoByRecon(cargo_recon).getDate()).compareTo(toDate(cm.getDate())) < 0) {
                     cargo_recon = cm.getCargo_recon();
                 }
             }
         }
-        if (cargo_recon.isBlank()) {
+        if (cargo_recon.isEmpty()) {
             return 0;
         } else {
             return this.capacity_rate(mmsi, cargo_recon, shipController);
