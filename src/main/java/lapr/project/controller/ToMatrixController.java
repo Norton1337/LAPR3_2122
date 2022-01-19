@@ -78,17 +78,7 @@ public class ToMatrixController {
 
         LinkedHashMap<Locals, Double> sortedMap = sortMapByValue(closestMap);
 
-        int count = 0;
-        for (Locals locals : sortedMap.keySet()) {
-
-            if (count < nClosest) {
-                returnMap.put(locals, sortedMap.get(locals));
-                count++;
-            }
-
-        }
-
-        return returnMap;
+        return getNFromMap(sortedMap, nClosest);
     }
 
 
@@ -336,16 +326,15 @@ public class ToMatrixController {
                  */
                 int minColor = returnColoursFromGoingVert(allVert, matrixToColour.outgoingVertices(last.getCountry()));
 
-                if(minColor <= 3){
+                if (minColor <= 3) {
                     CountryColour countryColour = findCountryColourWithName(allVert, last.getCountry());
                     countryColour.setColour(minColor);
                     last.setColour(minColor);
 
                     finalResult.add(last);
-                }else {
+                } else {
                     colourStack.add(last);
                 }
-
 
 
                 /**
@@ -364,25 +353,26 @@ public class ToMatrixController {
     }
 
 
+    public Map<Locals, Double> centralPorts(AdjacencyMatrixGraph<Locals, Double> localsMatrix, int nLocals) {
 
-    public Map<Locals, Double> centralPorts( ){
 
-
+        Map<Locals, Double> localsMap = new LinkedHashMap<>();
         Map<Locals, Double> portsMap = new LinkedHashMap<>();
-        Map<Locals, Double> portsFinalMap = new LinkedHashMap<>();
+        LinkedHashMap<Locals, Double> centralPorts = new LinkedHashMap<>();
 
 
         /*
-         * Add all existing Ports to map and initialize their value to 0
+         * Add all existing Ports to map and initialize their
+         * centrality value to 0
          */
-        for (Locals ports : localsController.getAllLocals()){
-            portsMap.put(ports, 0.0);
+        for (Locals ports : localsController.getAllLocals()) {
+            localsMap.put(ports, 0.0);
         }
 
 
-        for (Locals port1 : portsMap.keySet()){
+        for (Locals port1 : localsMap.keySet()) {
 
-            for (Locals port2 : portsMap.keySet()){
+            for (Locals port2 : localsMap.keySet()) {
 
                 LinkedList<Locals> path = new LinkedList<>();
 
@@ -390,62 +380,72 @@ public class ToMatrixController {
                 String port2Continent = countryController.findById(port2.getCountryId()).getContinent();
 
 
-                if (!port1.getName().equals(port2.getName()) && (port1Continent.equals(port2Continent)) ){
+                if (!port1.getName().equals(port2.getName()) && (port1Continent.equals(port2Continent))) {
 
                     double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, port1, port2, path);
-                    if (!path.isEmpty()){
+                    if (!path.isEmpty()) {
 
                         path.remove(0);
-                        path.remove(path.size()-1);
+                        path.remove(path.size() - 1);
 
-                        for (Locals elem : path){
+                        for (Locals elem : path) {
 
-                            double portValue = portsMap.get(elem);
-                            portsMap.put(elem, portValue +1.0);
+                            double portValue = localsMap.get(elem);
+                            localsMap.put(elem, portValue + 1.0);
                         }
                     }
-
                     //System.out.println("port1 "+port1.getName() + "  \nports2 "+port2.getName());
-                    //System.out.println(weight +"\n");
-                    //System.out.println("path "+path.size());
+                    //System.out.println("path "+path);
                 }
-
             }
-
         }
 
-        for (Locals ports : portsMap.keySet() ){
-            if (ports.getType().equals("Port")){
-                portsFinalMap.put(ports, portsMap.get(ports));
+        for (Locals ports : localsMap.keySet()) {
+            if (ports.getType().equals("Port")) {
+                portsMap.put(ports, localsMap.get(ports));
 
             }
         }
 
+        int count = 0;
+        Map<Locals, Double> finalMap = new LinkedHashMap<>(sortMapByValue(portsMap));
+        finalMap = reverseMap(finalMap);
 
-        return portsMap;
+        return getNFromMap(finalMap, nLocals);
 
+        //printMap(finalMap);
     }
 
 
-    public void printLandMaritime(){
+    public void printLandMaritime() {
         //printList(landMatrix.getVertices());
         //printList(maritimeMatrix.getVertices());
         //System.out.println(maritimeMatrix);
     }
 
 
-    public LinkedList<LinkedList<Locals>> shortestPaths(Locals origPort, Locals destPort, List<Locals> portsToPass){
+    public List<List<Locals>> shortestPaths(String orig, String dest, List<Locals> portsToPass) {
+        /**
+         * This is to search for origin and destiny by name, to not insert a Local
+         * To remove change orig and dest to type Locals and their name to origLocal
+         * and destLocal
+         */
+        if (orig == null || dest == null) {
+            return null;
+        }
+        Locals origLocal = localsController.getLocalWithName(orig);
+        Locals destLocal = localsController.getLocalWithName(dest);
 
-        LinkedList<LinkedList<Locals>> allPaths = new LinkedList<>();
+        List<List<Locals>> allPaths = new LinkedList<>();
         LinkedList<Locals> shortestPath = new LinkedList<>();
 
         /**
          * shortest path, whether is port or city (using original matrix)
          */
-        EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, origPort, destPort, shortestPath);
+        EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, origLocal, destLocal, shortestPath);
         allPaths.add(shortestPath);
 
-        allPaths.add(maritimePath(origPort, destPort));
+        allPaths.add(maritimePath(origLocal, destLocal));
 
 
         return allPaths;
@@ -456,28 +456,42 @@ public class ToMatrixController {
      * Land path only includes capitals, except for origin and
      * destiny that can be capitals or ports
      */
-    public void landPath(Locals orig, Locals dest){ // change to return path
+    public LinkedList<Locals> landPath(Locals orig, Locals dest) {
 
         LinkedList<Locals> path = new LinkedList<>();
+        Map<Locals, Double> closestCapitalsMap = new LinkedHashMap<>();
 
-        if (orig.getType().equals("Capital") && dest.getType().equals("Capital")){
+        if (orig.getType().equals("Capital") && dest.getType().equals("Capital")) {
 
             EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, dest, path);
+            return path;
+        } else if (orig.getType().equals("Port")) {
+            closestCapitalsMap = getNClosenessPlaces(localsController.getAllLocals(), orig, localsController.getAllLocals().size());
+
+            for (Locals elem : closestCapitalsMap.keySet()) {
+
+                if (elem.getType().equals("Capital")) {
+                    path.add(orig);
+                    EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, elem, dest, path);
+                    return path;
+                }
+            }
         }
 
+        return path;
 
     }
 
     /**
-     *  Maritime path only includes ports. If no ports
-     *  are passed by parameter there is no maritime
-     *  path, returns null
+     * Maritime path only includes ports. If no ports
+     * are passed by parameter there is no maritime
+     * path, returns null
      */
-    public LinkedList<Locals> maritimePath(Locals orig, Locals dest){
+    public List<Locals> maritimePath(Locals orig, Locals dest) {
 
         LinkedList<Locals> path = new LinkedList<>();
 
-        if (orig.getType().equals("Port") && dest.getType().equals("Port")){
+        if (orig.getType().equals("Port") && dest.getType().equals("Port")) {
 
             EdgeAsDoubleGraphAlgorithms.shortestPath(maritimeMatrix, orig, dest, path);
             return path;

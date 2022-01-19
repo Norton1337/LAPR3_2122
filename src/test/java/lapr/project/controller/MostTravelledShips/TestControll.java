@@ -129,17 +129,18 @@ public class TestControll {
 
     @Test
     void portsTest(){
+        // Create new matrix for tests
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
         Map<Locals, Double> portsList;
 
 
-        portsList = matrixController.centralPorts();
+        portsList = matrixController.centralPorts(t, 3);
+        printMap(portsList);
 
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
             printMap(portsList);
         }
-
 
         /*
         for (Locals ports : portsList.keySet()){
@@ -151,6 +152,14 @@ public class TestControll {
          System.out.println(portsList);
 
          */
+
+    }
+
+    @Test
+    void pathsTest(){
+        AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
+
+
 
     }
 }

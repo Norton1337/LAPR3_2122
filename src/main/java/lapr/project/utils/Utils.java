@@ -137,5 +137,28 @@ public class Utils {
         return sortedMap;
     }
 
+    public static <K,V> Map<K,V> reverseMap(Map<K,V> paramMap){
+        Map<K,V> reverseMap = new LinkedHashMap<>();
+        List<K> keys = new ArrayList<>(paramMap.keySet());
+        for (int i = paramMap.size()-1; i>=0; i--){
+            reverseMap.put(keys.get(i),paramMap.get(keys.get(i)));
+        }
+        return reverseMap;
+    }
+
+    public static <K, V> Map<K,V> getNFromMap(Map<K,V> paramMap, int n){
+
+        Map<K,V> returnMap = new LinkedHashMap<>();
+        int count = 0;
+
+        for (K locals : paramMap.keySet()) {
+
+            if (count < n) {
+                returnMap.put(locals, paramMap.get(locals));
+                count++;
+            }
+        }
+        return returnMap;
+    }
 
 }
