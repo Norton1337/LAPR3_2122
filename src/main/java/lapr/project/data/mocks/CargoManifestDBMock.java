@@ -2,11 +2,14 @@ package lapr.project.data.mocks;
 
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.cargoManifest.idb.ICargoManifest;
+import lapr.project.utils.Utils;
 
+import java.sql.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import static lapr.project.utils.Utils.randomUUID;
+import static lapr.project.utils.Utils.toDate;
 
 public class CargoManifestDBMock implements ICargoManifest {
 
@@ -44,6 +47,22 @@ public class CargoManifestDBMock implements ICargoManifest {
         }
 
         return null;
+    }
+
+    @Override
+    public CargoManifest getCargoManifestBeforeDate(String date, String operationType, String portID) {
+        CargoManifest cargoManifest = null;
+
+        for(CargoManifest elem : Utils.cargosOrderedByTime(cargoManifests)){
+            if(elem.getNextLocal().equals(portID)){
+                if(elem.getOperationType().equals(operationType)){
+                    if(toDate(elem.getDate()).compareTo(Date.valueOf(date)) < 0){
+                        cargoManifest = elem;
+                    }
+                }
+            }
+        }
+        return cargoManifest;
     }
 
     @Override

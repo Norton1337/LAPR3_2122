@@ -54,6 +54,10 @@ public class CargoManifestController {
         return cargoManifestDB.getCargoManifestByRecon(recon);
     }
 
+    public CargoManifest findLastCargoBeforeDate(String date, String operationType, String portID){
+        return cargoManifestDB.getCargoManifestBeforeDate(date, operationType, portID);
+    }
+
     public List<String> containers_to_offload(String mmsi) {
         String ship_id = null;
         for (Vehicles elem : vehicleDB.getAllShips()) {

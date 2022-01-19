@@ -9,8 +9,13 @@ import lapr.project.model.locals.idb.ILocals;
 import lapr.project.model.operation.Operation;
 import lapr.project.model.operation.idb.IOperation;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static lapr.project.utils.Utils.toDate;
 import static lapr.project.utils.Utils.toInt;
 
 public class OperationController {
@@ -30,6 +35,15 @@ public class OperationController {
 
     public boolean addOperation(Operation operation,String containerNumber,String cargoManifestRecon, String warehouseCode) {
 
+        //TODO implement "trigger" in this forLoop
+        for (Locals elems : localsDB.getAllLocals()) {
+            if (elems.getLocalCode() == toInt(warehouseCode)) {
+                if((elems.getLocalCapacity() + 1) > elems.getLocalCapacity()){
+                    return false;
+                }
+            }
+        }
+
         for (Locals elems : localsDB.getAllLocals()) {
             if (elems.getLocalCode() == toInt(warehouseCode)) {
                 operation.setOperation_warehouse(elems.getId());
@@ -47,6 +61,44 @@ public class OperationController {
         }
         operationDB.addOperation(operation);
         return true;
+    }
+
+    public Map<Locals,List<String>> getOccupancyRate_and_ContainersLeavingNextMonth(int port_code){
+        Locals port = null;
+        List<CargoManifest> unloadCargos = new ArrayList<>();
+        List<CargoManifest> loadCargos = new ArrayList<>();
+        List<String> containersLeavingAndOccupancyRate = new ArrayList<>();
+        List<Locals> warehousesList = new ArrayList<>();
+        Map<Locals,List<String>> map = new HashMap<>();
+        for(Locals elem : localsDB.getAllLocals()){
+            if(elem.getLocalCode() == port_code){
+                port = elem;
+            }
+        }
+        for(Locals elem : localsDB.getAllLocals()){
+            if(elem.getPortId().equals(port.getId())){
+                warehousesList.add(elem);
+            }
+        }
+
+        for(CargoManifest elem : cargoManifestDB.getAllCargoManifest()){
+            if(elem.getCurrentLocalId().equals(port.getId())){
+                if(toDate(elem.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0){
+                    if(elem.getOperationType().equals("Unload")){
+                        unloadCargos.add(elem);
+                    }
+                }
+            }else if(elem.getCurrentLocalId().equals(port.getId())){
+                if(toDate(elem.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0){
+                    if(elem.getOperationType().equals("Load")){
+                        loadCargos.add(elem);
+                    }
+                }
+            }
+        }
+
+
+        return null;
     }
 
     public List<Operation> getAllOperations() {

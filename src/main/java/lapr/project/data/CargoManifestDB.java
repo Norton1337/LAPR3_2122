@@ -49,6 +49,11 @@ public class CargoManifestDB extends DataHandler implements ICargoManifest {
     }
 
     @Override
+    public CargoManifest getCargoManifestBeforeDate(String date, String operationType, String portID) {
+        return null;
+    }
+
+    @Override
     public boolean removeCargoManifest(String id) {
         return false;
     }

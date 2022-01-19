@@ -15,6 +15,8 @@ public interface ICargoManifest {
 
     CargoManifest getCargoManifestByRecon(String recon);
 
+    CargoManifest getCargoManifestBeforeDate(String date, String operationType, String portID);
+
     boolean removeCargoManifest(String id);
 
 }
