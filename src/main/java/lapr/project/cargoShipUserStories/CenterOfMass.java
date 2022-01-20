@@ -1,5 +1,6 @@
 package lapr.project.cargoShipUserStories;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CenterOfMass {
@@ -71,12 +72,22 @@ public class CenterOfMass {
 
         }
 
-        Coords centerOfMass = new Coords(volumeX/totalVolume, volumeY/totalVolume, volumeZ/totalVolume);
-        System.out.println("Center of mass: \n" + centerOfMass.toString());
+        final DecimalFormat df = new DecimalFormat("0.00");
+        Coords centerOfMass = new Coords(   Double.parseDouble(df.format(volumeX/totalVolume)), 
+                                            Double.parseDouble(df.format(volumeY/totalVolume)),
+                                            Double.parseDouble(df.format(volumeZ/totalVolume)));
         return centerOfMass;
         
 
 
     }
 
+
+    public ArrayList<Shapes> addContainers(double length, double width, double height, int amount, Coords centerOfMass){
+
+        ArrayList<Shapes> newContainers = new ArrayList<>();
+        
+        return newContainers;
+
+    }
 }

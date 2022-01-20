@@ -41,6 +41,76 @@ public class Shapes{
     }
 
 
+    public boolean intersects(Shapes other){
+        boolean isIntersecting=true;
+
+        double thisMaxX = Math.max(this.p1.getX(), this.p2.getX());
+        thisMaxX = Math.max(thisMaxX, this.p3.getX());
+
+        double thisMaxY = Math.max(this.p1.getY(), this.p2.getY());
+        thisMaxY = Math.max(thisMaxY, this.p3.getY());
+
+        double thisMaxZ = Math.max(this.p1.getZ(), this.p2.getZ());
+        thisMaxZ = Math.max(thisMaxZ, this.p3.getZ());
+
+        double otherMaxX = Math.max(other.p1.getX(), other.p2.getX());
+        otherMaxX = Math.max(otherMaxX, other.p3.getX());
+
+        double otherMaxY = Math.max(other.p1.getY(), other.p2.getY());
+        otherMaxY = Math.max(otherMaxY, other.p3.getY());
+
+        double otherMaxZ = Math.max(other.p1.getZ(), other.p2.getZ());
+        otherMaxZ = Math.max(otherMaxZ, other.p3.getZ());
+
+
+        double thisMinX = Math.min(this.p1.getX(), this.p2.getX());
+        thisMinX = Math.min(thisMinX, this.p3.getX());
+
+        double thisMinY = Math.min(this.p1.getY(), this.p2.getY());
+        thisMinY = Math.min(thisMinY, this.p3.getY());
+
+        double thisMinZ = Math.min(this.p1.getZ(), this.p2.getZ());
+        thisMinZ = Math.min(thisMinZ, this.p3.getZ());
+
+        double otherMinX = Math.min(other.p1.getX(), other.p2.getX());
+        otherMinX = Math.min(otherMinX, other.p3.getX());
+
+        double otherMinY = Math.min(other.p1.getY(), other.p2.getY());
+        otherMinY = Math.min(otherMinY, other.p3.getY());
+
+        double otherMinZ = Math.min(other.p1.getZ(), other.p2.getZ());
+        otherMinZ = Math.min(otherMinZ, other.p3.getZ());
+
+        System.out.println(thisMaxX +" --- " + otherMinX);
+
+        if(thisMaxX <= otherMinX){
+            isIntersecting = false;
+        }
+            
+        else if(otherMaxX <= thisMinX){
+            isIntersecting = false;
+        }
+            
+        else if(thisMaxY <= otherMaxY){
+            isIntersecting = false;
+        }
+            
+        else if(otherMaxY <= thisMinY){
+            isIntersecting = false;
+        }
+            
+        else if(thisMaxZ <= otherMinZ){
+            isIntersecting = false;
+        }
+            
+        else if(otherMaxZ <= thisMinZ){
+            isIntersecting = false;
+        }
+            
+    
+        return isIntersecting;
+    }
+
     public Coords getP1() {
         return this.p1;
     }
