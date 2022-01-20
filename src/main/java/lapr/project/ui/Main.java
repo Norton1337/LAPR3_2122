@@ -7,14 +7,11 @@ import lapr.project.controller.ToMatrixController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.locals.Locals;
-import lapr.project.utils.Utils;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
-
-import static lapr.project.utils.Utils.printList;
 
 class Main {
 
@@ -33,6 +30,9 @@ class Main {
         OperationDBMock operationDBMock = new OperationDBMock();
         CargoManifestDBMock cargoManifestDBMock = new CargoManifestDBMock();
         ContainerDBMock containerDBMock = new ContainerDBMock();
+        UsersDBMock usersDBMock = new UsersDBMock();
+        ClientDBMock clientDBMock = new ClientDBMock();
+        LeasingDBMock leasingDBMock = new LeasingDBMock();
 
 
         //CONTROLLERS DO MODEL
@@ -45,6 +45,9 @@ class Main {
         ContainerController containerController = new ContainerController(containerDBMock);
         OperationController operationController = new OperationController(operationDBMock,localsDBMock,cargoManifestDBMock,containerDBMock);
         TruckController truckController = new TruckController(trucksDBMock);
+        UserController userController = new UserController(usersDBMock);
+        ClientController clientController = new ClientController(clientDBMock, usersDBMock);
+        LeasingController leasingController = new LeasingController(leasingDBMock, containerDBMock, clientDBMock, usersDBMock, clientController);
 
         //CONTROLLERS
         DataToBstController dataToBstController = new DataToBstController();
@@ -65,6 +68,10 @@ class Main {
         CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
         OperationsUI operationsUI = new OperationsUI(operationController);
         TruckUI truckUI = new TruckUI(vehiclesController);
+        UsersUI usersUI = new UsersUI(userController);
+        ClientUI clientUI = new ClientUI(clientController);
+        LeasingUI leasingUI = new LeasingUI(leasingController);
+
 
         //SETUP
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
@@ -88,13 +95,14 @@ class Main {
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
         operationsUI.importOperations("Docs/Input/operations.csv");
 
-        //printList(Utils.cargosOrderedByTime(cargoManifestController.getAllCargoManifest()));
-        //printList(vehiclesController.getAllVehicles());
-        //printList(cargoManifestController.containers_to_offload("229767000"));
-        System.out.println("\n\n\n\n");
-        printList(vehiclesController.getAllShips());
-        //printList(vehiclesController.getAllTrucks());
-        //printList(operationController.getAllOperations());
+        usersUI.importUsers("Docs/Input/users.csv");
+        clientUI.importClients("Docs/Input/clients.csv");
+        leasingUI.importLeasingCon("Docs/Input/leasing.csv");
+
+        //printList(userController.getAllUsers());
+        //printList(containerController.getAllContainers());
+        //System.out.println("\n\n\n\n\n\n");
+        //printList(leasingController.getAllLeasing());
 
     }
 }

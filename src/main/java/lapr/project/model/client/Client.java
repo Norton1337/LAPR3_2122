@@ -9,8 +9,7 @@ public class Client {
     public String cellphone;
 
 
-    public Client(String userId, String name, String address, String cellphone) {
-        this.userId = userId;
+    public Client(String name, String address, String cellphone) {
         this.name = name;
         this.address = address;
         this.cellphone = cellphone;
@@ -55,5 +54,16 @@ public class Client {
 
     public void setCellphone(String cellphone) {
         this.cellphone = cellphone;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id='" + id + '\'' +
+                ", userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", cellphone='" + cellphone + '\'' +
+                '}';
     }
 }

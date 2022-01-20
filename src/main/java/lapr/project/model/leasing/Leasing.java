@@ -8,9 +8,7 @@ public class Leasing {
     public String startDate;
     public String endDate;
 
-    public Leasing(String clientId, String containerId, String startDate, String endDate) {
-        this.clientId = clientId;
-        this.containerId = containerId;
+    public Leasing(String startDate, String endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -54,6 +52,17 @@ public class Leasing {
 
     public void setEndDate(String endDate) {
         this.endDate = endDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Leasing{" +
+                "id='" + id + '\'' +
+                ", clientId='" + clientId + '\'' +
+                ", containerId='" + containerId + '\'' +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                '}';
     }
 }
 

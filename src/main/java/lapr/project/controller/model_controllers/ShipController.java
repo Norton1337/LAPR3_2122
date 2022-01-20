@@ -19,9 +19,7 @@ public class ShipController {
     }
 
     public boolean addShip(Ship newShip) {
-        shipDB.addShip(newShip);
-
-        return true;
+        return shipDB.addShip(newShip);
     }
 
     public List<Ship> getAllShips() {

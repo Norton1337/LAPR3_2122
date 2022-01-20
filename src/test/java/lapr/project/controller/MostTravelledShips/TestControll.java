@@ -156,9 +156,31 @@ public class TestControll {
 
     @Test
     void pathsTest(){
+        /*
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
+        LinkedList<Locals> path = new LinkedList<>();
 
+        var madrid = localsController.getLocalWithName("Madrid");
+        var lisbon = localsController.getLocalWithName("Lisbon");
+
+        var genoa = localsController.getLocalWithName("Genoa");
+        var paris =localsController.getLocalWithName("Paris");
+
+        EdgeAsDoubleGraphAlgorithms.shortestPath(t, genoa, paris,path);
+        System.out.println("Genoa -> Paris");
+        printList(path);
+
+
+        EdgeAsDoubleGraphAlgorithms.shortestPath(t, paris, madrid,path);
+        System.out.println("Paris -> Madrid");
+        printList(path);
+
+        EdgeAsDoubleGraphAlgorithms.shortestPath(t, madrid, lisbon,path);
+        System.out.println("Madrid -> Lisbon");
+        printList(path);
+
+         */
 
     }
 }
