@@ -1,5 +1,6 @@
 package lapr.project.cargoShipUserStoriesTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class CenterOfMassTest {
 
     @Test
     void calculateCentroidTest(){
-        centerOfMass.calculateCentroid();
-        assertTrue(true);
+        Coords centerOfMassOfShip = centerOfMass.calculateCentroid();
+        assertEquals(197.55937071395948, centerOfMassOfShip.getX());
+        assertEquals(30.47236067033038, centerOfMassOfShip.getY());
+        assertEquals(25.625, centerOfMassOfShip.getZ());
     }
 }
