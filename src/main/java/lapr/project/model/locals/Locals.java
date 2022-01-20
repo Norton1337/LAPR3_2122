@@ -9,9 +9,8 @@ public class Locals implements Comparable<Locals> {
     private String coordinates;
     private String vehicleId;
     private String type;
-
-    // TODO ACRESCENTAR
     private int localCapacity;
+    private int usedCapacity;
 
 
     public Locals(String country, int code,
@@ -84,6 +83,14 @@ public class Locals implements Comparable<Locals> {
 
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public int getUsedCapacity() {
+        return usedCapacity;
+    }
+
+    public void setUsedCapacity(int usedCapacity) {
+        this.usedCapacity = usedCapacity;
     }
 
     public String getType() {

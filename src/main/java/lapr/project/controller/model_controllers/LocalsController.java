@@ -121,15 +121,15 @@ public class LocalsController {
         return new LinkedList<>(localsList);
     }
 
-    /*public Locals getWarehouseByCode(String code){
+    public Locals getWarehouseByCode(String warehouse_Code){
         Locals locals = null;
 
         for (Locals elems : getAllLocals()) {
-            if (elems.getequals(code)) {
+            if (elems.getLocalCode() == toInt(warehouse_Code)) {
                 locals = elems;
             }
         }
         return locals;
-    }*/
+    }
 
 }

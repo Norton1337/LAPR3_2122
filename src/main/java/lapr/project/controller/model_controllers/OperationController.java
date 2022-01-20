@@ -15,94 +15,87 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lapr.project.utils.Utils.toDate;
-import static lapr.project.utils.Utils.toInt;
+import static lapr.project.utils.Utils.*;
 
 public class OperationController {
 
     private final IOperation operationDB;
-    private final ILocals localsDB;
-    private final ICargoManifest cargoManifestDB;
     private final IContainerDB containerDB;
+    private final LocalsController localsController;
+    private final CargoManifestController cargoManifestController;
 
 
-    public OperationController(IOperation operationDB, ILocals localsDB, ICargoManifest cargoManifestDB, IContainerDB containerDB) {
+    public OperationController(IOperation operationDB,IContainerDB containerDB, LocalsController localsController, CargoManifestController cargoManifestController) {
         this.operationDB = operationDB;
-        this.localsDB = localsDB;
-        this.cargoManifestDB = cargoManifestDB;
         this.containerDB = containerDB;
+        this.localsController = localsController;
+        this.cargoManifestController = cargoManifestController;
     }
 
     public boolean addOperation(Operation operation,String containerNumber,String cargoManifestRecon, String warehouseCode) {
+        CargoManifest cargoManifest = cargoManifestController.findCargoByRecon(cargoManifestRecon);
+        Locals warehouse = localsController.getWarehouseByCode(warehouseCode);
 
-        //TODO implement "trigger" in this forLoop
-        for (Locals elems : localsDB.getAllLocals()) {
-            if (elems.getLocalCode() == toInt(warehouseCode)) {
-                if((elems.getLocalCapacity() + 1) > elems.getLocalCapacity()){
-                    return false;
-                }
-            }
+        if(cargoManifest.getOperationType().equals("Unload")){
+            warehouse.setUsedCapacity(warehouse.getUsedCapacity() + 1);
+        } else if (cargoManifest.getOperationType().equals("Load")){
+            warehouse.setUsedCapacity(warehouse.getUsedCapacity() - 1);
         }
 
-        for (Locals elems : localsDB.getAllLocals()) {
-            if (elems.getLocalCode() == toInt(warehouseCode)) {
-                operation.setOperation_warehouse(elems.getId());
-            }
-        }
         for (Container elems : containerDB.getAllContainers()) {
             if (elems.getContainerNumber() == toInt(containerNumber)) {
                 operation.setContainerId(elems.getId());
             }
         }
-        for (CargoManifest elems : cargoManifestDB.getAllCargoManifest()) {
-            if (elems.getCargo_recon().equals(cargoManifestRecon)) {
-                operation.setCargoManifestId(elems.getId());
-            }
-        }
+        operation.setOperation_warehouse(warehouse.getId());
+        operation.setCargoManifestId(warehouse.getId());
+
         operationDB.addOperation(operation);
         return true;
     }
 
-    public Map<Locals,List<String>> getOccupancyRate_and_ContainersLeavingNextMonth(int port_code){
-        Locals port = null;
-        List<CargoManifest> unloadCargos = new ArrayList<>();
-        List<CargoManifest> loadCargos = new ArrayList<>();
-        List<String> containersLeavingAndOccupancyRate = new ArrayList<>();
-        List<Locals> warehousesList = new ArrayList<>();
-        Map<Locals,List<String>> map = new HashMap<>();
-        for(Locals elem : localsDB.getAllLocals()){
-            if(elem.getLocalCode() == port_code){
-                port = elem;
-            }
-        }
-        for(Locals elem : localsDB.getAllLocals()){
-            if(elem.getPortId().equals(port.getId())){
-                warehousesList.add(elem);
-            }
-        }
+    public List<String> getOccupancyRate_and_ContainersLeavingNextMonth(int port_code){
+        String occupancyRate;
+        List<String> warehouseOccupancyAndContainers = new ArrayList<>();
+        List<String> list = new ArrayList<>();
+        Locals port = localsController.getLocalWithPortId(String.valueOf(port_code));
 
-        for(CargoManifest elem : cargoManifestDB.getAllCargoManifest()){
-            if(elem.getCurrentLocalId().equals(port.getId())){
-                if(toDate(elem.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0){
-                    if(elem.getOperationType().equals("Unload")){
-                        unloadCargos.add(elem);
-                    }
-                }
-            }else if(elem.getCurrentLocalId().equals(port.getId())){
-                if(toDate(elem.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0){
-                    if(elem.getOperationType().equals("Load")){
-                        loadCargos.add(elem);
-                    }
+        for(CargoManifest cargo : cargoManifestController.getAllCargoManifest()){
+            if(cargo.getOperationType().equals("Load")){
+                if(cargo.getCurrentLocalId().equals(port.getId())){
+                    list.addAll(getContainersNumberByCargo(cargo.getId()));
                 }
             }
         }
 
+        if(list.isEmpty()){
+            System.out.println("Here");
+        }
 
-        return null;
+        for(Locals warehouse : localsController.getAllWarehouses()){
+            if(warehouse.getPortId().equals(port.getId())){
+                warehouseOccupancyAndContainers.add(String.valueOf("Warehouse Code: " + warehouse.getLocalCode()));
+                warehouseOccupancyAndContainers.add(String.valueOf("Warehouse capacity rate: " + (warehouse.getUsedCapacity()/warehouse.getLocalCapacity()) * 100) + "%");
+                warehouseOccupancyAndContainers.addAll(list);
+            }
+        }
+
+
+        return warehouseOccupancyAndContainers;
     }
 
     public List<Operation> getAllOperations() {
         return operationDB.allOperations();
+    }
+
+    public List<String> getContainersNumberByCargo(String cargoID){
+        List<String> containersNumber = new ArrayList<>();
+        for(Operation elem : getAllOperations()){
+            if(elem.getCargoManifestId().equals(cargoID)){
+                containersNumber.add(String.valueOf("Number:" + containerDB.getContainer(elem.getContainerId()).getContainerNumber()));
+            }
+        }
+        return containersNumber;
     }
 
     public Operation findById(String id) {
