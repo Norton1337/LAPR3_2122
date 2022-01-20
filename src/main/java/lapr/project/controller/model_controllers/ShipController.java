@@ -43,7 +43,9 @@ public class ShipController {
         return shipDB.getShipByMMSI(mmsi);
     }
 
-
+    public Ship findShipByID(String id){
+        return shipDB.getShip(id);
+    }
 
 
     public float capacity_rate_now(String ship_id) {

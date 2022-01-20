@@ -18,8 +18,8 @@ public class Utils {
 
     public static Date toDate (String string){
         try{
-            Date date = new SimpleDateFormat("dd/MM/yyyy HH/mm/ss").parse(string);
-            return date;
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return date.parse(string);
         }
         catch(ParseException e){
             e.printStackTrace();

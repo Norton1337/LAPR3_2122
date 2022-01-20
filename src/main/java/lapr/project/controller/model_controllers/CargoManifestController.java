@@ -69,6 +69,7 @@ public class CargoManifestController {
         List<CargoManifest> shipCargos = new ArrayList<>();
         CargoManifest shipOffloadCargo = null;
         double date = (double) System.currentTimeMillis();
+
         for (CargoManifest elem : getAllCargoManifest()) {
 
             if (elem.getVehicleId().equals(ship_id)) {

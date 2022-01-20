@@ -35,6 +35,10 @@ public class VehiclesController {
         return new ArrayList<>(shipDB.getAllShips());
     }
 
+    public Vehicles getVehicle(String id){
+        return vehicleDB.getVehicle(id);
+    }
+
     public List<Vehicles> getAllVehicles(){
         return new ArrayList<>(vehicleDB.getAllVehicles());
     }

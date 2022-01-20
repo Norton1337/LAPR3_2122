@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
-import static lapr.project.utils.Utils.printList;
-
 class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -45,7 +43,7 @@ class Main {
         LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
         CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock, operationDBMock);
         ContainerController containerController = new ContainerController(containerDBMock);
-        OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController, cargoManifestController);
+        OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController, cargoManifestController, shipController, vehiclesController);
         TruckController truckController = new TruckController(trucksDBMock);
         UserController userController = new UserController(usersDBMock);
         ClientController clientController = new ClientController(clientDBMock, usersDBMock);
@@ -101,9 +99,10 @@ class Main {
         clientUI.importClients("Docs/Input/clients.csv");
         leasingUI.importLeasingCon("Docs/Input/leasing.csv");
 
-        printList(operationDBMock.allOperations());
+        //printList(operationDBMock.allOperations());
         System.out.println("\n\n\n\n\n\n");
-        printList(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(10136));
+        System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
+        //printList(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(10136));
         //printList(localsController.getAllWarehouses());
         //printList(userController.getAllUsers());
         //printList(containerController.getAllContainers());
