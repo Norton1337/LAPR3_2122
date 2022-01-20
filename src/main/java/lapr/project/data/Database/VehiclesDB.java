@@ -1,4 +1,4 @@
-package lapr.project.data;
+package lapr.project.data.Database;
 
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;

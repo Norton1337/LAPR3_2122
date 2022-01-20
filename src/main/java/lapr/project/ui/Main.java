@@ -88,7 +88,7 @@ class Main {
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
         operationsUI.importOperations("Docs/Input/operations.csv");
 
-        printList(Utils.cargosOrderedByTime(cargoManifestController.getAllCargoManifest()));
+        //printList(Utils.cargosOrderedByTime(cargoManifestController.getAllCargoManifest()));
         //printList(vehiclesController.getAllVehicles());
         //printList(cargoManifestController.containers_to_offload("229767000"));
         System.out.println("\n\n\n\n");

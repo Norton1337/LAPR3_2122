@@ -1,4 +1,4 @@
-package lapr.project.data;
+package lapr.project.data.Database;
 
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.idb.IGeneratorDB;

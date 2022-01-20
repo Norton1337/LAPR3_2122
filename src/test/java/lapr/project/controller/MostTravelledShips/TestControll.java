@@ -135,7 +135,6 @@ public class TestControll {
 
 
         portsList = matrixController.centralPorts(t, 3);
-        printMap(portsList);
 
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
