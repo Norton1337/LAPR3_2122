@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
+import static lapr.project.utils.Utils.printList;
+
 class Main {
 
     public static void main(String[] args) throws IOException, SQLException, ParseException {
@@ -101,8 +103,8 @@ class Main {
 
         //printList(operationDBMock.allOperations());
         System.out.println("\n\n\n\n\n\n");
-        System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
-        //printList(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(10136));
+        //System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
+        printList(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(10136));
         //printList(localsController.getAllWarehouses());
         //printList(userController.getAllUsers());
         //printList(containerController.getAllContainers());
