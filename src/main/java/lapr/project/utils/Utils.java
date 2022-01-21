@@ -17,14 +17,15 @@ public class Utils {
     }
 
     public static Date toDate (String string){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
         try{
-            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return date.parse(string);
+            date = format.parse(string);
         }
         catch(ParseException e){
-            e.printStackTrace();
+            return null;
         }
-        return null;
+        return date;
     }
 
     public static Integer toInt(String string) {
