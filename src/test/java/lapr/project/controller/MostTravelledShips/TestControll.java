@@ -156,8 +156,16 @@ public class TestControll {
 
     @Test
     void pathsTest(){
-        /*
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
+        List<Locals> locals = new ArrayList<>();
+        List<String> places = new ArrayList<>();
+        places.add("Prague");
+        places.add("Paris");
+        //places.add("Vienna");
+        locals = matrixController.shortestThroughNPlaces(t, "Madrid", "Barcelona", places);
+        //printList(locals);
+        /*
+
 
         LinkedList<Locals> path = new LinkedList<>();
 
@@ -181,6 +189,21 @@ public class TestControll {
         printList(path);
 
          */
+    }
+
+    @Test
+    void newMatrixTest(){
+
+        AdjacencyMatrixGraph<Locals, Double> newMatrix = new AdjacencyMatrixGraph<>();
+
+        Locals local1 = localsController.getLocalWithName("Madrid");
+        Locals local2 = localsController.getLocalWithName("Paris");
+        Locals local3 = localsController.getLocalWithName("Prague");
+        Locals local4 = localsController.getLocalWithName("London");
+        Locals local5 = localsController.getLocalWithName("Hamburg");
+        Locals local6 = localsController.getLocalWithName("Varna");
+
 
     }
+
 }

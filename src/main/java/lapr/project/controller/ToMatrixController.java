@@ -382,7 +382,7 @@ public class ToMatrixController {
 
                 if (!port1.getName().equals(port2.getName()) && (port1Continent.equals(port2Continent))) {
 
-                    double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, port1, port2, path);
+                    double weight = EdgeAsDoubleGraphAlgorithms.shortestPath(localsMatrix, port1, port2, path);
                     if (!path.isEmpty()) {
 
                         path.remove(0);
@@ -424,11 +424,9 @@ public class ToMatrixController {
     }
 
 
-    public List<List<Locals>> shortestPaths(String orig, String dest, List<Locals> portsToPass) {
+    public List<List<Locals>> shortestPaths(AdjacencyMatrixGraph<Locals, Double> localsMatrix, String orig, String dest, List<String> portsToPass) {
         /**
-         * This is to search for origin and destiny by name, to not insert a Local
-         * To remove change orig and dest to type Locals and their name to origLocal
-         * and destLocal
+         * To search for origin and destiny by name, to not insert a Local
          */
         if (orig == null || dest == null) {
             return null;
@@ -442,10 +440,18 @@ public class ToMatrixController {
         /**
          * shortest path, whether is port or city (using original matrix)
          */
-        EdgeAsDoubleGraphAlgorithms.shortestPath(freightNetworkMatrix, origLocal, destLocal, shortestPath);
+        EdgeAsDoubleGraphAlgorithms.shortestPath(localsMatrix, origLocal, destLocal, shortestPath);
         allPaths.add(shortestPath);
 
-        allPaths.add(maritimePath(origLocal, destLocal));
+        /**
+         *  shortest maritime path (only using ports matrix)
+         */
+        allPaths.add(maritimePath(maritimeMatrix ,origLocal, destLocal));
+        /**
+         * Shortest land path (using land matrix)
+         */
+        List<Locals> landPath = landPath(origLocal,destLocal);
+        allPaths.add(landPath);
 
 
         return allPaths;
@@ -460,25 +466,45 @@ public class ToMatrixController {
 
         LinkedList<Locals> path = new LinkedList<>();
         Map<Locals, Double> closestCapitalsMap = new LinkedHashMap<>();
+        Map<Locals, Double> closestCapitalsMapAux = new LinkedHashMap<>();
+
 
         if (orig.getType().equals("Capital") && dest.getType().equals("Capital")) {
 
             EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, dest, path);
             return path;
-        } else if (orig.getType().equals("Port")) {
-            closestCapitalsMap = getNClosenessPlaces(localsController.getAllLocals(), orig, localsController.getAllLocals().size());
-
-            for (Locals elem : closestCapitalsMap.keySet()) {
-
-                if (elem.getType().equals("Capital")) {
-                    path.add(orig);
-                    EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, elem, dest, path);
-                    return path;
-                }
-            }
         }
 
-        return path;
+        if (orig.getType().equals("Port") && dest.getType().equals("Capital")){
+
+            closestCapitalsMap = getNClosenessPlaces(localsController.getAllCapitals(), orig, 1);
+            Locals local = setToList(closestCapitalsMap.keySet()).get(0);
+
+            EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, local, dest, path);
+            return path;
+        }
+
+        else if (dest.getType().equals("Port")&& orig.getType().equals("Capital")) {
+
+           closestCapitalsMap = getNClosenessPlaces(localsController.getAllCapitals(), orig, 1);
+           Locals local = setToList(closestCapitalsMap.keySet()).get(0);
+
+           EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, local, path);
+           return path;
+        }
+        else {
+
+            closestCapitalsMap = getNClosenessPlaces(localsController.getAllCapitals(), orig, 1);
+            closestCapitalsMapAux = getNClosenessPlaces(localsController.getAllCapitals(), dest, 1);
+
+            Locals origLocal = setToList(closestCapitalsMap.keySet()).get(0);
+            Locals destLocal = setToList(closestCapitalsMapAux.keySet()).get(0);
+
+            EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, origLocal, destLocal, path);
+
+
+            return path;
+        }
 
     }
 
@@ -487,17 +513,103 @@ public class ToMatrixController {
      * are passed by parameter there is no maritime
      * path, returns null
      */
-    public List<Locals> maritimePath(Locals orig, Locals dest) {
+    public List<Locals> maritimePath(AdjacencyMatrixGraph<Locals, Double> matrix, Locals orig, Locals dest) {
 
         LinkedList<Locals> path = new LinkedList<>();
 
         if (orig.getType().equals("Port") && dest.getType().equals("Port")) {
 
-            EdgeAsDoubleGraphAlgorithms.shortestPath(maritimeMatrix, orig, dest, path);
+            EdgeAsDoubleGraphAlgorithms.shortestPath(matrix, orig, dest, path);
             return path;
         }
         System.out.println("No maritime path found");
         return null;
+    }
+
+    public List<Locals> shortestThroughNPlaces(AdjacencyMatrixGraph<Locals, Double> matrix, String orig, String dest, List<String> placesToPass){
+
+        int countPermutations = 0;
+        double finalWeight = Double.MAX_VALUE;
+
+        LinkedList<Locals> path = new LinkedList<>();
+        List<Locals> finalPath = new LinkedList<>();
+        List<Locals> elemsList = new LinkedList<>();
+        List<List<String>> localsPermutationsList = new ArrayList<>();
+
+        Locals origLocal = localsController.getLocalWithName(orig);
+        Locals destLocal = localsController.getLocalWithName(dest);
+
+        /**
+         * List of lists with all possible combinations of locals to pass through
+         */
+        localsPermutationsList = generatePermutation(placesToPass);
+
+
+        for (int i =0 ; i<localsPermutationsList.size(); i++){
+
+            double weight = 0.0;
+
+            List<String> newList = localsPermutationsList.get(i);
+            System.out.println("Permutation list:");
+            System.out.println(newList);
+
+            countPermutations++;
+
+            // Calculate distance between origin and first element on permutation list
+            weight = EdgeAsDoubleGraphAlgorithms.shortestPath(matrix, origLocal,
+                    localsController.getLocalWithName(newList.get(0)), path);
+
+
+            elemsList.addAll(addElementsToList(path));
+            System.out.println("Path from origin to 1element of permutation list");
+            printList(elemsList);
+            elemsList.remove(elemsList.size()-1);
+
+
+            // Calculate distance between elements to permute
+            for (int j = 0; j < newList.size()-1; j++){
+
+                weight+= EdgeAsDoubleGraphAlgorithms.shortestPath(matrix,
+                        localsController.getLocalWithName(newList.get(j)),
+                        localsController.getLocalWithName(newList.get(j+1)), path);
+                //System.out.println("direction");
+                //System.out.println("j  (From "+ j + ") "+localsController.getLocalWithName(newList.get(j)));
+                //System.out.println("j+1  (To "+(j+1) + ") "+ localsController.getLocalWithName(newList.get(j+1)));
+                //System.out.println("\n");
+                elemsList.addAll(addElementsToList(path));
+                System.out.println("Path between elements in permutation list");
+                printList(elemsList);
+                elemsList.remove(elemsList.size()-1);
+
+
+            }
+            // Calculate distance between last element on permutation list and destiny
+            weight+= EdgeAsDoubleGraphAlgorithms.shortestPath(matrix,
+                    localsController.getLocalWithName(newList.get(newList.size()-1)), destLocal, path);
+
+            elemsList.addAll(addElementsToList(path));
+            System.out.println("Path between last element of permutation list and destiny");
+            printList(elemsList);
+
+            System.out.println("\n");
+            System.out.println("Path weight "+weight);
+            printList(elemsList);
+            if (weight < finalWeight){
+                System.out.println("weight was smaller");
+                //finalPath = auxList;
+                finalPath = elemsList;
+                finalWeight = weight;
+                System.out.println("INSIDE :   " +newList);
+
+            }
+            elemsList = new LinkedList<>();
+            System.out.println("--------------------------------------");
+        }
+        // finalPath only appears with last path
+        printList(finalPath);
+
+        System.out.println("Number of possible combinations: "+countPermutations);
+        return finalPath;
     }
 
 
