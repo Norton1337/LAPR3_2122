@@ -1,6 +1,5 @@
 package lapr.project.controller.model_controllers;
 
-import jdk.vm.ci.meta.Local;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;
