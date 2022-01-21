@@ -23,8 +23,9 @@ public class OperationController {
     private final ShipController shipController;
     private final VehiclesController vehiclesController;
 
-
-    public OperationController(IOperation operationDB, IContainerDB containerDB, LocalsController localsController, CargoManifestController cargoManifestController, ShipController shipController, VehiclesController vehiclesController) {
+    public OperationController(IOperation operationDB, IContainerDB containerDB, LocalsController localsController,
+            CargoManifestController cargoManifestController, ShipController shipController,
+            VehiclesController vehiclesController) {
         this.operationDB = operationDB;
         this.containerDB = containerDB;
         this.localsController = localsController;
@@ -33,33 +34,11 @@ public class OperationController {
         this.vehiclesController = vehiclesController;
     }
 
-    public boolean addOperation(Operation operation,String containerNumber,String cargoManifestRecon, String warehouseCode) {
+    public boolean addOperation(Operation operation, String containerNumber, String cargoManifestRecon,
+            String warehouseCode) {
         CargoManifest cargoManifest = cargoManifestController.findCargoByRecon(cargoManifestRecon);
         Locals warehouse = localsController.getWarehouseByCode(warehouseCode);
         Vehicles vehicle = vehiclesController.getVehicle(cargoManifest.getVehicleId());
-
-        if (cargoManifest.getOperationType().equals("Unload")) {
-            if (vehicle.getType().equals("Ship")) {
-                Ship ship = shipController.findShipByID(vehicle.getId());
-                if (ship.getUsedCapacity() > 0) {
-                    ship.setUsedCapacity(ship.getUsedCapacity() - 1);
-                }
-            }
-            warehouse.setUsedCapacity(warehouse.getUsedCapacity() + 1);
-        } else if (cargoManifest.getOperationType().equals("Load")) {
-            if (vehicle.getType().equals("Ship")) {
-                Ship ship = shipController.findShipByID(vehicle.getId());
-                if (ship.getUsedCapacity() + 1 <= ship.getLoadCapacity()) {
-                    ship.setUsedCapacity(ship.getUsedCapacity() + 1);
-                    if (warehouse.getUsedCapacity() > 0) {
-                        warehouse.setUsedCapacity(warehouse.getUsedCapacity() - 1);
-                    }
-                }else{
-                    System.out.println("Capacidade máxima ship superada\nCargo_Manifest vai ser eliminado");
-                }
-            }
-        }
-
 
         for (Container elems : containerDB.getAllContainers()) {
             if (elems.getContainerNumber() == toInt(containerNumber)) {
@@ -68,23 +47,23 @@ public class OperationController {
         }
 
         operation.setOperation_warehouse(warehouse.getId());
-        operation.setCargoManifestId(warehouse.getId());
+        operation.setCargoManifestId(cargoManifest.getId());
 
         operationDB.addOperation(operation);
         return true;
     }
 
-    public List<String> getOccupancyRate_and_ContainersLeavingNextMonth(int port_code){
+    public List<String> getOccupancyRate_and_ContainersLeavingNextMonth(int port_code) {
         String occupancyRate;
         List<String> warehouseOccupancyAndContainers = new ArrayList<>();
         List<String> list = new ArrayList<>();
         Locals port = localsController.getLocalWithPortId(String.valueOf(port_code));
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Objects.requireNonNull(toDate(LocalDateTime.now().toString())));
-        calendar.add(Calendar.MONTH,1);
+        calendar.add(Calendar.MONTH, 1);
         Date dateTimeNextMonth = calendar.getTime();
-        for(CargoManifest cargo : cargoManifestController.getAllCargoManifest()){
-            if(toDate(cargo.getDate()).compareTo(toDate(dateTimeNextMonth.toString())) < 0) {
+        for (CargoManifest cargo : cargoManifestController.getAllCargoManifest()) {
+            if (toDate(cargo.getDate()).compareTo(toDate(dateTimeNextMonth.toString())) < 0) {
                 if (cargo.getOperationType().equals("Load")) {
                     if (cargo.getCurrentLocalId().equals(port.getId())) {
                         list.addAll(getContainersNumberByCargo(cargo.getId()));
@@ -94,15 +73,14 @@ public class OperationController {
         }
         list.add("Containers Leaving:");
 
-
-        for(Locals warehouse : localsController.getAllWarehouses()){
-            if(warehouse.getPortId().equals(port.getId())){
+        for (Locals warehouse : localsController.getAllWarehouses()) {
+            if (warehouse.getPortId().equals(port.getId())) {
                 warehouseOccupancyAndContainers.add(String.valueOf("Warehouse Code: " + warehouse.getLocalCode()));
-                warehouseOccupancyAndContainers.add(String.valueOf("Warehouse capacity rate: " + (warehouse.getUsedCapacity()/warehouse.getLocalCapacity()) * 100) + "%");
+                warehouseOccupancyAndContainers.add(String.valueOf("Warehouse capacity rate: "
+                        + (warehouse.getUsedCapacity() / warehouse.getLocalCapacity()) * 100) + "%");
                 warehouseOccupancyAndContainers.add(list.get(0));
             }
         }
-
 
         return warehouseOccupancyAndContainers;
     }
@@ -111,11 +89,12 @@ public class OperationController {
         return operationDB.allOperations();
     }
 
-    public List<String> getContainersNumberByCargo(String cargoID){
+    public List<String> getContainersNumberByCargo(String cargoID) {
         List<String> containersNumber = new ArrayList<>();
-        for(Operation elem : getAllOperations()){
-            if(elem.getCargoManifestId().equals(cargoID)){
-                containersNumber.add(String.valueOf("Number:" + containerDB.getContainer(elem.getContainerId()).getContainerNumber()));
+        for (Operation elem : getAllOperations()) {
+            if (elem.getCargoManifestId().equals(cargoID)) {
+                containersNumber.add(String
+                        .valueOf("Number:" + containerDB.getContainer(elem.getContainerId()).getContainerNumber()));
             }
         }
         return containersNumber;
