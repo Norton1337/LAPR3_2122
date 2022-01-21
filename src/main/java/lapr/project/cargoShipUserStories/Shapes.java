@@ -24,7 +24,7 @@ public class Shapes{
         else if(p1.getX() != p3.getX())
             length = Math.abs(p1.getX() - p3.getX());
         else
-            System.err.println("ERROR ERROR");
+            throw new IllegalArgumentException("All 3 coordinates can't have the same X coordinate");
         
         double height=0;
         if(p1.getY() != p2.getY())
@@ -32,7 +32,7 @@ public class Shapes{
         else if(p1.getY() != p3.getY())
             height = Math.abs(p1.getY() - p3.getY());
         else
-            System.err.println("ERROR ERROR");
+        throw new IllegalArgumentException("All 3 coordinates can't have the same Y coordinate");
 
         if(triangle)
             this.volume=((length*height)/2) * width;
