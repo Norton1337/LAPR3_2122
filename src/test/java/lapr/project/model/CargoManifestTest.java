@@ -16,6 +16,9 @@ class CargoManifestTest {
         String date = "31/12/2020";
         String operationType = "load";
         cargoManifest = new CargoManifest(nextLocal, date, operationType);
+        cargoManifest.setVehicleId("vehicleID");
+        cargoManifest.setCurrentLocalId("thisLocalID");
+        cargoManifest.setCargo_recon("buk3h");
         cargoManifest.setId("cargoManifestID");
     }
 
@@ -28,14 +31,24 @@ class CargoManifestTest {
 
     @Test
     void setAndGetCurrentLocalIdTest() {
-        cargoManifest.setCurrentLocalId("thisLocalID");
-        assertEquals("thisLocalID", cargoManifest.getCurrentLocalId().toString());
+        assertEquals("thisLocalID", cargoManifest.getCurrentLocalId());
+        cargoManifest.setCurrentLocalId("thisLocalID2");
+        assertEquals("thisLocalID2", cargoManifest.getCurrentLocalId().toString());
     }
 
     @Test
+    void setAndGetCargoReconTest(){
+        assertEquals("buk3h", cargoManifest.getCargo_recon());
+        cargoManifest.setCargo_recon("buk3g");
+        assertEquals("buk3g", cargoManifest.getCargo_recon());
+    }
+
+
+    @Test
     void setAndGetVehicleIdTest() {
-        cargoManifest.setVehicleId("vehicleID");
         assertEquals("vehicleID", cargoManifest.getVehicleId());
+        cargoManifest.setVehicleId("vehicleID2");
+        assertEquals("vehicleID2", cargoManifest.getVehicleId());
     }
 
     @Test
@@ -57,6 +70,20 @@ class CargoManifestTest {
         assertEquals("load", cargoManifest.getOperationType());
         cargoManifest.setOperationType("unload");
         assertEquals("unload", cargoManifest.getOperationType());
+    }
+
+    @Test
+    void toStringTest() {
+        String string = "CargoManifest{" +
+                "id='cargoManifestID'" +
+                ", nextLocal='Gdánsk'" +
+                ", date='31/12/2020'" +
+                ", operationType='load'" +
+                ", currentLocalId='thisLocalID'" +
+                ", vehicleId='vehicleID'" +
+                ", cargo_recon='buk3h'" +
+                '}';
+        assertEquals(string, cargoManifest.toString());
     }
 }
  

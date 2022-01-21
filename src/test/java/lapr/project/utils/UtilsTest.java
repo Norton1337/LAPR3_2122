@@ -19,6 +19,18 @@ class UtilsTest {
     }
 
     @Test
+    void toDate(){
+        String badDate = "test";
+        Date date = Utils.toDate(badDate);
+        assertNull(date);
+
+        String goodDate = "2021-02-01 13:45:23";
+        Date date1 = Utils.toDate(goodDate);
+        assertNotNull(date1);
+    }
+
+
+    @Test
     void toDouble() {
         assertEquals(0.0, Utils.toDouble("NA"));
         assertEquals(324.0, Utils.toDouble("324"));
