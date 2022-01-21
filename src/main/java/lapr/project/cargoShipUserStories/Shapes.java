@@ -51,7 +51,7 @@ public class Shapes{
         thisMaxY = Math.max(thisMaxY, this.p3.getY());
 
         double thisMaxZ = Math.max(this.p1.getZ(), this.p2.getZ());
-        thisMaxZ = Math.max(thisMaxZ, this.p3.getZ());
+        thisMaxZ = Math.max(thisMaxZ, this.p3.getZ())+other.getWidth();
 
         double otherMaxX = Math.max(other.p1.getX(), other.p2.getX());
         otherMaxX = Math.max(otherMaxX, other.p3.getX());
@@ -60,7 +60,7 @@ public class Shapes{
         otherMaxY = Math.max(otherMaxY, other.p3.getY());
 
         double otherMaxZ = Math.max(other.p1.getZ(), other.p2.getZ());
-        otherMaxZ = Math.max(otherMaxZ, other.p3.getZ());
+        otherMaxZ = Math.max(otherMaxZ, other.p3.getZ())+other.getWidth();
 
 
         double thisMinX = Math.min(this.p1.getX(), this.p2.getX());
@@ -81,29 +81,34 @@ public class Shapes{
         double otherMinZ = Math.min(other.p1.getZ(), other.p2.getZ());
         otherMinZ = Math.min(otherMinZ, other.p3.getZ());
 
-        System.out.println(thisMaxX +" --- " + otherMinX);
 
         if(thisMaxX <= otherMinX){
+            System.out.println(1);
             isIntersecting = false;
         }
             
         else if(otherMaxX <= thisMinX){
+            System.out.println(2);
             isIntersecting = false;
         }
             
-        else if(thisMaxY <= otherMaxY){
+        else if(thisMaxY <= otherMinY){
+            System.out.println(3);
             isIntersecting = false;
         }
             
         else if(otherMaxY <= thisMinY){
+            System.out.println(4);
             isIntersecting = false;
         }
             
         else if(thisMaxZ <= otherMinZ){
+            System.out.println(5);
             isIntersecting = false;
         }
             
         else if(otherMaxZ <= thisMinZ){
+            System.out.println(6);
             isIntersecting = false;
         }
             

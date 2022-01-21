@@ -4,6 +4,9 @@ import lapr.project.cargoShipUserStories.CenterOfMass;
 import lapr.project.cargoShipUserStories.Coords;
 import lapr.project.cargoShipUserStories.Shapes;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
@@ -16,8 +19,8 @@ class CenterOfMassTests {
     @BeforeEach
     void setup(){
         Coords p11 = new Coords(0, 48.8, 0);
-        Coords p12 = new Coords(25,0,0);
-        Coords p13 = new Coords(25,48.8,0);
+        Coords p12 = new Coords(21,0,0);
+        Coords p13 = new Coords(21,48.8,0);
         Shapes shape1 = new Shapes(p11, p12, p13, 51.25, true);
 
         Coords p21 = new Coords(21, 48.8, 0);
@@ -39,32 +42,26 @@ class CenterOfMassTests {
         Coords p52 = new Coords(280,48.8,5);
         Coords p53 = new Coords(260,90,5);
         Shapes shape5 = new Shapes(p51, p52, p53, 41.25, false);
-        System.out.println("Shape " +(1)+ " and " +(2) + ": " + shape1.intersects(shape2)); 
+
         boatShapes.add(shape1);
         boatShapes.add(shape2);
         boatShapes.add(shape3);
         boatShapes.add(shape4);
         boatShapes.add(shape5);
 
-        // for (int i = 0; i < boatShapes.size(); i++) {
-        //     for(int k=0;k<boatShapes.size();k++){
-        //         if(i!=k)
-        //             System.out.println("Shape " +(i+1)+ " and " +(k+1) + ": " + boatShapes.get(i).intersects(boatShapes.get(k))); 
-        //     }
-        // }
+
 
         
         centerOfMass = new CenterOfMass(boatShapes);
     }
-    // TODO Fix this tests
-    /*
+
     @Test
     void calculateCentroidTest(){
         Coords centerOfMassOfShip = centerOfMass.calculateCentroid();
         System.out.println(centerOfMassOfShip.toString());
-    //     assertEquals(197.56, centerOfMassOfShip.getX());
-    //     assertEquals(30.47, centerOfMassOfShip.getY());
-    //     assertEquals(25.62, centerOfMassOfShip.getZ());
+        assertEquals(197.56, centerOfMassOfShip.getX());
+        assertEquals(30.47, centerOfMassOfShip.getY());
+        assertEquals(25.62, centerOfMassOfShip.getZ());
     }
 
 
@@ -76,5 +73,5 @@ class CenterOfMassTests {
 
     }
 
-     */
+
 }
