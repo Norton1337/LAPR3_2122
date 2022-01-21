@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,7 @@ import lapr.project.ui.UsersUI;
 import lapr.project.ui.WarehouseUI;
 
 class CargoManifestControllerTest {
+
     //DB
     VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
     TrucksDBMock trucksDBMock = new TrucksDBMock();
@@ -116,6 +118,7 @@ class CargoManifestControllerTest {
     @BeforeEach
     void setup(){
         //SETUP
+
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
         truckUI.importTrucks("Docs/Input/truck.csv");
@@ -143,7 +146,9 @@ class CargoManifestControllerTest {
     @Test
     void addCargoManifestTest(){
         CargoManifest cm = new CargoManifest("nextLocal", "currentLocalId", "date", "operationType", "cargo_recon");
-        assertTrue(cargoManifestController.addCargoManifest(cm, "vehicleID"));
+        assertTrue(cargoManifestController.addCargoManifest(cm, "78-28-VR"));
+        CargoManifest test = cargoManifestDBMock.addCargoManifest(cm);
+        assertEquals(test,cm);
     }
 
     @Test
@@ -166,6 +171,23 @@ class CargoManifestControllerTest {
         assertEquals(cm,cargoManifestController.findCargoById(cm.getId()));
     }
 
+    @Test
+    void containers_to_offload(){
+        String mmsi = "211331640";
+        List<String> testList;
+        testList = cargoManifestController.containers_to_offload(mmsi);
+
+        assertEquals(null,testList);
+    }
+
+    @Test
+    void containers_to_load(){
+        String mmsi = "212180000";
+        List<String> testList;
+        testList = cargoManifestController.containers_to_load(mmsi);
+
+        assertEquals(null,testList);
+    }
 
 }
 

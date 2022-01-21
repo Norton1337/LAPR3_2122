@@ -2,7 +2,6 @@ package lapr.project.controller.model_controllers;
 
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.cargoManifest.idb.ICargoManifest;
-import lapr.project.model.containers.Container;
 import lapr.project.model.operation.Operation;
 import lapr.project.model.operation.idb.IOperation;
 import lapr.project.model.ships.Ship;
@@ -10,8 +9,6 @@ import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
 import lapr.project.utils.Utils;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,6 +79,9 @@ public class CargoManifestController {
                 }
             }
         }
+        if(shipCargos.size() == 0){
+            return null;
+        }
         Utils.cargosOrderedByTime(shipCargos);
         shipOffloadCargo = shipCargos.get(0);
         for (Operation elem : operationDB.allOperations()) {
@@ -113,6 +113,9 @@ public class CargoManifestController {
                     }
                 }
             }
+        }
+        if(shipCargos.size() == 0){
+            return null;
         }
         Utils.cargosOrderedByTime(shipCargos);
         shipToLoadCargo = shipCargos.get(0);
