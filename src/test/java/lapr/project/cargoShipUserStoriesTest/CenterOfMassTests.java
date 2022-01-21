@@ -64,7 +64,7 @@ class CenterOfMassTests {
         assertEquals(25.62, centerOfMassOfShip.getZ());
     }
 */
-
+/*
     @Test
     void addContainersTest(){
         Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
@@ -72,6 +72,6 @@ class CenterOfMassTests {
         centerOfMass.addContainers(1.0, 10.0, 5.0, 100, centerOfMassOfShip);
 
     }
-
+*/
 
 }
