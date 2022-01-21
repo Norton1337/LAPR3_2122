@@ -42,8 +42,8 @@ class Main {
         GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
         LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
         CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock, operationDBMock);
-        ContainerController containerController = new ContainerController(containerDBMock);
         OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController, cargoManifestController, shipController, vehiclesController);
+        ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController, operationController, vehiclesController, localsController);
         TruckController truckController = new TruckController(trucksDBMock);
         UserController userController = new UserController(usersDBMock);
         ClientController clientController = new ClientController(clientDBMock, usersDBMock);
