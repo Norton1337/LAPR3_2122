@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,16 +81,21 @@ class CargoManifestControllerTest {
     //CONTROLLERS DO MODEL
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
     ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
-    ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock, shipPositionDataDBMock);
+    ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,
+            shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
     LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
-    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock, operationDBMock);
-    OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController, cargoManifestController, shipController, vehiclesController);
-    ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController, operationController, vehiclesController, localsController);
+    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock,
+            operationDBMock);
+    OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController,
+            cargoManifestController, shipController, vehiclesController);
+    ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController,
+            operationController, vehiclesController, localsController, leasingDBMock);
     TruckController truckController = new TruckController(trucksDBMock);
     UserController userController = new UserController(usersDBMock);
     ClientController clientController = new ClientController(clientDBMock, usersDBMock);
-    LeasingController leasingController = new LeasingController(leasingDBMock, containerDBMock, clientDBMock, usersDBMock, clientController);
+    LeasingController leasingController = new LeasingController(leasingDBMock, containerDBMock, clientDBMock,
+            usersDBMock, clientController);
 
     //CONTROLLERS
     DataToBstController dataToBstController = new DataToBstController();

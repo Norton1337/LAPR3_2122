@@ -1,8 +1,6 @@
 package lapr.project.controller.ModelControllers;
 
 import lapr.project.controller.model_controllers.*;
-import lapr.project.data.Database.ContainerDB;
-import lapr.project.data.Database.GeneratorDB;
 import lapr.project.data.mocks.*;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.locals.Locals;
@@ -23,6 +21,7 @@ public class OperationControllerTest {
     VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
+    LeasingDBMock leasingDBMock = new LeasingDBMock();
     //Controller
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock
@@ -32,7 +31,7 @@ public class OperationControllerTest {
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,localsController
             ,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController
-            ,operationController,vehiclesController,localsController);
+            ,operationController,vehiclesController,localsController, leasingDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock,generatorDBMock);
 

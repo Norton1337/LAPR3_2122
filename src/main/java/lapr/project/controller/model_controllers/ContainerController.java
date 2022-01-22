@@ -3,10 +3,13 @@ package lapr.project.controller.model_controllers;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;
+import lapr.project.model.leasing.Leasing;
+import lapr.project.model.leasing.idb.ILeasing;
 import lapr.project.model.locals.Locals;
 import lapr.project.model.operation.Operation;
 import lapr.project.model.vehicle.Vehicles;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lapr.project.utils.Utils.toDate;
@@ -19,14 +22,17 @@ public class ContainerController {
     private final OperationController operationController;
     private final VehiclesController vehiclesController;
     private final LocalsController localsController;
+    private final ILeasing leasingDB;
 
     public ContainerController(IContainerDB containerDB, CargoManifestController cargoManifestController,
-                               OperationController operationController, VehiclesController vehiclesController, LocalsController localsController) {
+                               OperationController operationController, VehiclesController vehiclesController,
+                               LocalsController localsController, ILeasing leasingDB) {
         this.containerDB = containerDB;
         this.cargoManifestController = cargoManifestController;
         this.operationController = operationController;
         this.vehiclesController = vehiclesController;
         this.localsController = localsController;
+        this.leasingDB = leasingDB;
     }
 
     public boolean addContainer(Container newContainer) {
@@ -64,6 +70,22 @@ public class ContainerController {
         return "Container not found.";
     }
 
+    /*public List<String> containerRoute(String username, String containerNumber){
+        Container container = findContainerByNumber(containerNumber);
+        Leasing leasing = null;
+        List<String> containerRoute = new ArrayList<>();
+
+        for(Leasing elem : leasingDB.getAllLeasing()){
+            if(elem.getContainerId().equals(container.getId())){
+                leasing = elem;
+            }
+        }
+        if(leasing == null){
+
+        }
+
+    }*/
+
     public List<Container> getAllContainers() {
         return containerDB.getAllContainers();
     }
@@ -72,4 +94,5 @@ public class ContainerController {
     public Container findContainerByNumber(String number) {
         return containerDB.getContainerByNumber(number);
     }
+
 }

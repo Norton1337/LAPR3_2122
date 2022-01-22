@@ -4,9 +4,6 @@ import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.containers.Container;
 import lapr.project.ui.ContainerUI;
-import lapr.project.ui.CountryUI;
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +25,7 @@ public class ContainerControllerTest {
     ShipDBMock shipDBMock = new ShipDBMock();
     TrucksDBMock trucksDBMock = new TrucksDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
+    LeasingDBMock leasingDBMock = new LeasingDBMock();
     //Controller
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock,
             cargoManifestDBMock,operationDBMock);
@@ -37,7 +35,7 @@ public class ContainerControllerTest {
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,
             localsController,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController
-            ,operationController,vehiclesController,localsController);
+            ,operationController,vehiclesController,localsController, leasingDBMock);
 
     //LEITURA DE FICHEIRO
     ContainerUI containerUI = new ContainerUI(containerController);
