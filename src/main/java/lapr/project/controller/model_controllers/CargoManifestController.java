@@ -209,7 +209,6 @@ public class CargoManifestController {
                     }
                 }
             }
-            System.out.println(cargo);
             if (cargo != null) {
                 if (this.findCargoByRecon(cargo).getOperationType().equals("Load")) {
                     freeShips.remove(ship);

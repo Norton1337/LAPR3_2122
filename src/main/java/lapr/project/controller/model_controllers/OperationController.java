@@ -174,4 +174,39 @@ public class OperationController {
         return operationDB.getOperation(id);
     }
 
+    public List<String> port_map(int port_code, String mes) {
+        Locals port = localsController.getLocalWithPortId(String.valueOf(port_code));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(toDate(mes));
+        calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        Date MonthFirstDay = calendar.getTime();
+        calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Date MonthLastDay = calendar.getTime();
+        List<CargoManifest> lcm = new ArrayList<>();
+        List<String> ls = new ArrayList<>();
+        for (CargoManifest cm : cargoManifestController.getAllCargoManifest()) {
+            if (cm.getCurrentLocalId().equals(String.valueOf(port.getLocalCode()))
+                    && toDate(cm.getDate()).compareTo(MonthFirstDay) >= 0
+                    && toDate(cm.getDate()).compareTo(MonthLastDay) <= 0) {
+                lcm.add(cm);
+            }
+        }
+        for (CargoManifest cm : lcm) {
+            for (Operation op : this.getAllOperations()) {
+                if (op.getCargoManifestId().equals(cm.getId())) {
+                    if (cm.getOperationType().equals("Load")) {
+                        ls.add("Warehouse: " + op.getOperation_warehouse() + " Container: " + op.getContainerId()
+                                + " Date Leaving: " + cm.getDate());
+                    } else {
+                        ls.add("Warehouse: " + op.getOperation_warehouse() + " Container: " + op.getContainerId()
+                                + " Date Entring: " + cm.getDate());
+                    }
+                }
+            }
+        }
+        if (ls.size() == 0) {
+            ls.add("There aren't any operations on the port in that month");
+        }
+        return ls;
+    }
 }
