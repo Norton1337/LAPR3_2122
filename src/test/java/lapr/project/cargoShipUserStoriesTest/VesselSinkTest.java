@@ -61,7 +61,8 @@ class VesselSinkTest {
         withContainers.addAll(boatShapes);
         double height = vesselSink.getHeightDifference(250, boatShapes, withContainers);
         String heightString = String.format("%.2f", height);
-        assertEquals("0,03", heightString);
+
+        assertEquals(String.format("%.2f", 0.03), heightString);
 
     }
 
@@ -72,7 +73,7 @@ class VesselSinkTest {
         withContainers.addAll(boatShapes);
         double pressure = vesselSink.getPressureExerted(withContainers,250);
         String pressureString = String.format("%.2f", pressure);
-        assertEquals("169409,94", pressureString);
+        assertEquals(String.format("%.2f", 169409.94), pressureString);
     }
 
     @Test
