@@ -72,20 +72,19 @@ public class CenterOfMass {
 
         }
 
-        final DecimalFormat df = new DecimalFormat("0.00");
+     
         
-        return new Coords(  Double.parseDouble(df.format(volumeX/totalVolume)), 
-                            Double.parseDouble(df.format(volumeY/totalVolume)),
-                            Double.parseDouble(df.format(volumeZ/totalVolume)));
+        return new Coords(volumeX/totalVolume, 
+                          volumeY/totalVolume,
+                          volumeZ/totalVolume);
         
 
 
     }
 
 
-    public ArrayList<Shapes> addContainers(double length, double width, double height, int remainingAmount, Coords centerOfMass){
+    public ArrayList<Shapes> addContainers(double length, double width, double height, double remainingAmount, double floorHeight, Coords centerOfMass){
         double x=centerOfMass.getX();
-        double y=centerOfMass.getY();
         double z=centerOfMass.getZ();
 
         ArrayList<Shapes> newContainers = new ArrayList<>();
@@ -95,7 +94,7 @@ public class CenterOfMass {
             maxHeight= Math.max(maxHeight,shapes.getP2().getY());
             maxHeight= Math.max(maxHeight,shapes.getP3().getY());
         }
-        double widthOfShip = boatShapes.get(0).getWidth()-10;
+        double widthOfShip = boatShapes.get(0).getWidth();
 
         double maxLength = 0;
         for (Shapes shapes : boatShapes) {
@@ -105,24 +104,101 @@ public class CenterOfMass {
         }
 
         System.out.println("Max Length: "+maxLength);
-
-        double orientation = Math.max(Math.floor(widthOfShip/width), Math.floor(widthOfShip/length));
-        
-        System.out.println("only " + (orientation) + " containers fit ");
        
         if(length<width){
             double temp = length;
             length=width;
             width=temp;
         }
-       
-        Coords p1 = new Coords(0, 0, 0);
-        Coords p2 = new Coords(1, 0, 0);
-        Coords p3 = new Coords(1, 1, 0);
-        Shapes newContainer = new Shapes(p1, p2, p3, 1, false);
-        newContainers.add(newContainer);
-        compareCentroids(newContainers);
 
+        double orientation = Math.floor(widthOfShip/width);
+        
+        System.out.println("only " + (orientation) + " containers fit ");
+
+        double amountInMiddle=0;
+
+        if((remainingAmount-1)%4!=0 && (remainingAmount%2!=0))
+            amountInMiddle=3;
+        else if(((remainingAmount-1)%2==0 || remainingAmount == 1)&& (remainingAmount%2!=0))
+            amountInMiddle=1;
+        
+      System.out.println( "amountInMiddle: " + amountInMiddle);
+        double separationOfX = length/2;
+        double separationOfZ = width/2;
+
+        double displacementX=0;
+        double displacementY=0;
+        double displacementZ=0;
+        int placedAmount=0;
+        while(placedAmount<remainingAmount){
+            if(placedAmount==0 && amountInMiddle==1){
+                Coords p1 = new Coords(x-separationOfX, floorHeight, z-separationOfZ);
+                Coords p2 = new Coords(x-separationOfX, floorHeight, z-separationOfZ);
+                Coords p3 = new Coords(x+separationOfX, floorHeight+height, z-separationOfZ);
+                Shapes newContainer = new Shapes(p1, p2, p3, width, false);
+                if(!freeSpace(newContainer)){
+                    newContainers.add(newContainer);
+                    placedAmount++;
+                }
+            }else if(placedAmount<3 && amountInMiddle==3 && orientation>3){
+                int displacement=0;
+                if(placedAmount==1)
+                    displacement=1;
+                else if (placedAmount==2)
+                    displacement=-1;
+                Coords p1 = new Coords(x-separationOfX , floorHeight+displacementY, z-separationOfZ + (displacement * separationOfZ));
+                Coords p2 = new Coords(x-separationOfX, floorHeight+displacementY, z-separationOfZ + (displacement * separationOfZ));
+                Coords p3 = new Coords(x+separationOfX , floorHeight+height+displacementY, z-separationOfZ + (displacement * separationOfZ));
+                Shapes newContainer = new Shapes(p1, p2, p3, width, false);
+                if(!freeSpace(newContainer)){
+                    newContainers.add(newContainer);
+                    placedAmount++;
+                }
+            }else{
+                boolean placedContainer = false;
+                while(!placedContainer)
+                {
+                    
+                    Coords p1 = new Coords((x-(2*separationOfX)+displacementX), floorHeight+displacementY, (z-widthOfShip/2)+displacementZ);
+                    Coords p2 = new Coords((x-(2*separationOfX)+displacementX), floorHeight+displacementY, (z-widthOfShip/2)+displacementZ);
+                    Coords p3 = new Coords((x-separationOfX)+displacementX, floorHeight+height+displacementY, (z-widthOfShip/2)+displacementZ);
+    
+                    Coords n1 = new Coords(((x+(2*separationOfX))-displacementX), floorHeight+displacementY, ((z+widthOfShip/2)-2*separationOfZ)-displacementZ);
+                    Coords n2 = new Coords((x+(2*separationOfX)-displacementX), floorHeight+displacementY, ((z+widthOfShip/2)-2*separationOfZ)-displacementZ);
+                    Coords n3 = new Coords((x+separationOfX)-displacementX, floorHeight+height+displacementY, ((z+widthOfShip/2)-2*separationOfZ)-displacementZ);
+                    Shapes newContainer = new Shapes(p1, p2, p3, width, false);
+                    Shapes newContainer2 = new Shapes(n1, n2, n3, width, false);
+    
+    
+                    if(!freeSpace(newContainer) && !freeSpace(newContainer2)){
+                        newContainers.add(newContainer);
+                        newContainers.add(newContainer2);
+                        placedContainer=true;
+                        placedAmount+=2;
+                    }
+                    
+                    if((z-widthOfShip/2)+displacementZ + width >= widthOfShip){
+                        displacementZ=0;
+                        displacementX+=length;
+                        if((x-(2*separationOfX)+displacementX>=maxLength)){
+                            displacementX=0;
+                            displacementY+=height;
+                            if(floorHeight+height+displacementY>=maxHeight){
+                                return newContainers;
+                            }
+                        }
+                        
+                    }else
+                        displacementZ+=width;
+
+                    
+
+                }
+               
+                
+            }
+            
+        }
 
         return newContainers;
 
@@ -135,7 +211,6 @@ public class CenterOfMass {
         System.out.println(calculateCentroid(boatShapes));
         return true;
     }
-
     
 
     public boolean freeSpace(Shapes container){
