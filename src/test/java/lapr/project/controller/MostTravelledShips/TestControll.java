@@ -4,6 +4,7 @@ import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ToMatrixController;
+import lapr.project.controller.helper_classes.CircuitFinder;
 import lapr.project.controller.helper_classes.CountryColour;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
@@ -16,6 +17,7 @@ import lapr.project.ui.ShipUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static lapr.project.utils.Utils.*;
@@ -83,7 +85,7 @@ public class TestControll {
     void test() {
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
 
             //matrixController.printFreightNetworkMatrix();
             matrixController.printLandMaritime();
@@ -94,7 +96,7 @@ public class TestControll {
     void leixoesTest() {
         AdjacencyMatrixGraph<Locals, Double> matrix = matrixController.buildFreightNetwork(3);
         Locals leixoes = localsController.getLocalWithName("Leixoes");
-        List<Object> outgoingVerticesList = matrix.outgoingVertices(leixoes);
+        List<Locals> outgoingVerticesList = matrix.outgoingVertices(leixoes);
         List<String> expectResult = Arrays.asList("Setubal", "Barcelona", "Dunkirk", "Horta", "Ponta Delgada", "Valencia", "Funchal");
 
         for (Object elems : outgoingVerticesList) {
@@ -118,7 +120,7 @@ public class TestControll {
         matrixController.buildMatrixToColour();
         List<CountryColour> result = matrixController.colorMatrix();
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
             printList(result);
         }
 
@@ -128,7 +130,7 @@ public class TestControll {
 
 
     @Test
-    void portsTest(){
+    void portsTest() {
         // Create new matrix for tests
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
         Map<Locals, Double> portsList;
@@ -137,7 +139,7 @@ public class TestControll {
         portsList = matrixController.centralPorts(t, 3);
 
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
             printMap(portsList);
         }
 
@@ -155,13 +157,26 @@ public class TestControll {
     }
 
     @Test
-    void pathsTest(){
-        /*
+    void pathsTest() throws IOException {
+
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
         LinkedList<Locals> path = new LinkedList<>();
 
         var madrid = localsController.getLocalWithName("Madrid");
+        var result = t.getIntNum(madrid);
+
+
+        System.out.println(t);
+
+
+        CircuitFinder circuitFinder = new CircuitFinder();
+        circuitFinder.convertGraph(t);
+
+        var result1 = circuitFinder.mostEfficientCircuitWithMap(circuitFinder.getGraph(), "Leixoes");
+        System.out.println(result1);
+
+        /*
         var lisbon = localsController.getLocalWithName("Lisbon");
 
         var genoa = localsController.getLocalWithName("Genoa");
@@ -183,4 +198,35 @@ public class TestControll {
          */
 
     }
+
+
+    @Test
+    void findBiggestCircuit() throws IOException {
+        AdjacencyMatrixGraph<String, Double> t = new AdjacencyMatrixGraph<>();
+        t.insertVertex("0");
+        t.insertVertex("1");
+        t.insertVertex("2");
+        t.insertVertex("3");
+        t.insertVertex("4");
+        t.insertVertex("5");
+        t.insertVertex("6");
+        t.insertVertex("7");
+
+        t.insertEdge("0","1",1.0);
+        t.insertEdge("1","4",50.0);
+        t.insertEdge("0","4",1.0);
+        t.insertEdge("1","3",0.0);
+        t.insertEdge("4","3",1.0);
+        t.insertEdge("1","2",1.0);
+        t.insertEdge("3","2",1.0);
+
+        CircuitFinder f = new CircuitFinder();
+
+        //var r = f.convertGraph(t);
+        var result = f.mostEfficientCircuitWithMap(t, "0");
+        printList(result);
+
+    }
+
+
 }

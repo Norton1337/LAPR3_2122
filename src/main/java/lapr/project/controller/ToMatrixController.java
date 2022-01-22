@@ -273,10 +273,10 @@ public class ToMatrixController {
         return null;
     }
 
-    public int returnColoursFromGoingVert(List<CountryColour> allC, List<Object> borders) {
+    public <V> int returnColoursFromGoingVert(List<CountryColour> allC, List<V> borders) {
         List<Integer> colours = new LinkedList<>();
 
-        for (Object elems : borders) {
+        for (V elems : borders) {
             String country = (String) elems;
             CountryColour countryColour = findCountryColourWithName(allC, country);
             colours.add(findCountryColourWithName(allC, countryColour.getCountry()).getColour());
