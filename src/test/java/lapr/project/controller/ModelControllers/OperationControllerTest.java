@@ -22,6 +22,9 @@ public class OperationControllerTest {
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
     LeasingDBMock leasingDBMock = new LeasingDBMock();
+    UsersDBMock usersDBMock = new UsersDBMock();
+    ClientDBMock clientDBMock = new ClientDBMock();
+
     //Controller
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock
@@ -31,7 +34,7 @@ public class OperationControllerTest {
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,localsController
             ,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController
-            ,operationController,vehiclesController,localsController, leasingDBMock);
+            ,operationController,vehiclesController,localsController, clientDBMock, leasingDBMock, usersDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,shipPositionDataDBMock);
     GeneratorController generatorController = new GeneratorController(shipDBMock,generatorDBMock);
 

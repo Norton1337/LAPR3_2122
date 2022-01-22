@@ -26,6 +26,9 @@ public class ContainerControllerTest {
     TrucksDBMock trucksDBMock = new TrucksDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
     LeasingDBMock leasingDBMock = new LeasingDBMock();
+    UsersDBMock usersDBMock = new UsersDBMock();
+    ClientDBMock clientDBMock = new ClientDBMock();
+
     //Controller
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock,
             cargoManifestDBMock,operationDBMock);
@@ -35,7 +38,7 @@ public class ContainerControllerTest {
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,
             localsController,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController
-            ,operationController,vehiclesController,localsController, leasingDBMock);
+            ,operationController,vehiclesController,localsController, clientDBMock, leasingDBMock, usersDBMock);
 
     //LEITURA DE FICHEIRO
     ContainerUI containerUI = new ContainerUI(containerController);

@@ -90,7 +90,7 @@ class CargoManifestControllerTest {
     OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController,
             cargoManifestController, shipController, vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController,
-            operationController, vehiclesController, localsController, leasingDBMock);
+            operationController, vehiclesController, localsController, clientDBMock, leasingDBMock, usersDBMock);
     TruckController truckController = new TruckController(trucksDBMock);
     UserController userController = new UserController(usersDBMock);
     ClientController clientController = new ClientController(clientDBMock, usersDBMock);

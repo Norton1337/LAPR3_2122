@@ -50,7 +50,7 @@ class Main {
                                 localsController, cargoManifestController, shipController, vehiclesController);
                 ContainerController containerController = new ContainerController(containerDBMock,
                                 cargoManifestController,
-                                operationController, vehiclesController, localsController, leasingDBMock);
+                                operationController, vehiclesController, localsController, clientDBMock, leasingDBMock, usersDBMock);
                 TruckController truckController = new TruckController(trucksDBMock);
                 UserController userController = new UserController(usersDBMock);
                 ClientController clientController = new ClientController(clientDBMock, usersDBMock);
@@ -112,8 +112,8 @@ class Main {
                 // System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
 
                 // printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
-                printList(cargoManifestController.free_ships(shipController));
-
+                //printList(cargoManifestController.free_ships(shipController));
+                printList(containerController.containerRoute("client123","2345"));
                 //printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
 
                 // printList(localsController.getAllWarehouses());

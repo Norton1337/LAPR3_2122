@@ -43,9 +43,7 @@ public class OperationsUI {
 
                 if (!list.get(0).contains("container_number")) {
 
-
                     newOperation = new Operation(toInt(list.get(3)),toInt(list.get(4)),toInt(list.get(5)));
-
                     operationController.addOperation(newOperation,list.get(0),list.get(1),list.get(2));
 
                 }

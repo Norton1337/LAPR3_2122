@@ -1,19 +1,23 @@
 package lapr.project.controller.model_controllers;
 
 import lapr.project.model.cargoManifest.CargoManifest;
+import lapr.project.model.client.Client;
+import lapr.project.model.client.idb.IClient;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;
 import lapr.project.model.leasing.Leasing;
 import lapr.project.model.leasing.idb.ILeasing;
 import lapr.project.model.locals.Locals;
 import lapr.project.model.operation.Operation;
+import lapr.project.model.users.Users;
+import lapr.project.model.users.idb.IUsers;
 import lapr.project.model.vehicle.Vehicles;
+import lapr.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lapr.project.utils.Utils.toDate;
-import static lapr.project.utils.Utils.toInt;
+import static lapr.project.utils.Utils.*;
 
 public class ContainerController {
 
@@ -22,17 +26,21 @@ public class ContainerController {
     private final OperationController operationController;
     private final VehiclesController vehiclesController;
     private final LocalsController localsController;
+    private final IClient clientDB;
     private final ILeasing leasingDB;
+    private final IUsers usersDB;
 
     public ContainerController(IContainerDB containerDB, CargoManifestController cargoManifestController,
                                OperationController operationController, VehiclesController vehiclesController,
-                               LocalsController localsController, ILeasing leasingDB) {
+                               LocalsController localsController, IClient clientDB, ILeasing leasingDB, IUsers usersDB) {
         this.containerDB = containerDB;
         this.cargoManifestController = cargoManifestController;
         this.operationController = operationController;
         this.vehiclesController = vehiclesController;
         this.localsController = localsController;
+        this.clientDB = clientDB;
         this.leasingDB = leasingDB;
+        this.usersDB = usersDB;
     }
 
     public boolean addContainer(Container newContainer) {
@@ -70,21 +78,60 @@ public class ContainerController {
         return "Container not found.";
     }
 
-    /*public List<String> containerRoute(String username, String containerNumber){
+
+
+    public List<String> containerRoute(String username, String containerNumber){
+        UserController userController = new UserController(usersDB);
         Container container = findContainerByNumber(containerNumber);
         Leasing leasing = null;
         List<String> containerRoute = new ArrayList<>();
+        List<CargoManifest> cargoList = new ArrayList<>();
+        ClientController clientController = new ClientController(clientDB,usersDB);
+        Users user = userController.getUserByUsername(username);
+        Client client = clientController.getClientWithUserId(user.getId());
 
         for(Leasing elem : leasingDB.getAllLeasing()){
-            if(elem.getContainerId().equals(container.getId())){
-                leasing = elem;
+            if(elem.getClientId().equals(client.getId())){
+                if(elem.getContainerId().equals(container.getId())){
+                    leasing = elem;
+                }
             }
         }
-        if(leasing == null){
 
+        if(leasing == null){
+            containerRoute.add("Container is not valid");
+            return containerRoute;
         }
 
-    }*/
+        for(Operation elem : operationController.getAllOperations()){
+            if(elem.getContainerId().equals(container.getId())
+                    && toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())
+                    .compareTo(toDate(leasing.getStartDate())) >= 0
+                    && toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())
+                    .compareTo(toDate(leasing.getEndDate())) <= 0){
+                cargoList.add(cargoManifestController.findCargoById(elem.getCargoManifestId()));
+            }
+        }
+
+        Utils.cargosOrderedByTime(cargoList);
+        if(cargoList.get(0).getOperationType().equals("Unload")){
+            cargoList.remove(0);
+        }
+        for(int i = 0 ; i < cargoList.size(); i+=2){
+            if((i+1) < cargoList.size()){
+                containerRoute.add("Departure Local: " + cargoList.get(i).getCurrentLocalId() + " Departure date: "
+                        + cargoList.get(i).getDate()
+                        + " Arrival Local :" + cargoList.get(i).getNextLocal() + " Arrival Date: "
+                        + cargoList.get(i+1).getDate() +
+                        " Transport Method: " + vehiclesController.getVehicle(cargoList.get(i).getVehicleId()).getType());
+            }
+        }
+
+        if(containerRoute.size() == 0){
+            containerRoute.add("Container has no voyages yet.");
+        }
+        return containerRoute;
+    }
 
     public List<Container> getAllContainers() {
         return containerDB.getAllContainers();

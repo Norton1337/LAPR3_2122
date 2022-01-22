@@ -27,4 +27,13 @@ public class UserController {
     public Users getUserById(String id){
         return userDB.getUser(id);
     }
+
+    public Users getUserByUsername(String username){
+        for(Users elem : getAllUsers()){
+            if(elem.getUsername().equals(username)){
+                return elem;
+            }
+        }
+        return null;
+    }
 }
