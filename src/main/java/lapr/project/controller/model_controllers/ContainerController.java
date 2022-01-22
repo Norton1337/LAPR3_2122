@@ -110,7 +110,7 @@ public class ContainerController {
             if(elem.getContainerId().equals(container.getId())
                     && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
                     .compareTo(toDate(leasing.getStartDate())) >= 0
-                    && toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())
+                    && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
                     .compareTo(toDate(leasing.getEndDate())) <= 0){
                 cargoList.add(cargoManifestController.findCargoById(elem.getCargoManifestId()));
             }

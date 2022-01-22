@@ -157,8 +157,6 @@ public class TestControll {
 
     @Test
     void pathsTest(){
-
-        /*
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
         LinkedList<Locals> path = new LinkedList<>();
@@ -173,8 +171,15 @@ public class TestControll {
         CircuitFinder circuitFinder = new CircuitFinder();
         circuitFinder.convertGraph(t);
 
-        var result1 = circuitFinder.mostEfficientCircuitWithMap(circuitFinder.getGraph(), "Leixoes");
+        ArrayList<String> result1 = null;
+        try {
+            result1 = circuitFinder.mostEfficientCircuitWithMap(circuitFinder.getGraph(), "Leixoes");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(result1);
+        /*
+
 
         /*
         var lisbon = localsController.getLocalWithName("Lisbon");
