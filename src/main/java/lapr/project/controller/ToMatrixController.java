@@ -363,7 +363,7 @@ public class ToMatrixController {
 
         /*
          * Add all existing Ports to map and initialize their
-         * centrality value to 0
+         * centrality value to 0.
          */
         for (Locals ports : localsController.getAllLocals()) {
             localsMap.put(ports, 0.0);
