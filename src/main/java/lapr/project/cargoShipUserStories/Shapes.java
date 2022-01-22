@@ -32,7 +32,7 @@ public class Shapes{
         else if(p1.getY() != p3.getY())
             height = Math.abs(p1.getY() - p3.getY());
         else
-        throw new IllegalArgumentException("All 3 coordinates can't have the same Y coordinate");
+            throw new IllegalArgumentException("All 3 coordinates can't have the same Y coordinate");
 
         if(triangle)
             this.volume=((length*height)/2) * width;
@@ -82,35 +82,31 @@ public class Shapes{
         otherMinZ = Math.min(otherMinZ, other.p3.getZ());
 
 
-        if(thisMaxX <= otherMinX){
-            System.out.println(1);
+        if(thisMaxX <= otherMinX)
             isIntersecting = false;
-        }
+        
             
-        else if(otherMaxX <= thisMinX){
-            System.out.println(2);
+        else if(otherMaxX <= thisMinX)
             isIntersecting = false;
-        }
+
             
-        else if(thisMaxY <= otherMinY){
-            System.out.println(3);
+        else if(thisMaxY <= otherMinY)
+
             isIntersecting = false;
-        }
+        
             
-        else if(otherMaxY <= thisMinY){
-            System.out.println(4);
+        else if(otherMaxY <= thisMinY)
+
             isIntersecting = false;
-        }
+        
             
-        else if(thisMaxZ <= otherMinZ){
-            System.out.println(5);
+        else if(thisMaxZ <= otherMinZ)
             isIntersecting = false;
-        }
+    
             
-        else if(otherMaxZ <= thisMinZ){
-            System.out.println(6);
+        else if(otherMaxZ <= thisMinZ)
             isIntersecting = false;
-        }
+        
             
     
         return isIntersecting;
