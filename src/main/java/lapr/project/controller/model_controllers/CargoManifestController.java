@@ -78,6 +78,7 @@ public class CargoManifestController {
             if (elem.getVehicleId().equals(ship_id)) {
                 if (elem.getOperationType().equals("Unload")) {
                     Date dateElem = toDate(elem.getDate());
+                    assert dateElem != null;
                     double dateElemMilli = (double) dateElem.getTime();
                     if (dateElemMilli > date) {
                         shipCargos.add(elem);
@@ -113,6 +114,7 @@ public class CargoManifestController {
             if (elem.getVehicleId().equals(ship_id)) {
                 if (elem.getOperationType().equals("Load")) {
                     Date dateElem = toDate(elem.getDate());
+                    assert dateElem != null;
                     double dateElemMilli = (double) dateElem.getTime();
                     if (dateElemMilli > date) {
                         shipCargos.add(elem);
@@ -206,7 +208,7 @@ public class CargoManifestController {
                         && cargoManifest.getVehicleId().equals(ship.getId())) {
                     if (cargo == null) {
                         cargo = cargoManifest.getCargo_recon();
-                    } else if (toDate(cargoManifest.getDate())
+                    } else if (Objects.requireNonNull(toDate(cargoManifest.getDate()))
                             .compareTo(toDate(this.findCargoByRecon(cargo).getDate())) > 0) {
                         cargo = cargoManifest.getCargo_recon();
                     }
@@ -232,10 +234,10 @@ public class CargoManifestController {
         String cargo_recon = null;
         for (CargoManifest cm : getAllCargoManifest()) {
             if (cm.getVehicleId().equals(ship_id)
-                    && toDate(cm.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0) {
+                    && Objects.requireNonNull(toDate(cm.getDate())).compareTo(toDate(LocalDateTime.now().toString())) < 0) {
                 if (cargo_recon == null) {
                     cargo_recon = cm.getCargo_recon();
-                } else if (toDate(this.findCargoByRecon(cargo_recon).getDate()).compareTo(
+                } else if (Objects.requireNonNull(toDate(this.findCargoByRecon(cargo_recon).getDate())).compareTo(
                         toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))) < 0) {
                     cargo_recon = cm.getCargo_recon();
                 }
@@ -255,7 +257,7 @@ public class CargoManifestController {
         for(CargoManifest elem : getAllCargoManifest()){
             if(elem.getVehicleId().equals(ship.getId())
                     && Objects.requireNonNull(toDate(elem.getDate())).compareTo(toDate(startDate)) > 0
-                    && toDate(elem.getDate()).compareTo(toDate(endDate)) < 0){
+                    && Objects.requireNonNull(toDate(elem.getDate())).compareTo(toDate(endDate)) < 0){
                 cargoManifests.add(elem);
             }
         }
