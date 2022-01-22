@@ -486,11 +486,11 @@ public class ToMatrixController {
 
         else if (dest.getType().equals("Port")&& orig.getType().equals("Capital")) {
 
-           closestCapitalsMap = getNClosenessPlaces(localsController.getAllCapitals(), orig, 1);
-           Locals local = setToList(closestCapitalsMap.keySet()).get(0);
+            closestCapitalsMap = getNClosenessPlaces(localsController.getAllCapitals(), orig, 1);
+            Locals local = setToList(closestCapitalsMap.keySet()).get(0);
 
-           EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, local, path);
-           return path;
+            EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, orig, local, path);
+            return path;
         }
         else {
 
@@ -550,8 +550,8 @@ public class ToMatrixController {
             double weight = 0.0;
 
             List<String> newList = localsPermutationsList.get(i);
-            System.out.println("Permutation list:");
-            System.out.println(newList);
+            //System.out.println("Permutation list:");
+            //System.out.println(newList);
 
             countPermutations++;
 
@@ -561,8 +561,8 @@ public class ToMatrixController {
 
 
             elemsList.addAll(addElementsToList(path));
-            System.out.println("Path from origin to 1element of permutation list");
-            printList(elemsList);
+            //System.out.println("Path from origin to 1element of permutation list");
+            //printList(elemsList);
             elemsList.remove(elemsList.size()-1);
 
 
@@ -577,8 +577,8 @@ public class ToMatrixController {
                 //System.out.println("j+1  (To "+(j+1) + ") "+ localsController.getLocalWithName(newList.get(j+1)));
                 //System.out.println("\n");
                 elemsList.addAll(addElementsToList(path));
-                System.out.println("Path between elements in permutation list");
-                printList(elemsList);
+                //System.out.println("Path between elements in permutation list");
+                //printList(elemsList);
                 elemsList.remove(elemsList.size()-1);
 
 
@@ -588,27 +588,27 @@ public class ToMatrixController {
                     localsController.getLocalWithName(newList.get(newList.size()-1)), destLocal, path);
 
             elemsList.addAll(addElementsToList(path));
-            System.out.println("Path between last element of permutation list and destiny");
-            printList(elemsList);
+            //System.out.println("Path between last element of permutation list and destiny");
+            //printList(elemsList);
 
-            System.out.println("\n");
-            System.out.println("Path weight "+weight);
-            printList(elemsList);
+            //System.out.println("\n");
+            //System.out.println("Path weight "+weight);
+            //printList(elemsList);
             if (weight < finalWeight){
-                System.out.println("weight was smaller");
+                //System.out.println("weight was smaller");
                 //finalPath = auxList;
                 finalPath = elemsList;
                 finalWeight = weight;
-                System.out.println("INSIDE :   " +newList);
+                //System.out.println("INSIDE :   " +newList);
 
             }
             elemsList = new LinkedList<>();
-            System.out.println("--------------------------------------");
+            //System.out.println("--------------------------------------");
         }
         // finalPath only appears with last path
-        printList(finalPath);
+        //printList(finalPath);
 
-        System.out.println("Number of possible combinations: "+countPermutations);
+        //System.out.println("Number of possible combinations: "+countPermutations);
         return finalPath;
     }
 
