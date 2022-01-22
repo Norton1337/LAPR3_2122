@@ -22,6 +22,7 @@ public class OperationControllerTest {
     ShipDBMock shipDBMock = new ShipDBMock();
     VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
     GeneratorDBMock generatorDBMock = new GeneratorDBMock();
+    ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
     //Controller
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock
@@ -32,6 +33,8 @@ public class OperationControllerTest {
             ,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController
             ,operationController,vehiclesController,localsController);
+    ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,shipPositionDataDBMock);
+    GeneratorController generatorController = new GeneratorController(shipDBMock,generatorDBMock);
 
     //Leitura de Ficheiro
     PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(localsController);
@@ -39,9 +42,14 @@ public class OperationControllerTest {
     ContainerUI containerUI = new ContainerUI(containerController);
     CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
     OperationsUI operationsUI = new OperationsUI(operationController);
+    ShipUI shipUI = new ShipUI(shipController,shipPositionDataController,generatorController,vehiclesController);
+    TruckUI truckUI = new TruckUI(vehiclesController);
+
 
     @BeforeEach
     void setup(){
+        shipUI.importShips("Docs/Input/bships.csv");
+        truckUI.importTrucks("Docs/Input/truck.csv");
         portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");
         warehouseUI.importWarehouses("Docs/Input/warehouses.csv");
         containerUI.importContainers("Docs/Input/container.csv");

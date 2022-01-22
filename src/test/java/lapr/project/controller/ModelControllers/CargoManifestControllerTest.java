@@ -1,11 +1,13 @@
 package lapr.project.controller.ModelControllers;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -153,7 +155,6 @@ class CargoManifestControllerTest {
 
     @Test
     void getAllCargoManifestTest(){
-        System.out.println( cargoManifestController.getAllCargoManifest());
         assertEquals(36, cargoManifestController.getAllCargoManifest().size());
     }
 
@@ -177,7 +178,7 @@ class CargoManifestControllerTest {
         List<String> testList;
         testList = cargoManifestController.containers_to_offload(mmsi);
 
-        assertEquals(null,testList);
+        assertNull(testList);
     }
 
     @Test
@@ -186,7 +187,7 @@ class CargoManifestControllerTest {
         List<String> testList;
         testList = cargoManifestController.containers_to_load(mmsi);
 
-        assertEquals(null,testList);
+        assertNull(testList);
     }
 
 }
