@@ -502,6 +502,7 @@ public class ToMatrixController {
             Locals origLocal = setToList(closestCapitalsMap.keySet()).get(0);
             Locals destLocal = setToList(closestCapitalsMapAux.keySet()).get(0);
 
+            EdgeAsDoubleGraphAlgorithms.shortestPath(landMatrix, origLocal, destLocal, path);
 
 
             EdgeAsDoubleGraphAlgorithms.shortestPath(matrix, origLocal, destLocal, path);
@@ -564,7 +565,10 @@ public class ToMatrixController {
             weight = EdgeAsDoubleGraphAlgorithms.shortestPath(matrix, origLocal,
                     localsController.getLocalWithName(newList.get(0)), path);
 
+
             elemsList.addAll(addElementsToList(path));
+            //System.out.println("Path from origin to 1element of permutation list");
+            //printList(elemsList);
             elemsList.remove(elemsList.size()-1);
 
             //System.out.println("Path from origin to 1element of permutation list");
@@ -578,6 +582,8 @@ public class ToMatrixController {
                         localsController.getLocalWithName(newList.get(j+1)), path);
 
                 elemsList.addAll(addElementsToList(path));
+                //System.out.println("Path between elements in permutation list");
+                //printList(elemsList);
                 elemsList.remove(elemsList.size()-1);
 
                 //System.out.println("Path between elements in permutation list");
@@ -592,7 +598,7 @@ public class ToMatrixController {
             //System.out.println("Path between last element of permutation list and destiny");
             //printList(elemsList);
 
-            System.out.println("Path weight "+weight);
+            //System.out.println("Path weight "+weight);
 
             if (weight < finalWeight){
 
@@ -605,7 +611,8 @@ public class ToMatrixController {
 
         //printList(finalPath);
 
-        System.out.println("Number of possible combinations: "+countPermutations + "\n");
+        //System.out.println("Number of possible combinations: "+countPermutations + "\n");
+        //System.out.println("Number of possible combinations: "+countPermutations);
         return finalPath;
     }
 
