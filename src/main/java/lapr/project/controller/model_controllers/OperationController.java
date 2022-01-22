@@ -82,17 +82,18 @@ public class OperationController {
         int containers = 0;
         for (CargoManifest cargo : cargoManifestController.getAllCargoManifest()) {
             if (toDate(cargo.getDate()).compareTo(toDate(cm.getDate())) <= 0
-                    && cargo.getCurrentLocalId().equals(port.getId())) {
+                    && cargo.getCurrentLocalId().equals(String.valueOf(port.getLocalCode()))) {
                 lcargo.add(cargo);
             }
         }
 
         lcargo = Utils.cargosOrderedByTime(lcargo);
+
         for (CargoManifest cargo : lcargo) {
             if (cm.getOperationType().equals("Load")) {
                 containers -= this.getContainersNumberByCargo(cargo.getId()).size();
             } else {
-                containers -= this.getContainersNumberByCargo(cargo.getId()).size();
+                containers += this.getContainersNumberByCargo(cargo.getId()).size();
             }
         }
 
@@ -135,7 +136,7 @@ public class OperationController {
                                 warehouseOccupancyAndContainers = containersleaving.get(warehouse);
                                 warehouseOccupancyAndContainers
                                         .add("Capacity Rate: " + this.capacity_rate_warehouse(warehouse, port, cm)
-                                                + "Container: "
+                                                + " Container: "
                                                 + op.getContainerId() + "Date Leaving: " + cm.getDate());
                                 containersleaving.put(warehouse, warehouseOccupancyAndContainers);
                             } else {
@@ -143,7 +144,7 @@ public class OperationController {
                                 warehouseOccupancyAndContainers
                                         .add("Capacity Rate: " + this.capacity_rate_warehouse(warehouse, port, cm)
                                                 + " Container: "
-                                                + op.getContainerId() + " Date Leaving" + cm.getDate());
+                                                + op.getContainerId() + " Date Leaving: " + cm.getDate());
                                 containersleaving.put(warehouse, warehouseOccupancyAndContainers);
                             }
                         }
