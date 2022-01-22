@@ -75,10 +75,32 @@ class CenterOfMassTests {
         assertEquals(String.format("%.2f", centerOfMassOfShip.getX()), String.format("%.2f", newCenterOfMassOfShip.getX()));
         assertEquals(String.format("%.2f", centerOfMassOfShip.getZ()), String.format("%.2f", newCenterOfMassOfShip.getZ()));
 
-        assertEquals(100,newContainers.size());
+    }
 
+    @Test
+    void addContainersTest2(){
+        Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
+        
+        List<Shapes> newContainers = centerOfMass.addContainers(10.0, 10.0, 5.0, 1, 48.8,centerOfMassOfShip);
+        boatShapes.addAll(newContainers);
+        Coords newCenterOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getX()), String.format("%.2f", newCenterOfMassOfShip.getX()));
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getZ()), String.format("%.2f", newCenterOfMassOfShip.getZ()));
 
     }
+
+    @Test
+    void addContainersTest3(){
+        Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
+        
+        List<Shapes> newContainers = centerOfMass.addContainers(10.0, 7.0, 5.0, 2050, 48.8,centerOfMassOfShip);
+        boatShapes.addAll(newContainers);
+        Coords newCenterOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getX()), String.format("%.2f", newCenterOfMassOfShip.getX()));
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getZ()), String.format("%.2f", newCenterOfMassOfShip.getZ()));
+
+    }
+
 
 
 }

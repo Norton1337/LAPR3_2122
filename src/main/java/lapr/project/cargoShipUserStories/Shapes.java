@@ -84,28 +84,32 @@ public class Shapes{
 
         if(thisMaxX <= otherMinX)
             isIntersecting = false;
+
         
             
         else if(otherMaxX <= thisMinX)
             isIntersecting = false;
 
+
             
         else if(thisMaxY <= otherMinY)
-
             isIntersecting = false;
+
         
             
         else if(otherMaxY <= thisMinY)
-
             isIntersecting = false;
+
         
             
         else if(thisMaxZ <= otherMinZ)
             isIntersecting = false;
+
     
             
         else if(otherMaxZ <= thisMinZ)
             isIntersecting = false;
+
         
             
     
