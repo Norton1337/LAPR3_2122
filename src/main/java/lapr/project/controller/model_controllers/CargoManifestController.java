@@ -24,11 +24,13 @@ public class CargoManifestController {
     private final IVehicle vehicleDB;
     private final ICargoManifest cargoManifestDB;
     private final IOperation operationDB;
+    private final ShipController shipController;
 
-    public CargoManifestController(IVehicle vehicleDB, ICargoManifest cargoManifestDB, IOperation operationDB) {
+    public CargoManifestController(IVehicle vehicleDB, ICargoManifest cargoManifestDB, IOperation operationDB, ShipController shipController) {
         this.vehicleDB = vehicleDB;
         this.cargoManifestDB = cargoManifestDB;
         this.operationDB = operationDB;
+        this.shipController = shipController;
     }
 
     public boolean addCargoManifest(CargoManifest newCargoManifest, String vehicleID) {
@@ -160,7 +162,7 @@ public class CargoManifestController {
         return operationDB.removeOperation(id);
     }
 
-    public double capacity_rate(String mmsi, String cargo_recon, ShipController shipController) {
+    public double capacity_rate(String mmsi, String cargo_recon) {
         double result = 0;
         CargoManifest cargo = this.findCargoByRecon(cargo_recon);
         List<CargoManifest> lcargo = new ArrayList<>();
@@ -192,7 +194,7 @@ public class CargoManifestController {
         return result;
     }
 
-    public List<Ship> free_ships(ShipController shipController) {
+    public List<Ship> free_ships() {
         List<Ship> freeShips = shipController.getAllShips();
         String cargo = null;
         Date nextMonday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))
@@ -219,7 +221,7 @@ public class CargoManifestController {
         return freeShips;
     }
 
-    public double capacity_rate_now(String mmsi, ShipController shipController) {
+    public double capacity_rate_now(String mmsi) {
         String ship_id = null;
         for (Vehicles elem : vehicleDB.getAllShips()) {
             if (elem.getVehicle_recon().equals(mmsi)) {
@@ -241,8 +243,31 @@ public class CargoManifestController {
         if (cargo_recon == null) {
             return 0;
         } else {
-            return this.capacity_rate(mmsi, cargo_recon, shipController);
+            return this.capacity_rate(mmsi, cargo_recon);
         }
+    }
+
+    private double capacityRateInPeriod(String mmsi, String startDate, String endDate){
+        List<CargoManifest> cargoManifests = new ArrayList<>();
+        Ship ship = shipController.findShipByMMSI(mmsi);
+        double capacityRate = 0;
+        for(CargoManifest elem : getAllCargoManifest()){
+            if(elem.getVehicleId().equals(ship.getId())
+                    && toDate(elem.getDate()).compareTo(toDate(startDate)) > 0
+                    && toDate(elem.getDate()).compareTo(toDate(endDate)) < 0){
+                cargoManifests.add(elem);
+            }
+        }
+        for(CargoManifest elem : cargoManifests){
+            capacityRate += capacity_rate(mmsi,elem.getCargo_recon());
+        }
+
+        return (capacityRate/cargoManifests.size()) * 100;
+    }
+
+    private List<String> occupancyBelowThresHold(){
+        List<String> returnList = new ArrayList<>();
+        return returnList;
     }
 
 }

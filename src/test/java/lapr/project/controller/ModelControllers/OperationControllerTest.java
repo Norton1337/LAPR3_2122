@@ -27,10 +27,11 @@ public class OperationControllerTest {
 
     //Controller
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
-    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock
-            ,cargoManifestDBMock,operationDBMock);
+
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock,shipDBMock,trucksDBMock);
     ShipController shipController = new ShipController(shipDBMock,generatorDBMock);
+    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock
+            ,cargoManifestDBMock,operationDBMock, shipController);
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,localsController
             ,cargoManifestController,shipController,vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock,cargoManifestController

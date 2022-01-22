@@ -46,7 +46,7 @@ public class OperationController {
         if (vehiclesController.getVehicle(cm.getVehicleId()).getType().equals("Ship")
                 && cm.getOperationType().equals("Load")) {
             Ship ship = shipController.findShipByID(cm.getVehicleId());
-            ship_problem = cargoManifestController.capacity_rate(ship.getMMSI(), cargoManifestRecon, shipController)
+            ship_problem = cargoManifestController.capacity_rate(ship.getMMSI(), cargoManifestRecon)
                     / 100
                     * ship.getLoadCapacity() + 1 > ship.getLoadCapacity();
         }

@@ -1,17 +1,16 @@
 package lapr.project.cargoShipUserStories;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CenterOfMass {
-    private ArrayList<Shapes> boatShapes = new ArrayList<>();
-
-    public CenterOfMass(ArrayList<Shapes> boatShapes){
+    private List<Shapes> boatShapes = new ArrayList<>();
+    
+    public CenterOfMass(List<Shapes> boatShapes){
         this.boatShapes=boatShapes;
     }
 
-    public Coords calculateCentroid(ArrayList<Shapes> shapes){
-        ArrayList<Coords> centroids = new ArrayList<>();
+    public Coords calculateCentroid(List<Shapes> shapes){
+        List<Coords> centroids = new ArrayList<>();
         double volumeX = 0;
         double volumeY = 0;
         double volumeZ = 0;
@@ -83,10 +82,10 @@ public class CenterOfMass {
     }
 
 
-    public ArrayList<Shapes> addContainers(double length, double width, double height, double remainingAmount, double floorHeight, Coords centerOfMass){
+    public List<Shapes> addContainers(double length, double width, double height, double remainingAmount, double floorHeight, Coords centerOfMass){
         double x=centerOfMass.getX();
         double z=centerOfMass.getZ();
-
+        
         ArrayList<Shapes> newContainers = new ArrayList<>();
         double maxHeight=0;
         for (Shapes shapes : boatShapes) {

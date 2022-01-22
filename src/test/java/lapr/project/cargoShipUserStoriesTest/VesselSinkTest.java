@@ -1,22 +1,23 @@
 package lapr.project.cargoShipUserStoriesTest;
 
-import lapr.project.cargoShipUserStories.CenterOfMass;
-import lapr.project.cargoShipUserStories.Coords;
-import lapr.project.cargoShipUserStories.Shapes;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class CenterOfMassTests {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import lapr.project.cargoShipUserStories.CenterOfMass;
+import lapr.project.cargoShipUserStories.Coords;
+import lapr.project.cargoShipUserStories.Shapes;
+import lapr.project.cargoShipUserStories.VesselSink;
+
+class VesselSinkTest {
+    VesselSink vesselSink = new VesselSink();
     CenterOfMass centerOfMass;
 
     ArrayList<Shapes> boatShapes = new ArrayList<>();
-
-
     @BeforeEach
     void setup(){
         Coords p11 = new Coords(0, 48.8, 0);
@@ -49,36 +50,35 @@ class CenterOfMassTests {
         boatShapes.add(shape3);
         boatShapes.add(shape4);
         boatShapes.add(shape5);
-
-
-
-        
         centerOfMass = new CenterOfMass(boatShapes);
     }
 
     @Test
-    void calculateCentroidTest(){
-        Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
-        assertEquals(197.55937071395948, centerOfMassOfShip.getX());
-        assertEquals(30.47236067033038, centerOfMassOfShip.getY());
-        assertEquals(25.625, centerOfMassOfShip.getZ());
-    }
+    void getHeightDifferenceTest(){
 
+        Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
+        List<Shapes> withContainers = centerOfMass.addContainers(7.0, 10.0, 5.0, 1000, 48.8,centerOfMassOfShip);
+        withContainers.addAll(boatShapes);
+        double height = vesselSink.getHeightDifference(250, boatShapes, withContainers);
+        String heightString = String.format("%.2f", height);
+
+        assertEquals(String.format("%.2f", 0.03), heightString);
+
+    }
 
     @Test
-    void addContainersTest(){
+    void getPressureExertedTest(){
         Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
-        
-        List<Shapes> newContainers = centerOfMass.addContainers(7.0, 10.0, 5.0, 100, 48.8,centerOfMassOfShip);
-        boatShapes.addAll(newContainers);
-        Coords newCenterOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
-        assertEquals(String.format("%.2f", centerOfMassOfShip.getX()), String.format("%.2f", newCenterOfMassOfShip.getX()));
-        assertEquals(String.format("%.2f", centerOfMassOfShip.getZ()), String.format("%.2f", newCenterOfMassOfShip.getZ()));
-
-        assertEquals(100,newContainers.size());
-
-
+        List<Shapes> withContainers = centerOfMass.addContainers(7.0, 10.0, 5.0, 1000, 48.8,centerOfMassOfShip);
+        withContainers.addAll(boatShapes);
+        double pressure = vesselSink.getPressureExerted(withContainers,250);
+        String pressureString = String.format("%.2f", pressure);
+        assertEquals(String.format("%.2f", 169409.94), pressureString);
     }
 
+    @Test
+    void getMassPlacedTest(){
+        assertEquals(500000.0, vesselSink.getMassPlaced(1000, 500));
+    }
 
 }
