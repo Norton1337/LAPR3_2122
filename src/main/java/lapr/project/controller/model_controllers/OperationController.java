@@ -55,7 +55,6 @@ public class OperationController {
                     * warehouse.getLocalCapacity() + 1 > warehouse.getLocalCapacity();
         }
         if (ship_problem || capacity_problem) {
-            System.out.println("Cargo Manifest Inválido\n Cargo manifest irá ser eliminado");
             for (Operation op : this.getAllOperations()) {
                 if (op.getCargoManifestId().equals(cm.getId())) {
                     operationDB.removeOperation(op.getId());

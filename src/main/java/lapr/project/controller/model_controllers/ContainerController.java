@@ -16,6 +16,7 @@ import lapr.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static lapr.project.utils.Utils.*;
 
@@ -58,16 +59,18 @@ public class ContainerController {
             }
         }
         for(Operation elem : operationController.getAllOperations()){
+            assert container != null;
             if(elem.getContainerId().equals(container.getId())){
                 if(cargoManifest == null) {
                     cargoManifest = cargoManifestController.findCargoById(elem.getCargoManifestId());
-                }else if(toDate(cargoManifest.getDate()).compareTo
+                }else if(Objects.requireNonNull(toDate(cargoManifest.getDate())).compareTo
                         (toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())) < 0){
                     cargoManifest = cargoManifestController.findCargoById(elem.getCargoManifestId());
                 }
             }
         }
 
+        assert cargoManifest != null;
         if(cargoManifest.getOperationType().equals("Load")){
             Vehicles vehicles = vehiclesController.getVehicle(cargoManifest.getVehicleId());
             return "Container is on vehicle: " + vehicles.getVehicle_recon();
@@ -105,7 +108,7 @@ public class ContainerController {
 
         for(Operation elem : operationController.getAllOperations()){
             if(elem.getContainerId().equals(container.getId())
-                    && toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())
+                    && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
                     .compareTo(toDate(leasing.getStartDate())) >= 0
                     && toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate())
                     .compareTo(toDate(leasing.getEndDate())) <= 0){
