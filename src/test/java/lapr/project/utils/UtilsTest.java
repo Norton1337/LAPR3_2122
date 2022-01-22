@@ -101,6 +101,7 @@ class UtilsTest {
         assertEquals("-122.39163", coordinatesArray[1]);
     }
 
+    /*
     @Test
     void readFromPropTest() {
         try {
@@ -124,4 +125,6 @@ class UtilsTest {
         assertNull(Utils.readFromProp("nothing", "src/main/resources/application.properties"));
 
     }
+
+     */
 }
