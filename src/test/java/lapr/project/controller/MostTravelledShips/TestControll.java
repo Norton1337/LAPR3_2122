@@ -21,8 +21,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static lapr.project.utils.Utils.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestControll {
 
@@ -85,7 +84,7 @@ public class TestControll {
     void test() {
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
 
             //matrixController.printFreightNetworkMatrix();
             matrixController.printLandMaritime();
@@ -157,8 +156,9 @@ public class TestControll {
     }
 
     @Test
-    void pathsTest() throws IOException {
+    void pathsTest(){
 
+        /*
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
         LinkedList<Locals> path = new LinkedList<>();
@@ -196,6 +196,89 @@ public class TestControll {
         printList(path);
 
          */
+    }
+
+    @Test
+    void centralPortsTest(){
+
+        AdjacencyMatrixGraph<Locals, Double> matrix = new AdjacencyMatrixGraph<>();
+
+        Locals barcelona = localsController.getLocalWithName("Barcelona");
+        Locals liverpool = localsController.getLocalWithName("Liverpool");
+        Locals brest = localsController.getLocalWithName("Brest");
+        Locals gdanks = localsController.getLocalWithName("Gdansk");
+        Locals hamburg = localsController.getLocalWithName("Hamburg");
+        Locals genoa = localsController.getLocalWithName("Genoa");
+
+        matrix.insertVertex(barcelona);
+        matrix.insertVertex(liverpool);
+        matrix.insertVertex(brest);
+        matrix.insertVertex(gdanks);
+        matrix.insertVertex(hamburg);
+        matrix.insertVertex(genoa);
+
+        matrix.insertEdge(barcelona, liverpool, 35.0);
+        matrix.insertEdge(barcelona, brest, 15.0);
+        matrix.insertEdge(barcelona, genoa, 10.0);
+        matrix.insertEdge(brest, liverpool, 10.0);
+        matrix.insertEdge(brest, genoa, 30.0);
+        matrix.insertEdge(barcelona, hamburg, 15.0);
+
+        Map<Locals, Double> centralPortsMap = new LinkedHashMap<>();
+        Map<Locals, Double> correctMap = new LinkedHashMap<>();
+
+        correctMap.put(barcelona, 10.0);
+        correctMap.put(brest,6.0);
+
+        centralPortsMap = matrixController.centralPorts(matrix, 2);
+
+        assertEquals(centralPortsMap, correctMap);
+        //printMap(centralPortsMap);
+
+
+
+    }
+
+    @Test
+    void maritimePathMethodTest(){
+
+        AdjacencyMatrixGraph<Locals, Double> maritimeMatrix = new AdjacencyMatrixGraph<>();
+
+        Locals liverpool = localsController.getLocalWithName("Liverpool");
+        Locals brest = localsController.getLocalWithName("Brest");
+        Locals genoa = localsController.getLocalWithName("Genoa");
+        Locals barcelona = localsController.getLocalWithName("Barcelona");
+        //Locals rome = localsController.getLocalWithName("Rome");
+        Locals madrid = localsController.getLocalWithName("Madrid");
+
+        maritimeMatrix.insertVertex(liverpool);
+        maritimeMatrix.insertVertex(brest);
+        maritimeMatrix.insertVertex(genoa);
+        maritimeMatrix.insertVertex(barcelona);
+        maritimeMatrix.insertVertex(madrid); // Capital
+
+        maritimeMatrix.insertEdge(barcelona, liverpool, 55.0);
+        maritimeMatrix.insertEdge(barcelona, genoa, 45.0);
+        maritimeMatrix.insertEdge(barcelona, madrid, 70.0);
+        maritimeMatrix.insertEdge(liverpool, brest, 35.0);
+        maritimeMatrix.insertEdge(genoa, brest, 50.0);
+
+        //System.out.println(maritimeMatrix);
+
+        List<Locals> correctPath = new LinkedList<>();
+
+        correctPath.add(0, barcelona);
+        correctPath.add(1, liverpool);
+        correctPath.add(2, brest);
+
+        List<Locals> maritimePath = matrixController.maritimePath(maritimeMatrix, barcelona, brest);
+        List<Locals> maritimePath2 = matrixController.maritimePath(maritimeMatrix, barcelona, madrid);
+
+        //printList(maritimePath);
+
+        assertEquals(maritimePath,correctPath);
+        assertNull(maritimePath2);
+
 
     }
 
@@ -228,5 +311,147 @@ public class TestControll {
 
     }
 
+
+
+    @Test
+    void landPathMethodTest(){
+
+        AdjacencyMatrixGraph<Locals, Double> landMatrix = new AdjacencyMatrixGraph<>();
+
+        Locals valencia = localsController.getLocalWithName("Valencia"); //P
+        Locals bourgas = localsController.getLocalWithName("Bourgas"); //P
+        Locals madrid = localsController.getLocalWithName("Madrid");
+        Locals paris = localsController.getLocalWithName("Paris");
+        Locals oslo = localsController.getLocalWithName("Oslo");
+        Locals berlin = localsController.getLocalWithName("Berlin");
+        Locals prague = localsController.getLocalWithName("Prague");
+
+        landMatrix.insertVertex(valencia);
+        landMatrix.insertVertex(bourgas);
+        landMatrix.insertVertex(madrid);
+        landMatrix.insertVertex(paris);
+        landMatrix.insertVertex(oslo);
+        landMatrix.insertVertex(berlin);
+        landMatrix.insertVertex(prague);
+
+        landMatrix.insertEdge(valencia, madrid, 25.0);
+        landMatrix.insertEdge(valencia, paris, 40.0);
+        landMatrix.insertEdge(bourgas, berlin, 70.0);
+        landMatrix.insertEdge(bourgas, paris, 120.0);
+
+        landMatrix.insertEdge(madrid, oslo, 45.0);
+        landMatrix.insertEdge(madrid, prague, 55.0);
+        landMatrix.insertEdge(oslo, berlin, 40.0);
+        landMatrix.insertEdge(prague, berlin, 25.0);
+        landMatrix.insertEdge(berlin, paris, 35.0);
+
+        //System.out.println(landMatrix);
+
+        List<Locals> landPath1 = matrixController.landPath(landMatrix, madrid, berlin); // C - C
+        List<Locals> landPath2 = matrixController.landPath(landMatrix, oslo, bourgas); // C - P
+        List<Locals> landPath3 = matrixController.landPath(landMatrix, valencia, berlin); // P - C
+        List<Locals> landPath4 = matrixController.landPath(landMatrix, valencia, bourgas); // P - P
+
+        /**
+         * Origin and destiny Capital
+         */
+        List<Locals> correctPath1 = new LinkedList<>();
+        correctPath1.add(0, madrid);
+        correctPath1.add(1, prague);
+        correctPath1.add(2, berlin);
+
+        assertEquals(landPath1, correctPath1);
+        //printList(landPath1);
+
+        /**
+         *  Origin Capital and destiny Port
+         */
+        List<Locals> correctPath2 = new LinkedList<>();
+        correctPath2.add(0, oslo);
+        correctPath2.add(1, berlin);
+        correctPath2.add(2, bourgas);
+
+        assertEquals(landPath2, correctPath2);
+        //printList(landPath2);
+
+        /**
+         * Origin Port and destiny Capital
+         */
+
+        List<Locals> correctPath3 = new LinkedList<>();
+        correctPath3.add(0, valencia);
+        correctPath3.add(1, paris);
+        correctPath3.add(2, berlin);
+
+        assertEquals(landPath3, correctPath3);
+        //printList(landPath3);
+
+
+        /**
+         * Origin and destiny Port
+         */
+        List<Locals> correctPath4 = new LinkedList<>();
+        correctPath4.add(0, valencia);
+        correctPath4.add(1, paris);
+        correctPath4.add(2, berlin);
+        correctPath4.add(3, bourgas);
+
+        assertEquals(landPath4, correctPath4);
+        //printList(landPath4);
+    }
+
+    @Test
+    void shortestThroughNPlacesTest(){
+
+        AdjacencyMatrixGraph<Locals, Double> matrix = new AdjacencyMatrixGraph<>();
+
+        Locals madrid = localsController.getLocalWithName("Madrid");
+        Locals london = localsController.getLocalWithName("London");
+        Locals hamburg = localsController.getLocalWithName("Hamburg");
+        Locals paris = localsController.getLocalWithName("Paris");
+        Locals rome = localsController.getLocalWithName("Rome");
+        Locals prague = localsController.getLocalWithName("Prague");
+        Locals warsaw = localsController.getLocalWithName("Warsaw");
+
+        matrix.insertVertex(madrid);
+        matrix.insertVertex(london);
+        matrix.insertVertex(hamburg);
+        matrix.insertVertex(paris);
+        matrix.insertVertex(rome);
+        matrix.insertVertex(prague);
+        matrix.insertVertex(warsaw);
+
+        matrix.insertEdge(madrid, london, 10.0);
+        matrix.insertEdge(madrid, rome, 80.0);
+        matrix.insertEdge(london, paris, 25.0);
+        matrix.insertEdge(paris, rome, 15.0);
+        matrix.insertEdge(paris, hamburg, 10.0);
+        matrix.insertEdge(paris, prague, 30.0);
+        matrix.insertEdge(prague, rome, 10.0);
+        matrix.insertEdge(prague, warsaw, 30.0);
+
+        List<Locals> path = new LinkedList<>();
+        List<Locals> correctPath = new LinkedList<>();
+        List<String> placesToPass = new LinkedList<>();
+
+        placesToPass.add("Hamburg");
+        placesToPass.add("Rome");
+
+        correctPath.add(0, warsaw);
+        correctPath.add(1, prague);
+        correctPath.add(2, rome);
+        correctPath.add(3, paris);
+        correctPath.add(4, hamburg);
+        correctPath.add(5, paris);
+        correctPath.add(6, london);
+        correctPath.add(7, madrid);
+
+        path = matrixController.shortestThroughNPlaces(matrix, warsaw, madrid, placesToPass);
+
+        assertEquals(path, correctPath);
+
+        //printList(path);
+
+    }
 
 }

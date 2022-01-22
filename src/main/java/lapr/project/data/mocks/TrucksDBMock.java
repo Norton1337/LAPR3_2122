@@ -42,6 +42,11 @@ public class TrucksDBMock implements ITruck {
 
     @Override
     public Truck getTruckByPlate(String plate) {
+        for (Truck elems : trucks) {
+            if (elems.getPlate().equals(plate)) {
+                return elems;
+            }
+        }
         return null;
     }
 }

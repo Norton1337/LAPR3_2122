@@ -15,6 +15,7 @@ public class Ship {
     private double distanceTravelled;
     private int generatorAmount;
     private float generatorsPower;
+    private double usedCapacity;
 
     public Ship(String MMSI, String shipName, String IMO, String callSign,
                 int vesselType, int length, int width, double draft, double loadCapacity) {
@@ -79,6 +80,14 @@ public class Ship {
             throw new IllegalArgumentException("Not a valid IMO.");
         }
         this.IMO = IMO;
+    }
+
+    public double getUsedCapacity() {
+        return usedCapacity;
+    }
+
+    public void setUsedCapacity(double usedCapacity) {
+        this.usedCapacity = usedCapacity;
     }
 
     public String getCallSign() {

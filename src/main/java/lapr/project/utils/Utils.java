@@ -17,14 +17,15 @@ public class Utils {
     }
 
     public static Date toDate (String string){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
         try{
-            Date date = new SimpleDateFormat("dd/MM/yyyy HH/mm/ss").parse(string);
-            return date;
+            date = format.parse(string);
         }
         catch(ParseException e){
-            e.printStackTrace();
+            return null;
         }
-        return null;
+        return date;
     }
 
     public static Integer toInt(String string) {
@@ -176,5 +177,40 @@ public class Utils {
 
         return result;
     }
+
+
+    public static <E> List<List<E>> generatePermutation(List<E> original) {
+        if (original.isEmpty()) {
+            List<List<E>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
+        }
+        E firstElement = original.remove(0);
+        List<List<E>> returnValue = new ArrayList<>();
+        List<List<E>> permutations = generatePermutation(original);
+        for (List<E> smallerPermutated : permutations) {
+            for (int index = 0; index <= smallerPermutated.size(); index++) {
+                List<E> temp = new ArrayList<>(smallerPermutated);
+                temp.add(index, firstElement);
+                returnValue.add(temp);
+            }
+        }
+        return returnValue;
+    }
+
+    public static <E> List<E> addElementsToList(List<E> elementsList){
+        List<E> returnList = new LinkedList<>();
+
+        for (E elem : elementsList){
+            returnList.add(elem);
+        }
+        return returnList;
+        // returnList.addAll(elementsList);
+    }
+
+    public static <K> List<K> setToList(Set<K> set){
+        return new ArrayList<>(set);
+    }
+
 
 }
