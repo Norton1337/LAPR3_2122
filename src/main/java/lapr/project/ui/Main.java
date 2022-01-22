@@ -111,8 +111,7 @@ class Main {
                 System.out.println("\n\n\n\n\n\n");
                 // System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
 
-                printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
-
+                //printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
                 // printList(localsController.getAllWarehouses());
                 // printList(userController.getAllUsers());
                 // printList(containerController.getAllContainers());
