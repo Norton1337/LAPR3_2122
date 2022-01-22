@@ -80,13 +80,13 @@ public class OperationController {
         List<CargoManifest> lcargo = new ArrayList<>();
         int containers = 0;
         for (CargoManifest cargo : cargoManifestController.getAllCargoManifest()) {
-            if (toDate(cargo.getDate()).compareTo(toDate(cm.getDate())) <= 0
+            if (Objects.requireNonNull(toDate(cargo.getDate())).compareTo(toDate(cm.getDate())) <= 0
                     && cargo.getCurrentLocalId().equals(String.valueOf(port.getLocalCode()))) {
                 lcargo.add(cargo);
             }
         }
 
-        lcargo = Utils.cargosOrderedByTime(lcargo);
+        Utils.cargosOrderedByTime(lcargo);
 
         for (CargoManifest cargo : lcargo) {
             if (cm.getOperationType().equals("Load")) {
@@ -106,7 +106,7 @@ public class OperationController {
         List<Locals> warehouses = new ArrayList<>();
         Locals port = localsController.getLocalWithPortId(String.valueOf(port_code));
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+        calendar.setTime(Objects.requireNonNull(toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))));
         calendar.add(Calendar.MONTH, 1);
         Date dateTimeNextMonth = calendar.getTime();
         for (CargoManifest cm : cargoManifestController.getAllCargoManifest()) {
@@ -176,7 +176,7 @@ public class OperationController {
     public List<String> port_map(int port_code, String mes) {
         Locals port = localsController.getLocalWithPortId(String.valueOf(port_code));
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(toDate(mes));
+        calendar.setTime(Objects.requireNonNull(toDate(mes)));
         calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
         Date MonthFirstDay = calendar.getTime();
         calendar.set(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
@@ -185,7 +185,7 @@ public class OperationController {
         List<String> ls = new ArrayList<>();
         for (CargoManifest cm : cargoManifestController.getAllCargoManifest()) {
             if (cm.getCurrentLocalId().equals(String.valueOf(port.getLocalCode()))
-                    && toDate(cm.getDate()).compareTo(MonthFirstDay) >= 0
+                    && Objects.requireNonNull(toDate(cm.getDate())).compareTo(MonthFirstDay) >= 0
                     && toDate(cm.getDate()).compareTo(MonthLastDay) <= 0) {
                 lcm.add(cm);
             }
