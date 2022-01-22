@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 
@@ -68,14 +69,18 @@ class CenterOfMassTests {
     @Test
     void addContainersTest(){
         Coords centerOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
-        System.out.println("Centroid without containers: \n"+centerOfMassOfShip);
+        
         ArrayList<Shapes> newContainers = centerOfMass.addContainers(7.0, 10.0, 5.0, 10000, 48.8,centerOfMassOfShip);
-        System.out.println("\nThere are " + newContainers.size() + " new containers");
+
         boatShapes.addAll(newContainers);
 
+        Coords newCenterOfMassOfShip = centerOfMass.calculateCentroid(boatShapes);
 
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getX()), String.format("%.2f", newCenterOfMassOfShip.getX()));
+        assertEquals(String.format("%.2f", centerOfMassOfShip.getZ()), String.format("%.2f", newCenterOfMassOfShip.getZ()));
 
-        System.out.println("\nCentroid With containers: \n"+centerOfMass.calculateCentroid(boatShapes));
+        assertTrue(newContainers.size()<10000);
+
 
     }
 

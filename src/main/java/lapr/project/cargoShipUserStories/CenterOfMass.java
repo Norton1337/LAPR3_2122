@@ -102,8 +102,6 @@ public class CenterOfMass {
             maxLength= Math.max(maxLength,shapes.getP2().getX());
             maxLength= Math.max(maxLength,shapes.getP3().getX());
         }
-
-        System.out.println("Max Length: "+maxLength);
        
         if(length<width){
             double temp = length;
@@ -112,17 +110,13 @@ public class CenterOfMass {
         }
 
         double orientation = Math.floor(widthOfShip/width);
-        
-        System.out.println("only " + (orientation) + " containers fit ");
-
         double amountInMiddle=0;
 
         if((remainingAmount-1)%4!=0 && (remainingAmount%2!=0))
             amountInMiddle=3;
         else if(((remainingAmount-1)%2==0 || remainingAmount == 1)&& (remainingAmount%2!=0))
             amountInMiddle=1;
-        
-      System.out.println( "amountInMiddle: " + amountInMiddle);
+
         double separationOfX = length/2;
         double separationOfZ = width/2;
 
@@ -191,25 +185,15 @@ public class CenterOfMass {
                     }else
                         displacementZ+=width;
 
-                    
-
+    
                 }
                
-                
             }
             
         }
 
         return newContainers;
 
-    }
-
-    public boolean compareCentroids(ArrayList<Shapes> newShapes){
-
-        System.out.println(calculateCentroid(boatShapes)+"\n");
-        boatShapes.addAll(newShapes);
-        System.out.println(calculateCentroid(boatShapes));
-        return true;
     }
     
 
