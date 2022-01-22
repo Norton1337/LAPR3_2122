@@ -10,6 +10,7 @@ import lapr.project.model.vehicle.idb.IVehicle;
 import lapr.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -51,7 +52,7 @@ public class CargoManifestController {
         return cargoManifestDB.getCargoManifestByRecon(recon);
     }
 
-    public CargoManifest findLastCargoBeforeDate(String date, String operationType, String portID){
+    public CargoManifest findLastCargoBeforeDate(String date, String operationType, String portID) {
         return cargoManifestDB.getCargoManifestBeforeDate(date, operationType, portID);
     }
 
@@ -79,7 +80,7 @@ public class CargoManifestController {
                 }
             }
         }
-        if(shipCargos.size() == 0){
+        if (shipCargos.size() == 0) {
             return null;
         }
         Utils.cargosOrderedByTime(shipCargos);
@@ -114,7 +115,7 @@ public class CargoManifestController {
                 }
             }
         }
-        if(shipCargos.size() == 0){
+        if (shipCargos.size() == 0) {
             return null;
         }
         Utils.cargosOrderedByTime(shipCargos);
@@ -153,6 +154,10 @@ public class CargoManifestController {
         return returnList;
     }
 
+    public boolean removeCargo(String id) {
+        return operationDB.removeOperation(id);
+    }
+
     public double capacity_rate(String mmsi, String cargo_recon, ShipController shipController) {
         double result = 0;
         CargoManifest cargo = this.findCargoByRecon(cargo_recon);
@@ -165,7 +170,7 @@ public class CargoManifestController {
                 lcargo.add(cm);
             }
         }
-        Utils.cargosOrderedByTime(lcargo);
+        lcargo = Utils.cargosOrderedByTime(lcargo);
         for (CargoManifest cm : lcargo) {
             for (Operation op : operationDB.allOperations()) {
                 if (op.getCargoManifestId().equals(cm.getId())) {
@@ -198,7 +203,8 @@ public class CargoManifestController {
                     && toDate(cm.getDate()).compareTo(toDate(LocalDateTime.now().toString())) < 0) {
                 if (cargo_recon.isEmpty()) {
                     cargo_recon = cm.getCargo_recon();
-                } else if (toDate(this.findCargoByRecon(cargo_recon).getDate()).compareTo(toDate(cm.getDate())) < 0) {
+                } else if (toDate(this.findCargoByRecon(cargo_recon).getDate()).compareTo(
+                        toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))) < 0) {
                     cargo_recon = cm.getCargo_recon();
                 }
             }
