@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import lapr.project.cargoShipUserStories.Coords;
 import lapr.project.cargoShipUserStories.Shapes;
 
-public class ShapesTest {
+class ShapesTest {
     
     Shapes shapes;
 
@@ -60,10 +60,8 @@ public class ShapesTest {
         Coords p22 = new Coords(21,0,0);
         Coords p23 = new Coords(305,0,0);
         Shapes shape2 = new Shapes(p21, p22, p23, 51.25, false);
-
         assertFalse(shape1.intersects(shape2));
         assertFalse(shape2.intersects(shape1));
-
         Coords p31 = new Coords(91, 48, 5);
         Coords p32 = new Coords(133,48,5);
         Coords p33 = new Coords(91,90,5);
@@ -77,14 +75,15 @@ public class ShapesTest {
         Coords p43 = new Coords(0,1,0);
         Shapes shape4 = new Shapes(p41, p42, p43, 5, false);
 
-
-        Coords p51 = new Coords(1, 0, 2);
-        Coords p52 = new Coords(1,1,2);
-        Coords p53 = new Coords(0,1,2);
+        Coords p51 = new Coords(1,5, 0);
+        Coords p52 = new Coords(1,10,0);
+        Coords p53 = new Coords(0,10,0);
         Shapes shape5 = new Shapes(p51, p52, p53, 5, false);
         
-        assertTrue(shape4.intersects(shape5));
-        assertTrue(shape5.intersects(shape4));
+        assertFalse(shape4.intersects(shape5));
+        assertFalse(shape5.intersects(shape4));
+
+
         
     }
 

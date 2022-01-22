@@ -159,7 +159,7 @@
                         <outputFormat>XML</outputFormat>
                         <outputFormat>HTML</outputFormat>
                     </outputFormats>
-                    <verbose>true</verbose>
+                    <!-- <verbose>true</verbose> -->
                 </configuration>
             </plugin>
 
