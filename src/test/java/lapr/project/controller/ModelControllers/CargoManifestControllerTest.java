@@ -86,7 +86,7 @@ class CargoManifestControllerTest {
     GeneratorController generatorController = new GeneratorController(shipDBMock, generatorDBMock);
     LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock,
-            operationDBMock);
+            operationDBMock, shipController);
     OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController,
             cargoManifestController, shipController, vehiclesController);
     ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController,

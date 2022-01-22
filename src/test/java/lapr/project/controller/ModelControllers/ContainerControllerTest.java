@@ -30,10 +30,11 @@ public class ContainerControllerTest {
     ClientDBMock clientDBMock = new ClientDBMock();
 
     //Controller
-    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock,
-            cargoManifestDBMock,operationDBMock);
+
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
     ShipController shipController = new ShipController(shipDBMock,generatorDBMock);
+    CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock,
+            cargoManifestDBMock,operationDBMock, shipController);
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock,shipDBMock,trucksDBMock);
     OperationController operationController = new OperationController(operationDBMock,containerDBMock,
             localsController,cargoManifestController,shipController,vehiclesController);
@@ -91,8 +92,14 @@ public class ContainerControllerTest {
         }
 
     }
+    //TODO implement test
+    @Test
+    void containerRouteTest(){
 
-    //TODO implement function
+    }
+
+
+    //TODO implement test
     @Test
     void whereIsContainerTest(){
 
