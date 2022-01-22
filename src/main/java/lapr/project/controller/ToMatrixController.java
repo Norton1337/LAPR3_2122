@@ -557,7 +557,7 @@ public class ToMatrixController {
             double weight = 0.0;
 
             List<String> newList = localsPermutationsList.get(i);
-            System.out.println("Permutation list:  " + newList);
+            //System.out.println("Permutation list:  " + newList);
 
             countPermutations++;
 

@@ -225,7 +225,7 @@ public class TestControll {
         centralPortsMap = matrixController.centralPorts(matrix, 2);
 
         assertEquals(centralPortsMap, correctMap);
-        printMap(centralPortsMap);
+        //printMap(centralPortsMap);
 
 
 
