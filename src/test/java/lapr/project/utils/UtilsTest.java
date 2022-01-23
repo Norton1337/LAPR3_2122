@@ -1,12 +1,9 @@
 package lapr.project.utils;
 
+import lapr.project.model.cargoManifest.CargoManifest;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,11 +45,7 @@ class UtilsTest {
         assertTrue(Utils.printList(list));
     }
 
-    @Test
-    <K, V> void printMapTest(){
-        Map<K, V> map  = new HashMap<K, V>();
-        assertTrue(Utils.printMap(map));
-    }
+
 
     @Test
     void randomInt() {
@@ -126,5 +119,44 @@ class UtilsTest {
 
     }
 
+    @Test
+    void cargosOrderedByTime() {
+        List<CargoManifest> cargoManifests = new LinkedList<>();
+
+        List<CargoManifest> resultInv =  Utils.cargosOrderedByTime(cargoManifests);
+        assertEquals(resultInv.size(), 0);
+
+
+        cargoManifests.add(new CargoManifest(Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID()));
+        cargoManifests.add(new CargoManifest(Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID(), Utils.randomUUID()));
+
+
+        List<CargoManifest> resultVal =  Utils.cargosOrderedByTime(cargoManifests);
+        assertEquals(resultVal.size(), 2);
+    }
+
+
+    @Test
+    void mergeLists(){
+        List<String> l1 = new LinkedList<>();
+        l1.add("123");
+
+        List<String> l2 = new LinkedList<>();
+        l1.add("321");
+
+        assertEquals(Utils.mergeLists(l1,l2).size(), 2);
+    }
+
+    @Test
+    void printMap(){
+        Map<Integer, String> maps  = new LinkedHashMap<>();
+
+        assertFalse(Utils.printMap(maps));
+
+        maps.put(1, "test");
+        maps.put(2, "test");
+
+        assertTrue(Utils.printMap(maps));
+    }
      
 }

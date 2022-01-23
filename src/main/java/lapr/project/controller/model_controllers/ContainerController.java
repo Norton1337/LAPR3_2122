@@ -50,7 +50,6 @@ public class ContainerController {
     }
 
     public String whereIsContainer(String containerNumber){
-        String whereIsContainer;
         CargoManifest cargoManifest = null;
         Container container = null;
         for(Container elem : containerDB.getAllContainers()){
@@ -59,7 +58,9 @@ public class ContainerController {
             }
         }
         for(Operation elem : operationController.getAllOperations()){
-            assert container != null;
+            if(container == null){
+                return null;
+            }
             if(elem.getContainerId().equals(container.getId())){
                 if(cargoManifest == null) {
                     cargoManifest = cargoManifestController.findCargoById(elem.getCargoManifestId());
@@ -69,16 +70,17 @@ public class ContainerController {
                 }
             }
         }
-        
+
         assert cargoManifest != null;
         if(cargoManifest.getOperationType().equals("Load")){
             Vehicles vehicles = vehiclesController.getVehicle(cargoManifest.getVehicleId());
-            return "Container is on vehicle: " + vehicles.getVehicle_recon();
+            return vehicles.getVehicle_recon();
         }else if(cargoManifest.getOperationType().equals("Unload")){
             Locals local = localsController.getLocalWithPortId(cargoManifest.getCurrentLocalId());
-            return "Container is on port: " + String.valueOf(local.getLocalCode());
+            return local.toStringPort();
         }
-        return "Container not found.";
+
+        return null;
     }
 
 
@@ -91,49 +93,63 @@ public class ContainerController {
         List<CargoManifest> cargoList = new ArrayList<>();
         ClientController clientController = new ClientController(clientDB,usersDB);
         Users user = userController.getUserByUsername(username);
-        Client client = clientController.getClientWithUserId(user.getId());
 
-        for(Leasing elem : leasingDB.getAllLeasing()){
-            if(elem.getClientId().equals(client.getId())){
-                if(elem.getContainerId().equals(container.getId())){
-                    leasing = elem;
+        /**
+         * User valido
+         */
+
+        if(user != null){
+            Client client = clientController.getClientWithUserId(user.getId());
+
+
+            for(Leasing elem : leasingDB.getAllLeasing()){
+                if(elem.getClientId().equals(client.getId())){
+                    if(container == null){
+                        return null;
+                    }
+                    if(elem.getContainerId().equals(container.getId())){
+                        leasing = elem;
+                    }
                 }
             }
-        }
 
-        if(leasing == null){
-            containerRoute.add("Container is not valid");
+            if(leasing == null){
+                containerRoute.add("Container is not valid");
+                return containerRoute;
+            }
+
+            for(Operation elem : operationController.getAllOperations()){
+                if(elem.getContainerId().equals(container.getId())
+                        && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
+                        .compareTo(toDate(leasing.getStartDate())) >= 0
+                        && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
+                        .compareTo(toDate(leasing.getEndDate())) <= 0){
+                    cargoList.add(cargoManifestController.findCargoById(elem.getCargoManifestId()));
+                }
+            }
+
+            cargosOrderedByTime(cargoList);
+            if(cargoList.get(0).getOperationType().equals("Unload")){
+                cargoList.remove(0);
+            }
+            for(int i = 0 ; i < cargoList.size(); i+=2){
+                if((i+1) < cargoList.size()){
+                    containerRoute.add(" Departure Local : " + cargoList.get(i).getCurrentLocalId() + "\n Departure date : "
+                            + cargoList.get(i).getDate()
+                            + "\n Arrival Local : " + cargoList.get(i).getNextLocal() + "\n Arrival Date : "
+                            + cargoList.get(i+1).getDate() +
+                            "\n Transport Method : " + vehiclesController.getVehicle(cargoList.get(i).getVehicleId()).getType());
+                }
+            }
+
+            if(containerRoute.size() == 0){
+                containerRoute.add("Container has no voyages yet.");
+            }
             return containerRoute;
         }
 
-        for(Operation elem : operationController.getAllOperations()){
-            if(elem.getContainerId().equals(container.getId())
-                    && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
-                    .compareTo(toDate(leasing.getStartDate())) >= 0
-                    && Objects.requireNonNull(toDate(cargoManifestController.findCargoById(elem.getCargoManifestId()).getDate()))
-                    .compareTo(toDate(leasing.getEndDate())) <= 0){
-                cargoList.add(cargoManifestController.findCargoById(elem.getCargoManifestId()));
-            }
-        }
+        return null;
 
-        Utils.cargosOrderedByTime(cargoList);
-        if(cargoList.get(0).getOperationType().equals("Unload")){
-            cargoList.remove(0);
-        }
-        for(int i = 0 ; i < cargoList.size(); i+=2){
-            if((i+1) < cargoList.size()){
-                containerRoute.add("Departure Local: " + cargoList.get(i).getCurrentLocalId() + " Departure date: "
-                        + cargoList.get(i).getDate()
-                        + " Arrival Local :" + cargoList.get(i).getNextLocal() + " Arrival Date: "
-                        + cargoList.get(i+1).getDate() +
-                        " Transport Method: " + vehiclesController.getVehicle(cargoList.get(i).getVehicleId()).getType());
-            }
-        }
-
-        if(containerRoute.size() == 0){
-            containerRoute.add("Container has no voyages yet.");
-        }
-        return containerRoute;
     }
 
     public List<Container> getAllContainers() {

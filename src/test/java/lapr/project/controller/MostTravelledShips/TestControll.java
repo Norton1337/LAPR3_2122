@@ -4,7 +4,7 @@ import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ToMatrixController;
-import lapr.project.controller.helper_classes.CircuitFinder;
+import lapr.project.data.graph_files.CircuitFinder;
 import lapr.project.controller.helper_classes.CountryColour;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
