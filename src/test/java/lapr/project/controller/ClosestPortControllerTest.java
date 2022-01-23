@@ -49,8 +49,7 @@ class ClosestPortControllerTest {
     CountryUI countryUI = new CountryUI(countryController);
 
 
-    @BeforeEach
-    void setup() {
+    public ClosestPortControllerTest() {
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
         shipUI.importShips("Docs/Input/bships.csv");
@@ -61,7 +60,6 @@ class ClosestPortControllerTest {
         LinkedList<Locals> portsAndWarehouses = portsAndWarehousesController.getAllPorts();
         portsAndWarehouses.add(portsAndWarehouses.get(6));
         dataToKDTreeController.populateTree(portsAndWarehouses);
-
     }
 
     @Test

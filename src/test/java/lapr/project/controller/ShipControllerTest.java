@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ class ShipControllerTest {
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
         addShipController.addShip(newShip);
-        if (readFromProp("debug", "src/main/resources/application.properties").equals("1"))
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
             System.out.println(iShipsDB.getAllShips());
 
 

@@ -53,7 +53,11 @@ public class Utils {
     }
 
     public static <K, V> boolean printMap(Map<K, V> map) {
-        System.out.printf("[");
+        if(map.size() == 0){
+            return false;
+        }
+
+        System.out.print("[");
         map.forEach((key, value) -> System.out.println(key + ":" + value));
         System.out.println("]\n\n\n\n\n\n\n");
 
@@ -81,14 +85,12 @@ public class Utils {
     }
 
     public static List<ShipPositonData> orderedByTime(List<ShipPositonData> list) {
-        Collections.sort(list, Comparator.comparing(ShipPositonData::getBaseDateTime));
-
+        list.sort(Comparator.comparing(ShipPositonData::getBaseDateTime));
         return list;
     }
 
     public static List<CargoManifest> cargosOrderedByTime(List<CargoManifest> list) {
-        Collections.sort(list, Comparator.comparing(CargoManifest::getDate));
-
+        list.sort(Comparator.comparing(CargoManifest::getDate));
         return list;
     }
 

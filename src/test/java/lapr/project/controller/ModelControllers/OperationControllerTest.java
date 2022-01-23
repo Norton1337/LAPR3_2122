@@ -61,8 +61,7 @@ class OperationControllerTest {
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
     TruckUI truckUI = new TruckUI(vehiclesController);
 
-    @BeforeEach
-    void setup() {
+    public OperationControllerTest() {
         shipUI.importShips("Docs/Input/bships.csv");
         truckUI.importTrucks("Docs/Input/truck.csv");
         portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");

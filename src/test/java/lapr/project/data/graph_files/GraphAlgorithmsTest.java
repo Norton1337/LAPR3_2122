@@ -126,7 +126,8 @@ public class GraphAlgorithmsTest {
 
             LinkedList<String> path;
 
-            assertTrue("Should be null if vertex does not exist", GraphAlgorithms.BFS(completeMap, "LX") == null);
+            GraphAlgorithms.BFS(completeMap, "LX");
+            assertTrue("Should be null if vertex does not exist", false);
 
             path = GraphAlgorithms.BFS(incompleteMap, "Faro");
 
