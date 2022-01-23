@@ -161,8 +161,8 @@ public class TestControll {
 
         LinkedList<Locals> path = new LinkedList<>();
 
-        var madrid = localsController.getLocalWithName("Madrid");
-        var result = t.getIntNum(madrid);
+        Locals madrid = localsController.getLocalWithName("Madrid");
+        int result = t.getIntNum(madrid);
 
 
         System.out.println(t);
@@ -311,7 +311,7 @@ public class TestControll {
         CircuitFinder f = new CircuitFinder();
 
         //var r = f.convertGraph(t);
-        var result = f.mostEfficientCircuitWithMap(t, "0");
+        List<String> result = f.mostEfficientCircuitWithMap(t, "0");
         printList(result);
 
     }

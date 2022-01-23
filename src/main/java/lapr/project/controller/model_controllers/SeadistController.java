@@ -22,15 +22,7 @@ public class SeadistController {
         seadistDB.addSeadist(elem);
     }
 
-//    public Locals getPortWithPortId(String portId) {
-//        for (Seadist elem : seadistDB.getAllSeadist()) {
-//            if (elem.getToPortId().equals(portId)) {
-//                Locals returnVal = localDB.getPortByPortIdCode(portId);
-//                return returnVal;
-//            }
-//        }
-//        return null;
-//    }
+
 
 
     public LinkedList<Seadist> getAllSeadist() {
