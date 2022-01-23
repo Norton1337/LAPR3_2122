@@ -92,8 +92,8 @@ class ListAllShipsInfoControllerTest {
 
         List<ShipAndData> andDataList = new ArrayList<>();
 
-        for (Object elems : dataToBstController.getShipBst().inOrder()) {
-            andDataList.add((ShipAndData) elems);
+        for (ShipAndData elems : dataToBstController.getShipBst().inOrder()) {
+            andDataList.add(elems);
         }
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
@@ -102,6 +102,7 @@ class ListAllShipsInfoControllerTest {
 
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
             System.out.println("Ship1MMSI    Ship2MMSI      Movs      TravelDist  Movs     TravelDist");
+
         List<ShipPairsDTO> pairShips = listAllShipsInfoController.pairShips(andDataList);
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1"))
             Utils.printList(pairShips);

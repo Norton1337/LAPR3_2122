@@ -16,8 +16,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static lapr.project.utils.Utils.printList;
-import static lapr.project.utils.Utils.printMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CargoManifestControllerTest {
@@ -144,7 +142,7 @@ class CargoManifestControllerTest {
     void freeShipsTest() {
         List<Ship> testList = cargoManifestController.freeShips();
 
-        assertEquals(132, testList.size());
+        assertEquals(131, testList.size());
 
     }
 
@@ -167,7 +165,8 @@ class CargoManifestControllerTest {
     @Test
     void weekInAdvanceMapTest() {
         List<String> testList = new ArrayList<>();
-        testList.add("Operation Type:Load Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
+        // testList.add("Operation Type:Load
+        // Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
         testList.add("Operation Type:Unload Vehicle:0cd75de5-f6dc-4877-b27f-38337cb4ffd1 Date:2022-01-25 22:00:05");
 
         assertEquals(testList.size(), cargoManifestController.weekInAdvanceMap("10358").size());

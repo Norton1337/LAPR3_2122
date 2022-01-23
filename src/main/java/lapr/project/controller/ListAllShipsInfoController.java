@@ -93,12 +93,10 @@ public class ListAllShipsInfoController {
                         entry1.getKey().setDistanceTravelled(distanceTravelsShip2Get);
                     }
 
-                    //Double distanceTravelsShip2 = mostTravelledShipsController.getTotalPerShip(entry1.getValue());
-                    //System.out.println(distanceTravelsShip2);
-
 
                     if (((initialEnd < 5 || endInitial < 5) || (initialDistanceInital < 5 || endDistanceInital < 5)) &&
                             (distanceTravelsShip1 > 10 && distanceTravelsShip2Get > 10)) {
+
 
                         listOfShipsLessThan5Kms.add(new ShipPairsDTO(entry.getKey().getMMSI(), entry1.getKey().getMMSI(),
                                 String.valueOf(entry.getValue().size()), String.valueOf(entry1.getValue().size()),

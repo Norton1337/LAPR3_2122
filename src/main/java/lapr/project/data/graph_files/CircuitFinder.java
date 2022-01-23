@@ -1,4 +1,4 @@
-package lapr.project.controller.helper_classes;
+package lapr.project.data.graph_files;
 
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
 import lapr.project.data.graph_files.EdgeAsDoubleGraphAlgorithms;
@@ -90,12 +90,14 @@ public class CircuitFinder {
                                      List<String> localPathList, int c) throws IOException {
 
         if (u.equals(d) && c > 0) {
-            save(localPathList);
             // if match found then no need to traverse more till depth
             return;
         }
         c++;
 
+        if(g.getVertices().size() == 0){
+            return;
+        }
         // Mark the current node
         isVisited[g.getIntNum(u)] = true;
 
@@ -121,10 +123,5 @@ public class CircuitFinder {
         isVisited[g.getIntNum(u)] = false;
 
     }
-    private void save(List<String> localPathList) {
-        for (String s : localPathList) {
-            //System.out.printf("%s, ", s);
-        }
-        //System.out.println("");
-    }
+
 }

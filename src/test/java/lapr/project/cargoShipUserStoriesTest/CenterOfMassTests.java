@@ -64,6 +64,20 @@ class CenterOfMassTests {
         assertEquals(25.625, centerOfMassOfShip.getZ());
     }
 
+    @Test
+    void calculateCentroidOfContainerTest(){
+        Coords p11 = new Coords(0, 0, 0);
+        Coords p12 = new Coords(0,1,0);
+        Coords p13 = new Coords(1,1,0);
+        Shapes shape1 = new Shapes(p11, p12, p13, 1, false);
+        List<Shapes> newContainers = new ArrayList<>();
+        newContainers.add(shape1);
+        Coords centerOfContainer = centerOfMass.calculateCentroid(newContainers);
+        assertEquals(0.5, centerOfContainer.getX());
+        assertEquals(0.5, centerOfContainer.getY());
+        assertEquals(0.5, centerOfContainer.getZ());
+    }
+
 
     @Test
     void addContainersTest(){
