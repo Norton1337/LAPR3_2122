@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserControllerTest {
@@ -55,5 +56,14 @@ public class UserControllerTest {
         userController.addUser(newUser);
 
         assertEquals("Client222",userController.getUserById(newUser.getId()).getUsername());
+    }
+
+    @Test
+    void getUserByUserNameTest(){
+        newUser = new Users("Client222","123","Client");
+        userController.addUser(newUser);
+
+        assertEquals("Client222",userController.getUserByUsername(newUser.getUsername()).getUsername());
+        assertNull(userController.getUserByUsername("jose"));
     }
 }

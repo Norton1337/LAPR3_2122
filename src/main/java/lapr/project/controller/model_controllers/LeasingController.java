@@ -40,13 +40,12 @@ public class LeasingController {
             }
         }
 
-
+        
         for(Users elems : usersDB.getAllUsers()){
             if(elems.getUsername().equals(clientUsername)){
                 users = elems;
             }
         }
-
 
         assert users != null;
         assert container != null;

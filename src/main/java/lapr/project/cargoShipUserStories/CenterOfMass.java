@@ -3,10 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CenterOfMass {
-    private List<Shapes> boatShapes = new ArrayList<>();
+    private final List<Shapes> boatShapes = new ArrayList<>();
     
     public CenterOfMass(List<Shapes> boatShapes){
-        this.boatShapes=boatShapes;
+        this.boatShapes.addAll(boatShapes);
     }
 
     public Coords calculateCentroid(List<Shapes> shapes){
@@ -113,6 +113,7 @@ public class CenterOfMass {
 
         if((remainingAmount-1)%4!=0 && (remainingAmount%2!=0))
             amountInMiddle=3;
+           
         else if(((remainingAmount-1)%2==0 || remainingAmount == 1)&& (remainingAmount%2!=0))
             amountInMiddle=1;
 

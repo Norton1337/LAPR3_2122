@@ -54,4 +54,14 @@ class ShipControllerTest {
         Ship result = shipController.findShipByMMSI("210956699");
         assertEquals("C4SQ2", result.getCallSign());
     }
+
+    @Test
+    void capacityRateNowTest(){
+        assertEquals(0.0, shipController.capacity_rate_now("ship_id"));
+    }
+
+    @Test
+    void capacityRateTest(){
+        assertEquals(0.0, shipController.capacity_rate("ship_id", "cm_id"));
+    }
 }

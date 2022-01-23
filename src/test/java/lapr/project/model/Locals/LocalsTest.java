@@ -31,7 +31,8 @@ class LocalsTest {
     @Test
     void setAndGetIdTest() {
         portsAndWarehouses.setId("12345");
-        assertEquals("12345", portsAndWarehouses.getId());
+        String string = "12345";
+        assertEquals(string, portsAndWarehouses.getId());
     }
 
 

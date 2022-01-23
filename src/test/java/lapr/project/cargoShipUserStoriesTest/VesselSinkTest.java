@@ -45,6 +45,7 @@ class VesselSinkTest {
         Coords p53 = new Coords(260,90,5);
         Shapes shape5 = new Shapes(p51, p52, p53, 41.25, false);
 
+
         boatShapes.add(shape1);
         boatShapes.add(shape2);
         boatShapes.add(shape3);

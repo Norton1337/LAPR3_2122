@@ -216,14 +216,6 @@ public class ToMatrixController {
     }
 
 
-    public void printFreightNetworkMatrix() {
-        System.out.println(freightNetworkMatrix);
-    }
-
-    public void printMatrixToColour() {
-        System.out.println(matrixToColour);
-    }
-
 
     public AdjacencyMatrixGraph<Locals, Double> buildMatrixToColour() {
 

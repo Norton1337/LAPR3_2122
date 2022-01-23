@@ -12,6 +12,8 @@ import java.util.Objects;
 
 import static lapr.project.utils.Utils.printList;
 import static lapr.project.utils.Utils.readFromProp;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class CountryControllerTest {
 
@@ -39,7 +41,19 @@ class CountryControllerTest {
         if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
             printList(bordersDBMock.getAllBorders());
         }
+        
 
+    }
+
+    @Test
+    void getAllBordersOfCountryTest(){
+        assertEquals(1, countryController.getAllBordersOfCountry("Portugal").size());
+    }
+
+    @Test
+    void getCountryWithCapitalTest(){
+        assertEquals("Portugal", countryController.getCountryWithCapital("Lisbon").getCountryName());
+        assertNull(countryController.getCountryWithCapital("something"));
     }
 
 

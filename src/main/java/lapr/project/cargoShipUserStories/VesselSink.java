@@ -36,10 +36,6 @@ public class VesselSink {
             maxLength= Math.max(maxLength,shape.getP2().getX());
             maxLength= Math.max(maxLength,shape.getP3().getX());
         }
-
-        if(maxWidth==0 || maxLength==0){
-            return -1.0;
-        }
         
         return volumeDispalced/(maxWidth * maxLength);
     }
