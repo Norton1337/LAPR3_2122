@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 public class EdgeAsDoubleGraphAlgorithms {
 
+    private EdgeAsDoubleGraphAlgorithms(){
+
+    }
     /**
      * Determine the shortest path to all vertices from a vertex using
      * Dijkstra's algorithm To be called by public short method
@@ -20,11 +23,9 @@ public class EdgeAsDoubleGraphAlgorithms {
             knownVertices[sourceIdx] = true;
 
             for (int i = 0; i < graph.numVertices; i++) {
-                if (graph.privateGet(sourceIdx, i) != null) {
-                    if (!knownVertices[i] && minDist[i] > (minDist[sourceIdx] + graph.privateGet(sourceIdx, i))) {
-                        minDist[i] = minDist[sourceIdx] + graph.privateGet(sourceIdx, i);
-                        verticesIndex[i] = sourceIdx;
-                    }
+                if (graph.privateGet(sourceIdx, i) != null && (!knownVertices[i] && minDist[i] > (minDist[sourceIdx] + graph.privateGet(sourceIdx, i)))) {
+                    minDist[i] = minDist[sourceIdx] + graph.privateGet(sourceIdx, i);
+                    verticesIndex[i] = sourceIdx;
                 }
             }
             Double min = Double.MAX_VALUE;

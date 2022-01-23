@@ -1,15 +1,14 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.ContainerController;
-import lapr.project.controller.model_controllers.LocalsController;
-import lapr.project.model.locals.Locals;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lapr.project.controller.model_controllers.LocalsController;
+import lapr.project.model.locals.Locals;
 
 public class WarehouseUI {
 

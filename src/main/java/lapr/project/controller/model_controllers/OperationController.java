@@ -56,6 +56,7 @@ public class OperationController {
                     / 100
                     * ship.getLoadCapacity() + 1 > ship.getLoadCapacity();
         }
+        
         if (cm.getOperationType().equals("Unload")) {
             capacityProblem = this.capacityRateWarehouse(warehouse, port, cm) / 100
                     * warehouse.getLocalCapacity() + 1 > warehouse.getLocalCapacity();
@@ -69,15 +70,15 @@ public class OperationController {
             cargoManifestController.removeCargo(cm.getId());
             return false;
         }
+       
         for (Container elems : containerDB.getAllContainers()) {
             if (elems.getContainerNumber() == toInt(containerNumber)) {
                 operation.setContainerId(elems.getId());
             }
         }
-
+        
         operation.setOperation_warehouse(warehouse.getId());
         operation.setCargoManifestId(cm.getId());
-
         operationDB.addOperation(operation);
         return true;
     }

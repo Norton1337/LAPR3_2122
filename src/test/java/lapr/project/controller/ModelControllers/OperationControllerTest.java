@@ -3,12 +3,21 @@ package lapr.project.controller.ModelControllers;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.cargoManifest.CargoManifest;
+import lapr.project.model.containers.Container;
 import lapr.project.model.locals.Locals;
+import lapr.project.model.operation.Operation;
 import lapr.project.ui.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class OperationControllerTest {
+class OperationControllerTest {
 
     //DB
     OperationDBMock operationDBMock = new OperationDBMock();
@@ -68,12 +77,61 @@ public class OperationControllerTest {
 
     @Test
     void addOperationTest(){
-        CargoManifest newCargoManifest = new CargoManifest("NextLocal","CurrentLocal"
+        CargoManifest newCargoManifest = new CargoManifest("NextLocal","153624"
                 ,"2022-13-02","Load","buska");
         cargoManifestController.addCargoManifest(newCargoManifest,"78-28-VR");
         Locals newWarehouse = new Locals("Portugal",222,"Canedo","22.98,23.45");
+        newWarehouse.setId("id");
+        newWarehouse.setPortId("123456");
         localsController.addWarehouse(newWarehouse,"224","400");
-        newWarehouse.setPortId("PortId");
-        //TODO
+        
+
+        Container container = new Container(12345, 0, null, 0, 0, 0, 0, null, null, null);
+        
+        Operation operation = new Operation(1,2,3);
+        operation.setCargoManifestId("cargoManifestId");
+        operation.setContainerId("containerId");
+        operation.setOperation_warehouse("operation_warehouse");
+        operation.setId("id");
+
+        assertTrue(operationController.addOperation(operation, container.getContainerNumber()+"", newCargoManifest.getCargo_recon(), newWarehouse.getLocalCode()+""));
+        
     }
+
+    @Test
+    void addOperationTest2(){
+        CargoManifest newCargoManifest = new CargoManifest("NextLocal","153624"
+                ,"2022-13-02","UnLoad","buska");
+        cargoManifestController.addCargoManifest(newCargoManifest,"78-28-VR");
+        Locals newWarehouse = new Locals("Portugal",222,"Canedo","22.98,23.45");
+        newWarehouse.setId("id");
+        newWarehouse.setPortId("123456");
+        localsController.addWarehouse(newWarehouse,"224","400");
+        
+
+        Container container = new Container(12345, 0, null, 0, 0, 0, 0, null, null, null);
+        
+        Operation operation = new Operation(1,2,3);
+        operation.setCargoManifestId("cargoManifestId");
+        operation.setContainerId("containerId");
+        operation.setOperation_warehouse("operation_warehouse");
+        operation.setId("id");
+
+        assertTrue(operationController.addOperation(operation, container.getContainerNumber()+"", newCargoManifest.getCargo_recon(), newWarehouse.getLocalCode()+""));
+        
+    }
+
+    @Test
+    void getOccupancyRateTest(){
+        assertEquals(0, operationController.getOccupancyRateAndContainersLeavingNextMonth(13012).size());
+    }
+
+    @Test
+    void portMapTest(){
+        List<String> list = new ArrayList<>();
+        list.add("There aren't any operations on the port in that month");
+        assertEquals(list, operationController.portMap(13012, "2020-12-12 12:10:00"));
+    }       
+
+    
 }
