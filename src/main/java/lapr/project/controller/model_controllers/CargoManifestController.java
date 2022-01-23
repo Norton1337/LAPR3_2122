@@ -10,12 +10,19 @@ import lapr.project.model.vehicle.idb.IVehicle;
 import lapr.project.utils.Utils;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.IllegalFormatPrecisionException;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import static lapr.project.utils.Utils.*;
@@ -27,7 +34,8 @@ public class CargoManifestController {
     private final IOperation operationDB;
     private final ShipController shipController;
 
-    public CargoManifestController(IVehicle vehicleDB, ICargoManifest cargoManifestDB, IOperation operationDB, ShipController shipController) {
+    public CargoManifestController(IVehicle vehicleDB, ICargoManifest cargoManifestDB, IOperation operationDB,
+            ShipController shipController) {
         this.vehicleDB = vehicleDB;
         this.cargoManifestDB = cargoManifestDB;
         this.operationDB = operationDB;
@@ -234,7 +242,8 @@ public class CargoManifestController {
         String cargo_recon = null;
         for (CargoManifest cm : getAllCargoManifest()) {
             if (cm.getVehicleId().equals(ship_id)
-                    && Objects.requireNonNull(toDate(cm.getDate())).compareTo(toDate(LocalDateTime.now().toString())) < 0) {
+                    && Objects.requireNonNull(toDate(cm.getDate()))
+                            .compareTo(toDate(LocalDateTime.now().toString())) < 0) {
                 if (cargo_recon == null) {
                     cargo_recon = cm.getCargo_recon();
                 } else if (Objects.requireNonNull(toDate(this.findCargoByRecon(cargo_recon).getDate())).compareTo(
@@ -250,43 +259,102 @@ public class CargoManifestController {
         }
     }
 
-    public double capacityRateInPeriod(String mmsi, String startDate, String endDate){
+    public double capacityRateInPeriod(String mmsi, String startDate, String endDate) {
         List<CargoManifest> cargoManifests = new ArrayList<>();
         Ship ship = shipController.findShipByMMSI(mmsi);
         double capacityRate = 0;
-        for(CargoManifest elem : getAllCargoManifest()){
-            if(elem.getVehicleId().equals(ship.getId())
+        for (CargoManifest elem : getAllCargoManifest()) {
+            if (elem.getVehicleId().equals(ship.getId())
                     && Objects.requireNonNull(toDate(elem.getDate())).compareTo(toDate(startDate)) > 0
-                    && Objects.requireNonNull(toDate(elem.getDate())).compareTo(toDate(endDate)) < 0){
+                    && Objects.requireNonNull(toDate(elem.getDate())).compareTo(toDate(endDate)) < 0) {
                 cargoManifests.add(elem);
             }
         }
-        for(CargoManifest elem : cargoManifests){
-            capacityRate += capacity_rate(mmsi,elem.getCargo_recon());
+        for (CargoManifest elem : cargoManifests) {
+            capacityRate += capacity_rate(mmsi, elem.getCargo_recon());
         }
 
-        return (capacityRate/cargoManifests.size()) * 100;
+        return (capacityRate / cargoManifests.size()) * 100;
     }
 
-    public List<String> occupancyBelowThresHold(){
+    public List<String> occupancyBelowThresHold() {
         List<String> returnList = new ArrayList<>();
         List<CargoManifest> cargosList = new ArrayList<>();
 
-        for(CargoManifest elem : getAllCargoManifest()){
-            if(elem.getVehicleId().equals(shipController.findShipByID(elem.getVehicleId()).getId())){
+        for (CargoManifest elem : getAllCargoManifest()) {
+            if (elem.getVehicleId().equals(shipController.findShipByID(elem.getVehicleId()).getId())) {
                 cargosList.add(elem);
             }
         }
         cargosOrderedByTime(cargosList);
 
-        for(CargoManifest elem : cargosList){
-            if(elem.getOperationType().equals("Load")){
+        for (CargoManifest elem : cargosList) {
+            if (elem.getOperationType().equals("Load")) {
                 break;
             }
             cargosList.remove(elem);
         }
         printList(cargosList);
         return returnList;
+    }
+
+    public Map<Ship, String> idle_time_ships() {
+        Map<Ship, String> idle_time = new HashMap<>();
+        int time = 0;
+        List<CargoManifest> lcm = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Objects.requireNonNull(
+                toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))));
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        Date fristDay = calendar.getTime();
+        for (Ship ship : shipController.getAllShips()) {
+            time = 0;
+            lcm.clear();
+            for (CargoManifest cm : this.getAllCargoManifest()) {
+                if (cm.getVehicleId().equals(ship.getId()) && toDate(cm.getDate()).compareTo(fristDay) >= 0
+                        && toDate(cm.getDate()).compareTo(Objects.requireNonNull(
+                                toDate(LocalDateTime.now()
+                                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))))) <= 0) {
+                    lcm.add(cm);
+                }
+            }
+            Utils.cargosOrderedByTime(lcm);
+            if (lcm.size() == 0) {
+                for (CargoManifest cm : Utils.cargosOrderedByTime(this.getAllCargoManifest())) {
+                    if (cm.getVehicleId().equals(ship.getId()) && toDate(cm.getDate()).compareTo(fristDay) < 0) {
+                        lcm.add(cm);
+                    }
+                }
+                if (lcm.size() != 0) {
+                    if (lcm.get(lcm.size() - 1).getOperationType().equals("Unload")) {
+                        time += ChronoUnit.DAYS.between(fristDay.toInstant(),
+                                toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                        .toInstant());
+                    }
+                } else {
+                    time += ChronoUnit.DAYS.between(fristDay.toInstant(),
+                            toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                    .toInstant());
+                }
+            } else {
+                if (lcm.get(0).getOperationType().equals("Load")) {
+                    time += ChronoUnit.DAYS.between(toDate(lcm.get(0).getDate()).toInstant(), fristDay.toInstant());
+                }
+                if (lcm.get(lcm.size() - 1).getOperationType().equals("Unload")) {
+                    time += ChronoUnit.DAYS.between(toDate(lcm.get(lcm.size() - 1).getDate()).toInstant(),
+                            toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+                                    .toInstant());
+                }
+                for (int i = 0; i < lcm.size(); i++) {
+                    if (i + 1 < lcm.size() && lcm.get(i).getOperationType().equals("Unload")) {
+                        time += ChronoUnit.DAYS.between(toDate(lcm.get(i).getDate()).toInstant(),
+                                toDate(lcm.get(i + 1).getDate()).toInstant());
+                    }
+                }
+            }
+            idle_time.put(ship, "Idle Time: " + time);
+        }
+        return idle_time;
     }
 
 }

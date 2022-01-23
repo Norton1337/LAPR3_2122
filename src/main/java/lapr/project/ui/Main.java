@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.util.LinkedList;
 
 import static lapr.project.utils.Utils.printList;
+import static lapr.project.utils.Utils.printMap;;
 
 class Main {
 
@@ -116,7 +117,8 @@ class Main {
                 // printList(cargoManifestController.free_ships(shipController));
                 // printList(containerController.containerRoute("client123","2345"));
                 // printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
-                printList(operationController.port_map(10358, "2022-01-01 00:00:00"));
+                // printList(operationController.port_map(10358, "2022-01-01 00:00:00"));
+                printMap(cargoManifestController.idle_time_ships());
                 // printList(localsController.getAllWarehouses());
                 // printList(userController.getAllUsers());
                 // printList(containerController.getAllContainers());
