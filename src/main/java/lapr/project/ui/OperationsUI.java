@@ -1,10 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.CargoManifestController;
-import lapr.project.controller.model_controllers.ContainerController;
-import lapr.project.controller.model_controllers.LocalsController;
-import lapr.project.controller.model_controllers.OperationController;
-import lapr.project.model.operation.Operation;
+import static lapr.project.utils.Utils.toInt;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,14 +9,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lapr.project.utils.Utils.toInt;
+import lapr.project.controller.model_controllers.OperationController;
+import lapr.project.model.operation.Operation;
 
 public class OperationsUI {
 
     private OperationController operationController;
-    private ContainerController containerController;
-    private CargoManifestController cargoManifestController;
-    private LocalsController localsController;
 
     public OperationsUI(OperationController operationController) {
         this.operationController = operationController;

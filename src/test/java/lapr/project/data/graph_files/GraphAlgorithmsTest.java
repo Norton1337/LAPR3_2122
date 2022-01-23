@@ -76,9 +76,9 @@ public class GraphAlgorithmsTest {
 
             LinkedList<String> path;
 
-            assertTrue("Should be null if vertex does not exist", GraphAlgorithms.DFS(completeMap, "LX") == null);
+            assertTrue("Should be null if vertex does not exist", GraphAlgorithms.dfs(completeMap, "LX") == null);
 
-            path = GraphAlgorithms.DFS(incompleteMap, "Faro");
+            path = GraphAlgorithms.dfs(incompleteMap, "Faro");
 
             assertTrue("Should be just one", path.size() == 1);
 
@@ -86,7 +86,7 @@ public class GraphAlgorithmsTest {
 
             assertTrue("it should be Faro", it.next().compareTo("Faro") == 0);
 
-            path = GraphAlgorithms.DFS(completeMap, "Porto");
+            path = GraphAlgorithms.dfs(completeMap, "Porto");
 
             assertTrue("Should give all vertices ", path.size() == 11);
 
@@ -106,7 +106,7 @@ public class GraphAlgorithmsTest {
             assertTrue("then Faro", it.next().compareTo("Faro") == 0);
 
 
-            path = GraphAlgorithms.DFS(incompleteMap, "Viseu");
+            path = GraphAlgorithms.dfs(incompleteMap, "Viseu");
 
             assertTrue("Should give 3 vertices", path.size() == 3);
 

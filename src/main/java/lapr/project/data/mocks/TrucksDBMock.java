@@ -1,12 +1,10 @@
 package lapr.project.data.mocks;
 
-import lapr.project.model.truck.Truck;
-import lapr.project.model.truck.idb.ITruck;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import static lapr.project.utils.Utils.randomUUID;
+import lapr.project.model.truck.Truck;
+import lapr.project.model.truck.idb.ITruck;
 
 public class TrucksDBMock implements ITruck {
 

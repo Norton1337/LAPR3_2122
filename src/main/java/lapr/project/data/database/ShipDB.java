@@ -14,9 +14,6 @@ import java.util.List;
 
 public class ShipDB extends DataHandler implements IShipsDB {
 
-    // TODO implement DB
-    private List<Ship> allShips = new ArrayList<>();
-
     @Override
     public List<Ship> getAllShips() {
         

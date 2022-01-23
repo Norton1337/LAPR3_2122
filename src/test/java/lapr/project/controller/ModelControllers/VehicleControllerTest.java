@@ -36,6 +36,8 @@ class VehicleControllerTest {
 
         assertTrue(vehiclesController.addTruck(vehicle2, truck));
         assertEquals(1, vehiclesController.getAllTrucks().size());
+
+        assertEquals(2, vehiclesController.getAllVehicles().size());
     }
 
 }

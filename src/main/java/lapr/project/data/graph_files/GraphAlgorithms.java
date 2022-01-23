@@ -5,6 +5,10 @@ import java.util.List;
 
 public class GraphAlgorithms {
 
+
+    private GraphAlgorithms() {
+        
+    }
     /**
      * Performs depth-first search of the graph starting at vertex.Calls package
      * recursive version of the method.
@@ -19,20 +23,19 @@ public class GraphAlgorithms {
     public static <V, E> LinkedList<V> BFS(AdjacencyMatrixGraph<V, E> graph, V vertex) {
         int index = graph.toIndex(vertex);
         if (index == -1) {
-            return null;
+            return new LinkedList<>();
         }
-        LinkedList<V> resultQueue = new LinkedList();
-        LinkedList<Integer> auxQueue = new LinkedList();
+        LinkedList<V> resultQueue = new LinkedList<>();
+        LinkedList<Integer> auxQueue = new LinkedList<>();
         resultQueue.add(graph.vertices.get(index));
         auxQueue.add(index);
         while (!auxQueue.isEmpty()) {
             index = auxQueue.remove();
             for (int i = 0; i < graph.numVertices; i++) {
-                if (graph.edgeMatrix[index][i] != null) {
-                    if (!resultQueue.contains(graph.vertices.get(i))) {
-                        resultQueue.add(graph.vertices.get(i));
-                        auxQueue.add(i);
-                    }
+                if (graph.edgeMatrix[index][i] != null && (!resultQueue.contains(graph.vertices.get(i)))) {
+                    resultQueue.add(graph.vertices.get(i));
+                    auxQueue.add(i);
+                    
                 }
             }
         }
@@ -50,14 +53,14 @@ public class GraphAlgorithms {
      * @return queue of vertices found by search (empty if none), null if vertex
      * does not exist
      */
-    public static <V, E> LinkedList<V> DFS(AdjacencyMatrixGraph<V, E> graph, V vertex) {
+    public static <V, E> LinkedList<V> dfs(AdjacencyMatrixGraph<V, E> graph, V vertex) {
         int index = graph.toIndex(vertex);
         if (index == -1) {
-            return null;
+            return new LinkedList<>();
         }
         LinkedList<V> qdfs = new LinkedList<>();
         boolean[] knownVertices = new boolean[graph.numVertices];
-        DFS(graph, index, knownVertices, qdfs);
+        dfs(graph, index, knownVertices, qdfs);
         return qdfs;
     }
 
@@ -70,13 +73,13 @@ public class GraphAlgorithms {
      *                      search
      * @param verticesQueue queue of vertices found by search
      */
-    static <V, E> void DFS(AdjacencyMatrixGraph<V, E> graph, int index, boolean[] knownVertices, LinkedList<V> verticesQueue) {
+    static <V, E> void dfs(AdjacencyMatrixGraph<V, E> graph, int index, boolean[] knownVertices, LinkedList<V> verticesQueue) {
         V vOrig = graph.vertices.get(index);
         knownVertices[index] = true;  //visitado
         verticesQueue.add(vOrig);
         for (int i = 0; i < graph.numVertices; i++) {
             if (graph.edgeMatrix[index][i] != null && !knownVertices[i]) {
-                DFS(graph, i, knownVertices, verticesQueue);
+                dfs(graph, i, knownVertices, verticesQueue);
             }
         }
     }
@@ -93,16 +96,13 @@ public class GraphAlgorithms {
      */
     public static <V, E> AdjacencyMatrixGraph<V, E> transitiveClosure(AdjacencyMatrixGraph<V, E> graph, E dummyEdge) {
         AdjacencyMatrixGraph<V, E> transitiveClosureGraph;
-        transitiveClosureGraph = (AdjacencyMatrixGraph<V, E>) graph.clone();
+        transitiveClosureGraph = graph.clone();
         for (int k = 0; k < graph.numVertices; k++) {
             for (int i = 0; i < graph.numVertices; i++) {
                 if (i != k && transitiveClosureGraph.edgeMatrix[i][k] != null) {
                     for (int j = 0; j < graph.numVertices; j++) {
-                        if (i != j && k != j && transitiveClosureGraph.edgeMatrix[k][j] != null) {
-                            if (transitiveClosureGraph.edgeMatrix[i][j] == null) {
+                        if (i != j && k != j && transitiveClosureGraph.edgeMatrix[k][j] != null && (transitiveClosureGraph.edgeMatrix[i][j] == null))
                                 transitiveClosureGraph.insertEdge(i, j, dummyEdge);
-                            }
-                        }
                     }
                 }
             }
@@ -112,7 +112,7 @@ public class GraphAlgorithms {
 
 
     static <V, E> void circuit(AdjacencyMatrixGraph<V, E> graph, V vertex, List<V> visited, List<V> verticesQueue, V orig) {
-        int index = graph.getIntNum(vertex);
+        // int index = graph.getIntNum(vertex);
 
         if(!vertex.equals(orig)){
             visited.add(vertex);

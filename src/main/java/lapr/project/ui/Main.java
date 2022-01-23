@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 
-import static lapr.project.utils.Utils.printList;
+
 import static lapr.project.utils.Utils.printMap;;
 
 class Main {
