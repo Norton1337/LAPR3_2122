@@ -37,4 +37,10 @@ class VehicleTest {
         String string = "Vehicles{vehiclesId='vehiclesId', type='truck'}";
         assertEquals(string, vehicle.toString());
     }
+
+    @Test
+    void setAndGetVehicleReconTest(){
+        vehicle.setVehicle_recon("vehicle_recon");
+        assertEquals("vehicle_recon", vehicle.getVehicle_recon());
+    }
 }
