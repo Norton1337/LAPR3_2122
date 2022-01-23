@@ -114,6 +114,15 @@ public class Locals implements Comparable<Locals> {
                 '}';
     }
 
+    public String toStringPort() {
+        return  "name='" + name + '\'' +
+                ", localCode=" + localCode +'\'' +
+                ", coordinates='" + coordinates + '\'' +
+                ", type='" + type + '\'';
+    }
+
+
+
     @Override
     public int compareTo(Locals o) {
         return (this.getId().compareTo(o.getId()));
