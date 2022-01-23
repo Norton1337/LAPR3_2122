@@ -29,6 +29,9 @@ public class CircuitFinder {
         }
 
 
+        /**
+         * Insert all edges
+         */
         for(Locals elems : graphLocals.getVertices()){
             for(Locals edges : graphLocals.outgoingVertices(elems)){
                 double weight = graphLocals.getEdge(elems, edges);
@@ -39,9 +42,9 @@ public class CircuitFinder {
         return graph;
     }
 
-    public ArrayList<String> mostEfficientCircuitWithMap(AdjacencyMatrixGraph<String,Double> g , String s) throws IOException {
+    public List<String> mostEfficientCircuitWithMap(AdjacencyMatrixGraph<String,Double> g , String s) throws IOException {
         saveAllCircuits(g,s);
-        ArrayList<String> min = new ArrayList<>();
+        List<String> min = new ArrayList<>();
         int minWeight=Integer.MAX_VALUE;
 
 
@@ -52,7 +55,7 @@ public class CircuitFinder {
                 i--;
             }
         }
-        for (ArrayList<String> l:circuits) {
+        for (List<String> l:circuits) {
             int weight =0;
             for (int i = 0; i < l.size()-1; i++) {
                 LinkedList<String> path = new LinkedList<>();

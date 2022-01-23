@@ -14,7 +14,6 @@ import lapr.project.ui.CountryUI;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.SeadistUI;
 import lapr.project.ui.ShipUI;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -57,9 +56,7 @@ public class TestControll {
     CountryUI countryUI = new CountryUI(countryController);
     SeadistUI seadistUI = new SeadistUI(seadistController);
 
-
-    @BeforeEach
-    void setup() {
+    public TestControll() {
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
         shipUI.importShips("Docs/Input/bships.csv");
@@ -73,12 +70,9 @@ public class TestControll {
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
         seadistUI.importSeadist("Docs/Input/seadists.csv");
-
-
-        //printList(portsAndWarehousesController.getAllPorts());
-        //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
-
     }
+
+
 
     @Test
     void test() {
@@ -98,9 +92,8 @@ public class TestControll {
         List<Locals> outgoingVerticesList = matrix.outgoingVertices(leixoes);
         List<String> expectResult = Arrays.asList("Setubal", "Barcelona", "Dunkirk", "Horta", "Ponta Delgada", "Valencia", "Funchal");
 
-        for (Object elems : outgoingVerticesList) {
-            Locals conv = (Locals) elems;
-            int index = expectResult.indexOf(conv.getName());
+        for (Locals elems : outgoingVerticesList) {
+            int index = expectResult.indexOf(elems.getName());
             assertTrue(index != -1);
         }
 
@@ -159,48 +152,80 @@ public class TestControll {
     void pathsTest(){
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
 
-        LinkedList<Locals> path = new LinkedList<>();
-
-        Locals madrid = localsController.getLocalWithName("Madrid");
-        int result = t.getIntNum(madrid);
-
-
-        System.out.println(t);
-
-
         CircuitFinder circuitFinder = new CircuitFinder();
         circuitFinder.convertGraph(t);
 
-        ArrayList<String> result1 = null;
+        List<String> result1 = null;
         try {
             result1 = circuitFinder.mostEfficientCircuitWithMap(circuitFinder.getGraph(), "Leixoes");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(result1);
-        /*
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(result1);
+        }
 
 
-        /*
-        var lisbon = localsController.getLocalWithName("Lisbon");
-
-        var genoa = localsController.getLocalWithName("Genoa");
-        var paris =localsController.getLocalWithName("Paris");
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, genoa, paris,path);
-        System.out.println("Genoa -> Paris");
-        printList(path);
-
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, paris, madrid,path);
-        System.out.println("Paris -> Madrid");
-        printList(path);
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, madrid, lisbon,path);
-        System.out.println("Madrid -> Lisbon");
-        printList(path);
-
+        /**
+         * Verificar se o a lista so vai conter uma unica vez o mesmo vertice
          */
+        Set<String> notReapeted = new LinkedHashSet<>(result1);
+        assertEquals(notReapeted.size(), result1.size());
+
+    }
+
+
+    @Test
+    void pathsTestMock(){
+        AdjacencyMatrixGraph<String, Double> t = new AdjacencyMatrixGraph<>();
+        t.insertVertex("0");
+        t.insertVertex("1");
+        t.insertVertex("2");
+        t.insertVertex("3");
+        t.insertVertex("4");
+        t.insertVertex("5");
+        t.insertVertex("6");
+        t.insertVertex("7");
+
+        t.insertEdge("0","1",1.0);
+        t.insertEdge("1","4",50.0);
+        t.insertEdge("0","4",1.0);
+        t.insertEdge("1","3",0.0);
+        t.insertEdge("4","3",1.0);
+        t.insertEdge("1","2",1.0);
+        t.insertEdge("3","2",1.0);
+
+        CircuitFinder circuitFinder = new CircuitFinder();
+
+        List<String> result1 = null;
+        try {
+            result1 = circuitFinder.mostEfficientCircuitWithMap(t, "0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(result1);
+        }
+
+        List<String> expResult = new LinkedList<>();
+        expResult.add("4");
+        expResult.add("1");
+
+
+        /**
+         * Verificar se o tamanho e o mesmo
+         */
+        assert result1 != null;
+        assertEquals(result1.size(), expResult.size());
+
+        /**
+         * Verificar se o a lista so vai conter uma unica vez o mesmo vertice
+         */
+        Set<String> notReapeted = new LinkedHashSet<>(result1);
+        assertEquals(notReapeted.size(), result1.size());
     }
 
     @Test
