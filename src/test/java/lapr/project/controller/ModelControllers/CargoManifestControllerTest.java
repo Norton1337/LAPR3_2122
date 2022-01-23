@@ -122,9 +122,7 @@ class CargoManifestControllerTest {
     @Test
     void containers_to_loadTest() {
         String mmsi = "212180000";
-        List<String> testList;
-        testList = cargoManifestController.containersToLoadAndOffload(mmsi, "Load");
-        assertEquals(0, testList.size());
+        assertNull(cargoManifestController.containersToLoadAndOffload(mmsi, "Load"));
 
     }
 
