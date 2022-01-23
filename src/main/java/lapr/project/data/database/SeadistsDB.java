@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.seadists.Seadist;
@@ -6,12 +6,13 @@ import lapr.project.model.seadists.idb.ISeadist;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SeadistsDB extends DataHandler implements ISeadist {
     @Override
     public List<Seadist> getAllSeadist() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

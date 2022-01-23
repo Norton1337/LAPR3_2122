@@ -1,11 +1,9 @@
 package lapr.project.controller.model_controllers;
 
-import lapr.project.model.containers.Container;
-import lapr.project.model.containers.idb.IContainerDB;
+import java.util.List;
+
 import lapr.project.model.truck.Truck;
 import lapr.project.model.truck.idb.ITruck;
-
-import java.util.List;
 
 public class TruckController {
 

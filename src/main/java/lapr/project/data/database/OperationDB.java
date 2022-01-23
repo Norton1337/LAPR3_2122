@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.operation.Operation;
@@ -6,13 +6,14 @@ import lapr.project.model.operation.idb.IOperation;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OperationDB extends DataHandler implements IOperation {
 
     @Override
     public List<Operation> allOperations() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

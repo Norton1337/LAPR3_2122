@@ -8,10 +8,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.cargoShipUserStories.CenterOfMass;
-import lapr.project.cargoShipUserStories.Coords;
-import lapr.project.cargoShipUserStories.Shapes;
-import lapr.project.cargoShipUserStories.VesselSink;
+import lapr.project.cargoship_stories.CenterOfMass;
+import lapr.project.cargoship_stories.Coords;
+import lapr.project.cargoship_stories.Shapes;
+import lapr.project.cargoship_stories.VesselSink;
 
 class VesselSinkTest {
     VesselSink vesselSink = new VesselSink();

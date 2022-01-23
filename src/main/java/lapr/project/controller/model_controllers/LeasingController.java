@@ -1,6 +1,10 @@
 package lapr.project.controller.model_controllers;
 
-import lapr.project.model.client.Client;
+import static lapr.project.utils.Utils.randomUUID;
+import static lapr.project.utils.Utils.toInt;
+
+import java.util.List;
+
 import lapr.project.model.client.idb.IClient;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;
@@ -8,11 +12,6 @@ import lapr.project.model.leasing.Leasing;
 import lapr.project.model.leasing.idb.ILeasing;
 import lapr.project.model.users.Users;
 import lapr.project.model.users.idb.IUsers;
-
-import java.util.List;
-
-import static lapr.project.utils.Utils.randomUUID;
-import static lapr.project.utils.Utils.toInt;
 
 public class LeasingController {
 

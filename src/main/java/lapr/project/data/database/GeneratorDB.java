@@ -1,8 +1,9 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.model.ships.Generator;
 import lapr.project.model.ships.idb.IGeneratorDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GeneratorDB implements IGeneratorDB {
@@ -21,11 +22,11 @@ public class GeneratorDB implements IGeneratorDB {
 
     @Override
     public List<Generator> getAllGenerator() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public List<Generator> getAllGeneratorsFromShip(String shipID) {
-        return null;
+        return new ArrayList<>();
     }
 }

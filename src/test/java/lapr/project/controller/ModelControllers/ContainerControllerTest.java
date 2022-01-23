@@ -3,18 +3,25 @@ package lapr.project.controller.ModelControllers;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.containers.Container;
+import lapr.project.ui.CargoManifestUI;
+import lapr.project.ui.ClientUI;
 import lapr.project.ui.ContainerUI;
+import lapr.project.ui.UsersUI;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static lapr.project.utils.Utils.printList;
 import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ContainerControllerTest {
+class ContainerControllerTest {
     //DB
     ContainerDBMock containerDBMock = new ContainerDBMock();
     VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
@@ -29,7 +36,14 @@ public class ContainerControllerTest {
     UsersDBMock usersDBMock = new UsersDBMock();
     ClientDBMock clientDBMock = new ClientDBMock();
 
-    //Controller
+
+
+    ClientController clientController = new ClientController(clientDBMock,usersDBMock);
+    UserController userController = new UserController(usersDBMock);
+
+    ClientUI clientUI = new ClientUI(clientController);
+    UsersUI usersUI = new UsersUI(userController);
+
 
     LocalsController localsController = new LocalsController(countryDBMock,localsDBMock);
     ShipController shipController = new ShipController(shipDBMock,generatorDBMock);
@@ -43,17 +57,15 @@ public class ContainerControllerTest {
 
     //LEITURA DE FICHEIRO
     ContainerUI containerUI = new ContainerUI(containerController);
-
+    CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
     @BeforeEach
     void setup() {
+        cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
         containerUI.importContainers("Docs/Input/container.csv");
+        usersUI.importUsers("Docs/Input/users.csv");
+        clientUI.importClients("Docs/Input/clients.csv");
     }
 
-
-    @Test
-    void containerControllerTest(){
-
-    }
 
     @Test
     void addContainerTest(){
@@ -93,17 +105,18 @@ public class ContainerControllerTest {
         }
 
     }
-    //TODO implement test
-    @Test
-    void containerRouteTest(){
-
-    }
-
 
     //TODO implement test
     @Test
     void whereIsContainerTest(){
-        
+      
+    }
+
+    @Test
+    void containerRouteTest(){
+        List<String> list = new ArrayList<>();
+        list.add("Container is not valid");
+        assertEquals(list, containerController.containerRoute("client123", "2380"));
     }
 
 }

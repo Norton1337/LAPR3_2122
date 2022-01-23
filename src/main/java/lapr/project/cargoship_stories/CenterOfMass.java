@@ -1,4 +1,4 @@
-package lapr.project.cargoShipUserStories;
+package lapr.project.cargoship_stories;
 import java.util.ArrayList;
 import java.util.List;
 

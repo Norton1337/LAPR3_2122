@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import lapr.project.cargoShipUserStories.Coords;
+import lapr.project.cargoship_stories.Coords;
 
 class CoordsTest {
     Coords coords;

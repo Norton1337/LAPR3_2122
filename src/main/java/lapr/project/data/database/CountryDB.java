@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.country.Country;
@@ -6,13 +6,14 @@ import lapr.project.model.country.idb.ICountryDB;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CountryDB extends DataHandler implements ICountryDB {
 
     @Override
     public List<Country> getAllCountries() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

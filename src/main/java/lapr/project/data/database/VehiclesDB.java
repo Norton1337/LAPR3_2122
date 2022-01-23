@@ -1,15 +1,16 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.model.vehicle.Vehicles;
 import lapr.project.model.vehicle.idb.IVehicle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclesDB implements IVehicle {
 
     @Override
     public List<Vehicles> getAllVehicles() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -30,12 +31,12 @@ public class VehiclesDB implements IVehicle {
 
     @Override
     public List<Vehicles> getAllTrucks() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public List<Vehicles> getAllShips() {
-        return null;
+        return new ArrayList<>();
     }
 
 

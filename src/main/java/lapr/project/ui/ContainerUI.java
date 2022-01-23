@@ -1,9 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.ContainerController;
-import lapr.project.controller.model_controllers.LocalsController;
-import lapr.project.model.containers.Container;
-import lapr.project.model.operation.Operation;
+import static lapr.project.utils.Utils.toInt;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lapr.project.utils.Utils.toInt;
+import lapr.project.controller.model_controllers.ContainerController;
+import lapr.project.model.containers.Container;
 
 public class ContainerUI {
 

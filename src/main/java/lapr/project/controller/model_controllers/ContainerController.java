@@ -49,7 +49,7 @@ public class ContainerController {
         return true;
     }
 
-    public String whereIsContainer(String containerNumber, String userName, String leas){
+    public String whereIsContainer(String containerNumber){
         String whereIsContainer;
         CargoManifest cargoManifest = null;
         Container container = null;
@@ -69,7 +69,7 @@ public class ContainerController {
                 }
             }
         }
-
+        
         assert cargoManifest != null;
         if(cargoManifest.getOperationType().equals("Load")){
             Vehicles vehicles = vehiclesController.getVehicle(cargoManifest.getVehicleId());
