@@ -66,12 +66,12 @@ public class EdgeAsDoubleGraphAlgorithms {
             verticesIndex[i] = -1;
         }
         shortestPath(graph, sourceIdx, knownVertices, verticesIndex, minDist);
-        if (knownVertices[destIdx] == false) {
+        if (!knownVertices[destIdx]) {
             return -1;
         }
         recreatePath(graph, sourceIdx, destIdx, verticesIndex, path);
         // recreatePath builds path in reverse order, so reverse
-        LinkedList<V> stack = new LinkedList();  //create a stack
+        LinkedList<V> stack = new LinkedList<>();  //create a stack
         while (!path.isEmpty()) {
             stack.push(path.remove());
         }

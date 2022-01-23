@@ -35,7 +35,6 @@ class ShipControllerTest {
     void CreateShip() throws IOException {
         Ship newShip = new Ship("210950000", "VARAMO", "IMO9395044", "C4SQ2", 70,
                 166, 25, 9.5, 0.0);
-        newShip.getId();
         addShipController.addShip(newShip);
         if (readFromProp("debug", "src/main/resources/application.properties").equals("1"))
             System.out.println(iShipsDB.getAllShips());

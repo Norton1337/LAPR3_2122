@@ -281,20 +281,66 @@ public class CargoManifestController {
         List<String> returnList = new ArrayList<>();
         List<CargoManifest> cargosList = new ArrayList<>();
 
+<<<<<<< HEAD
         for (CargoManifest elem : getAllCargoManifest()) {
             if (elem.getVehicleId().equals(shipController.findShipByID(elem.getVehicleId()).getId())) {
                 cargosList.add(elem);
+=======
+
+        for(Ship elem : shipController.getAllShips()){
+            cargosList.clear();
+            for(CargoManifest elemCargo : getAllCargoManifest()){
+                if(elemCargo.getVehicleId().equals(elem.getId())){
+                    cargosList.add(elemCargo);
+                }
+            }
+            if(cargosList.size() != 0) {
+                Utils.cargosOrderedByTime(cargosList);
+                if (cargosList.get(0).getOperationType().equals("Unload")) {
+                    cargosList.remove(0);
+                }
+                for (int i = 0; i < cargosList.size(); i += 2) {
+                    //System.out.println(capacity_rate(elem.getMMSI(),cargosList.get(i).getCargo_recon()));
+                    if(capacity_rate(elem.getMMSI(),cargosList.get(i).getCargo_recon()) < 66.00) {
+                        if ((i + 1) < cargosList.size()) {
+                            returnList.add("Departure Local: " + cargosList.get(i).getCurrentLocalId() + " Departure date: "
+                                    + cargosList.get(i).getDate()
+                                    + " Arrival Local :" + cargosList.get(i).getNextLocal() + " Arrival Date: "
+                                    + cargosList.get(i + 1).getDate());
+                        }
+                    }
+                }
+>>>>>>> 0c0b7d984378b437fee59391064fadd916182986
             }
         }
-        cargosOrderedByTime(cargosList);
 
+<<<<<<< HEAD
         for (CargoManifest elem : cargosList) {
             if (elem.getOperationType().equals("Load")) {
                 break;
+=======
+
+        return returnList;
+    }
+    
+    
+    public List<String> weekInAdvanceMap(String portCode){
+        List<String> returnList = new ArrayList<>();
+        Date nextMonday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        Date nextFriday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.FRIDAY))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        for(CargoManifest elem : getAllCargoManifest()){
+            if(elem.getCurrentLocalId().equals(portCode)){
+                if(Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextMonday) >= 0
+                        && Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextFriday) <= 0){
+                returnList.add("Operation Type:" + elem.getOperationType() + " Vehicle:" + elem.getVehicleId() +
+                        " Date:" + elem.getDate());
+                }
+>>>>>>> 0c0b7d984378b437fee59391064fadd916182986
             }
-            cargosList.remove(elem);
+
         }
-        printList(cargosList);
         return returnList;
     }
 

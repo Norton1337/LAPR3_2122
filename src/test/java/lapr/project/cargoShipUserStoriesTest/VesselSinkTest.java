@@ -30,9 +30,9 @@ class VesselSinkTest {
         Coords p23 = new Coords(305,0,0);
         Shapes shape2 = new Shapes(p21, p22, p23, 51.25, false);
 
-        Coords p31 = new Coords(305, 0, 0);
+        Coords p31 = new Coords(305, 48.8, 0);
         Coords p32 = new Coords(305,48.8,0);
-        Coords p33 = new Coords(366,48.8,0);
+        Coords p33 = new Coords(366,0,0);
         Shapes shape3 = new Shapes(p31, p32, p33, 51.25, true);
 
         Coords p41 = new Coords(91, 48.8, 5);

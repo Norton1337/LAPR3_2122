@@ -122,7 +122,7 @@ public class Utils {
             return p.getProperty(prop);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
 
         return null;
@@ -160,6 +160,22 @@ public class Utils {
             }
         }
         return returnMap;
+    }
+
+    public static <K> List<K> iterateToList(Iterable<K> iterable){
+        List<K> result = new ArrayList<>();
+        iterable.forEach(result::add);
+
+        return result;
+    }
+
+    public static <K> List<K> mergeLists(List<K> list1, List<K> list2 ){
+        List<K> result = new ArrayList<>();
+
+        result.addAll(list1);
+        result.addAll(list2);
+
+        return result;
     }
 
 

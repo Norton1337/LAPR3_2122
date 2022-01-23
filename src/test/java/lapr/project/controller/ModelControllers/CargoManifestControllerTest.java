@@ -1,62 +1,41 @@
 package lapr.project.controller.ModelControllers;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import lapr.project.ui.PortsAndWarehousesUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
-import lapr.project.controller.ToMatrixController;
 import lapr.project.controller.model_controllers.CargoManifestController;
-import lapr.project.controller.model_controllers.ClientController;
-import lapr.project.controller.model_controllers.ContainerController;
-import lapr.project.controller.model_controllers.CountryController;
 import lapr.project.controller.model_controllers.GeneratorController;
-import lapr.project.controller.model_controllers.LeasingController;
 import lapr.project.controller.model_controllers.LocalsController;
-import lapr.project.controller.model_controllers.OperationController;
-import lapr.project.controller.model_controllers.SeadistController;
 import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.controller.model_controllers.ShipPositionDataController;
 import lapr.project.controller.model_controllers.TruckController;
-import lapr.project.controller.model_controllers.UserController;
 import lapr.project.controller.model_controllers.VehiclesController;
-import lapr.project.data.mocks.BordersDBMock;
 import lapr.project.data.mocks.CargoManifestDBMock;
-import lapr.project.data.mocks.ClientDBMock;
-import lapr.project.data.mocks.ContainerDBMock;
 import lapr.project.data.mocks.CountryDBMock;
 import lapr.project.data.mocks.GeneratorDBMock;
-import lapr.project.data.mocks.LeasingDBMock;
 import lapr.project.data.mocks.LocalsDBMock;
 import lapr.project.data.mocks.OperationDBMock;
-import lapr.project.data.mocks.SeadistDBMock;
 import lapr.project.data.mocks.ShipDBMock;
 import lapr.project.data.mocks.ShipPositionDataDBMock;
 import lapr.project.data.mocks.TrucksDBMock;
-import lapr.project.data.mocks.UsersDBMock;
 import lapr.project.data.mocks.VehiclesDBMock;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.locals.Locals;
 import lapr.project.ui.CargoManifestUI;
-import lapr.project.ui.ClientUI;
-import lapr.project.ui.ContainerUI;
-import lapr.project.ui.CountryUI;
-import lapr.project.ui.LeasingUI;
-import lapr.project.ui.OperationsUI;
-import lapr.project.ui.PortsAndWarehousesUI;
-import lapr.project.ui.SeadistUI;
 import lapr.project.ui.ShipUI;
 import lapr.project.ui.TruckUI;
-import lapr.project.ui.UsersUI;
-import lapr.project.ui.WarehouseUI;
 
 class CargoManifestControllerTest {
 
@@ -68,17 +47,13 @@ class CargoManifestControllerTest {
     ShipPositionDataDBMock shipPositionDataDBMock = new ShipPositionDataDBMock();
     LocalsDBMock localsDBMock = new LocalsDBMock();
     CountryDBMock countryDBMock = new CountryDBMock();
-    BordersDBMock bordersDBMock = new BordersDBMock();
-    SeadistDBMock seadistDBMock = new SeadistDBMock();
+
     OperationDBMock operationDBMock = new OperationDBMock();
     CargoManifestDBMock cargoManifestDBMock = new CargoManifestDBMock();
-    ContainerDBMock containerDBMock = new ContainerDBMock();
-    UsersDBMock usersDBMock = new UsersDBMock();
-    ClientDBMock clientDBMock = new ClientDBMock();
-    LeasingDBMock leasingDBMock = new LeasingDBMock();
 
 
-    //CONTROLLERS DO MODEL
+
+
     VehiclesController vehiclesController = new VehiclesController(vehiclesDBMock, shipDBMock, trucksDBMock);
     ShipController shipController = new ShipController(shipDBMock, generatorDBMock);
     ShipPositionDataController shipPositionDataController = new ShipPositionDataController(shipDBMock,
@@ -87,66 +62,32 @@ class CargoManifestControllerTest {
     LocalsController localsController = new LocalsController(countryDBMock, localsDBMock);
     CargoManifestController cargoManifestController = new CargoManifestController(vehiclesDBMock, cargoManifestDBMock,
             operationDBMock, shipController);
-    OperationController operationController = new OperationController(operationDBMock,containerDBMock, localsController,
-            cargoManifestController, shipController, vehiclesController);
-    ContainerController containerController = new ContainerController(containerDBMock, cargoManifestController,
-            operationController, vehiclesController, localsController, clientDBMock, leasingDBMock, usersDBMock);
-    TruckController truckController = new TruckController(trucksDBMock);
-    UserController userController = new UserController(usersDBMock);
-    ClientController clientController = new ClientController(clientDBMock, usersDBMock);
-    LeasingController leasingController = new LeasingController(leasingDBMock, containerDBMock, clientDBMock,
-            usersDBMock, clientController);
 
-    //CONTROLLERS
+    TruckController truckController = new TruckController(trucksDBMock);
     DataToBstController dataToBstController = new DataToBstController();
     ListAllShipsInfoController listAllShipsInfoController = new ListAllShipsInfoController();
     DataToKDTreeController dataToKDTreeController = new DataToKDTreeController();
-    CountryController countryController = new CountryController(countryDBMock, bordersDBMock, localsDBMock);
-    SeadistController seadistController = new SeadistController(localsDBMock, seadistDBMock);
-    ToMatrixController matrixController = new ToMatrixController(localsDBMock, seadistDBMock, countryDBMock, bordersDBMock);
 
-
-    //LEITURA DE FICHEIRO
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
-    PortsAndWarehousesUI portsAndWarehousesUI = new PortsAndWarehousesUI(localsController);
-    CountryUI countryUI = new CountryUI(countryController);
-    SeadistUI seadistUI = new SeadistUI(seadistController);
-    ContainerUI containerUI = new ContainerUI(containerController);
-    WarehouseUI warehouseUI = new WarehouseUI(localsController);
     CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
-    OperationsUI operationsUI = new OperationsUI(operationController);
     TruckUI truckUI = new TruckUI(vehiclesController);
-    UsersUI usersUI = new UsersUI(userController);
-    ClientUI clientUI = new ClientUI(clientController);
-    LeasingUI leasingUI = new LeasingUI(leasingController);
+    PortsAndWarehousesUI localsUI = new PortsAndWarehousesUI(localsController);
 
 
-    @BeforeEach
-    void setup(){
-        //SETUP
 
-        countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
-
+    public CargoManifestControllerTest() {
         truckUI.importTrucks("Docs/Input/truck.csv");
         shipUI.importShips("Docs/Input/bships.csv");
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
-
-        portsAndWarehousesUI.importPorts("Docs/Input/bports.csv");
+        localsUI.importPorts("Docs/Input/bports.csv");
 
         LinkedList<Locals> portsAndWarehouses = localsController.getAllLocals();
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
-        seadistUI.importSeadist("Docs/Input/seadists.csv");
 
-        containerUI.importContainers("Docs/Input/container.csv");
-        warehouseUI.importWarehouses("Docs/Input/warehouses.csv");
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
-        operationsUI.importOperations("Docs/Input/operations.csv");
 
-        usersUI.importUsers("Docs/Input/users.csv");
-        clientUI.importClients("Docs/Input/clients.csv");
-        leasingUI.importLeasingCon("Docs/Input/leasing.csv");
     }
 
     @Test
@@ -193,6 +134,18 @@ class CargoManifestControllerTest {
 
         assertNull(testList);
     }
+
+    @Test
+    void weekInAdvanceMapTest(){
+        List<String> testList = new ArrayList<>();
+        testList.add("Operation Type:Load Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
+        testList.add("Operation Type:Unload Vehicle:0cd75de5-f6dc-4877-b27f-38337cb4ffd1 Date:2022-01-25 22:00:05");
+
+        assertEquals(testList.size(),cargoManifestController.weekInAdvanceMap("10358").size());
+
+    }
+
+
 
 }
 

@@ -1,6 +1,7 @@
 package lapr.project.data.graph_files;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class GraphAlgorithms {
 
@@ -74,7 +75,7 @@ public class GraphAlgorithms {
         knownVertices[index] = true;  //visitado
         verticesQueue.add(vOrig);
         for (int i = 0; i < graph.numVertices; i++) {
-            if (graph.edgeMatrix[index][i] != null && knownVertices[i] == false) {
+            if (graph.edgeMatrix[index][i] != null && !knownVertices[i]) {
                 DFS(graph, i, knownVertices, verticesQueue);
             }
         }
@@ -107,5 +108,32 @@ public class GraphAlgorithms {
             }
         }
         return transitiveClosureGraph;
+    }
+
+
+    static <V, E> void circuit(AdjacencyMatrixGraph<V, E> graph, V vertex, List<V> visited, List<V> verticesQueue, V orig) {
+        int index = graph.getIntNum(vertex);
+
+        if(!vertex.equals(orig)){
+            visited.add(vertex);
+            verticesQueue.add(vertex);
+        }
+
+
+        for(V elems : graph.outgoingVertices(vertex)){
+            if(!visited.contains(elems) && !visited.contains(orig)){
+                circuit(graph, elems, visited, verticesQueue, orig);
+            }
+        }
+    }
+
+    public static  <V, E> List<V> circuit(AdjacencyMatrixGraph<V, E> graph, V vertex){
+        List<V> visited = new LinkedList<>();
+        List<V> verticesQueue = new LinkedList<>();
+
+        circuit(graph, vertex, visited, verticesQueue, vertex);
+
+        System.out.println(verticesQueue);
+        return verticesQueue;
     }
 }

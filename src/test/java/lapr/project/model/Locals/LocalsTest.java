@@ -30,7 +30,6 @@ class LocalsTest {
 
     @Test
     void setAndGetIdTest() {
-        assertNull(portsAndWarehouses.getId());
         portsAndWarehouses.setId("12345");
         assertEquals("12345", portsAndWarehouses.getId());
     }
@@ -80,5 +79,10 @@ class LocalsTest {
         assertTrue(portsAndWarehouses.toString().contains("type='Port'"));
     }
 
+    @Test
+    void setAndGetUsedCapacity(){
+        portsAndWarehouses.setUsedCapacity(5);
+        assertEquals(5, portsAndWarehouses.getUsedCapacity());
+    }
 
 }

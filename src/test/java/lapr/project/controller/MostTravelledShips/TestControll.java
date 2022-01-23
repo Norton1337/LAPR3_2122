@@ -4,6 +4,7 @@ import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
 import lapr.project.controller.ToMatrixController;
+import lapr.project.controller.helper_classes.CircuitFinder;
 import lapr.project.controller.helper_classes.CountryColour;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.graph_files.AdjacencyMatrixGraph;
@@ -13,9 +14,9 @@ import lapr.project.ui.CountryUI;
 import lapr.project.ui.PortsAndWarehousesUI;
 import lapr.project.ui.SeadistUI;
 import lapr.project.ui.ShipUI;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.*;
 
 import static lapr.project.utils.Utils.*;
@@ -55,9 +56,7 @@ public class TestControll {
     CountryUI countryUI = new CountryUI(countryController);
     SeadistUI seadistUI = new SeadistUI(seadistController);
 
-
-    @BeforeEach
-    void setup() {
+    public TestControll() {
         countryUI.importCountriesAndBorders("Docs/Input/countries.csv", "Docs/Input/borders.csv");
 
         shipUI.importShips("Docs/Input/bships.csv");
@@ -71,12 +70,9 @@ public class TestControll {
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
         seadistUI.importSeadist("Docs/Input/seadists.csv");
-
-
-        //printList(portsAndWarehousesController.getAllPorts());
-        //printList(portsAndWarehousesDBMock.getAllPortsAndWarehouses());
-
     }
+
+
 
     @Test
     void test() {
@@ -93,12 +89,11 @@ public class TestControll {
     void leixoesTest() {
         AdjacencyMatrixGraph<Locals, Double> matrix = matrixController.buildFreightNetwork(3);
         Locals leixoes = localsController.getLocalWithName("Leixoes");
-        List<Object> outgoingVerticesList = matrix.outgoingVertices(leixoes);
+        List<Locals> outgoingVerticesList = matrix.outgoingVertices(leixoes);
         List<String> expectResult = Arrays.asList("Setubal", "Barcelona", "Dunkirk", "Horta", "Ponta Delgada", "Valencia", "Funchal");
 
-        for (Object elems : outgoingVerticesList) {
-            Locals conv = (Locals) elems;
-            int index = expectResult.indexOf(conv.getName());
+        for (Locals elems : outgoingVerticesList) {
+            int index = expectResult.indexOf(elems.getName());
             assertTrue(index != -1);
         }
 
@@ -117,7 +112,7 @@ public class TestControll {
         matrixController.buildMatrixToColour();
         List<CountryColour> result = matrixController.colorMatrix();
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
             printList(result);
         }
 
@@ -127,7 +122,7 @@ public class TestControll {
 
 
     @Test
-    void portsTest(){
+    void portsTest() {
         // Create new matrix for tests
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
         Map<Locals, Double> portsList;
@@ -136,7 +131,7 @@ public class TestControll {
         portsList = matrixController.centralPorts(t, 3);
 
 
-        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")) {
             printMap(portsList);
         }
 
@@ -156,38 +151,81 @@ public class TestControll {
     @Test
     void pathsTest(){
         AdjacencyMatrixGraph<Locals, Double> t = matrixController.buildFreightNetwork(3);
-        List<Locals> locals = new ArrayList<>();
-        List<String> places = new ArrayList<>();
-        places.add("Prague");
-        places.add("Paris");
-        //places.add("Vienna");
-        //locals = matrixController.shortestThroughNPlaces(t, "Madrid", "Barcelona", places);
-        //printList(locals);
-        /*
+
+        CircuitFinder circuitFinder = new CircuitFinder();
+        circuitFinder.convertGraph(t);
+
+        List<String> result1 = null;
+        try {
+            result1 = circuitFinder.mostEfficientCircuitWithMap(circuitFinder.getGraph(), "Leixoes");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(result1);
+        }
 
 
-        LinkedList<Locals> path = new LinkedList<>();
-
-        var madrid = localsController.getLocalWithName("Madrid");
-        var lisbon = localsController.getLocalWithName("Lisbon");
-
-        var genoa = localsController.getLocalWithName("Genoa");
-        var paris =localsController.getLocalWithName("Paris");
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, genoa, paris,path);
-        System.out.println("Genoa -> Paris");
-        printList(path);
-
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, paris, madrid,path);
-        System.out.println("Paris -> Madrid");
-        printList(path);
-
-        EdgeAsDoubleGraphAlgorithms.shortestPath(t, madrid, lisbon,path);
-        System.out.println("Madrid -> Lisbon");
-        printList(path);
-
+        /**
+         * Verificar se o a lista so vai conter uma unica vez o mesmo vertice
          */
+        Set<String> notReapeted = new LinkedHashSet<>(result1);
+        assertEquals(notReapeted.size(), result1.size());
+
+    }
+
+
+    @Test
+    void pathsTestMock(){
+        AdjacencyMatrixGraph<String, Double> t = new AdjacencyMatrixGraph<>();
+        t.insertVertex("0");
+        t.insertVertex("1");
+        t.insertVertex("2");
+        t.insertVertex("3");
+        t.insertVertex("4");
+        t.insertVertex("5");
+        t.insertVertex("6");
+        t.insertVertex("7");
+
+        t.insertEdge("0","1",1.0);
+        t.insertEdge("1","4",50.0);
+        t.insertEdge("0","4",1.0);
+        t.insertEdge("1","3",0.0);
+        t.insertEdge("4","3",1.0);
+        t.insertEdge("1","2",1.0);
+        t.insertEdge("3","2",1.0);
+
+        CircuitFinder circuitFinder = new CircuitFinder();
+
+        List<String> result1 = null;
+        try {
+            result1 = circuitFinder.mostEfficientCircuitWithMap(t, "0");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        if (Objects.equals(readFromProp("debug", "src/main/resources/application.properties"), "1")){
+            System.out.println(result1);
+        }
+
+        List<String> expResult = new LinkedList<>();
+        expResult.add("4");
+        expResult.add("1");
+
+
+        /**
+         * Verificar se o tamanho e o mesmo
+         */
+        assert result1 != null;
+        assertEquals(result1.size(), expResult.size());
+
+        /**
+         * Verificar se o a lista so vai conter uma unica vez o mesmo vertice
+         */
+        Set<String> notReapeted = new LinkedHashSet<>(result1);
+        assertEquals(notReapeted.size(), result1.size());
     }
 
     @Test
@@ -273,6 +311,37 @@ public class TestControll {
 
 
     }
+
+
+    @Test
+    void findBiggestCircuit() throws IOException {
+        AdjacencyMatrixGraph<String, Double> t = new AdjacencyMatrixGraph<>();
+        t.insertVertex("0");
+        t.insertVertex("1");
+        t.insertVertex("2");
+        t.insertVertex("3");
+        t.insertVertex("4");
+        t.insertVertex("5");
+        t.insertVertex("6");
+        t.insertVertex("7");
+
+        t.insertEdge("0","1",1.0);
+        t.insertEdge("1","4",50.0);
+        t.insertEdge("0","4",1.0);
+        t.insertEdge("1","3",0.0);
+        t.insertEdge("4","3",1.0);
+        t.insertEdge("1","2",1.0);
+        t.insertEdge("3","2",1.0);
+
+        CircuitFinder f = new CircuitFinder();
+
+        //var r = f.convertGraph(t);
+        List<String> result = f.mostEfficientCircuitWithMap(t, "0");
+        printList(result);
+
+    }
+
+
 
     @Test
     void landPathMethodTest(){

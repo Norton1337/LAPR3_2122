@@ -208,4 +208,10 @@ class ShipTest {
         assertEquals(3, testShip.getGeneratorsPower());
     }
 
+    @Test
+    void setAndGetUsedCapacity(){
+        testShip.setUsedCapacity(5);
+        assertEquals(5, testShip.getUsedCapacity());
+    }
+
 }

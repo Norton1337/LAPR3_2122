@@ -111,7 +111,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
         return (vertices.indexOf(vertex) != -1);
     }
 
-    public List getVertices() {
+    public List<V> getVertices() {
         return vertices;
     }
 
@@ -413,9 +413,9 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
 
 
     @Override
-    public List<Object> outgoingVertices(V vert) {
+    public List<V> outgoingVertices(V vert) {
         int vertNum = toIndex(vert);
-        List<Object> outgoingVerticesList = new ArrayList<>();
+        List<V> outgoingVerticesList = new ArrayList<>();
 
 
         for (int j = 0; j < numVertices; j++) {
@@ -426,6 +426,17 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
 
         return outgoingVerticesList;
 
+    }
+
+
+
+    public int getIntNum(V vert){
+        for (int i = 0; i < numVertices; i++) {
+            if (vert.equals(vertices.get(i))){
+                return i;
+            }
+        }
+        return 0;
     }
 
     /**
@@ -477,8 +488,8 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Object clone() {
-        AdjacencyMatrixGraph<V, E> newObject = new AdjacencyMatrixGraph();
+    public AdjacencyMatrixGraph<V, E>  clone() {
+        AdjacencyMatrixGraph<V, E> newObject = new AdjacencyMatrixGraph<>();
         newObject.vertices = (ArrayList<V>) vertices.clone();
         newObject.numVertices = numVertices;
         newObject.edgeMatrix = (E[][]) new Object[edgeMatrix.length][edgeMatrix.length];

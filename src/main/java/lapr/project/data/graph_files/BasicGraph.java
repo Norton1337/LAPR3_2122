@@ -128,5 +128,5 @@ public interface BasicGraph<V, E> {
      */
     E removeEdge(V va, V vb);
 
-    List<Object> outgoingVertices(V vertex);
+    List<V> outgoingVertices(V vertex);
 }

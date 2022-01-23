@@ -1,6 +1,5 @@
 package lapr.project.controller.model_controllers;
 
-import lapr.project.model.locals.Locals;
 import lapr.project.model.locals.idb.ILocals;
 import lapr.project.model.seadists.Seadist;
 import lapr.project.model.seadists.idb.ISeadist;
@@ -13,6 +12,7 @@ public class SeadistController {
     private final ISeadist seadistDB;
 
 
+
     public SeadistController(ILocals localDB, ISeadist seadistDB) {
         this.localDB = localDB;
         this.seadistDB = seadistDB;
@@ -22,15 +22,7 @@ public class SeadistController {
         seadistDB.addSeadist(elem);
     }
 
-    public Locals getPortWithPortId(String portId) {
-        for (Seadist elem : seadistDB.getAllSeadist()) {
-            if (elem.getToPortId().equals(portId)) {
-                Locals returnVal = localDB.getPortByPortIdCode(portId);
-                return returnVal;
-            }
-        }
-        return null;
-    }
+
 
 
     public LinkedList<Seadist> getAllSeadist() {
