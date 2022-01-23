@@ -288,5 +288,25 @@ public class CargoManifestController {
         printList(cargosList);
         return returnList;
     }
+    
+    
+    public List<String> weekInAdvanceMap(String portCode){
+        List<String> returnList = new ArrayList<>();
+        Date nextMonday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        Date nextFriday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.FRIDAY))
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        for(CargoManifest elem : getAllCargoManifest()){
+            if(elem.getCurrentLocalId().equals(portCode)){
+                if(Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextMonday) >= 0
+                        && Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextFriday) <= 0){
+                returnList.add("Operation Type:" + elem.getOperationType() + " Vehicle:" + elem.getVehicleId() +
+                        " Date:" + elem.getDate());
+                }
+            }
+
+        }
+        return returnList;
+    }
 
 }

@@ -4,9 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import lapr.project.ui.PortsAndWarehousesUI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -69,28 +71,23 @@ class CargoManifestControllerTest {
     ShipUI shipUI = new ShipUI(shipController, shipPositionDataController, generatorController, vehiclesController);
     CargoManifestUI cargoManifestUI = new CargoManifestUI(cargoManifestController);
     TruckUI truckUI = new TruckUI(vehiclesController);
+    PortsAndWarehousesUI localsUI = new PortsAndWarehousesUI(localsController);
 
 
 
-    @BeforeEach
-    void setup(){
-        //SETUP
-
-
+    public CargoManifestControllerTest() {
         truckUI.importTrucks("Docs/Input/truck.csv");
         shipUI.importShips("Docs/Input/bships.csv");
         dataToBstController.transformBeforeBST(shipController.getAllShips(), shipPositionDataController.getShipData());
         dataToBstController.populateBST();
-
+        localsUI.importPorts("Docs/Input/bports.csv");
 
         LinkedList<Locals> portsAndWarehouses = localsController.getAllLocals();
         dataToKDTreeController.populateTree(portsAndWarehouses);
 
-   
+
         cargoManifestUI.importCargoManifest("Docs/Input/cargoManifest.csv");
 
-
-       
     }
 
     @Test
@@ -137,6 +134,18 @@ class CargoManifestControllerTest {
 
         assertNull(testList);
     }
+
+    @Test
+    void weekInAdvanceMapTest(){
+        List<String> testList = new ArrayList<>();
+        testList.add("Operation Type:Load Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
+        testList.add("Operation Type:Unload Vehicle:0cd75de5-f6dc-4877-b27f-38337cb4ffd1 Date:2022-01-25 22:00:05");
+
+        assertEquals(testList.size(),cargoManifestController.weekInAdvanceMap("10358").size());
+
+    }
+
+
 
 }
 
