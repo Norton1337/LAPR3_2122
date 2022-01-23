@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.borders.Borders;
@@ -6,12 +6,13 @@ import lapr.project.model.borders.idb.IBordersDB;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BordersDB extends DataHandler implements IBordersDB {
     @Override
     public List<Borders> getAllBorders() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

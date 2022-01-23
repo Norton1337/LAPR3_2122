@@ -118,7 +118,7 @@ class Main {
                 // printList(containerController.containerRoute("client123","2345"));
                 // printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
                 // printList(operationController.port_map(10358, "2022-01-01 00:00:00"));
-                printMap(cargoManifestController.idle_time_ships());
+                printMap(cargoManifestController.idleTimeShips());
                 // printList(localsController.getAllWarehouses());
                 // printList(userController.getAllUsers());
                 // printList(containerController.getAllContainers());

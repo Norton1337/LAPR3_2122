@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.truck.Truck;
@@ -6,6 +6,7 @@ import lapr.project.model.truck.idb.ITruck;
 
 import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TruckDB extends DataHandler implements ITruck {
@@ -18,7 +19,7 @@ public class TruckDB extends DataHandler implements ITruck {
 
     @Override
     public List<Truck> getAllTrucks() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

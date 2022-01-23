@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.cargoManifest.CargoManifest;
@@ -7,13 +7,14 @@ import lapr.project.model.cargoManifest.idb.ICargoManifest;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CargoManifestDB extends DataHandler implements ICargoManifest {
 
     @Override
     public List<CargoManifest> getAllCargoManifest() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

@@ -28,7 +28,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
      */
     @SuppressWarnings("unchecked")
     public AdjacencyMatrixGraph(int initialSize) {
-        vertices = new ArrayList(initialSize);
+        vertices = new ArrayList<>(initialSize);
         edgeMatrix = (E[][]) new Object[initialSize][initialSize];
     }
 
@@ -133,7 +133,7 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
      */
     @Override
     public Iterable<E> edges() {
-        ArrayList<E> edges = new ArrayList();
+        ArrayList<E> edges = new ArrayList<>();
         // graph is undirected, so only return a single copy of edge
         // graph could actually only keep one copy of the edge but algorithms
         // would then need to consider that case.
@@ -270,14 +270,14 @@ public class AdjacencyMatrixGraph<V, E> implements BasicGraph<V, E>, Cloneable {
     public V[] endVertices(E edge) {
         for (int i = 0; i < numVertices - 1; i++) {
             for (int j = i + 1; j < numVertices; j++) {
-                if (edgeMatrix[i][j] != null) {
-                    if (edgeMatrix[i][j].equals(edge)) {
-                        @SuppressWarnings("unchecked")
-                        V[] result = (V[]) new Object[2];
-                        result[0] = vertices.get(i);
-                        result[1] = vertices.get(j);
-                        return result;
-                    }
+                if (edgeMatrix[i][j] != null && edgeMatrix[i][j].equals(edge)) {
+                
+                    @SuppressWarnings("unchecked")
+                    V[] result = (V[]) new Object[2];
+                    result[0] = vertices.get(i);
+                    result[1] = vertices.get(j);
+                    return result;
+                    
                 }
             }
         }

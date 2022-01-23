@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.ships.Ship;
@@ -19,7 +19,8 @@ public class ShipDB extends DataHandler implements IShipsDB {
 
     @Override
     public List<Ship> getAllShips() {
-        return null;
+        
+        return new ArrayList<>();
     }
 
     @Override
@@ -69,11 +70,11 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
 
-    public List<String> containers_to_offload(String ship_id) {
+    public List<String> containersToOffload(String shipId) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement result = getConnection().prepareCall("{?= call containers_to_offload(?)}")) {
             result.registerOutParameter(1, OracleTypes.CURSOR);
-            result.setString(2, ship_id);
+            result.setString(2, shipId);
             result.executeUpdate();
             ResultSet containers = (ResultSet) result.getObject(1);
             ls.add(containers.getMetaData().getColumnLabel(1) + "|" + containers.getMetaData().getColumnLabel(2) + "|"
@@ -89,7 +90,7 @@ public class ShipDB extends DataHandler implements IShipsDB {
         return ls;
     }
 
-    public List<String> a_cm(Integer ano) {
+    public List<String> aCm(Integer ano) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement resultado = getConnection().prepareCall("{?= call a_cm (?)}")) {
             resultado.registerOutParameter(1, OracleTypes.CURSOR);
@@ -106,11 +107,11 @@ public class ShipDB extends DataHandler implements IShipsDB {
         return ls;
     }
 
-    public float capacity_rate_now(String ship_id) {
+    public float capacityRateNow(String shipId) {
         float fatorial = 0;
         try (CallableStatement resultado = getConnection().prepareCall("{?= call func_occupancy_rate_now (?)}")) {
             resultado.registerOutParameter(1, Types.FLOAT);
-            resultado.setString(2, ship_id);
+            resultado.setString(2, shipId);
             resultado.executeUpdate();
             fatorial = resultado.getFloat(1);
         } catch (SQLException e) {
@@ -120,12 +121,12 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
 
-    public float capacity_rate(String ship_id, String cm_id) {
+    public float capacityRate(String shipId, String cmId) {
         float fatorial = 0;
         try (CallableStatement resultado = getConnection().prepareCall("{?= call func_occupancy_rate (?,?)}")) {
             resultado.registerOutParameter(1, Types.FLOAT);
-            resultado.setString(2, ship_id);
-            resultado.setString(3, cm_id);
+            resultado.setString(2, shipId);
+            resultado.setString(3, cmId);
             resultado.executeUpdate();
             fatorial = resultado.getFloat(1);
         } catch (SQLException e) {
@@ -135,11 +136,11 @@ public class ShipDB extends DataHandler implements IShipsDB {
     }
 
 
-    public List<String> containers_to_load(String ship_id) {
+    public List<String> containersToLoad(String shipId) {
         List<String> ls = new ArrayList<>();
         try (CallableStatement result = getConnection().prepareCall("{?= call containers_to_load(?)}")) {
             result.registerOutParameter(1, OracleTypes.CURSOR);
-            result.setString(2, ship_id);
+            result.setString(2, shipId);
             result.executeUpdate();
             ResultSet containers = (ResultSet) result.getObject(1);
             ls.add(containers.getMetaData().getColumnLabel(1) + "|" + containers.getMetaData().getColumnLabel(2) + "|"

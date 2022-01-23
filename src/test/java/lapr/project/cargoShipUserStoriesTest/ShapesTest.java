@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lapr.project.cargoShipUserStories.Coords;
-import lapr.project.cargoShipUserStories.Shapes;
+import lapr.project.cargoship_stories.Coords;
+import lapr.project.cargoship_stories.Shapes;
 
 class ShapesTest {
     

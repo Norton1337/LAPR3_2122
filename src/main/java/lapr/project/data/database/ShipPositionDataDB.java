@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.ship_position_data.ShipPositonData;
@@ -7,12 +7,13 @@ import lapr.project.model.ship_position_data.idb.IShipPositionDataDB;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShipPositionDataDB extends DataHandler implements IShipPositionDataDB {
     @Override
     public List<ShipPositonData> getShipData() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class ShipPositionDataDB extends DataHandler implements IShipPositionData
 
     @Override
     public List<ShipPositonData> getAllPositionDataFromShip(int shipID) {
-        return null;
+        return new ArrayList<>();
     }
     // TODO implement DB
 

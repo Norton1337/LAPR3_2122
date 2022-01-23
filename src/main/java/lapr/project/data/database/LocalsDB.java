@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.locals.Locals;
@@ -14,7 +14,7 @@ import java.util.List;
 public class LocalsDB extends DataHandler implements ILocals {
 
     public List<Locals> getAllLocals() {
-        return null;
+        return new ArrayList<>();
     }
 
 

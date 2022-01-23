@@ -48,15 +48,4 @@ public class ShipController {
     }
 
 
-    public float capacity_rate_now(String ship_id) {
-        return 0;
-    }
-
-    public float capacity_rate(String ship_id, String cm_id) {
-        return 0;
-    }
-
-
-
-
 }

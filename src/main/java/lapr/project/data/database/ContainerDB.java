@@ -1,4 +1,4 @@
-package lapr.project.data.Database;
+package lapr.project.data.database;
 
 import lapr.project.data.db_scripts.DataHandler;
 import lapr.project.model.containers.Container;
@@ -7,6 +7,7 @@ import lapr.project.model.containers.idb.IContainerDB;
 import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public class ContainerDB extends DataHandler implements IContainerDB {
 
     @Override
     public List<Container> getAllContainers() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

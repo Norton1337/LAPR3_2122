@@ -1,4 +1,4 @@
-package lapr.project.cargoShipUserStories;
+package lapr.project.cargoship_stories;
 
 public class Shapes{
     private Coords p1;
