@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static lapr.project.utils.Utils.printMap;
+import static lapr.project.utils.Utils.printList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -131,6 +132,7 @@ class OperationControllerTest {
         List<String> list = new ArrayList<>();
         list.add("There aren't any operations on the port in that month");
         assertEquals(list, operationController.portMap(13012, "2020-12-12 12:10:00"));
+        assertEquals(23, operationController.portMap(10358, "2022-01-01 00:00:00").size());
     }
 
     @Test
