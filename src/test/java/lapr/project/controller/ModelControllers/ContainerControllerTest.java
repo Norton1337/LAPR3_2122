@@ -109,7 +109,7 @@ class ContainerControllerTest {
     //TODO implement test
     @Test
     void whereIsContainerTest(){
-        assertNull(containerController.whereIsContainer("2380"));
+      
     }
 
     @Test
