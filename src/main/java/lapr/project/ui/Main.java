@@ -114,21 +114,16 @@ class Main {
                 // System.out.println(cargoManifestController.capacity_rate("228339600","Buk3h",shipController));
 
                 // printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
-                printList(cargoManifestController.occupancyBelowThresHold());
+                // printList(cargoManifestController.free_ships(shipController));
                 // printList(containerController.containerRoute("client123","2345"));
                 // printMap(operationController.getOccupancyRate_and_ContainersLeavingNextMonth(246265));
-<<<<<<< HEAD
                 // printList(operationController.port_map(10358, "2022-01-01 00:00:00"));
                 printMap(cargoManifestController.idle_time_ships());
-=======
-                //printList(operationController.port_map(10358, "2022-01-01 00:00:00"));
->>>>>>> 0c0b7d984378b437fee59391064fadd916182986
                 // printList(localsController.getAllWarehouses());
                 // printList(userController.getAllUsers());
                 // printList(containerController.getAllContainers());
                 // System.out.println("\n\n\n\n\n\n");
                 // printList(leasingController.getAllLeasing());
-                //printList(cargoManifestController.weekInAdvanceMap("10358"));
 
         }
 }
