@@ -64,8 +64,7 @@ public class CargoManifestController {
         return cargoManifestDB.getCargoManifestByRecon(recon);
     }
 
-
-    public List<String> containersToLoadAndOffload(String mmsi, String type){
+    public List<String> containersToLoadAndOffload(String mmsi, String type) {
         Ship ship = shipController.findShipByMMSI(mmsi);
         List<String> returnList = new ArrayList<>();
         List<String> containersToLoadOrUnload = new ArrayList<>();
@@ -73,19 +72,17 @@ public class CargoManifestController {
         CargoManifest shipToLoadCargo = null;
         Date date = toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-        if(type.equals("Load")){
-            return containersToLoad(mmsi,ship,containersToLoadOrUnload,shipCargos,shipToLoadCargo,date);
-        }else if(type.equals("Unload")){
-            return containersToOffload(mmsi,ship,containersToLoadOrUnload,shipCargos,shipToLoadCargo,date);
+        if (type.equals("Load")) {
+            return containersToLoad(mmsi, ship, containersToLoadOrUnload, shipCargos, shipToLoadCargo, date);
+        } else if (type.equals("Unload")) {
+            return containersToOffload(mmsi, ship, containersToLoadOrUnload, shipCargos, shipToLoadCargo, date);
         }
         containersToLoadOrUnload.add("No containers were found for this task.");
         return containersToLoadOrUnload;
     }
 
-
-
-    private List<String> containersToOffload(String mmsi, Ship ship,List<String> containersToUnload,
-                                            List<CargoManifest> shipCargos,CargoManifest shipToLoadCargo,Date date ) {
+    private List<String> containersToOffload(String mmsi, Ship ship, List<String> containersToUnload,
+            List<CargoManifest> shipCargos, CargoManifest shipToLoadCargo, Date date) {
 
         for (CargoManifest elem : getAllCargoManifest()) {
             if (elem.getVehicleId().equals(ship.getId()) && (elem.getOperationType().equals("Unload"))) {
@@ -110,8 +107,8 @@ public class CargoManifestController {
         return containersToUnload;
     }
 
-    private List<String> containersToLoad(String mmsi, Ship ship,List<String> containersToLoad,
-                                         List<CargoManifest> shipCargos,CargoManifest shipToLoadCargo,Date date ) {
+    private List<String> containersToLoad(String mmsi, Ship ship, List<String> containersToLoad,
+            List<CargoManifest> shipCargos, CargoManifest shipToLoadCargo, Date date) {
 
         for (CargoManifest elem : getAllCargoManifest()) {
             if (elem.getVehicleId().equals(ship.getId()) && (elem.getOperationType().equals("Load"))) {
@@ -144,17 +141,18 @@ public class CargoManifestController {
         int contOperations = 0;
         int i = 0;
         for (CargoManifest elem : getAllCargoManifest()) {
-            if (elem.getDate().contains(ano) && (elem.getVehicleId().equals(shipController.findShipByMMSI(shipId).getId()))) {
+            if (elem.getDate().contains(ano)
+                    && (elem.getVehicleId().equals(shipController.findShipByMMSI(shipId).getId()))) {
                 contCargos++;
                 for (Operation elemOperation : this.operationDB.allOperations()) {
-                    if (elemOperation.getCargoManifestId().equals(elem.getId())){
+                    if (elemOperation.getCargoManifestId().equals(elem.getId())) {
                         contOperations++;
                     }
                 }
             }
 
         }
-        if(contCargos == 0 && contOperations == 0) {
+        if (contCargos == 0 && contOperations == 0) {
             returnList.add("No cargo manifests available for this year.\n");
             return returnList;
         }
@@ -169,6 +167,7 @@ public class CargoManifestController {
 
     public double capacityRate(String mmsi, String cargoRecon) {
         double result = 0;
+        int i = 0;
         CargoManifest cargo = this.findCargoByRecon(cargoRecon);
         List<CargoManifest> lcargo = new ArrayList<>();
         List<String> lContainers = new ArrayList<>();
@@ -195,32 +194,35 @@ public class CargoManifestController {
                 }
             }
         }
-        result = lContainers.size() / ship.getLoadCapacity() * 100;
+
+        if (ship.getLoadCapacity() != 0) {
+            result = lContainers.size() / ship.getLoadCapacity() * 100;
+        }
         return result;
     }
 
-    public List<String> weekInAdvanceMap(String portCode){
+    public List<String> weekInAdvanceMap(String portCode) {
 
         List<String> returnList = new ArrayList<>();
 
         Date nextMonday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))
-                        .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
         Date nextFriday = toDate(LocalDateTime.now().with(TemporalAdjusters.next(DayOfWeek.FRIDAY))
-                       .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
-        for(CargoManifest elem : getAllCargoManifest()){
-            if(elem.getCurrentLocalId().equals(portCode)){
-                if(Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextMonday) >= 0
-                        && Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextFriday) <= 0){
+        for (CargoManifest elem : getAllCargoManifest()) {
+            if (elem.getCurrentLocalId().equals(portCode)) {
+                if (Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextMonday) >= 0
+                        && Objects.requireNonNull(toDate(elem.getDate())).compareTo(nextFriday) <= 0) {
                     returnList.add("Operation Type:" + elem.getOperationType() + " Vehicle:" + elem.getVehicleId() +
-                                            " Date:" + elem.getDate());
+                            " Date:" + elem.getDate());
                 }
             }
         }
 
-    return returnList;
-}
+        return returnList;
+    }
 
     public List<Ship> freeShips() {
         List<Ship> freeShips = shipController.getAllShips();
@@ -239,7 +241,7 @@ public class CargoManifestController {
                     }
                 }
             }
-            if (cargo != null && (this.findCargoByRecon(cargo).getOperationType().equals("Load"))) 
+            if (cargo != null && (this.findCargoByRecon(cargo).getOperationType().equals("Load")))
                 freeShips.remove(ship);
 
             cargo = null;
@@ -249,8 +251,8 @@ public class CargoManifestController {
 
     public double capacityRateNow(String mmsi) {
         String shipId = null;
-        for (Vehicles elem : vehicleDB.getAllShips()) {
-            if (elem.getVehicle_recon().equals(mmsi)) {
+        for (Ship elem : shipController.getAllShips()) {
+            if (elem.getMMSI().equals(mmsi)) {
                 shipId = elem.getId();
             }
         }
@@ -258,15 +260,18 @@ public class CargoManifestController {
         for (CargoManifest cm : getAllCargoManifest()) {
             if (cm.getVehicleId().equals(shipId)
                     && Objects.requireNonNull(toDate(cm.getDate()))
-                            .compareTo(toDate(LocalDateTime.now().toString())) < 0) {
+                            .compareTo(Objects.requireNonNull(
+                                    toDate(LocalDateTime.now()
+                                            .format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))))) <= 0) {
                 if (cargoRecon == null) {
                     cargoRecon = cm.getCargo_recon();
                 } else if (Objects.requireNonNull(toDate(this.findCargoByRecon(cargoRecon).getDate())).compareTo(
-                        toDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))) < 0) {
-                            cargoRecon = cm.getCargo_recon();
+                        Objects.requireNonNull(toDate(cm.getDate()))) < 0) {
+                    cargoRecon = cm.getCargo_recon();
                 }
             }
         }
+
         if (cargoRecon == null) {
             return 0;
         } else {
@@ -292,43 +297,43 @@ public class CargoManifestController {
         return (capacityRate / cargoManifests.size()) * 100;
     }
 
-    public List<String> occupancyBelowThresHold(){
+    public List<String> occupancyBelowThresHold() {
 
         List<String> returnList = new ArrayList<>();
 
         List<CargoManifest> cargosList = new ArrayList<>();
 
-
-        for(Ship elem : shipController.getAllShips()){
+        for (Ship elem : shipController.getAllShips()) {
             cargosList.clear();
-            for(CargoManifest elemCargo : getAllCargoManifest()){
-                if(elemCargo.getVehicleId().equals(elem.getId())){
+            for (CargoManifest elemCargo : getAllCargoManifest()) {
+                if (elemCargo.getVehicleId().equals(elem.getId())) {
                     cargosList.add(elemCargo);
                 }
 
             }
-            if(cargosList.size() != 0) {
+            if (cargosList.size() != 0) {
                 Utils.cargosOrderedByTime(cargosList);
                 if (cargosList.get(0).getOperationType().equals("Unload")) {
                     cargosList.remove(0);
                 }
                 for (int i = 0; i < cargosList.size(); i += 2) {
-                    if(capacityRate(elem.getMMSI(),cargosList.get(i).getCargo_recon()) < 66.00) {
+                    if (capacityRate(elem.getMMSI(), cargosList.get(i).getCargo_recon()) < 66.00) {
                         if ((i + 1) < cargosList.size()) {
-                            returnList.add("Departure Local: " + cargosList.get(i).getCurrentLocalId() + " Departure date: "
-                                    + cargosList.get(i).getDate()
-                                    + " Arrival Local :" + cargosList.get(i).getNextLocal() + " Arrival Date: "
-                                    + cargosList.get(i + 1).getDate());
+                            returnList.add(
+                                    "Departure Local: " + cargosList.get(i).getCurrentLocalId() + " Departure date: "
+                                            + cargosList.get(i).getDate()
+                                            + " Arrival Local :" + cargosList.get(i).getNextLocal() + " Arrival Date: "
+                                            + cargosList.get(i + 1).getDate());
                         }
 
                     }
                 }
-        }
-}
-
-                return returnList;
-
             }
+        }
+
+        return returnList;
+
+    }
 
     public Map<Ship, String> idleTimeShips() {
         Map<Ship, String> idleTime = new HashMap<>();
