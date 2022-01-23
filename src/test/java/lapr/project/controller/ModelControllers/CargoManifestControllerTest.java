@@ -14,8 +14,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static lapr.project.utils.Utils.printList;
+import static lapr.project.utils.Utils.printMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CargoManifestControllerTest {
@@ -88,6 +90,12 @@ class CargoManifestControllerTest {
     }
 
     @Test
+    void removeCargoTest(){
+        boolean test = cargoManifestController.removeCargo(cargoManifestController.findCargoByRecon("90nGT").getId());
+        assertFalse(test);
+    }
+
+    @Test
     void getAllCargoManifestTest(){
         assertEquals(36, cargoManifestController.getAllCargoManifest().size());
     }
@@ -152,6 +160,13 @@ class CargoManifestControllerTest {
     }
 
     @Test
+    void occupancyBelowThreshold(){
+        List<String> test= cargoManifestController.occupancyBelowThresHold();
+
+        assertEquals(2,test.size());
+    }
+
+    @Test
     void weekInAdvanceMapTest(){
         List<String> testList = new ArrayList<>();
         testList.add("Operation Type:Load Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
@@ -161,7 +176,12 @@ class CargoManifestControllerTest {
 
     }
 
+    @Test
+    void idleTimeShipsTest(){
+        Map<Ship, String> mapTest = cargoManifestController.idleTimeShips();
+        assertEquals(133,mapTest.size());
 
+    }
 
 }
 

@@ -292,26 +292,43 @@ public class CargoManifestController {
         return (capacityRate / cargoManifests.size()) * 100;
     }
 
-    public List<String> occupancyBelowThresHold() {
+    public List<String> occupancyBelowThresHold(){
+
         List<String> returnList = new ArrayList<>();
+
         List<CargoManifest> cargosList = new ArrayList<>();
 
-        for (CargoManifest elem : getAllCargoManifest()) {
-            if (elem.getVehicleId().equals(shipController.findShipByID(elem.getVehicleId()).getId())) {
-                cargosList.add(elem);
-            }
-        }
-        cargosOrderedByTime(cargosList);
 
-        for (CargoManifest elem : cargosList) {
-            if (elem.getOperationType().equals("Load")) {
-                break;
+        for(Ship elem : shipController.getAllShips()){
+            cargosList.clear();
+            for(CargoManifest elemCargo : getAllCargoManifest()){
+                if(elemCargo.getVehicleId().equals(elem.getId())){
+                    cargosList.add(elemCargo);
+                }
+
             }
-            cargosList.remove(elem);
+            if(cargosList.size() != 0) {
+                Utils.cargosOrderedByTime(cargosList);
+                if (cargosList.get(0).getOperationType().equals("Unload")) {
+                    cargosList.remove(0);
+                }
+                for (int i = 0; i < cargosList.size(); i += 2) {
+                    if(capacityRate(elem.getMMSI(),cargosList.get(i).getCargo_recon()) < 66.00) {
+                        if ((i + 1) < cargosList.size()) {
+                            returnList.add("Departure Local: " + cargosList.get(i).getCurrentLocalId() + " Departure date: "
+                                    + cargosList.get(i).getDate()
+                                    + " Arrival Local :" + cargosList.get(i).getNextLocal() + " Arrival Date: "
+                                    + cargosList.get(i + 1).getDate());
+                        }
+
+                    }
+                }
         }
-        printList(cargosList);
-        return returnList;
-    }
+}
+
+                return returnList;
+
+            }
 
     public Map<Ship, String> idleTimeShips() {
         Map<Ship, String> idleTime = new HashMap<>();
