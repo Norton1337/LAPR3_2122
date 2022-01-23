@@ -175,4 +175,10 @@ class ContainerTest {
         assertEquals("not refrigerated", testContainer.getContainerType());
         testContainer.setRepairRecommendations(initialType);
     }
+
+    @Test
+    void toStringTest(){
+        String string = "Container{containerNumber=200031, checkDigit=7, ISOCODE='CBCU', containerGross=26.5, containerTare=1.0, containerPayload=1.5, containerVolume=30.0, certificates='Certificate XPTO', repairRecommendations='Please contact XPTO', containerType='refrigerated'}";
+        assertEquals(string, testContainer.toString());
+    }
 }

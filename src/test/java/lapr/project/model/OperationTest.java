@@ -74,4 +74,10 @@ class OperationTest {
         assertEquals(2, operation.getZ());
     }
 
+    @Test
+    void toStringTest(){
+        String string = "Operation{id='operationID', x=1, y=2, z=3, containerId='null', cargoManifestId='null', operation_warehouse='operation_warehouse'}";
+        assertEquals(string, operation.toString());
+    }
+
 }

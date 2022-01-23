@@ -30,4 +30,10 @@ class TruckTest {
         assertEquals("newPlate", truck.getPlate());
     }
 
+    @Test
+    void toStringTest(){
+        String string = "Truck{truckId='truckId', plate='plate'}";
+        assertEquals(string, truck.toString());
+    }
+
 }
