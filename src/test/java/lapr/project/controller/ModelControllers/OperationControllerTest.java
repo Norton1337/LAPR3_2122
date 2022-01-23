@@ -131,7 +131,7 @@ class OperationControllerTest {
         List<String> list = new ArrayList<>();
         list.add("There aren't any operations on the port in that month");
         assertEquals(list, operationController.portMap(13012, "2020-12-12 12:10:00"));
-        assertEquals(23, operationController.portMap(10358, "2022-01-01 00:00:00").size());
+        assertEquals(18, operationController.portMap(10358, "2022-01-01 00:00:00").size());
     }
 
     @Test

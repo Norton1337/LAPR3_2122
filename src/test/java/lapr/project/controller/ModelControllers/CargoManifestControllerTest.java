@@ -124,7 +124,7 @@ class CargoManifestControllerTest {
         String mmsi = "212180000";
         List<String> testList;
         testList = cargoManifestController.containersToLoadAndOffload(mmsi, "Load");
-        assertEquals(5, testList.size());
+        assertEquals(0, testList.size());
 
     }
 
@@ -159,7 +159,7 @@ class CargoManifestControllerTest {
     void occupancyBelowThreshold() {
         List<String> test = cargoManifestController.occupancyBelowThresHold();
 
-        assertEquals(2, test.size());
+        assertEquals(8, test.size());
     }
 
     @Test
