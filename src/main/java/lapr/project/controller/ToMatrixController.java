@@ -410,16 +410,8 @@ public class ToMatrixController {
         finalMap = reverseMap(finalMap);
 
         return getNFromMap(finalMap, nLocals);
-
-        //printMap(finalMap);
     }
 
-
-    public void printLandMaritime() {
-        //printList(landMatrix.getVertices());
-        //printList(maritimeMatrix.getVertices());
-        //System.out.println(maritimeMatrix);
-    }
 
 
     public List<List<Locals>> shortestPaths(AdjacencyMatrixGraph<Locals, Double> localsMatrix, Locals orig, Locals dest, List<String> portsToPass) {
@@ -589,8 +581,6 @@ public class ToMatrixController {
             elemsList = new LinkedList<>();
         }
 
-        //printList(finalPath);
-        //System.out.println("Nº of combinations: "+countPermutations + "\n");
 
         return finalPath;
     }

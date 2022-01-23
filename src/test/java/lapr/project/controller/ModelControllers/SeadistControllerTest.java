@@ -1,5 +1,7 @@
-package lapr.project.controller.model_controllers;
+package lapr.project.controller.ModelControllers;
 
+import lapr.project.controller.model_controllers.LocalsController;
+import lapr.project.controller.model_controllers.SeadistController;
 import lapr.project.data.mocks.CountryDBMock;
 import lapr.project.data.mocks.LocalsDBMock;
 import lapr.project.data.mocks.SeadistDBMock;
