@@ -21,6 +21,7 @@ import static lapr.project.utils.Utils.readFromProp;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ContainerControllerTest {
+
     // DB
     VehiclesDBMock vehiclesDBMock = new VehiclesDBMock();
     TrucksDBMock trucksDBMock = new TrucksDBMock();
