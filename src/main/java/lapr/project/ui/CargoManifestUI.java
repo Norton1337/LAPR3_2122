@@ -1,6 +1,6 @@
 package lapr.project.ui;
 
-import lapr.project.controller.model_controllers.CargoManifestController;
+import lapr.project.cargoship_stories.CargoManifestController;
 import lapr.project.model.cargoManifest.CargoManifest;
 
 import java.io.BufferedReader;

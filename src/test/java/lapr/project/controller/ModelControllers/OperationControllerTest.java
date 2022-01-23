@@ -1,5 +1,7 @@
 package lapr.project.controller.ModelControllers;
 
+import lapr.project.cargoship_stories.CargoManifestController;
+import lapr.project.cargoship_stories.ContainerController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.cargoManifest.CargoManifest;
@@ -12,12 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import static lapr.project.utils.Utils.printMap;
-import static lapr.project.utils.Utils.printList;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 
 class OperationControllerTest {

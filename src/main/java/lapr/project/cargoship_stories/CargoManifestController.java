@@ -1,4 +1,4 @@
-package lapr.project.controller.model_controllers;
+package lapr.project.cargoship_stories;
 
 import static lapr.project.utils.Utils.cargosOrderedByTime;
 import static lapr.project.utils.Utils.printList;
@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import lapr.project.controller.model_controllers.ShipController;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.cargoManifest.idb.ICargoManifest;
 import lapr.project.model.operation.Operation;

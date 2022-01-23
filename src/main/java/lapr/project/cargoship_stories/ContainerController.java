@@ -1,5 +1,7 @@
-package lapr.project.controller.model_controllers;
+package lapr.project.cargoship_stories;
 
+import lapr.project.cargoship_stories.CargoManifestController;
+import lapr.project.controller.model_controllers.*;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.client.Client;
 import lapr.project.model.client.idb.IClient;
@@ -12,7 +14,6 @@ import lapr.project.model.operation.Operation;
 import lapr.project.model.users.Users;
 import lapr.project.model.users.idb.IUsers;
 import lapr.project.model.vehicle.Vehicles;
-import lapr.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
