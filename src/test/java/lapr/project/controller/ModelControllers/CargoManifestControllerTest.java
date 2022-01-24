@@ -2,6 +2,7 @@ package lapr.project.controller.ModelControllers;
 
 import lapr.project.cargoship_stories.CargoManifestController;
 import lapr.project.cargoship_stories.ContainerController;
+import lapr.project.cargoship_stories.OperationController;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;
@@ -142,7 +143,7 @@ class CargoManifestControllerTest {
     void freeShipsTest() {
         List<Ship> testList = cargoManifestController.freeShips();
 
-        assertEquals(131, testList.size());
+        assertEquals(133, testList.size());
 
     }
 
@@ -167,7 +168,7 @@ class CargoManifestControllerTest {
         List<String> testList = new ArrayList<>();
         // testList.add("Operation Type:Load
         // Vehicle:92ffd290-5127-4efe-addf-818936e8507e Date:2022-01-24 21:12:20");
-        testList.add("Operation Type:Unload Vehicle:0cd75de5-f6dc-4877-b27f-38337cb4ffd1 Date:2022-01-25 22:00:05");
+        //testList.add("Operation Type:Unload Vehicle:0cd75de5-f6dc-4877-b27f-38337cb4ffd1 Date:2022-01-25 22:00:05");
 
         assertEquals(testList.size(), cargoManifestController.weekInAdvanceMap("10358").size());
 

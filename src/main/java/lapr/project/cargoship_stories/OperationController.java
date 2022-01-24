@@ -1,4 +1,4 @@
-package lapr.project.controller.model_controllers;
+package lapr.project.cargoship_stories;
 
 import static lapr.project.utils.Utils.toDate;
 import static lapr.project.utils.Utils.toInt;
@@ -14,6 +14,9 @@ import java.util.Map;
 import java.util.Objects;
 
 import lapr.project.cargoship_stories.CargoManifestController;
+import lapr.project.controller.model_controllers.LocalsController;
+import lapr.project.controller.model_controllers.ShipController;
+import lapr.project.controller.model_controllers.VehiclesController;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.containers.Container;
 import lapr.project.model.containers.idb.IContainerDB;

@@ -2,6 +2,7 @@ package lapr.project.controller.ModelControllers;
 
 import lapr.project.cargoship_stories.CargoManifestController;
 import lapr.project.cargoship_stories.ContainerController;
+import lapr.project.cargoship_stories.OperationController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.data.mocks.*;
 import lapr.project.model.cargoManifest.CargoManifest;

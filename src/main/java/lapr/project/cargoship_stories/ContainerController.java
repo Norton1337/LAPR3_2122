@@ -1,6 +1,5 @@
 package lapr.project.cargoship_stories;
 
-import lapr.project.cargoship_stories.CargoManifestController;
 import lapr.project.controller.model_controllers.*;
 import lapr.project.model.cargoManifest.CargoManifest;
 import lapr.project.model.client.Client;

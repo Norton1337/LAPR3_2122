@@ -2,6 +2,7 @@ package lapr.project.ui;
 
 import lapr.project.cargoship_stories.CargoManifestController;
 import lapr.project.cargoship_stories.ContainerController;
+import lapr.project.cargoship_stories.OperationController;
 import lapr.project.controller.DataToBstController;
 import lapr.project.controller.DataToKDTreeController;
 import lapr.project.controller.ListAllShipsInfoController;

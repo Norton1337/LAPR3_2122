@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import lapr.project.controller.model_controllers.OperationController;
+import lapr.project.cargoship_stories.OperationController;
 import lapr.project.model.operation.Operation;
 
 public class OperationsUI {
